@@ -1,24 +1,5 @@
 <img src="https://i.imgur.com/Y0clS9t_d.webp?maxwidth=760&fidelity=grand"></img>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    h1{
-        font-family: 'Raleway', sans-serif;
-    }
-
-    h2{
-        font-family: 'Raleway', sans-serif;
-    }
-
-    h3{
-        font-family: 'Raleway', sans-serif;
-    }
-
-    p{
-        font-family: 'Poppins', sans-serif;
-    }
-</style>
-
 <h1 align="center"> Webdock - Features </h1>
 <p align="justify">
 Dette projekt er skrevet i forbindelse med UCL's P.Ba i Webudvikling 1. semesters project. I sammarbejde med Webdock.io ApS. Projekted lød på at erstatte deres nuværende Feature Request system, leveret af Canny, i en standalone løsning, da Canny er for dyrt og komplekst til deres behov.
