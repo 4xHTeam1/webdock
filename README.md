@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/Y0clS9t_d.webp?maxwidth=760&fidelity=grand"></img>
+<img src="https://i.imgur.com/pDcMC3g_d.webp?maxwidth=1584&fidelity=grand"></img>
 
 <h1 align="center"> Webdock - Features </h1>
 <p align="justify">
