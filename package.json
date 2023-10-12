@@ -1,12 +1,13 @@
 {
-  "name": "Webdock",
+  "name": "webdock",
   "version": "1.0.50",
   "scripts": {
-    "admin:dev": "bun run --watch /Webdock-admin/src/index.ts",
-    "auth:dev": "bun run --watch /Webdock-auth/src/index.ts",
-    "email:dev": "bun run --watch /Webdock-email/src/index.ts",
-    "features:dev": "bun run --watch /Webdock-features/src/index.ts",
-    "search:dev": "bun run --watch Webdock-search/src/index.ts"
+    "admin:dev": "bun run --watch Webdock-admin/src/index.ts",
+    "auth:dev": "bun run --watch Webdock-auth/src/index.ts",
+    "email:dev": "bun run --watch Webdock-email/src/index.ts",
+    "features:dev": "bun run --watch Webdock-features/src/index.ts",
+    "search:dev": "bun run --watch Webdock-search/src/index.ts",
+    "prisma:dev": "npx primsa generate && npx prisma migrate"
   },
   "dependencies": {
     "@prisma/client": "^5.4.2",
@@ -19,6 +20,5 @@
     "prisma": "^5.4.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
-  },
-  "module": "src/index.js"
+  }
 }
