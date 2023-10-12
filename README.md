@@ -6,7 +6,7 @@ Dette projekt er skrevet i forbindelse med UCL's P.Ba i Webudvikling 1. semester
 </p>
 
 <h2 align="center">Teknologier brugt til projekted</h2>
-<div style="display:flex; flex-direction:row; gap: 10px; flex-wrap:wrap; justify-content:center">
+<p align="center">
 <a href="https://vuejs.org" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Vue-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white"/>
 </a>
@@ -37,7 +37,7 @@ Dette projekt er skrevet i forbindelse med UCL's P.Ba i Webudvikling 1. semester
 <a href="https://prometheus.io" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white"/>
 </a>
-</div>
+</p>
 
 <h2 align="center">
     Installation og brug
