@@ -1,0 +1,24 @@
+{
+  "name": "Webdock",
+  "version": "1.0.50",
+  "scripts": {
+    "admin:dev": "bun run --watch /Webdock-admin/src/index.ts",
+    "auth:dev": "bun run --watch /Webdock-auth/src/index.ts",
+    "email:dev": "bun run --watch /Webdock-email/src/index.ts",
+    "features:dev": "bun run --watch /Webdock-features/src/index.ts",
+    "search:dev": "bun run --watch Webdock-search/src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.4.2",
+    "elysia": "latest",
+    "mssql": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.4",
+    "bun-types": "latest",
+    "prisma": "^5.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "module": "src/index.js"
+}
