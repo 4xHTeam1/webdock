@@ -10,6 +10,9 @@
     "prisma:dev": "npx primsa generate && npx prisma migrate"
   },
   "dependencies": {
+    "@elysiajs/cron": "^0.7.0",
+    "@elysiajs/jwt": "^0.7.0",
+    "@elysiajs/swagger": "^0.7.3",
     "@prisma/client": "^5.4.2",
     "elysia": "latest",
     "mssql": "^10.0.1"
