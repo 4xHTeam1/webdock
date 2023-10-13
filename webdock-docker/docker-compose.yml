@@ -1,0 +1,44 @@
+version: 0.0.1
+
+services:
+  auth:
+    image: franno0/webdock-images:webdock-authv0.0.1
+    ports:
+      - "3000:3000"
+    environment:
+      - SECRET=e389bb7b-dc58-4b0b-8f54-dac159d5a609
+  admin:
+    image: franno0/webdock-images:webdock-adminv0.0.1
+    ports:
+      - "4000:3000"
+    environment:
+      - DATABASE_URL="sqlserver://DB:1433;database=test;user=sa;password=Password123;encrypt=DANGER_PLAINTEXT"
+  search:
+    image: franno0/webdock-images:webdock-searchv0.0.1
+    ports:
+      - "5000:3000"
+    environment:
+      - DATABASE_URL="sqlserver://DB:1433;database=test;user=sa;password=Password123;encrypt=DANGER_PLAINTEXT"
+  email:
+    image: franno0/webdock-images:webdock-emailv0.0.1
+    ports:
+      - "6000:3000"
+    environment:
+      - POSTMARK_TOKEN=c3d41965-18a4-479f-a591-4369b7f5952c
+  features:
+    image: franno0/webdock-images:webdock-featuresv0.0.1
+    ports:
+      - "7000:3000"
+    environment:
+      - DATABASE_URL="sqlserver://DB:1433;database=test;user=sa;password=Password123;encrypt=DANGER_PLAINTEXT"
+  DB:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password123
+    volumes:
+      - ./db-data:/var/opt/mssql/data
+      - ./db-log:/var/opt/mssql/log
+      - ./db-secrets:/var/opt/mssql/secrets
