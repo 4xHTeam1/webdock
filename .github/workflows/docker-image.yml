@@ -1,0 +1,28 @@
+name: Build & Push Image
+
+on:
+  push:
+   branches: [ master ]
+  pull_request:
+    branches: [ master ]
+      
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build & Push Image
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "franno0" --password-stdin
+        docker build -f Webdock-search/dockerfile -t franno0/webdock-images:webdock-searchv0.0.1 .
+        docker push franno0/webdock-images:webdock-searchv0.0.1
+        docker build -f Webdock-features/dockerfile -t franno0/webdock-images:webdock-featuresv0.0.1 .
+        docker push franno0/webdock-images:webdock-featuresv0.0.1
+        docker build -f Webdock-email/dockerfile -t franno0/webdock-images:webdock-emailv0.0.1 .
+        docker push franno0/webdock-images:webdock-emailv0.0.1
+        docker build -f Webdock-auth/dockerfile -t franno0/webdock-images:webdock-authv0.0.1 .
+        docker push franno0/webdock-images:webdock-authv0.0.1
+        docker build -f Webdock-admin/dockerfile -t franno0/webdock-images:webdock-adminv0.0.1 .
+        docker push franno0/webdock-images:webdock-adminv0.0.1
