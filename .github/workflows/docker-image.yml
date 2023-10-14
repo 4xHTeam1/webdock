@@ -1,19 +1,20 @@
-name: Build & Push Image
+name: Docker Image CI
 
 on:
   push:
-   branches: [ master ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ master ]
-      
+    branches: [ "master" ]
+
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Build & Push Image
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "franno0" --password-stdin
         docker build -f Webdock-search/dockerfile -t franno0/webdock-images:webdock-searchv0.0.1 .
