@@ -130,6 +130,7 @@ export async function seed() {
 
 seed()
   .catch((e) => {
+    console.log("test")
     console.error(e);
     process.exit(1);
   })

@@ -7,7 +7,8 @@
     "email:dev": "bun run --watch Webdock-email/src/index.ts",
     "features:dev": "bun run --watch Webdock-features/src/index.ts",
     "search:dev": "bun run --watch Webdock-search/src/index.ts",
-    "prisma:dev": "bunx prisma generate && bunx prisma migrate && bun run prisma/seed/seed.ts"
+    "socket:dev": "bun run --watch Webdock-socket/src/index.ts",
+    "prisma:dev": "bunx prisma generate && bunx prisma migrate dev && bun run prisma/seed/seed.ts"
   },
   "dependencies": {
     "@elysiajs/cron": "^0.7.0",
