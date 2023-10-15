@@ -10,8 +10,14 @@ import {
   searchUserByName,
 } from "./querys/querys";
 import { Query } from "./interfaces/searchInterfaces";
+import swagger from "@elysiajs/swagger";
+
 
 const app = new Elysia()
+.use(swagger({
+  autoDarkMode: true,
+  path: "/v2/swagger"
+}))
   .group("/search", (app) =>
     app
       .post("/all", async ({ body }) => {
