@@ -8,7 +8,11 @@
     "features:dev": "bun run --watch Webdock-features/src/index.ts",
     "search:dev": "bun run --watch Webdock-search/src/index.ts",
     "socket:dev": "bun run --watch Webdock-socket/src/index.ts",
-    "prisma:dev": "bunx prisma generate && bunx prisma migrate dev && bun run prisma/seed/seed.ts"
+    "prisma:dev": "bunx prisma generate && bunx prisma migrate dev && bun run prisma/seed/seed.ts",
+    "seed:dev": "bun run prisma/seed/seed.ts",
+    "frontend:dev": "vite Webdock-frontend --config Webdock-frontend/vite.config.ts",
+    "frontend:build": "vite build Webdock-frontend --config Webdock-frontend/vite.config.ts",
+    "frontend:preview": "vite preview Webdock-frontend --config Webdock-frontend/vite.config.ts"
   },
   "dependencies": {
     "@elysiajs/cron": "^0.7.0",
@@ -17,13 +21,17 @@
     "@prisma/client": "^5.4.2",
     "axios": "^1.5.1",
     "elysia": "latest",
-    "mssql": "^10.0.1"
+    "mssql": "^10.0.1",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@types/node": "^20.8.4",
     "bun-types": "latest",
     "prisma": "^5.4.2",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.5",
+    "vue-tsc": "^1.8.5"
   }
 }

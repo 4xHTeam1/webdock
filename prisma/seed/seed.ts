@@ -128,7 +128,7 @@ export async function seed() {
   console.log("Sample data seeded successfully!");
 }
 
-seed()
+await seed()
   .catch((e) => {
     console.log("test")
     console.error(e);
