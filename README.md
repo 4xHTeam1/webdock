@@ -105,7 +105,7 @@ I projektet gør vi brug af nogle ENV variabler. Disse er nødvendige at være t
 </p>
 
 ```sh
-DATABASE_URL="sqlserver://127.0.0.1:1433;database=features;user=sa;password=Password123;encrypt=DANGER_PLAINTEXT"
+DATABASE_URL="mysql://root:password@localhost:3306/features?connect_timeout=600"
 SECRET=e389bb7b-dc58-4b0b-8f54-dac159d5a609
 POSTMARK_TOKEN=c3d41965-18a4-479f-a591-4369b7f5952c
 ```
