@@ -4,6 +4,7 @@
 node_modules/*
 !node_modules/@prisma
 !node_modules/prisma
+!node_modules/.prisma
 
 /.pnp
 .pnp.js
