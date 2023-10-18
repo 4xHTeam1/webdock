@@ -54,4 +54,3 @@ services:
       - ./db-data:/var/lib/mysql
 volumes:
   db-data:
-

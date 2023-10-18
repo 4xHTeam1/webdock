@@ -22,6 +22,7 @@
     "axios": "^1.5.1",
     "elysia": "latest",
     "mssql": "^10.0.1",
+    "prom-client": "^15.0.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
