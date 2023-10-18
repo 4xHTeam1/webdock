@@ -11,6 +11,9 @@ import {
 } from "./querys/querys";
 import { Query } from "./interfaces/searchInterfaces";
 import swagger from "@elysiajs/swagger";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 const app = new Elysia()
   .use(
@@ -23,6 +26,10 @@ const app = new Elysia()
     return {
       status: "ok",
     };
+  })
+  .get("/metrics", async() => {
+    let prismaMetrics = await prisma.$metrics.prometheus()
+    return prismaMetrics
   })
   .group("/search", (app) =>
     app
