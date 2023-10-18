@@ -25,11 +25,15 @@ const app = new Elysia()
       path: "/v2/swagger",
     })
   )
+  .get("/status", () => {
+    return {
+      status: "ok",
+    };
+  })
   .post("/verify", async ({ jwt, body }) => {
-
     /* Gets token from body, and ensures that is has the field Token on it */
     const { token } = body as Token;
-    
+
     /* Verifies the token, with the given secret as described on line 12 */
     /* Returns the object from the jwt, or false if the jwt is not valid */
     const verification = await jwt.verify(token);

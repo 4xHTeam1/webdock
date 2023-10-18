@@ -59,6 +59,11 @@ const app = new Elysia()
 
     return results.data;
   })
+  .get("/status", () => {
+    return {
+      status: "ok",
+    };
+  })
   .listen(3000);
 
 console.log(

@@ -7,18 +7,25 @@ services:
       - "3000:3000"
     environment:
       - SECRET=e389bb7b-dc58-4b0b-8f54-dac159d5a609
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
   admin:
     image: franno0/webdock-images:webdock-adminv0.0.1
     ports:
       - "4000:3000"
     environment:
-      - DATABASE_URL="sqlserver://DB:1433;database=test;user=sa;password=Password123;encrypt=DANGER_PLAINTEXT"
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
   search:
     image: franno0/webdock-images:webdock-searchv0.0.1
     ports:
       - "5000:3000"
     environment:
-      - DATABASE_URL="sqlserver://DB:1433;database=test;user=sa;password=Password123;encrypt=DANGER_PLAINTEXT"
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
   email:
     image: franno0/webdock-images:webdock-emailv0.0.1
     ports:
@@ -30,15 +37,21 @@ services:
     ports:
       - "7000:3000"
     environment:
-      - DATABASE_URL="sqlserver://DB:1433;database=test;user=sa;password=Password123;encrypt=DANGER_PLAINTEXT"
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
   DB:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    ports:
-      - "1433:1433"
+    image: mysql:5.7
+    restart: always
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Password123
+      MYSQL_DATABASE: "features"
+      MYSQL_ROOT_PASSWORD: "password"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
     volumes:
-      - ./db-data:/var/opt/mssql/data
-      - ./db-log:/var/opt/mssql/log
-      - ./db-secrets:/var/opt/mssql/secrets
+      - ./db-data:/var/lib/mysql
+volumes:
+  db-data:
+
