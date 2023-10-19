@@ -69,3 +69,4 @@ dist-ssr
 *.sln
 *.sw?
 .env*
+webdock-docker/db-data
