@@ -3,6 +3,7 @@ import swagger from "@elysiajs/swagger";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+const activeConnections: Record<string, any> = {};
 
 const app = new Elysia()
   .use(
@@ -21,14 +22,24 @@ const app = new Elysia()
     return prismaMetrics;
   })
   .ws("/ws", {
-    message: (ws, message) => {
-      ws.send(message);
-    },
     close: (ws) => {
-      console.log("Client disconnected");
+      const { uuid } = ws.data.query || {};
+
+      if (uuid) {
+      }
     },
     open: (ws) => {
-      console.log("Client connected");
+      const { uuid } = ws.data.query || {};
+
+      if (uuid) {
+      }
+    },
+
+    message(ws, message: any) {
+      const { uuid } = ws.data.query || {};
+      if (!uuid) {
+        return;
+      }
     },
   })
 

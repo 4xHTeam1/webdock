@@ -70,3 +70,5 @@ dist-ssr
 *.sw?
 .env*
 webdock-docker/db-data
+
+Webdock-frontend/node_modules
