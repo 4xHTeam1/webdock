@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ee4dbf33-ae1b-4819-9bb4-cbf7f0d6e5fe",
+		"_postman_id": "caa8f7c2-8654-4a01-85af-daf7f506ba36",
 		"name": "Webdock Collection",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27423415"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17492374"
 	},
 	"item": [
 		{
@@ -23,16 +23,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/verify",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"verify"
-							]
-						}
+						"url": "localhost:3000/verify"
 					},
 					"response": []
 				}
@@ -48,7 +39,71 @@
 		},
 		{
 			"name": "Webdock-feature",
-			"item": []
+			"item": [
+				{
+					"name": "Get all features",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3000/features"
+					},
+					"response": []
+				},
+				{
+					"name": "Get feature by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3000/features/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Feature",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test1\",\r\n    \"description\": \"testdesc1\",\r\n    \"userId\": \"1\",\r\n    \"statusId\": 2,\r\n    \"categoryId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/features"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Feature",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"updatedTitle\",\r\n    \"description\": \"updatedDesc\",\r\n    \"statusId\": 2,\r\n    \"categoryId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/features/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Feature",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:3000/features/1"
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Webdock-search",
@@ -67,17 +122,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/search/all",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"search",
-								"all"
-							]
-						}
+						"url": "localhost:3000/search/all"
 					},
 					"response": []
 				},
@@ -95,18 +140,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/search/user/name",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"search",
-								"user",
-								"name"
-							]
-						}
+						"url": "localhost:3000/search/user/name"
 					},
 					"response": []
 				},
@@ -124,18 +158,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/search/user/email",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"search",
-								"user",
-								"email"
-							]
-						}
+						"url": "localhost:3000/search/user/email"
 					},
 					"response": []
 				},
@@ -153,19 +176,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/search/feature/user/name",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"search",
-								"feature",
-								"user",
-								"name"
-							]
-						}
+						"url": "localhost:3000/search/feature/user/name"
 					},
 					"response": []
 				},
@@ -183,19 +194,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/search/feature/user/email",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"search",
-								"feature",
-								"user",
-								"email"
-							]
-						}
+						"url": "localhost:3000/search/feature/user/email"
 					},
 					"response": []
 				},
@@ -213,18 +212,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/search/feature/category",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"search",
-								"feature",
-								"category"
-							]
-						}
+						"url": "localhost:3000/search/feature/category"
 					},
 					"response": []
 				},
@@ -242,18 +230,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/search/feature/title",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"search",
-								"feature",
-								"title"
-							]
-						}
+						"url": "localhost:3000/search/feature/title"
 					},
 					"response": []
 				},
@@ -271,18 +248,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/search/feature/description",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"search",
-								"feature",
-								"description"
-							]
-						}
+						"url": "localhost:3000/search/feature/description"
 					},
 					"response": []
 				}
