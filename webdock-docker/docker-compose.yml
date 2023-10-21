@@ -50,8 +50,6 @@ services:
       - "3306:3306"
     expose:
       - "3306"
-    volumes:
-      - ./db-data:/var/lib/mysql
   prometheus:
     image: prom/prometheus
     user: root
@@ -75,7 +73,7 @@ services:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
-      - ./grafana/datasources:/etc/grafana/provisioning/datasources      
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/main.yaml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
   cadvisor:
@@ -103,5 +101,3 @@ services:
     restart: unless-stopped
     volumes:
       - /:/host:ro,rslave
-volumes:
-  db-data:
