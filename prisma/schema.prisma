@@ -2,8 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-1.1.x"]
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "debian-openssl-1.1.x"]
   previewFeatures = ["metrics"]
 }
 
@@ -13,7 +13,7 @@ datasource db {
 }
 
 model User {
-  id              String              @id @default(uuid())
+  id              String           @id @default(uuid())
   avatarUrl       String?
   email           String
   name            String
@@ -36,17 +36,17 @@ model Status {
 }
 
 model FeatureRequest {
-  id            Int       @id @default(autoincrement())
-  title         String
-  description   String
-  dateSubmitted DateTime  @default(now())
-  user          User      @relation(fields: [userId], references: [id])
-  userId        String
-  category      Category  @relation(fields: [categoryId], references: [id])
-  categoryId    Int
-  status        Status    @relation(fields: [statusId], references: [id])
-  statusId      Int
-  comments      Comment[]
+  id             Int             @id @default(autoincrement())
+  title          String
+  description    String
+  dateSubmitted  DateTime        @default(now())
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
+  category       Category        @relation(fields: [categoryId], references: [id])
+  categoryId     Int
+  status         Status          @relation(fields: [statusId], references: [id])
+  statusId       Int
+  comments       Comment[]
   featureUpvotes FeatureUpvote[]
 }
 
@@ -56,7 +56,7 @@ model Comment {
   dateSubmitted    DateTime       @default(now())
   user             User           @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userId           String
-  featureRequest   FeatureRequest @relation(fields: [featureRequestId], references: [id])
+  featureRequest   FeatureRequest @relation(fields: [featureRequestId], references: [id], onDelete: Cascade)
   featureRequestId Int
   commentReplys    CommentReply[]
 }
@@ -67,14 +67,14 @@ model CommentReply {
   dateSubmitted    DateTime @default(now())
   user             User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userId           String
-  comment_relation Comment  @relation(fields: [commentId], references: [id])
+  comment_relation Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
   commentId        Int
 }
 
-model FeatureUpvote{
-  id Int @id @default(autoincrement())
-  user User @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  userId String
-  featureRequest FeatureRequest @relation(fields: [featureRequestId], references: [id])
+model FeatureUpvote {
+  id               Int            @id @default(autoincrement())
+  user             User           @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userId           String
+  featureRequest   FeatureRequest @relation(fields: [featureRequestId], references: [id], onDelete: Cascade)
   featureRequestId Int
 }
