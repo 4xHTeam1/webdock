@@ -72,3 +72,4 @@ dist-ssr
 webdock-docker/db-data
 
 Webdock-frontend/node_modules
+.vscode
