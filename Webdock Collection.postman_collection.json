@@ -10,7 +10,7 @@
 			"name": "Webdock-auth",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "Verify Auth token",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -41,67 +41,217 @@
 			"name": "Webdock-feature",
 			"item": [
 				{
-					"name": "Get all features",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "localhost:3000/features"
-					},
-					"response": []
-				},
-				{
-					"name": "Get feature by id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "localhost:3000/features/1"
-					},
-					"response": []
-				},
-				{
-					"name": "Create Feature",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"test1\",\r\n    \"description\": \"testdesc1\",\r\n    \"userId\": \"1\",\r\n    \"statusId\": 2,\r\n    \"categoryId\": 3\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+					"name": "Features",
+					"item": [
+						{
+							"name": "Get all features",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/features"
+							},
+							"response": []
 						},
-						"url": "localhost:3000/features"
-					},
-					"response": []
-				},
-				{
-					"name": "Update Feature",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"updatedTitle\",\r\n    \"description\": \"updatedDesc\",\r\n    \"statusId\": 2,\r\n    \"categoryId\": 3\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+						{
+							"name": "Get feature by id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/features/1"
+							},
+							"response": []
 						},
-						"url": "localhost:3000/features/1"
-					},
-					"response": []
+						{
+							"name": "Create Feature",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"test1\",\r\n    \"description\": \"testdesc1\",\r\n    \"userId\": \"1\",\r\n    \"statusId\": 2,\r\n    \"categoryId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/features"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Feature",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"updatedTitle\",\r\n    \"description\": \"updatedDesc\",\r\n    \"statusId\": 2,\r\n    \"categoryId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/features/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Feature",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:3000/features/1"
+							},
+							"response": []
+						}
+					]
 				},
 				{
-					"name": "Delete Feature",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": "localhost:3000/features/1"
-					},
-					"response": []
+					"name": "Comments",
+					"item": [
+						{
+							"name": "Create Comment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"userId\": \"1\",\r\n    \"comment\": \"testcomment1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/comment/"
+							},
+							"response": []
+						},
+						{
+							"name": "Reply to comment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 8,\r\n    \"userId\": \"1\",\r\n    \"comment\": \"testReply\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/comment/reply"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Comment",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:3000/comment/5"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Reply",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:3000/comment/reply/3"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Comment",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comment\": \"Testupdate\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/comment/8"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Reply",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comment\": \"testreplyupdate\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/comment/reply/5"
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Comments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/comment/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Upvote",
+					"item": [
+						{
+							"name": "Upvote Feature",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/upvote/3"
+							},
+							"response": []
+						},
+						{
+							"name": "Unvote Feature",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/upvote/3"
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -235,7 +385,7 @@
 					"response": []
 				},
 				{
-					"name": "Search Feature by title Copy",
+					"name": "Search Feature by description",
 					"request": {
 						"method": "POST",
 						"header": [],
