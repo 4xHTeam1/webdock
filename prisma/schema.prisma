@@ -21,6 +21,7 @@ model User {
   comments        Comment[]
   commentReplys   CommentReply[]
   featureUpvotes  FeatureUpvote[]
+  role            Role             @default(USER)
 }
 
 model Category {
@@ -78,4 +79,9 @@ model FeatureUpvote {
   featureRequestId Int
 
   @@id([userId, featureRequestId])
+}
+
+enum Role {
+  USER
+  ADMIN
 }
