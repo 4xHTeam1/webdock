@@ -31,7 +31,218 @@
 		},
 		{
 			"name": "Webdock-admin",
-			"item": []
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get All Users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "requesterId",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": "localhost:3000/Users"
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/Users/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Role",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\": \"ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/Users/role/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Get All Categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/Categories"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Category By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/Categories/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test Category\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/Categories/"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"testUpdateCategory\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/Categories/4"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:3000/Categories/4"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Statuses",
+					"item": [
+						{
+							"name": "Get All Statuses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/Statuses"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Status By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3000/Statuses/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Status",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"testStatus\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/Statuses"
+							},
+							"response": []
+						},
+						{
+							"name": "Update Status",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"TestUpdateStatus\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3000/Statuses/4"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Status",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:3000/Statuses/4"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "apikey",
+				"apikey": {
+					"value": "{{requesterId}}",
+					"key": "requesterId"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "Webdock-email",
@@ -403,6 +614,33 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "requesterId",
+			"value": "2",
+			"type": "string"
 		}
 	]
 }
