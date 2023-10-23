@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { IGetUser } from "../interfaces/IUser";
+import { IGetUser, IUpdateUserRole } from "../interfaces/IUser";
 
 const prisma = new PrismaClient();
 
@@ -17,6 +17,22 @@ export const GetUser = async ({ id }: IGetUser) => {
     const result = await prisma.user.findUnique({
       where: {
         id,
+      },
+    });
+    return result;
+  } catch (error) {
+    //TODO: Add error handling
+  }
+};
+
+export const UpdateUserRole = async ({ id, role }: IUpdateUserRole) => {
+  try {
+    const result = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        role,
       },
     });
     return result;

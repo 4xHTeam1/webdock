@@ -21,6 +21,7 @@ model User {
   comments        Comment[]
   commentReplys   CommentReply[]
   featureUpvotes  FeatureUpvote[]
+  role            Role             @default(USER)
 }
 
 model Category {
@@ -77,4 +78,9 @@ model FeatureUpvote {
   userId           String
   featureRequest   FeatureRequest @relation(fields: [featureRequestId], references: [id], onDelete: Cascade)
   featureRequestId Int
+}
+
+enum Role {
+  USER
+  ADMIN
 }

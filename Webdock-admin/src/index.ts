@@ -1,6 +1,6 @@
 import { Elysia } from "elysia";
-import { GetAllUsers, GetUser } from "./querys/userQuerys";
-import { IGetUser } from "./interfaces/IUser";
+import { GetAllUsers, GetUser, UpdateUserRole } from "./querys/userQuerys";
+import { IGetUser, IUpdateUserRole } from "./interfaces/IUser";
 import {
   CreateCategory,
   DeleteCategory,
@@ -41,6 +41,10 @@ const app = new Elysia()
       })
       .get("/:id", async ({ params: { id } }) => {
         return await GetUser({ id } as IGetUser);
+      })
+      .put("/role/:id", async ({ params: { id }, body }) => {
+        const { role } = body as IUpdateUserRole;
+        return await UpdateUserRole({ id, role } as IUpdateUserRole);
       })
   )
   .group("/Categories", (app) =>
