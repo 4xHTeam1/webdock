@@ -27,3 +27,5 @@ jobs:
         docker push franno0/webdock-images:webdock-authv0.0.1
         docker build -f Webdock-admin/dockerfile -t franno0/webdock-images:webdock-adminv0.0.1 .
         docker push franno0/webdock-images:webdock-adminv0.0.1
+        docker build -f Webdock-sockets/dockerfile -t franno0/webdock-images:webdock-socketsv0.0.1 .
+        docker push franno0/webdock-images:webdock-socketsv0.0.1
