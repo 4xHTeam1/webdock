@@ -472,144 +472,209 @@
 				{
 					"name": "Search All",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "localhost:3000/search/all?query=test",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"all"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "test"
 								}
-							}
-						},
-						"url": "localhost:3000/search/all"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Search User by name",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "localhost:3000/search/user/name?query=test",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"user",
+								"name"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "test"
 								}
-							}
-						},
-						"url": "localhost:3000/search/user/name"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Search User by email",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "localhost:3000/search/user/email?query=test",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"user",
+								"email"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "test"
 								}
-							}
-						},
-						"url": "localhost:3000/search/user/email"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Search Feature by users name",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "localhost:3000/search/feature/user/name?query=test",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"feature",
+								"user",
+								"name"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "test"
 								}
-							}
-						},
-						"url": "localhost:3000/search/feature/user/name"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Search Feature by users email",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "localhost:3000/search/feature/user/email?query=test",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"feature",
+								"user",
+								"email"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "test"
 								}
-							}
-						},
-						"url": "localhost:3000/search/feature/user/email"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Search Feature by category name",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "localhost:3000/search/feature/category?query=test",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"feature",
+								"category"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "test"
 								}
-							}
-						},
-						"url": "localhost:3000/search/feature/category"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Search Feature by title",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "localhost:3000/search/feature/title?query=test",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"feature",
+								"title"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "test"
 								}
-							}
-						},
-						"url": "localhost:3000/search/feature/title"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Search Feature by description",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"test\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"url": {
+							"raw": "localhost:3000/search/feature/description?query=test",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"search",
+								"feature",
+								"description"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "test"
 								}
-							}
-						},
-						"url": "localhost:3000/search/feature/description"
+							]
+						}
 					},
 					"response": []
 				}

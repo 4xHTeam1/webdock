@@ -27,62 +27,49 @@ const app = new Elysia()
       status: "ok",
     };
   })
-  .get("/metrics", async() => {
-    let prismaMetrics = await prisma.$metrics.prometheus()
-    return prismaMetrics
+  .get("/all", async ({ query: { query } }) => {
+    console.log(query);
+  })
+  .get("/metrics", async () => {
+    let prismaMetrics = await prisma.$metrics.prometheus();
+    return prismaMetrics;
   })
   .group("/search", (app) =>
     app
-      .post("/all", async ({ body }) => {
-        const { query } = body as Query;
-
+      .get("/all", async ({query:{query}}) => {
         const searched = await searchAll(query);
         return searched;
       })
       .group("/user", (app) =>
         app
-          .post("/name", async ({ body }) => {
-            const { query } = body as Query;
-
+          .get("/name", async ({ query: { query } }) => {
             const result = await searchUserByName(query);
             return result;
           })
-          .post("/email", async ({ body }) => {
-            const { query } = body as Query;
-
+          .get("/email", async ({ query: { query } }) => {
             const result = await searchUserByEmail(query);
             return result;
           })
       )
       .group("/feature", (app) =>
         app
-          .post("/user/name", async ({ body }) => {
-            const { query } = body as Query;
-
+          .get("/user/name", async ({ query: { query } }) => {
             const result = await searchFeaturesByUserName(query);
             return result;
           })
-          .post("/user/email", async ({ body }) => {
-            const { query } = body as Query;
-
+          .get("/user/email", async ({ query: { query } }) => {
             const result = await searchFeaturesByUserEmail(query);
             return result;
           })
-          .post("/category", async ({ body }) => {
-            const { query } = body as Query;
-
+          .get("/category", async ({ query: { query } }) => {
             const result = await searchFeaturesByCategory(query);
             return result;
           })
-          .post("/title", async ({ body }) => {
-            const { query } = body as Query;
-
+          .get("/title", async ({ query: { query } }) => {
             const result = await searchFeatureByTitle(query);
             return result;
           })
-          .post("/description", async ({ body }) => {
-            const { query } = body as Query;
-
+          .get("/description", async ({ query: { query } }) => {
             const result = await searchFeatureByDescription(query);
             return result;
           })
