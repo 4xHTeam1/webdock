@@ -1,5 +1,5 @@
-import { SocketUpvote } from "../../../shared/interfaces/SocketInterfaces";
+import { ISocketUpvote } from "../../../shared/interfaces/ISockets";
 
-export const upvote = ({ type, postId, userId }: SocketUpvote) => {
+export const upvote = ({ type, postId, userId }: ISocketUpvote) => {
     console.log("upvote");
 };

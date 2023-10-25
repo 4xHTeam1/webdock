@@ -1,10 +1,10 @@
-import { SocketComment } from "../../../shared/interfaces/SocketInterfaces";
-import { SocketReply } from "../../../shared/interfaces/SocketInterfaces";
+import { ISocketComment } from "../../../shared/interfaces/ISockets";
+import { ISocketReply } from "../../../shared/interfaces/ISockets";
 
-export const comment = ({ type, postId, userId }: SocketComment) => {
+export const comment = ({ type, postId, userId }: ISocketComment) => {
   console.log("comment");
 };
 
-export const reply = ({ type, postId, userId }: SocketReply) => {
+export const reply = ({ type, postId, userId }: ISocketReply) => {
   console.log("reply");
 };

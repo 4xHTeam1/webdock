@@ -9,7 +9,6 @@ import {
   searchUserByEmail,
   searchUserByName,
 } from "./querys/querys";
-import { Query } from "./interfaces/searchInterfaces";
 import swagger from "@elysiajs/swagger";
 import { PrismaClient } from "@prisma/client";
 import { SearchValidation } from "../../shared/services/SearchValidation";

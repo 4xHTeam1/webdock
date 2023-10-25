@@ -1,6 +1,4 @@
-import { upvoteFeature } from "../querys/querys";
-
-export interface CreateFeature {
+export interface ICreateFeature {
   title: string;
   description: string;
   userId: string;
@@ -8,7 +6,7 @@ export interface CreateFeature {
   statusId: number;
 }
 
-export interface UpdateFeature {
+export interface IUpdateFeature {
   id: number;
   title: string;
   description: string;
@@ -16,54 +14,54 @@ export interface UpdateFeature {
   statusId: number;
 }
 
-export interface FeatureById {
+export interface IFeatureById {
   id: number;
 }
 
-export interface DeleteFeature {
+export interface IDeleteFeature {
   id: number;
 }
 
-export interface CreateComment {
-  id: number;
-  userId: string;
-  comment: string;
-}
-
-export interface UpdateComment {
-  id: number;
-  comment: string;
-}
-
-export interface CreateReply {
+export interface ICreateComment {
   id: number;
   userId: string;
   comment: string;
 }
 
-export interface UpdateReply {
+export interface IUpdateComment {
   id: number;
   comment: string;
 }
 
-export interface DeleteComment {
+export interface ICreateReply {
+  id: number;
+  userId: string;
+  comment: string;
+}
+
+export interface IUpdateReply {
+  id: number;
+  comment: string;
+}
+
+export interface IDeleteComment {
   id: number;
 }
 
-export interface DeleteReply {
+export interface IDeleteReply {
   id: number;
 }
 
-export interface GetAllComments {
+export interface IGetAllComments {
   id: number;
 }
 
-export interface UpvoteFeature {
+export interface IUpvoteFeature {
   id: number;
   userId: string;
 }
 
-export interface DownvoteFeature {
+export interface IDownvoteFeature {
   id: number;
   userId: string;
 }

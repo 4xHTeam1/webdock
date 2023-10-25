@@ -16,18 +16,18 @@ import {
   upvoteFeature,
 } from "./querys/querys";
 import {
-  CreateComment,
-  CreateFeature,
-  CreateReply,
-  DeleteComment,
-  DeleteReply,
-  DownvoteFeature,
-  FeatureById,
-  GetAllComments,
-  UpdateComment,
-  UpdateFeature,
-  UpdateReply,
-  UpvoteFeature,
+  ICreateComment,
+  ICreateFeature,
+  ICreateReply,
+  IDeleteComment,
+  IDeleteReply,
+  IDownvoteFeature,
+  IFeatureById,
+  IGetAllComments,
+  IUpdateComment,
+  IUpdateFeature,
+  IUpdateReply,
+  IUpvoteFeature,
 } from "./interfaces/IFeatures";
 import { ParamValidation } from "../../shared/services/ParamValidation";
 import { BodyValidation } from "../../shared/services/BodyValidation";
@@ -54,7 +54,7 @@ const app = new Elysia()
       })
       .get("/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));
-        return await getFeature({ id: Number(id) } as FeatureById);
+        return await getFeature({ id: Number(id) } as IFeatureById);
       })
       .post("/", async ({ body }) => {
         BodyValidation(body, [
@@ -64,7 +64,7 @@ const app = new Elysia()
           "categoryId",
           "statusId",
         ]);
-        return await createFeature(body as CreateFeature);
+        return await createFeature(body as ICreateFeature);
       })
       .put("/:id", async ({ params: { id }, body }) => {
         ParamValidation(Number(id));
@@ -76,7 +76,7 @@ const app = new Elysia()
         ]);
 
         const { title, description, categoryId, statusId } =
-          body as UpdateFeature;
+          body as IUpdateFeature;
         const update = {
           id: Number(id),
           title,
@@ -84,53 +84,53 @@ const app = new Elysia()
           categoryId,
           statusId,
         };
-        return await updateFeature(update as UpdateFeature);
+        return await updateFeature(update as IUpdateFeature);
       })
       .delete("/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));
-        return await deleteFeature({ id: Number(id) } as FeatureById);
+        return await deleteFeature({ id: Number(id) } as IFeatureById);
       })
   )
   .group("/comment", (app) =>
     app
       .get("/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));
-        return await getAllComments({ id: Number(id) } as GetAllComments);
+        return await getAllComments({ id: Number(id) } as IGetAllComments);
       })
       .post("/", async ({ body }) => {
         BodyValidation(body, ["id", "userId", "comment"]);
-        return await commentOnFeature(body as CreateComment);
+        return await commentOnFeature(body as ICreateComment);
       })
       .post("/reply", async ({ body }) => {
         BodyValidation(body, ["id", "userId", "comment"]);
-        return await replyToComment(body as CreateReply);
+        return await replyToComment(body as ICreateReply);
       })
       .delete("/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));
-        return await deleteComment({ id: Number(id) } as DeleteComment);
+        return await deleteComment({ id: Number(id) } as IDeleteComment);
       })
       .delete("/reply/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));
-        return await deleteCommentReply({ id: Number(id) } as DeleteReply);
+        return await deleteCommentReply({ id: Number(id) } as IDeleteReply);
       })
       .put("/:id", async ({ params: { id }, body }) => {
         ParamValidation(Number(id));
         BodyValidation(body, ["comment"]);
-        const { comment } = body as UpdateComment;
+        const { comment } = body as IUpdateComment;
         const update = {
           id: Number(id),
           comment,
-        } as UpdateComment;
+        } as IUpdateComment;
         return await updateComment(update);
       })
       .put("/reply/:id", async ({ params: { id }, body }) => {
         ParamValidation(Number(id));
         BodyValidation(body, ["comment"]);
-        const { comment } = body as UpdateReply;
+        const { comment } = body as IUpdateReply;
         const update = {
           id: Number(id),
           comment,
-        } as UpdateReply;
+        } as IUpdateReply;
         return await updateReply(update);
       })
   )
@@ -139,24 +139,24 @@ const app = new Elysia()
       .post("/:id", async ({ params: { id }, body }) => {
         ParamValidation(Number(id));
         BodyValidation(body, ["userId"]);
-        const { userId } = body as UpvoteFeature;
+        const { userId } = body as IUpvoteFeature;
 
         const upvote = {
           id: Number(id),
           userId,
-        } as UpvoteFeature;
+        } as IUpvoteFeature;
 
         return await upvoteFeature(upvote);
       })
       .delete("/:id", async ({ params: { id }, body }) => {
         ParamValidation(Number(id));
         BodyValidation(body, ["userId"]);
-        const { userId } = body as DownvoteFeature;
+        const { userId } = body as IDownvoteFeature;
 
         const unvote = {
           id: Number(id),
           userId,
-        } as DownvoteFeature;
+        } as IDownvoteFeature;
 
         return await unvoteFeature(unvote);
       })
@@ -166,5 +166,3 @@ const app = new Elysia()
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
 );
-
-

@@ -3,7 +3,7 @@ import { jwt } from "@elysiajs/jwt";
 import { swagger } from "@elysiajs/swagger";
 import { getUserByUUID, addUser } from "./querys/querys";
 import { User } from "@prisma/client";
-import { Token } from "./interfaces/tokenInterfaces";
+import { IToken } from "./interfaces/IToken";
 import { TokenValidation } from "../../shared/services/TokenValidation";
 import { BodyValidation } from "../../shared/services/BodyValidation";
 
@@ -40,7 +40,7 @@ const app = new Elysia()
   .post("/verify", async ({ jwt, body }) => {
     BodyValidation(body, "token");
     /* Gets token from body, and ensures that is has the field Token on it */
-    const { token } = body as Token;
+    const { token } = body as IToken;
 
     /* Verifies the token, with the given secret as described on line 12 */
     /* Returns the object from the jwt, or throws an error if the jwt is not valid */

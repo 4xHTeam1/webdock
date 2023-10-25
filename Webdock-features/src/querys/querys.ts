@@ -1,18 +1,18 @@
 import { PrismaClient } from "@prisma/client";
 import {
-  CreateComment,
-  CreateFeature,
-  CreateReply,
-  DeleteComment,
-  DeleteFeature,
-  DeleteReply,
-  DownvoteFeature,
-  FeatureById,
-  GetAllComments,
-  UpdateComment,
-  UpdateFeature,
-  UpdateReply,
-  UpvoteFeature,
+  ICreateComment,
+  ICreateFeature,
+  ICreateReply,
+  IDeleteComment,
+  IDeleteFeature,
+  IDeleteReply,
+  IDownvoteFeature,
+  IFeatureById,
+  IGetAllComments,
+  IUpdateComment,
+  IUpdateFeature,
+  IUpdateReply,
+  IUpvoteFeature,
 } from "../interfaces/IFeatures";
 
 const prisma = new PrismaClient();
@@ -32,10 +32,10 @@ export const getFeatures = async () => {
 
 /**
  * Retrieves a feature request by its ID.
- * @param {FeatureById} - An object containing the ID of the feature request to retrieve.
- * @returns {Promise<FeatureRequest>} - A promise that resolves to the retrieved feature request.
+ * @param {IFeatureById} - An object containing the ID of the feature request to retrieve.
+ * @returns {Promise<Feature>} - A promise that resolves to the retrieved feature request.
  */
-export const getFeature = async ({ id }: FeatureById) => {
+export const getFeature = async ({ id }: IFeatureById) => {
   try {
     const feature = await prisma.featureRequest.findUnique({
       where: { id },
@@ -48,8 +48,8 @@ export const getFeature = async ({ id }: FeatureById) => {
 
 /**
  * Creates a new feature request.
- * @param {CreateFeature} featureData - The data for the new feature request.
- * @returns {Promise<Feature>} - A promise that resolves with the newly created feature request.
+ * @param {ICreateFeature} featureData - The data for the new feature request.
+ * @returns {Promise<FeatureRequest>} - A promise that resolves with the newly created feature request.
  */
 export const createFeature = async ({
   title,
@@ -57,7 +57,7 @@ export const createFeature = async ({
   userId,
   categoryId,
   statusId,
-}: CreateFeature) => {
+}: ICreateFeature) => {
   try {
     if (!categoryId) categoryId = 1;
     if (!statusId) statusId = 1;
@@ -79,7 +79,7 @@ export const createFeature = async ({
 
 /**
  * Updates a feature request in the database.
- * @param {UpdateFeature} - An object containing the id, title, description, statusId, and categoryId of the feature to be updated.
+ * @param {IUpdateFeature} - An object containing the id, title, description, statusId, and categoryId of the feature to be updated.
  * @returns {Promise<FeatureRequest>} - A promise that resolves to the updated feature request object.
  */
 export const updateFeature = async ({
@@ -88,7 +88,7 @@ export const updateFeature = async ({
   description,
   statusId,
   categoryId,
-}: UpdateFeature) => {
+}: IUpdateFeature) => {
   try {
     const feature = await prisma.featureRequest.update({
       where: { id },
@@ -107,10 +107,10 @@ export const updateFeature = async ({
 
 /**
  * Deletes a feature request from the database.
- * @param {DeleteFeature} - An object containing the ID of the feature request to be deleted.
+ * @param {IDeleteFeature} - An object containing the ID of the feature request to be deleted.
  * @returns {Promise<FeatureRequest>} - A promise that resolves to the deleted feature request.
  */
-export const deleteFeature = async ({ id }: DeleteFeature) => {
+export const deleteFeature = async ({ id }: IDeleteFeature) => {
   try {
     const feature = await prisma.featureRequest.delete({
       where: { id },
@@ -123,14 +123,14 @@ export const deleteFeature = async ({ id }: DeleteFeature) => {
 
 /**
  * Creates a comment on a feature request.
- * @param {CreateComment} - An object containing the id of the feature request, the user id of the commenter, and the comment text.
+ * @param {ICreateComment} - An object containing the id of the feature request, the user id of the commenter, and the comment text.
  * @returns {Promise<FeatureRequest>} - A Promise that resolves to the updated feature request object.
  */
 export const commentOnFeature = async ({
   id,
   userId,
   comment,
-}: CreateComment) => {
+}: ICreateComment) => {
   try {
     const feature = await prisma.comment.create({
       data: {
@@ -147,10 +147,10 @@ export const commentOnFeature = async ({
 
 /**
  * Creates a reply to a comment.
- * @param {CreateReply} - An object containing the id of the comment being replied to, the user id of the person making the reply, and the content of the reply.
- * @returns {Promise<Feature>} - A promise that resolves to the updated comment feature.
+ * @param {ICreateReply} - An object containing the id of the comment being replied to, the user id of the person making the reply, and the content of the reply.
+ * @returns {Promise<commentReply>} - A promise that resolves to the updated comment feature.
  */
-export const replyToComment = async ({ id, userId, comment }: CreateReply) => {
+export const replyToComment = async ({ id, userId, comment }: ICreateReply) => {
   try {
     const feature = await prisma.commentReply.create({
       data: {
@@ -167,10 +167,10 @@ export const replyToComment = async ({ id, userId, comment }: CreateReply) => {
 
 /**
  * Updates a comment in the database.
- * @param {UpdateComment} - An object containing the ID of the comment to update and the new comment text.
+ * @param {IUpdateComment} - An object containing the ID of the comment to update and the new comment text.
  * @returns {Promise<Comment>} - A promise that resolves to the updated comment object.
  */
-export const updateComment = async ({ id, comment }: UpdateComment) => {
+export const updateComment = async ({ id, comment }: IUpdateComment) => {
   try {
     const feature = await prisma.comment.update({
       where: { id },
@@ -186,10 +186,10 @@ export const updateComment = async ({ id, comment }: UpdateComment) => {
 
 /**
  * Updates a comment reply in the database.
- * @param {UpdateReply} - An object containing the id of the comment reply to update and the new comment.
+ * @param {IUpdateReply} - An object containing the id of the comment reply to update and the new comment.
  * @returns {Promise<CommentReply>} - A promise that resolves to the updated comment reply object.
  */
-export const updateReply = async ({ id, comment }: UpdateReply) => {
+export const updateReply = async ({ id, comment }: IUpdateReply) => {
   try {
     const feature = await prisma.commentReply.update({
       where: { id },
@@ -205,10 +205,10 @@ export const updateReply = async ({ id, comment }: UpdateReply) => {
 
 /**
  * Deletes a comment from the database.
- * @param {DeleteComment} - An object containing the ID of the comment to delete.
+ * @param {IDeleteComment} - An object containing the ID of the comment to delete.
  * @returns {Promise<Comment>} - A promise that resolves to the deleted comment.
  */
-export const deleteComment = async ({ id }: DeleteComment) => {
+export const deleteComment = async ({ id }: IDeleteComment) => {
   try {
     const feature = await prisma.comment.delete({
       where: { id },
@@ -221,10 +221,10 @@ export const deleteComment = async ({ id }: DeleteComment) => {
 
 /**
  * Deletes a comment reply from the database.
- * @param {DeleteReply} - An object containing the ID of the comment reply to delete.
+ * @param {IDeleteReply} - An object containing the ID of the comment reply to delete.
  * @returns {Promise<Feature>} - A promise that resolves to the deleted comment reply.
  */
-export const deleteCommentReply = async ({ id }: DeleteReply) => {
+export const deleteCommentReply = async ({ id }: IDeleteReply) => {
   try {
     const feature = await prisma.commentReply.delete({
       where: { id },
@@ -237,10 +237,10 @@ export const deleteCommentReply = async ({ id }: DeleteReply) => {
 
 /**
  * Retrieves all comments for a given feature request.
- * @param {GetAllComments} - An object containing the ID of the feature request.
+ * @param {IGetAllComments} - An object containing the ID of the feature request.
  * @returns {Promise<FeatureRequest>} - A promise that resolves to the feature request object with all its comments and replies.
  */
-export const getAllComments = async ({ id }: GetAllComments) => {
+export const getAllComments = async ({ id }: IGetAllComments) => {
   try {
     const feature = await prisma.featureRequest.findUnique({
       where: { id },
@@ -264,10 +264,10 @@ export const getAllComments = async ({ id }: GetAllComments) => {
 
 /**
  * Adds an upvote to a feature request for a given user.
- * @param {UpvoteFeature} - An object containing the feature request ID and the user ID.
+ * @param {IUpvoteFeature} - An object containing the feature request ID and the user ID.
  * @returns {Promise<FeatureRequest>} - A promise that resolves to the updated feature request object.
  */
-export const upvoteFeature = async ({ id, userId }: UpvoteFeature) => {
+export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
   try {
     const feature = await prisma.featureRequest.update({
       where: { id },
@@ -289,11 +289,11 @@ export const upvoteFeature = async ({ id, userId }: UpvoteFeature) => {
 
 /**
  * Removes an upvote from a feature request for a given user.
- * @param {DownvoteFeature} - An object containing the feature request ID and the user ID.
+ * @param {IDownvoteFeature} - An object containing the feature request ID and the user ID.
  * @returns {Promise<FeatureRequest>} - A promise that resolves to the updated feature request object.
  */
 
-export const unvoteFeature = async ({ id, userId }: DownvoteFeature) => {
+export const unvoteFeature = async ({ id, userId }: IDownvoteFeature) => {
   try {
     const feature = await prisma.featureUpvote.delete({
       where: {
