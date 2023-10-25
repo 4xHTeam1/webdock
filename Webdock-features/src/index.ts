@@ -29,6 +29,8 @@ import {
   UpdateReply,
   UpvoteFeature,
 } from "./interfaces/IFeatures";
+import { ParamValidation } from "../../shared/services/ParamValidation";
+import { BodyValidation } from "../../shared/services/bodyValidation";
 
 const app = new Elysia()
   .get("/status", () => {
@@ -164,9 +166,5 @@ const app = new Elysia()
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
 );
-function ParamValidation(arg0: number) {
-  throw new Error("Function not implemented.");
-}
-function BodyValidation(body: unknown, arg1: string[]) {
-  throw new Error("Function not implemented.");
-}
+
+
