@@ -40,144 +40,123 @@ const app = new Elysia()
       //TODO: THROW PROPPER ERROR
     }
   })
+  .onError(({ error }) => {
+    return new Response(error.toString(), {
+      status: 401,
+    });
+  })
   .group("/features", (app) =>
     app
       .get("/", async () => {
-        try {
-          return await getFeatures();
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        return await getFeatures();
       })
       .get("/:id", async ({ params: { id } }) => {
-        try {
-          return await getFeature({ id: Number(id) } as FeatureById);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        ParamValidation(Number(id));
+        return await getFeature({ id: Number(id) } as FeatureById);
       })
       .post("/", async ({ body }) => {
-        try {
-          return await createFeature(body as CreateFeature);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        BodyValidation(body, [
+          "title",
+          "description",
+          "userId",
+          "categoryId",
+          "statusId",
+        ]);
+        return await createFeature(body as CreateFeature);
       })
       .put("/:id", async ({ params: { id }, body }) => {
-        try {
-          const { title, description, categoryId, statusId } =
-            body as UpdateFeature;
-          const update = {
-            id: Number(id),
-            title,
-            description,
-            categoryId,
-            statusId,
-          };
-          return await updateFeature(update as UpdateFeature);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        ParamValidation(Number(id));
+        BodyValidation(body, [
+          "title",
+          "description",
+          "categoryId",
+          "statusId",
+        ]);
+
+        const { title, description, categoryId, statusId } =
+          body as UpdateFeature;
+        const update = {
+          id: Number(id),
+          title,
+          description,
+          categoryId,
+          statusId,
+        };
+        return await updateFeature(update as UpdateFeature);
       })
       .delete("/:id", async ({ params: { id } }) => {
-        try {
-          return await deleteFeature({ id: Number(id) } as FeatureById);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        ParamValidation(Number(id));
+        return await deleteFeature({ id: Number(id) } as FeatureById);
       })
   )
   .group("/comment", (app) =>
     app
       .get("/:id", async ({ params: { id } }) => {
-        try {
-          return await getAllComments({ id: Number(id) } as GetAllComments);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        ParamValidation(Number(id));
+        return await getAllComments({ id: Number(id) } as GetAllComments);
       })
       .post("/", async ({ body }) => {
-        try {
-          return await commentOnFeature(body as CreateComment);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        BodyValidation(body, ["id", "userId", "comment"]);
+        return await commentOnFeature(body as CreateComment);
       })
       .post("/reply", async ({ body }) => {
-        try {
-          return await replyToComment(body as CreateReply);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        BodyValidation(body, ["id", "userId", "comment"]);
+        return await replyToComment(body as CreateReply);
       })
       .delete("/:id", async ({ params: { id } }) => {
-        try {
-          return await deleteComment({ id: Number(id) } as DeleteComment);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        ParamValidation(Number(id));
+        return await deleteComment({ id: Number(id) } as DeleteComment);
       })
       .delete("/reply/:id", async ({ params: { id } }) => {
-        try {
-          return await deleteCommentReply({ id: Number(id) } as DeleteReply);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        ParamValidation(Number(id));
+        return await deleteCommentReply({ id: Number(id) } as DeleteReply);
       })
       .put("/:id", async ({ params: { id }, body }) => {
-        try {
-          const { comment } = body as UpdateComment;
-          const update = {
-            id: Number(id),
-            comment,
-          } as UpdateComment;
-          return await updateComment(update);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        ParamValidation(Number(id));
+        BodyValidation(body, ["comment"]);
+        const { comment } = body as UpdateComment;
+        const update = {
+          id: Number(id),
+          comment,
+        } as UpdateComment;
+        return await updateComment(update);
       })
       .put("/reply/:id", async ({ params: { id }, body }) => {
-        try {
-          const { comment } = body as UpdateReply;
-          const update = {
-            id: Number(id),
-            comment,
-          } as UpdateReply;
-          return await updateReply(update);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        ParamValidation(Number(id));
+        BodyValidation(body, ["comment"]);
+        const { comment } = body as UpdateReply;
+        const update = {
+          id: Number(id),
+          comment,
+        } as UpdateReply;
+        return await updateReply(update);
       })
   )
   .group("/upvote", (app) =>
     app
       .post("/:id", async ({ params: { id }, body }) => {
-        try {
-          const { userId } = body as UpvoteFeature;
+        ParamValidation(Number(id));
+        BodyValidation(body, ["userId"]);
+        const { userId } = body as UpvoteFeature;
 
-          const upvote = {
-            id: Number(id),
-            userId,
-          } as UpvoteFeature;
+        const upvote = {
+          id: Number(id),
+          userId,
+        } as UpvoteFeature;
 
-          return await upvoteFeature(upvote);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        return await upvoteFeature(upvote);
       })
       .delete("/:id", async ({ params: { id }, body }) => {
-        try {
-          const { userId } = body as DownvoteFeature;
+        ParamValidation(Number(id));
+        BodyValidation(body, ["userId"]);
+        const { userId } = body as DownvoteFeature;
 
-          const unvote = {
-            id: Number(id),
-            userId,
-          } as DownvoteFeature;
+        const unvote = {
+          id: Number(id),
+          userId,
+        } as DownvoteFeature;
 
-          return await unvoteFeature(unvote);
-        } catch (err) {
-          //TODO: THROW PROPPER ERROR
-        }
+        return await unvoteFeature(unvote);
       })
   )
   .listen(3000);
@@ -185,3 +164,9 @@ const app = new Elysia()
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
 );
+function ParamValidation(arg0: number) {
+  throw new Error("Function not implemented.");
+}
+function BodyValidation(body: unknown, arg1: string[]) {
+  throw new Error("Function not implemented.");
+}
