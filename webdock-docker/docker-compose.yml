@@ -58,6 +58,9 @@ services:
       - "3306:3306"
     expose:
       - "3306"
+  ##########################################
+  #Logging and Monitoring ##################
+  ##########################################
   prometheus:
     image: prom/prometheus
     user: root
@@ -88,7 +91,7 @@ services:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     ports:
-      - 8080:8080
+      - 9000:8080
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
@@ -109,3 +112,20 @@ services:
     restart: unless-stopped
     volumes:
       - /:/host:ro,rslave
+  ##########################################
+  #API Gateway #############################
+  ##########################################
+  krakend:
+    image: devopsfaith/krakend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./KrakenD/krakend.json:/etc/krakend/krakend.json
+    restart: unless-stopped
+    depends_on:
+      - auth
+      - admin
+      - search
+      - email
+      - features
+      - sockets

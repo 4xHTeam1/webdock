@@ -1,4 +1,4 @@
-import { SocketTypes } from "./ESockets";
+import { ESocketTypes } from "./ESockets";
 
 export interface ISocketUpvote {
   type: SocketTypes.UPVOTE;
