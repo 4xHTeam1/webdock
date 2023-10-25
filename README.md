@@ -13,7 +13,7 @@ Dette projekt er skrevet i forbindelse med UCL's P.Ba i Webudvikling 1. semester
 <a href="https://vitejs.dev" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white"/>
 </a>
-<a href="https://vuejs.org" style="text-decoration: none"> 
+<a href="https://getbootstrap.com" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white"/>
 </a>
 <a href="https://axios-http.com/docs/intro" style="text-decoration: none"> 
