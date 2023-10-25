@@ -5,6 +5,7 @@ WORKDIR /app
 COPY ./package.json .
 COPY ./bun.lockb .
 COPY ./prisma ./prisma
+COPY .shared ./shared
 
 RUN bun install --production
 RUN bunx prisma generate
