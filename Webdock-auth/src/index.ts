@@ -3,7 +3,9 @@ import { jwt } from "@elysiajs/jwt";
 import { swagger } from "@elysiajs/swagger";
 import { getUserByUUID, addUser } from "./querys/querys";
 import { User } from "@prisma/client";
-import { Token } from "./interfaces/tokenInterfaces";
+import { IToken } from "./interfaces/IToken";
+import { TokenValidation } from "../../shared/services/TokenValidation";
+import { BodyValidation } from "../../shared/services/BodyValidation";
 
 const app = new Elysia()
   .use(
@@ -25,23 +27,24 @@ const app = new Elysia()
       path: "/v2/swagger",
     })
   )
+  .onError(({ error }) => {
+    return new Response(error.toString(), {
+      status: 401,
+    });
+  })
   .get("/status", () => {
     return {
       status: "ok",
     };
   })
   .post("/verify", async ({ jwt, body }) => {
+    BodyValidation(body, "token");
     /* Gets token from body, and ensures that is has the field Token on it */
-    const { token } = body as Token;
+    const { token } = body as IToken;
 
     /* Verifies the token, with the given secret as described on line 12 */
-    /* Returns the object from the jwt, or false if the jwt is not valid */
-    const verification = await jwt.verify(token);
-
-    /* If verification is not valid, we throw an error */
-    if (verification === false) {
-      throw new Error("Cannot verify JWT");
-    }
+    /* Returns the object from the jwt, or throws an error if the jwt is not valid */
+    const verification = await TokenValidation(jwt, token);
 
     /* Else we take the id from the verified user */
     const { id } = verification as User;

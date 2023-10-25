@@ -5,10 +5,19 @@
 Dette projekt er skrevet i forbindelse med UCL's P.Ba i Webudvikling 1. semesters project. I sammarbejde med Webdock.io ApS. Projekted lød på at erstatte deres nuværende Feature Request system, leveret af Canny, i en standalone løsning, da Canny er for dyrt og komplekst til deres behov.
 </p>
 
-<h2 align="center">Teknologier brugt til projekted</h2>
+<h2 align="center">Teknologier brugt til projektet</h2>
 <p align="center">
 <a href="https://vuejs.org" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Vue-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white"/>
+</a>
+<a href="https://vitejs.dev" style="text-decoration: none"> 
+    <img src="https://custom-icon-badges.demolab.com/badge/-Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white"/>
+</a>
+<a href="https://getbootstrap.com" style="text-decoration: none"> 
+    <img src="https://custom-icon-badges.demolab.com/badge/-Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white"/>
+</a>
+<a href="https://axios-http.com/docs/intro" style="text-decoration: none"> 
+    <img src="https://custom-icon-badges.demolab.com/badge/-Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"/>
 </a>
 <a href="https://bun.sh" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Bun-000000?style=for-the-badge&logo=Bun&logoColor=white"/>
@@ -29,7 +38,7 @@ Dette projekt er skrevet i forbindelse med UCL's P.Ba i Webudvikling 1. semester
     <img src="https://custom-icon-badges.demolab.com/badge/-Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/>
 </a>
 <a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" style="text-decoration: none"> 
-    <img src="https://custom-icon-badges.demolab.com/badge/-MSSQL-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white"/>
+    <img src="https://custom-icon-badges.demolab.com/badge/-mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
 </a>
 <a href="https://grafana.com" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white"/>
@@ -95,6 +104,14 @@ bun run email:dev
 Search service:
 ```sh
 bun run search:dev
+```
+Sockets service:
+```sh
+bun run sockets:dev
+```
+Frontend service:
+```sh
+bun run frontend:dev
 ```
 
 <h2 align="center">
