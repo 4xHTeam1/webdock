@@ -5,6 +5,10 @@ const prisma = new PrismaClient();
 
 export const IsAdministrator = async ({ requesterId }: IAdmin) => {
   try {
+    if (requesterId === undefined || requesterId === null) {
+      throw new Error("Unauthorized");
+    }
+
     const user = await prisma.user.findUnique({
       where: {
         id: requesterId,
@@ -13,8 +17,10 @@ export const IsAdministrator = async ({ requesterId }: IAdmin) => {
         role: true,
       },
     });
-    return user?.role === Role.ADMIN;
+    if (user?.role !== Role.ADMIN) {
+      throw new Error("Unauthorized");
+    }
   } catch (error) {
-    return false;
+    throw new Error("Something went wrong validating the requesterId");
   }
 };

@@ -1,3 +1,3 @@
 export interface IAdmin {
-  requesterId: string;
+  requesterId: string | null | undefined;
 }
