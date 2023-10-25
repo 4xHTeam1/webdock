@@ -4,8 +4,8 @@ import { swagger } from "@elysiajs/swagger";
 import { getUserByUUID, addUser } from "./querys/querys";
 import { User } from "@prisma/client";
 import { IToken } from "./interfaces/IToken";
-import { TokenValidation } from "../../shared/services/TokenValidation";
-import { BodyValidation } from "../../shared/services/BodyValidation";
+import { BodyValidation } from "../shared/services/BodyValidation";
+import { TokenValidation } from "../shared/services/TokenValidation";
 
 const app = new Elysia()
   .use(

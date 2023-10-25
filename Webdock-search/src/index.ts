@@ -11,7 +11,7 @@ import {
 } from "./querys/querys";
 import swagger from "@elysiajs/swagger";
 import { PrismaClient } from "@prisma/client";
-import { SearchValidation } from "../../shared/services/SearchValidation";
+import { SearchValidation } from "../shared/services/SearchValidation";
 
 const prisma = new PrismaClient();
 
