@@ -27,10 +27,10 @@ import {
   UpdateStatus,
   DeleteStatus,
 } from "./querys/statusQuerys";
-import { IsAdministrator } from "../../shared/services/Autherization";
+import { IsAdministrator } from "../../shared/services/AutherizationValidation";
 import { IAdmin } from "../../shared/services/interfaces/IAdministrator";
 import { ParamValidation } from "../../shared/services/ParamValidation";
-import { BodyValidation } from "../../shared/services/bodyValidation";
+import { BodyValidation } from "../../shared/services/BodyValidation";
 
 const app = new Elysia()
   .get("/status", () => {

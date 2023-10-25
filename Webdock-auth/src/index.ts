@@ -5,7 +5,7 @@ import { getUserByUUID, addUser } from "./querys/querys";
 import { User } from "@prisma/client";
 import { Token } from "./interfaces/tokenInterfaces";
 import { TokenValidation } from "../../shared/services/TokenValidation";
-import { BodyValidation } from "../../shared/services/bodyValidation";
+import { BodyValidation } from "../../shared/services/BodyValidation";
 
 const app = new Elysia()
   .use(

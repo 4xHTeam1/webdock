@@ -30,7 +30,7 @@ import {
   UpvoteFeature,
 } from "./interfaces/IFeatures";
 import { ParamValidation } from "../../shared/services/ParamValidation";
-import { BodyValidation } from "../../shared/services/bodyValidation";
+import { BodyValidation } from "../../shared/services/BodyValidation";
 
 const app = new Elysia()
   .get("/status", () => {

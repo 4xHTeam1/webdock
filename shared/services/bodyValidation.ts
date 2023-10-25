@@ -1,6 +1,4 @@
 export const BodyValidation = (body: any, prop: string | string[]) => {
-  console.log(typeof body);
-
   if (
     body === undefined ||
     body === null ||
