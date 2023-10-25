@@ -12,6 +12,7 @@ import {
 import { Query } from "./interfaces/searchInterfaces";
 import swagger from "@elysiajs/swagger";
 import { PrismaClient } from "@prisma/client";
+import { SearchValidation } from "../../shared/services/SearchValidation";
 
 const prisma = new PrismaClient();
 
@@ -22,6 +23,11 @@ const app = new Elysia()
       path: "/v2/swagger",
     })
   )
+  .onError(({ error }) => {
+    return new Response(error.toString(), {
+      status: 400,
+    });
+  })
   .get("/status", () => {
     return {
       status: "ok",
@@ -36,17 +42,26 @@ const app = new Elysia()
   })
   .group("/search", (app) =>
     app
-      .get("/all", async ({query:{query}}) => {
+      .get("/all", async ({ query: { query } }) => {
+        if (!SearchValidation(query)) {
+          throw new Error("Invalid search query");
+        }
         const searched = await searchAll(query);
         return searched;
       })
       .group("/user", (app) =>
         app
           .get("/name", async ({ query: { query } }) => {
+            if (!SearchValidation(query)) {
+              throw new Error("Invalid search query");
+            }
             const result = await searchUserByName(query);
             return result;
           })
           .get("/email", async ({ query: { query } }) => {
+            if (!SearchValidation(query)) {
+              throw new Error("Invalid search query");
+            }
             const result = await searchUserByEmail(query);
             return result;
           })
@@ -54,22 +69,37 @@ const app = new Elysia()
       .group("/feature", (app) =>
         app
           .get("/user/name", async ({ query: { query } }) => {
+            if (!SearchValidation(query)) {
+              throw new Error("Invalid search query");
+            }
             const result = await searchFeaturesByUserName(query);
             return result;
           })
           .get("/user/email", async ({ query: { query } }) => {
+            if (!SearchValidation(query)) {
+              throw new Error("Invalid search query");
+            }
             const result = await searchFeaturesByUserEmail(query);
             return result;
           })
           .get("/category", async ({ query: { query } }) => {
+            if (!SearchValidation(query)) {
+              throw new Error("Invalid search query");
+            }
             const result = await searchFeaturesByCategory(query);
             return result;
           })
           .get("/title", async ({ query: { query } }) => {
+            if (!SearchValidation(query)) {
+              throw new Error("Invalid search query");
+            }
             const result = await searchFeatureByTitle(query);
             return result;
           })
           .get("/description", async ({ query: { query } }) => {
+            if (!SearchValidation(query)) {
+              throw new Error("Invalid search query");
+            }
             const result = await searchFeatureByDescription(query);
             return result;
           })
