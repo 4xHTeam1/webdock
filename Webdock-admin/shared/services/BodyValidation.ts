@@ -1,11 +1,12 @@
 export const BodyValidation = (body: any, prop: string | string[]) => {
+  console.log(body);
   if (
     body === undefined ||
     body === null ||
     body === "" ||
     typeof body !== "object"
   ) {
-    throw new Error("Invalid body");
+    throw new Error("Invalid body, body is of type: " + typeof body);
   }
 
   if (typeof prop === "string") {

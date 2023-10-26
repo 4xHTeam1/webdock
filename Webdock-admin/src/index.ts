@@ -53,7 +53,11 @@ const app = new Elysia()
           requesterId: headers.get("requesterId"),
         } as IAdmin);
 
-        return await GetAllUsers();
+        const test = {
+          users: await GetAllUsers(),
+        };
+        console.log(test);
+        return test;
       })
       .get("/:id", async ({ params: { id }, request: { headers } }) => {
         await IsAdministrator({

@@ -139,9 +139,12 @@ export const commentOnFeature = async ({
         comment,
       },
     });
+    const test = "asdasd";
+    console.log(test);
+
     return feature;
   } catch (err) {
-    //TODO: THROW PROPPER ERROR
+    throw new Error(String(err));
   }
 };
 
