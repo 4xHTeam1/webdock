@@ -31,12 +31,15 @@ import { IsAdministrator } from "../shared/services/AutherizationValidation";
 import { IAdmin } from "../shared/services/interfaces/IAdministrator";
 import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
+import cors from "@elysiajs/cors";
 
 const app = new Elysia()
-  .get("/status", () => {
-    return {
-      status: "ok",
-    };
+  .get("/status", async ({ request: { headers } }) => {
+    await IsAdministrator({
+      requesterId: headers.get("requesterId"),
+    } as IAdmin);
+
+    return await GetAllUsers();
   })
   .onError(({ error }) => {
     return new Response(error.toString(), {
