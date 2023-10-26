@@ -16,6 +16,7 @@
     "frontend:preview": "vite preview Webdock-frontend --config Webdock-frontend/vite.config.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "^0.7.1",
     "@elysiajs/cron": "^0.7.0",
     "@elysiajs/jwt": "^0.7.0",
     "@elysiajs/swagger": "^0.7.3",

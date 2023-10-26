@@ -18,7 +18,7 @@
           "method": "GET",
           "disable_host_sanitize": false,
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ]
         }
       ]
@@ -34,7 +34,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -54,7 +54,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -74,7 +74,7 @@
           "sd": "static",
           "method": "PUT",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -94,7 +94,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -114,7 +114,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -134,7 +134,7 @@
           "sd": "static",
           "method": "POST",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -154,7 +154,7 @@
           "sd": "static",
           "method": "PUT",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -174,7 +174,7 @@
           "sd": "static",
           "method": "DELETE",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -194,7 +194,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -214,7 +214,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -234,7 +234,7 @@
           "sd": "static",
           "method": "POST",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -254,7 +254,7 @@
           "sd": "static",
           "method": "PUT",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -274,7 +274,7 @@
           "sd": "static",
           "method": "DELETE",
           "host": [
-            "http://admin:4000"
+            "http://admin:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -328,7 +328,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -345,7 +345,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -362,7 +362,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -379,7 +379,7 @@
           "sd": "static",
           "method": "POST",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -396,7 +396,7 @@
           "sd": "static",
           "method": "PUT",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -413,7 +413,7 @@
           "sd": "static",
           "method": "DELETE",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -430,7 +430,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -447,7 +447,7 @@
           "sd": "static",
           "method": "POST",
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -464,7 +464,7 @@
           "sd": "static",
           "method": "DELETE",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -481,7 +481,7 @@
           "sd": "static",
           "method": "POST",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -498,7 +498,7 @@
           "sd": "static",
           "method": "DELETE",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -515,7 +515,7 @@
           "sd": "static",
           "method": "PUT",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -532,7 +532,7 @@
           "sd": "static",
           "method": "PUT",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -549,7 +549,7 @@
           "sd": "static",
           "method": "POST",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -566,7 +566,7 @@
           "sd": "static",
           "method": "DELETE",
           "host": [
-            "http://features:7000"
+            "http://features:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -583,7 +583,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -600,7 +600,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -620,7 +620,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -640,7 +640,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -660,8 +660,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://features:7000",
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -682,7 +681,7 @@
           "method": "GET",
           "disable_host_sanitize": false,
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ]
         }
       ],
@@ -701,7 +700,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -721,7 +720,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }
@@ -741,7 +740,7 @@
           "sd": "static",
           "method": "GET",
           "host": [
-            "http://search:5000"
+            "http://search:3000"
           ],
           "disable_host_sanitize": false
         }

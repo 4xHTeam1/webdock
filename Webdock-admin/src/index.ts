@@ -31,6 +31,7 @@ import { IsAdministrator } from "../shared/services/AutherizationValidation";
 import { IAdmin } from "../shared/services/interfaces/IAdministrator";
 import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
+import cors from "@elysiajs/cors";
 
 const app = new Elysia()
   .get("/status", () => {
@@ -38,6 +39,11 @@ const app = new Elysia()
       status: "ok",
     };
   })
+  .use(
+    cors({
+      origin: "*",
+    })
+  )
   .onError(({ error }) => {
     return new Response(error.toString(), {
       status: 401,
