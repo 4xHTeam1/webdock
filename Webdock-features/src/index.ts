@@ -85,6 +85,7 @@ const app = new Elysia()
           statusId,
         };
         return await updateFeature(update as IUpdateFeature);
+        //test
       })
       .delete("/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));

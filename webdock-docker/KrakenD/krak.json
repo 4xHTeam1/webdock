@@ -9,7 +9,8 @@
     "security/cors": {
       "allow_origins": ["*"],
       "allow_methods": ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
-      "max_age": "12h"
+      "max_age": "12h",
+      "allow_headers": ["Content-Type", "requesterId", "Content-Length"]
     },
     "router": {
       "return_error_msg": true

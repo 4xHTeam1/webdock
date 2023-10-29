@@ -64,7 +64,7 @@ const app = new Elysia()
           requesterId: headers.get("requesterId"),
         } as IAdmin);
 
-        ParamValidation(Number(id));
+        ParamValidation(id);
 
         return await GetUser({ id } as IGetUser);
       })
@@ -75,7 +75,7 @@ const app = new Elysia()
             requesterId: headers.get("requesterId"),
           } as IAdmin);
 
-          ParamValidation(Number(id));
+          ParamValidation(id);
           BodyValidation(body, "role");
 
           const { role } = body as IUpdateUserRole;
