@@ -7,7 +7,7 @@
         {{ user.name }}
       </button>
     </li>
-  </ul>
+  </ul> 
 
   <button @click="getUsers">get all users</button>
 </template>
@@ -17,7 +17,7 @@ import adminStore from "./stores/adminstore";
 import authStore from "./stores/authstore";
 
 async function getUsers() {
-  await adminStore.dispatch("getUsers", "3");
+  await adminStore.dispatch("getUsers", authStore.state.user.id);
 }
 
 async function getUser(payload) {

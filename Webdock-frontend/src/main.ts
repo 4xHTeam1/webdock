@@ -3,5 +3,11 @@ import "./style.css";
 import App from "./App.vue";
 import authStore from "./stores/authstore";
 import adminStore from "./stores/adminstore";
+import PortalVue from "portal-vue";
 
-createApp(App).use(authStore).use(adminStore).mount("#app");
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+
+createApp(App).use(authStore).use(adminStore).use(PortalVue).mount("#app");
