@@ -1,11 +1,9 @@
 <script setup>
-import Test from "./Test.vue";
-import Testadmin from "./Testadmin.vue";
+import TestSearch from "./TestSearch.vue";
 </script>
 
 <template>
-  <Test />
-  <Testadmin />
+  <TestSearch />
 </template>
 
 <style scoped></style>
