@@ -46,43 +46,9 @@ const app = new Elysia()
       status: 401,
     });
   })
-  .group("/Users", (app) =>
-    app
-      .get("/", async ({ request: { headers } }) => {
-        await IsAdministrator({
-          requesterId: headers.get("requesterId"),
-        } as IAdmin);
-
-        const test = {
-          users: await GetAllUsers(),
-        };
-        console.log(test);
-        return test;
-      })
-      .get("/:id", async ({ params: { id }, request: { headers } }) => {
-        await IsAdministrator({
-          requesterId: headers.get("requesterId"),
-        } as IAdmin);
-
-        ParamValidation(id);
-
-        return await GetUser({ id } as IGetUser);
-      })
-      .put(
-        "/role/:id",
-        async ({ params: { id }, body, request: { headers } }) => {
-          await IsAdministrator({
-            requesterId: headers.get("requesterId"),
-          } as IAdmin);
-
-          ParamValidation(id);
-          BodyValidation(body, "role");
-
-          const { role } = body as IUpdateUserRole;
-          return await UpdateUserRole({ id, role } as IUpdateUserRole);
-        }
-      )
-  )
+  /**
+   * TODO: LAV USER FUNKTIONALITET FOR ADMINS DER KAN FÅ ALLE USERS, FÅ USERS PER ID OG OPDATERE USERS ROLLE
+   */
   .group("/Categories", (app) =>
     app
       .get("/", async ({ request: { headers } }) => {

@@ -1,9 +1,7 @@
 <script setup>
-import TestSearch from "./TestSearch.vue";
+import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <TestSearch />
+<RouterView />
 </template>
-
-<style scoped></style>

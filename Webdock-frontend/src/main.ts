@@ -1,13 +1,11 @@
-import { createApp } from "vue";
-import "./style.css";
-import App from "./App.vue";
-import authStore from "./stores/authstore";
-import adminStore from "./stores/adminstore";
-import searchStore from "./stores/searchstore";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+import 'bootstrap/dist/css/bootstrap.css'
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
 
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+const app = createApp(App).use(bootstrap)
 
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+app.use(router)
 
-createApp(App).use(authStore).use(adminStore).use(searchStore).mount("#app");
+app.mount('#app')

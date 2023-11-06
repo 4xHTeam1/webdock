@@ -22,7 +22,11 @@
     "@elysiajs/swagger": "^0.7.3",
     "@prisma/client": "^5.4.2",
     "axios": "^1.5.1",
-    "elysia": "latest"
+    "bootstrap": "^5.3.2",
+    "elysia": "latest",
+    "mssql": "^10.0.1",
+    "prom-client": "^15.0.0",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@types/node": "^20.8.4",
