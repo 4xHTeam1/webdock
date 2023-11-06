@@ -134,33 +134,9 @@ const app = new Elysia()
         return await updateReply(update);
       })
   )
-  .group("/upvote", (app) =>
-    app
-      .post("/:id", async ({ params: { id }, body }) => {
-        ParamValidation(Number(id));
-        BodyValidation(body, ["userId"]);
-        const { userId } = body as IUpvoteFeature;
-
-        const upvote = {
-          id: Number(id),
-          userId,
-        } as IUpvoteFeature;
-
-        return await upvoteFeature(upvote);
-      })
-      .delete("/:id", async ({ params: { id }, body }) => {
-        ParamValidation(Number(id));
-        BodyValidation(body, ["userId"]);
-        const { userId } = body as IDownvoteFeature;
-
-        const unvote = {
-          id: Number(id),
-          userId,
-        } as IDownvoteFeature;
-
-        return await unvoteFeature(unvote);
-      })
-  )
+  /**
+   * TODO: LAV UPVOTE PER FEATURE ID OG DOWNVOTE PER FEATURE ID
+   */
   .listen(3000);
 
 console.log(
