@@ -17,14 +17,7 @@ import {
 const adminStore = createStore({
   state() {
     return {
-      users: [
-        {
-          id: "1",
-          name: "John",
-          email: "test@test.dk",
-          avatarUrl: "google.com",
-        },
-      ],
+      users: [],
       selectedUser: null,
       categories: [],
       selectedCategory: null,
