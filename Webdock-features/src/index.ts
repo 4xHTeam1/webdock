@@ -134,6 +134,17 @@ const app = new Elysia()
         return await updateReply(update);
       })
   )
+  .group("/upvote", (app) =>
+    app
+      .post("/", async ({ body }) => {
+        BodyValidation(body, ["id", "userId"]);
+        return await upvoteFeature(body as IUpvoteFeature);
+      })
+      .delete("/", async ({ body}) => {
+        BodyValidation(body, ["id", "userId"]);
+        return await unvoteFeature(body as IDownvoteFeature);
+      })
+  )
   /**
    * TODO: LAV UPVOTE PER FEATURE ID OG DOWNVOTE PER FEATURE ID
    */
