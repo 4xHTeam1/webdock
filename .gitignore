@@ -6,6 +6,8 @@ node_modules/*
 !node_modules/prisma
 !node_modules/.prisma
 
+Webdock-frontend/.vscode
+
 
 /.pnp
 .pnp.js
