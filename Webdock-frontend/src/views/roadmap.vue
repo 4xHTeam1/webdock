@@ -1,8 +1,12 @@
 <template>
-<navbar/>
-    <div class="qwe">
+
+<div class="container">
+    <div class="nav-container"><navbar/></div>
 
 </div>
+
+
+
 </template>
 <script>
 import navbar from '../Components/navbar.vue'
@@ -14,11 +18,6 @@ export default {
 
 </script>
 <style>
-.qwe{
-    height: 200px;
-    width: 200px;
-    background-color: aquamarine;
-}
 
 body{
     background-image: url("../Assets/webdock-baggrund.jpg");
