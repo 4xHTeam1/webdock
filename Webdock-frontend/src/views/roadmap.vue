@@ -19,4 +19,8 @@ export default {
     width: 200px;
     background-color: aquamarine;
 }
+
+body{
+    background-image: url("../Assets/webdock-baggrund.jpg");
+}
 </style>
