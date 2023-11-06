@@ -134,9 +134,19 @@ const app = new Elysia()
         return await updateReply(update);
       })
   )
-  /**
-   * TODO: LAV UPVOTE PER FEATURE ID OG DOWNVOTE PER FEATURE ID
-   */
+  /*Grouping allows you to combine multiple prefixes into one.*/
+  .group("/upvote", (app) =>
+    app
+      /*async promise return the data after the code has excicuted */
+      .post("/", async ({ body }) => {
+        BodyValidation(body, ["id", "userId"]);
+        return await upvoteFeature(body as IUpvoteFeature);
+      })
+      .delete("/", async ({ body}) => {
+        BodyValidation(body, ["id", "userId"]);
+        return await unvoteFeature(body as IDownvoteFeature);
+      })
+  )
   .listen(3000);
 
 console.log(
