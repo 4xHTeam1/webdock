@@ -1,11 +1,12 @@
 <template>
-
-
-<taps buttontext="ROADMAP" imageSrc="src/assets/icons/three-dots-vertical.svg"></taps>
-<taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/three-dots-vertical.svg"></taps>
-
-
+  
 <img src="../Assets/webdock-logo-hvid.svg">
+
+<div class="tap-parent-container">
+<taps buttontext="ROADMAP" imageSrc="src/assets/icons/three-dots-vertical.svg"></taps>
+<taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/lightbulb.svg"></taps>
+</div>
+
 
 </template>
 
@@ -29,5 +30,11 @@ export default {
 
 
 <style>
+.tap-parent-container{
+  margin-top: 10px;
+  margin-bottom: 10px;
 
+  display: flex;
+  flex-direction: row;
+}
 </style>
