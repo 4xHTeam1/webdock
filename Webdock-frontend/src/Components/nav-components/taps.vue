@@ -1,9 +1,22 @@
 <template>
     <div class="tap-container">
-        <img src="../../Assets/icons/three-dots-vertical.svg">
-        <p id="roadmap-tap" class="fw-bolder">ROADMAP</p>
+        <img :src="imageSrc">
+        <p id="roadmap-tap" class="fw-bolder">{{ buttontext }}</p>
     </div>
+
 </template>
+
+<script lang="ts">
+export default {
+  props: {
+    buttontext: {
+      type: String,
+      required: true
+    },
+    imageSrc: String
+  }
+};
+</script>
 
 <style>
 .tap-container{
@@ -23,3 +36,4 @@
     margin-bottom: 0;
 }
 </style>
+
