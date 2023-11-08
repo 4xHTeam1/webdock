@@ -1,14 +1,17 @@
 <template>
-    <div class="container">
+    <div class="container d-flex">
             <CreatePost/>
+            <requestOverview/>
     </div>
 </template>
 
 <script>
 import CreatePost from '../Components/CreatePost.vue'
+import requestOverview from '../Components/requestOverview.vue'
 export default {
     components: {
-    CreatePost
+    CreatePost,
+    requestOverview
   }
 }
 </script>
@@ -21,5 +24,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
 
 </style>
