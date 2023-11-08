@@ -4,7 +4,7 @@
       <h1 class="Testroadmap_Title">Testroadmap</h1>
       <div class="Testroadmap_InteractionContainer">
         <p class="Testroadmap_Test">Filters:</p>
-        <p class="Testroadmap_Test">Search</p>
+        <searchComponent />
       </div>
     </div>
     <div class="Testroadmap_RoadmapContainers">
@@ -17,9 +17,11 @@
 
 <script lang="ts">
 import StatusContainer from "../Components/roadmap-components/statusContainer.vue";
+import searchComponent from "../Components/shared/searchComponent.vue";
 export default {
   components: {
     StatusContainer,
+    searchComponent,
   },
 };
 </script>
