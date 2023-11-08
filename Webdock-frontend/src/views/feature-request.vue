@@ -8,6 +8,7 @@
 <script>
 import CreatePost from '../Components/CreatePost.vue'
 import requestOverview from '../Components/requestOverview.vue'
+import navbar from '../Components/navbar.vue'
 export default {
     components: {
     CreatePost,

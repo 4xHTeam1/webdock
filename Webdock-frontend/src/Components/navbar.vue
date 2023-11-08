@@ -10,8 +10,12 @@
         </div>
       </div>
         <div class="tap-parent-container">
-          <taps buttontext="ROADMAP" imageSrc="src/assets/icons/three-dots-vertical.svg"></taps>
-          <taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/lightbulb.svg"></taps>
+          <Router-link to="/" style="text-decoration: none; color: inherit;">
+            <taps buttontext="ROADMAP" imageSrc="src/assets/icons/three-dots-vertical.svg"></taps>
+          </Router-link>
+          <Router-link to="/feature-request" style="text-decoration: none; color: inherit;">
+            <taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/lightbulb.svg"></taps>
+          </Router-link>
         </div>
     </div>
       <div class="seperating-line"></div>
@@ -27,16 +31,21 @@ export default {
     taps,
     icons
   },
+
   props: {
     buttontext: {
       type: String,
       required: true
     },
-    imageSrc: String,
+      imageSrc: String,
     letterSrc: {
       type: String,
       required: true
-    } 
+    },
+    isActive: {
+      type: Boolean,
+      required: true
+    }
   }
 };
 
@@ -68,6 +77,7 @@ export default {
 
   display: flex;
   flex-direction: row;
+  
 }
 .img-size{
   width: 20vw;

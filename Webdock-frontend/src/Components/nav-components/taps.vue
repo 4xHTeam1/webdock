@@ -1,6 +1,6 @@
 <template>
   
-    <div class="tap-container tap-color">
+    <div class="tap-container">
         <img class="img-color" :src="imageSrc">
         <p id="roadmap-tap" class="fw-bolder">{{ buttontext }}</p>
 
@@ -41,6 +41,7 @@ export default {
   background: #fff;
 }
 
+
 .img-color {
   filter: invert(0%) sepia(3%) saturate(21%) hue-rotate(101deg) brightness(96%) contrast(100%);
 }
@@ -48,6 +49,8 @@ export default {
 
 #roadmap-tap {
     margin-bottom: 0;
+    text-decoration: none;
+    
 }
 </style>
 
