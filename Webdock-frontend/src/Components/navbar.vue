@@ -2,7 +2,9 @@
   <div class="nav-container">
     <div class="container">
       <div class="logo-icon-flex">
-        <img class="img-size" src="../Assets/webdock-logo-hvid.svg">
+        <Router-link to="/">
+          <img class="img-size" src="../Assets/webdock-logo-hvid.svg">
+        </Router-link>
         <div class="icon-parent-container">
           <icons letterSrc="J" iconSrc="src/assets/icons/bell.svg" ></icons>
         </div>
@@ -54,7 +56,7 @@ export default {
   justify-content: space-between;
 }
 .nav-container{
-  margin-top: 1vh;
+  margin-top: 1.5vh;
 }
 .seperating-line{
   width:100vw;
@@ -62,7 +64,7 @@ export default {
   background:#fff;
 }
 .tap-parent-container{
-  margin-top: 10px;
+  margin-top: 15px;
 
   display: flex;
   flex-direction: row;
