@@ -7,6 +7,11 @@ const router = createRouter({
       path: '/',
       name: 'roadmap',
       component: () => import('../views/roadmap.vue')
+    },
+    {
+      path: '/feature-request',
+      name: 'feature-request',
+      component: () => import('../views/feature-request.vue')
     }
   ]
 })
