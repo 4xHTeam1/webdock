@@ -13,6 +13,11 @@ const router = createRouter({
       name: "roadmap",
       component: () => import("../views/Testroadmap.vue"),
     },
+    {
+      path: '/feature-request',
+      name: 'feature-request',
+      component: () => import('../views/feature-request.vue')
+    }
   ],
 });
 
