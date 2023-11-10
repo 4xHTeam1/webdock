@@ -1,7 +1,17 @@
 <template>
     <div class="container d-flex">
             <CreatePost/>
-            <requestOverview/>
+            <div class="overview-area">
+                <requestOverview status="planned" color="#1FA0FF"/>
+                <requestOverview status="under review" color="#85B5B5"/>
+                <requestOverview status="in progress" color="#C17AFF"/>
+                <requestOverview status="in progress" color="#C17AFF"/>
+                <requestOverview status="in progress" color="#C17AFF"/>
+                <requestOverview status="in progress" color="#C17AFF"/>
+                <requestOverview status="in progress" color="#C17AFF"/>
+                <requestOverview status="in progress" color="#C17AFF"/>
+
+            </div>
     </div>
 </template>
 
@@ -25,6 +35,15 @@ body{
     background-size: cover;
 }
 
+.overview-area{
+    background-color: #FCFCFC;
+    border-radius: 10px;
+    width: 600px;
+    max-height: 100%;
+    margin-left: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
 
 </style>
