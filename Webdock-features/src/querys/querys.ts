@@ -23,7 +23,12 @@ const prisma = new PrismaClient();
  */
 export const getFeatures = async () => {
   try {
-    const features = await prisma.featureRequest.findMany();
+    const features = await prisma.featureRequest.findMany({
+      include: {
+        category: true,
+        status: true,
+      },
+    });
     return features;
   } catch (err) {
     //TODO: THROW PROPPER ERROR
@@ -39,6 +44,10 @@ export const getFeature = async ({ id }: IFeatureById) => {
   try {
     const feature = await prisma.featureRequest.findUnique({
       where: { id },
+      include: {
+        category: true,
+        status: true,
+      },
     });
     return feature;
   } catch (err) {
@@ -310,4 +319,15 @@ export const unvoteFeature = async ({ id, userId }: IDownvoteFeature) => {
   } catch (err) {
     //TODO: THROW PROPPER ERROR
   }
+};
+
+export const getFeatureUpvoteCount = async (id: number) => {
+  try {
+    const feature = await prisma.featureUpvote.count({
+      where: {
+        featureRequestId: id,
+      },
+    });
+    return feature;
+  } catch (e) {}
 };
