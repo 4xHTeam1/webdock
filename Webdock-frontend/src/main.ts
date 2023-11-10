@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './Router'
 import 'bootstrap/dist/css/bootstrap.css'
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
 import adminStore from './stores/adminstore'

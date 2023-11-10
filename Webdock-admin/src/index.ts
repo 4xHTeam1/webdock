@@ -32,6 +32,7 @@ import { IAdmin } from "../shared/services/interfaces/IAdministrator";
 import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
 import cors from "@elysiajs/cors";
+import { GetUsers } from "../../Webdock-frontend/src/services/adminService";
 
 const app = new Elysia()
   .get("/status", async ({ request: { headers } }) => {
@@ -49,6 +50,36 @@ const app = new Elysia()
   /**
    * TODO: LAV USER FUNKTIONALITET FOR ADMINS DER KAN FÅ ALLE USERS, FÅ USERS PER ID OG OPDATERE USERS ROLLE
    */
+ .group("/users", (app) =>
+ app 
+ .get ("/", async ({request: { headers }}) => {
+  await IsAdministrator({
+    requesterId: headers.get("requesterId"),
+  } as IAdmin);
+  return await GetAllUsers()
+ })
+ .get ("/:id", async ({params: {id},request: { headers}}) => {
+  await IsAdministrator({
+    requesterId: headers.get("requesterId"),
+  } as IAdmin);
+  return await GetUser ({id} as IGetUser)
+ } )
+
+.put ("/role/:id", async ({params: {id},body, request: { headers}}) => {
+  await IsAdministrator({
+    requesterId: headers.get("requesterId"),
+  } as IAdmin);
+  BodyValidation(body,"role")
+  const {role} = body as IUpdateUserRole
+  return await UpdateUserRole({id, role} as IUpdateUserRole)
+})
+ )
+
+
+
+
+
+
   .group("/Categories", (app) =>
     app
       .get("/", async ({ request: { headers } }) => {
