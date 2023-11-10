@@ -5,14 +5,13 @@ WORKDIR /app
 COPY ./package.json .
 COPY ./bun.lockb .
 COPY ./prisma ./prisma
-COPY ./shared ./shared
 
 RUN bun install --production
 RUN bunx prisma generate
 
 COPY ./node_modules/.prisma ./node_modules/.prisma
 
-
+COPY ./Webdock-features/shared shared
 COPY ./Webdock-features/src src
 COPY ./tsconfig.json .
 # COPY public public

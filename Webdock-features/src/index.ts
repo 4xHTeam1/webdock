@@ -7,6 +7,7 @@ import {
   deleteFeature,
   getAllComments,
   getFeature,
+  getFeatureUpvoteCount,
   getFeatures,
   replyToComment,
   unvoteFeature,
@@ -29,10 +30,16 @@ import {
   IUpdateReply,
   IUpvoteFeature,
 } from "./interfaces/IFeatures";
+import swagger from "@elysiajs/swagger";
 import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
 
 const app = new Elysia()
+  .use(
+    swagger({
+      path: "/v1/swagger",
+    })
+  )
   .get("/status", () => {
     try {
       return {
@@ -50,7 +57,10 @@ const app = new Elysia()
   .group("/features", (app) =>
     app
       .get("/", async () => {
-        return await getFeatures();
+        const features = {
+          features: await getFeatures(),
+        };
+        return features;
       })
       .get("/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));
@@ -85,6 +95,7 @@ const app = new Elysia()
           statusId,
         };
         return await updateFeature(update as IUpdateFeature);
+        //test
       })
       .delete("/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));
@@ -134,31 +145,21 @@ const app = new Elysia()
         return await updateReply(update);
       })
   )
+  /*Grouping allows you to combine multiple prefixes into one.*/
   .group("/upvote", (app) =>
     app
-      .post("/:id", async ({ params: { id }, body }) => {
-        ParamValidation(Number(id));
-        BodyValidation(body, ["userId"]);
-        const { userId } = body as IUpvoteFeature;
-
-        const upvote = {
-          id: Number(id),
-          userId,
-        } as IUpvoteFeature;
-
-        return await upvoteFeature(upvote);
+      /*async promise return the data after the code has excicuted */
+      .post("/", async ({ body }) => {
+        BodyValidation(body, ["id", "userId"]);
+        return await upvoteFeature(body as IUpvoteFeature);
       })
-      .delete("/:id", async ({ params: { id }, body }) => {
-        ParamValidation(Number(id));
-        BodyValidation(body, ["userId"]);
-        const { userId } = body as IDownvoteFeature;
-
-        const unvote = {
-          id: Number(id),
-          userId,
-        } as IDownvoteFeature;
-
-        return await unvoteFeature(unvote);
+      .delete("/", async ({ body }) => {
+        BodyValidation(body, ["id", "userId"]);
+        return await unvoteFeature(body as IDownvoteFeature);
+      })
+      .get("/upvoteCount/:id", async ({ params: { id } }) => {
+        ParamValidation(id);
+        return await getFeatureUpvoteCount(Number(id));
       })
   )
   .listen(3000);
