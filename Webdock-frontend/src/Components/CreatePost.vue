@@ -155,6 +155,7 @@ export default {
     outline: none;
     border: 2px solid rgb(129, 129, 129);
     border-radius: 4px;
+    resize: none;
 }
 
 .submit-area{
