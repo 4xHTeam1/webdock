@@ -1,4 +1,8 @@
-import { getAllFeatures, getFeatureById, getAllComments } from "../../services/featureService";
+import {
+  getAllFeatures,
+  getFeatureById,
+  getAllComments,
+} from "../../services/featureService";
 
 export default {
   namespaced: true,
@@ -7,7 +11,22 @@ export default {
     selectedFeature: null,
     selectedFeatureComments: [],
   },
-  getters: {},
+  getters: {
+    getAllFeatures(state: any) {
+      return state.allFeatures;
+    },
+    getSelectedFeature(state: any) {
+      return state.selectedFeature;
+    },
+    getSelectedFeatureComments(state: any) {
+      return state.selectedFeatureComments;
+    },
+    getFeaturesForStatus: (state: any) => (status: string) => {
+      return state.allFeatures.filter(
+        (feature: any) => feature.status.id === status
+      );
+    },
+  },
   mutations: {
     setAllFeatures(state: any, features: any) {
       state.allFeatures = features;

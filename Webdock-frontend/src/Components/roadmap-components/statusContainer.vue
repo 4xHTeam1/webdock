@@ -6,7 +6,6 @@
       </p>
     </div>
     <div class="Status_SlotContainer">
-      {{}}
       <roadmap-features
         v-for="feature in features.allFeatures"
         v-bind:key="feature.id"
@@ -21,6 +20,9 @@
 <script>
 import { mapState } from "vuex";
 import roadmapFeatures from "./roadmapFeatures.vue";
+
+let filteredFeatures = [];
+
 export default {
   name: "roadmapStatusContainer",
   computed: {
