@@ -1,17 +1,13 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './Router'
-import 'bootstrap/dist/css/bootstrap.css'
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
-import adminStore from './stores/adminstore'
-import authStore from './stores/authstore'
-import searchStore from './stores/searchstore'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./Router";
+import "bootstrap/dist/css/bootstrap.css";
+import bootstrap from "bootstrap/dist/js/bootstrap.bundle.js";
+import store from "./stores/store";
 
-const app = createApp(App).use(bootstrap)
+const app = createApp(App).use(bootstrap);
 
-app.use(router)
-app.use(adminStore)
-app.use(authStore)
-app.use(searchStore)
+app.use(router);
+app.use(store);
 
-app.mount('#app')
+app.mount("#app");

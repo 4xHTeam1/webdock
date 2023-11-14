@@ -1,11 +1,9 @@
-import { createStore } from "vuex";
-import { Authenticate } from "../services/authService";
+import { Authenticate } from "../../services/authService";
 
-const authStore = createStore({
-  state() {
-    return {
-      user: null,
-    };
+export default {
+  namespaced: true,
+  state: {
+    user: null,
   },
   mutations: {
     setUser(state: any, user: any) {
@@ -18,6 +16,4 @@ const authStore = createStore({
       context.commit("setUser", user);
     },
   },
-});
-
-export default authStore;
+};

@@ -7,22 +7,35 @@
     </div>
     <div class="Status_SlotContainer">
       <roadmap-features
-        v-for="i in 10"
-        :key="i"
-        title="Bandwith Usage"
-        description="Can we please have
-      an reporting tab which shows monthly bandwidth usage for a server
-      asdasdasdasdasdasdasdasdasda"
-        :upvotes="10"
+        v-for="feature in features.allFeatures"
+        v-bind:key="feature.id"
+        :title="feature.title"
+        :description="feature.description"
+        :upvotes="0"
       />
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
+import { mapState } from "vuex";
 import roadmapFeatures from "./roadmapFeatures.vue";
 
+let filteredFeatures = [];
+
 export default {
+  name: "roadmapStatusContainer",
+  computed: {
+    ...mapState(["features"]),
+  },
+  methods: {
+    getAllFeatures() {
+      this.$store.dispatch("features/getAllFeatures");
+    },
+  },
+  created: function () {
+    this.getAllFeatures();
+  },
   components: {
     roadmapFeatures,
   },
@@ -105,3 +118,4 @@ export default {
   background-color: #696969;
 }
 </style>
+../../stores/features

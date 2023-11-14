@@ -3,8 +3,8 @@
     <div class="Testroadmap_Info">
       <h1 class="Testroadmap_Title">Testroadmap</h1>
       <div class="Testroadmap_InteractionContainer">
-        <filterComponent/>
-         <searchComponent />
+        <filterComponent />
+        <searchComponent />
       </div>
     </div>
     <div class="Testroadmap_RoadmapContainers">
@@ -15,10 +15,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" defer>
 import StatusContainer from "../Components/roadmap-components/statusContainer.vue";
 import searchComponent from "../Components/shared/searchComponent.vue";
 import filterComponent from "../Components/shared/filterComponent.vue";
+
 export default {
   components: {
     StatusContainer,
@@ -81,3 +82,4 @@ export default {
   align-items: center;
 }
 </style>
+../stores/features
