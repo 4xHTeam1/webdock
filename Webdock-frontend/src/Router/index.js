@@ -1,7 +1,7 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -14,15 +14,20 @@ const router = createRouter({
       component: () => import("../views/Testroadmap.vue"),
     },
     {
-      path: '/feature-request',
-      name: 'feature-request',
-      component: () => import('../views/feature-request.vue')
+      path: "/feature-request",
+      name: "feature-request",
+      component: () => import("../views/feature-request.vue"),
     },
     {
-      path: '/feature-request/feature-comments',
-      name: 'feature-comments',
-      component: () => import('../views/feature-comments.vue')
-    }
+      path: "/feature-request/feature-comments",
+      name: "feature-comments",
+      component: () => import("../views/feature-comments.vue"),
+    },
+    {
+      path: "/sso",
+      name: "sso",
+      component: () => import("../Testsso.vue"),
+    },
   ],
 });
 
