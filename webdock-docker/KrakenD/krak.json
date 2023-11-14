@@ -654,12 +654,12 @@
       "input_headers": ["Content-Type"]
     },
     {
-      "endpoint": "/features/upvote/{id}",
+      "endpoint": "/features/upvote/",
       "method": "POST",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/upvote/{id}",
+          "url_pattern": "/upvote/",
           "encoding": "json",
           "sd": "static",
           "method": "POST",
@@ -678,12 +678,12 @@
       "input_headers": ["Content-Type"]
     },
     {
-      "endpoint": "/features/upvote/{id}",
+      "endpoint": "/features/upvote/",
       "method": "DELETE",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/upvote/{id}",
+          "url_pattern": "/upvote/",
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
