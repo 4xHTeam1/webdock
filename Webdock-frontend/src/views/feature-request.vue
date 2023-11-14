@@ -1,5 +1,5 @@
 <template>
-    <div class="container d-flex">
+    <div class="container d-flex justify-content-center">
             <CreatePost/>
             <div class="overview-area">
                 <requestOverview status="planned" color="#1FA0FF"/>
