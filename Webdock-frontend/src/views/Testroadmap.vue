@@ -8,19 +8,48 @@
       </div>
     </div>
     <div class="Testroadmap_RoadmapContainers">
-      <StatusContainer status="Planned" color="#1FA0FF" />
-      <StatusContainer status="In Progress" color="#C17AFF" />
-      <StatusContainer status="Complete" color="#6CD345" />
+      {{ features.allFeatures[0] }}
+      <StatusContainer
+        status="Planned"
+        color="#1FA0FF"
+        :featureList="getFeaturesForStatus('status 1')"
+      />
+      <StatusContainer
+        status="In Progress"
+        color="#C17AFF"
+        :featureList="getFeaturesForStatus('status 2')"
+      />
+      <StatusContainer
+        status="Complete"
+        color="#6CD345"
+        :featureList="getFeaturesForStatus('status 3')"
+      />
     </div>
   </div>
 </template>
 
-<script lang="ts" defer>
+<script defer>
 import StatusContainer from "../Components/roadmap-components/statusContainer.vue";
 import searchComponent from "../Components/shared/searchComponent.vue";
 import filterComponent from "../Components/shared/filterComponent.vue";
+import { mapGetters, mapState } from "vuex";
 
 export default {
+  computed: {
+    ...mapState(["features"]),
+    getFeaturesForStatus() {
+      return (status) =>
+        this.$store.getters["features/getFeaturesForStatus"](status);
+    },
+  },
+  methods: {
+    async getAllFeatures() {
+      this.$store.dispatch("features/getAllFeatures");
+    },
+  },
+  created: async function () {
+    await this.getAllFeatures();
+  },
   components: {
     StatusContainer,
     searchComponent,

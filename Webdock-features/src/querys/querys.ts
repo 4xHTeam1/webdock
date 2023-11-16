@@ -27,6 +27,12 @@ export const getFeatures = async () => {
       include: {
         category: true,
         status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
       },
     });
     return features;
@@ -281,12 +287,25 @@ export const getAllComments = async ({ id }: IGetAllComments) => {
  */
 export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
   try {
-    const feature = await prisma.featureRequest.update({
+    await prisma.featureRequest.update({
       where: { id },
       data: {
         featureUpvotes: {
           create: {
             userId,
+          },
+        },
+      },
+    });
+    const feature = await prisma.featureRequest.findUnique({
+      where: { id },
+      include: {
+        category: true,
+        status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
           },
         },
       },
@@ -307,11 +326,24 @@ export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
 
 export const unvoteFeature = async ({ id, userId }: IDownvoteFeature) => {
   try {
-    const feature = await prisma.featureUpvote.delete({
+    await prisma.featureUpvote.delete({
       where: {
         userId_featureRequestId: {
           userId,
           featureRequestId: id,
+        },
+      },
+    });
+    const feature = await prisma.featureRequest.findUnique({
+      where: { id },
+      include: {
+        category: true,
+        status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
         },
       },
     });

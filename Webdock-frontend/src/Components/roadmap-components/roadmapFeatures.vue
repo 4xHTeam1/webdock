@@ -1,9 +1,9 @@
 <template>
   <div class="Feature_Container">
-    <upvote-button :upvotes="upvotes" />
+    <upvote-button :upvotes="feature._count.featureUpvotes" :feature="feature"/>
     <div class="Feature_InfoContainer">
-      <p class="Feature_Title">{{ title }}</p>
-      <p class="Feature_Description">{{ description }}</p>
+      <p class="Feature_Title">{{ feature.title }}</p>
+      <p class="Feature_Description">{{ feature.description }}</p>
     </div>
   </div>
 </template>
@@ -15,17 +15,9 @@ export default {
     UpvoteButton,
   },
   props: {
-    title: {
-      type: String,
+    feature: {
+      type: Object,
       required: true,
-    },
-    description: {
-      type: String,
-      required: false,
-    },
-    upvotes: {
-      type: Number,
-      required: false,
     },
   },
 };
