@@ -122,7 +122,9 @@ export const upvoteFeature = async (upvote: any) => {
 
 export const unvoteFeature = async (downvote: any) => {
   try {
-    const response = await http.delete("/features/upvote", downvote);
+    const response = await http.delete(
+      `/features/upvote/${downvote.id}/${downvote.userId}`
+    );
     return response.data;
   } catch (error) {
     console.error(error);

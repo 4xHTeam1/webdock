@@ -33,6 +33,7 @@ import {
 import swagger from "@elysiajs/swagger";
 import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
+import cors from "@elysiajs/cors";
 
 const app = new Elysia()
   .use(
@@ -40,6 +41,7 @@ const app = new Elysia()
       path: "/v1/swagger",
     })
   )
+  .use(cors())
   .get("/status", () => {
     try {
       return {
@@ -153,9 +155,13 @@ const app = new Elysia()
         BodyValidation(body, ["id", "userId"]);
         return await upvoteFeature(body as IUpvoteFeature);
       })
-      .delete("/", async ({ body }) => {
-        BodyValidation(body, ["id", "userId"]);
-        return await unvoteFeature(body as IDownvoteFeature);
+      .delete("/:id/:userId", async ({ params: { id, userId } }) => {
+        //BodyValidation(body, ["id", "userId"]);
+        const params = {
+          id: Number(id),
+          userId: Number(userId),
+        };
+        return await unvoteFeature(params as IDownvoteFeature);
       })
       .get("/upvoteCount/:id", async ({ params: { id } }) => {
         ParamValidation(id);

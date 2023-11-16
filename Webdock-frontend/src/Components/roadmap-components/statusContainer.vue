@@ -7,11 +7,9 @@
     </div>
     <div class="Status_SlotContainer">
       <roadmap-features
-        v-for="feature in features.allFeatures"
+        v-for="feature in featureList"
         v-bind:key="feature.id"
-        :title="feature.title"
-        :description="feature.description"
-        :upvotes="0"
+        :feature="feature"
       />
     </div>
   </div>
@@ -25,17 +23,7 @@ let filteredFeatures = [];
 
 export default {
   name: "roadmapStatusContainer",
-  computed: {
-    ...mapState(["features"]),
-  },
-  methods: {
-    getAllFeatures() {
-      this.$store.dispatch("features/getAllFeatures");
-    },
-  },
-  created: function () {
-    this.getAllFeatures();
-  },
+
   components: {
     roadmapFeatures,
   },
@@ -46,6 +34,10 @@ export default {
     },
     color: {
       type: String,
+      required: false,
+    },
+    featureList: {
+      type: Array,
       required: false,
     },
   },

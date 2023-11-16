@@ -5,7 +5,7 @@
     @click="toggleUpvote"
   >
     <img class="UpvoteButton_Image" src="../../Assets/icons/upvote.svg" />
-    <div class="UpvoteButton_Upvote">{{ upvotesNumber }}</div>
+    <div class="UpvoteButton_Upvote">{{ feature._count.featureUpvotes }}</div>
   </div>
 </template>
 
@@ -13,7 +13,12 @@
 export default {
   data() {
     return {
-      activated: false,
+      activated:
+        this.$store.state.auth.user !== null
+          ? this.feature.featureUpvotes.some(
+              (upvote) => upvote.userId === this.$store.state.auth.user.id
+            )
+          : false,
       upvotesNumber: this.upvotes,
     };
   },
@@ -22,11 +27,30 @@ export default {
       type: Number,
       required: true,
     },
+    feature: {
+      type: Object,
+      required: false,
+    },
   },
   methods: {
     toggleUpvote() {
-      this.activated = !this.activated;
-      this.upvotesNumber += this.activated ? 1 : -1;
+      try {
+        if (!this.activated) {
+          this.$store.dispatch("features/upvoteFeature", {
+            featureId: this.feature.id,
+            userId: this.$store.state.auth.user.id,
+          });
+        } else {
+          this.$store.dispatch("features/downvoteFeature", {
+            featureId: this.feature.id,
+            userId: this.$store.state.auth.user.id,
+          });
+        }
+
+        this.activated = !this.activated;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
