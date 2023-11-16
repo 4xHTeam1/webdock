@@ -8,7 +8,6 @@
       </div>
     </div>
     <div class="Testroadmap_RoadmapContainers">
-      {{ features.allFeatures[0] }}
       <StatusContainer
         status="Planned"
         color="#1FA0FF"
