@@ -7,6 +7,7 @@ import {
   deleteFeature,
   getAllComments,
   getFeature,
+  getFeatureUpvoteCount,
   getFeatures,
   replyToComment,
   unvoteFeature,
@@ -29,10 +30,18 @@ import {
   IUpdateReply,
   IUpvoteFeature,
 } from "./interfaces/IFeatures";
+import swagger from "@elysiajs/swagger";
 import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
+import cors from "@elysiajs/cors";
 
 const app = new Elysia()
+  .use(
+    swagger({
+      path: "/v1/swagger",
+    })
+  )
+  .use(cors())
   .get("/status", () => {
     try {
       return {
@@ -50,7 +59,10 @@ const app = new Elysia()
   .group("/features", (app) =>
     app
       .get("/", async () => {
-        return await getFeatures();
+        const features = {
+          features: await getFeatures(),
+        };
+        return features;
       })
       .get("/:id", async ({ params: { id } }) => {
         ParamValidation(Number(id));
@@ -143,9 +155,17 @@ const app = new Elysia()
         BodyValidation(body, ["id", "userId"]);
         return await upvoteFeature(body as IUpvoteFeature);
       })
-      .delete("/", async ({ body}) => {
-        BodyValidation(body, ["id", "userId"]);
-        return await unvoteFeature(body as IDownvoteFeature);
+      .delete("/:id/:userId", async ({ params: { id, userId } }) => {
+        //BodyValidation(body, ["id", "userId"]);
+        const params = {
+          id: Number(id),
+          userId: Number(userId),
+        };
+        return await unvoteFeature(params as IDownvoteFeature);
+      })
+      .get("/upvoteCount/:id", async ({ params: { id } }) => {
+        ParamValidation(id);
+        return await getFeatureUpvoteCount(Number(id));
       })
   )
   .listen(3000);

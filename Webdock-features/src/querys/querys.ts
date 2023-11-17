@@ -23,7 +23,18 @@ const prisma = new PrismaClient();
  */
 export const getFeatures = async () => {
   try {
-    const features = await prisma.featureRequest.findMany();
+    const features = await prisma.featureRequest.findMany({
+      include: {
+        category: true,
+        status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
+      },
+    });
     return features;
   } catch (err) {
     //TODO: THROW PROPPER ERROR
@@ -39,6 +50,10 @@ export const getFeature = async ({ id }: IFeatureById) => {
   try {
     const feature = await prisma.featureRequest.findUnique({
       where: { id },
+      include: {
+        category: true,
+        status: true,
+      },
     });
     return feature;
   } catch (err) {
@@ -272,12 +287,25 @@ export const getAllComments = async ({ id }: IGetAllComments) => {
  */
 export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
   try {
-    const feature = await prisma.featureRequest.update({
+    await prisma.featureRequest.update({
       where: { id },
       data: {
         featureUpvotes: {
           create: {
             userId,
+          },
+        },
+      },
+    });
+    const feature = await prisma.featureRequest.findUnique({
+      where: { id },
+      include: {
+        category: true,
+        status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
           },
         },
       },
@@ -298,7 +326,7 @@ export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
 
 export const unvoteFeature = async ({ id, userId }: IDownvoteFeature) => {
   try {
-    const feature = await prisma.featureUpvote.delete({
+    await prisma.featureUpvote.delete({
       where: {
         userId_featureRequestId: {
           userId,
@@ -306,8 +334,32 @@ export const unvoteFeature = async ({ id, userId }: IDownvoteFeature) => {
         },
       },
     });
+    const feature = await prisma.featureRequest.findUnique({
+      where: { id },
+      include: {
+        category: true,
+        status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
+      },
+    });
     return feature;
   } catch (err) {
     //TODO: THROW PROPPER ERROR
   }
+};
+
+export const getFeatureUpvoteCount = async (id: number) => {
+  try {
+    const feature = await prisma.featureUpvote.count({
+      where: {
+        featureRequestId: id,
+      },
+    });
+    return feature;
+  } catch (e) {}
 };

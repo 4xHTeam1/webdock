@@ -13,8 +13,8 @@ datasource db {
 }
 
 model User {
-  id              String           @id @default(uuid())
-  avatarUrl       String?
+  id              Int              @id @default(autoincrement())
+  avatarURL       String?
   email           String
   name            String
   featureRequests FeatureRequest[]
@@ -42,7 +42,7 @@ model FeatureRequest {
   description    String
   dateSubmitted  DateTime        @default(now())
   user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId         String
+  userId         Int
   category       Category        @relation(fields: [categoryId], references: [id])
   categoryId     Int
   status         Status          @relation(fields: [statusId], references: [id])
@@ -56,7 +56,7 @@ model Comment {
   comment          String
   dateSubmitted    DateTime       @default(now())
   user             User           @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  userId           String
+  userId           Int
   featureRequest   FeatureRequest @relation(fields: [featureRequestId], references: [id], onDelete: Cascade)
   featureRequestId Int
   commentReplys    CommentReply[]
@@ -67,14 +67,14 @@ model CommentReply {
   comment          String
   dateSubmitted    DateTime @default(now())
   user             User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  userId           String
+  userId           Int
   comment_relation Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
   commentId        Int
 }
 
 model FeatureUpvote {
   user             User           @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId           String
+  userId           Int
   featureRequest   FeatureRequest @relation(fields: [featureRequestId], references: [id], onDelete: Cascade)
   featureRequestId Int
 
