@@ -1,12 +1,11 @@
 <template>
     <div class="tap-container">
         <img class="img-color" :src="imageSrc">
-        <p id="roadmap-tap" class="fw-bolder">{{ buttontext }}</p>
-
+        <p id="roadmap-tap" class="fw-bolder noHover">{{ buttontext }}</p>
     </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   props: {
     buttontext: {
@@ -16,20 +15,16 @@ export default {
     imageSrc: String
   }
 }
-
-
 </script>
 
 <style>
-.router-link-exact-active {
-  background: white;
-  color: black;
 
+#roadmap-tap{
+  text-decoration: none;
   
-  border-radius: 11px 11px 0 0;
 }
-.router-link-exact-active > .img-color {
-  filter: invert(0%) sepia(3%) saturate(21%) hue-rotate(101deg) brightness(96%) contrast(100%);
+.img-color{
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(140deg) brightness(102%) contrast(110%);
 }
 
 .tap-container{
@@ -42,19 +37,13 @@ export default {
 
     padding: 5px;
     padding-right: 7px;    
+    background: none;
 }
-
-
-
-.img-color {
-  filter: invert(0%) sepia(3%) saturate(21%) hue-rotate(101deg) brightness(96%) contrast(100%);
-}
-
 
 #roadmap-tap {
     margin-bottom: 0;
     text-decoration: none;
-    
+    color: inherit;
 }
 </style>
 
