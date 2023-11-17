@@ -1,7 +1,7 @@
 <template>
   <div class="nav-container">
     <div class="container">
-      <div class="logo-icon-flex">
+      <div class="logo-icon-flex" id="webdock-logo">
         <Router-link to="/">
           <img class="img-size" src="../Assets/webdock-logo-hvid.svg">
         </Router-link>
@@ -41,13 +41,10 @@ export default {
     letterSrc: {
       type: String,
       required: true
-    },
-    isActive: {
-      type: Boolean,
-      required: true
     }
   }
 };
+
 
 </script>
 
@@ -83,4 +80,5 @@ export default {
   width: 20vw;
   min-width: 200px;
 }
+
 </style>
