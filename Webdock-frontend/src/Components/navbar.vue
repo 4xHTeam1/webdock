@@ -8,7 +8,8 @@
         </div>
         </router-link>
         <div class="icon-parent-container">
-          <icons letterSrc="J" iconSrc="src/assets/icons/bell.svg" ></icons>
+          <notifikation iconSrc="src/assets/icons/bell.svg"/>
+          <profil letterSrc="J" ></profil>
         </div>
       </div>
         <div class="tap-parent-container">
@@ -27,7 +28,8 @@
 
 <script lang="ts">
 import taps from '../Components/nav-components/taps.vue';
-import icons from '../Components/nav-components/ikoner.vue';
+import profil from '../Components/nav-components/profil.vue';
+import notifikation from '../Components/nav-components/notifikation.vue';
 export default {
   data(){
     return{
@@ -37,7 +39,8 @@ export default {
   },
   components: {
     taps,
-    icons
+    profil,
+    notifikation
   },
   methods: {
     setroadmapActive(){
@@ -59,7 +62,7 @@ export default {
       type: String,
       required: true
     }
-  },
+  }
 };
 
 
@@ -78,7 +81,6 @@ a {
   text-decoration: none;
   color: #fff;
 }
-
 a:hover{
   text-decoration: none;
   color: #fff;
