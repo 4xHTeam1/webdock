@@ -18,12 +18,27 @@
         src="../../Assets/icons/bell.svg"
         alt="notification-icon"
       />
+      <div
+        class="notification_iconAmount"
+        v-if="this.$store.state.socket.notifications.length > 0"
+      >
+        {{ this.$store.state.socket.notifications.length }}
+      </div>
     </div>
     <div class="notification_InfoContainer" v-if="notificationOpen">
       <div class="notification_InfoContainer-Title">
         <h3 class="notification_InfoTitle">Notifications</h3>
+        <p class="notification_MarkAll" @click="markAllAsRead">
+          Mark all as read
+        </p>
       </div>
       <div class="notification_InfoContainer_Notifications">
+        <p
+          class="notification_InfoContainer_noNotifications"
+          v-if="this.$store.state.socket.notifications.length === 0"
+        >
+          No new notifications
+        </p>
         <notificationItem
           v-for="notification in this.$store.state.socket.notifications"
           :key="notification"
@@ -61,6 +76,9 @@ export default {
     toggleNotification() {
       this.notificationOpen = !this.notificationOpen;
     },
+    markAllAsRead() {
+      this.$store.dispatch("socket/markAllAsRead");
+    },
   },
   components: {
     notificationItem,
@@ -95,6 +113,21 @@ export default {
 
 .notification_icon {
   filter: invert(100%);
+}
+
+.notification_iconAmount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
 }
 
 .notification_InfoContainer {
@@ -159,8 +192,6 @@ export default {
   gap: 5px;
 }
 
-
-
 .notification_InfoContainer_noNotifications {
   flex: 1;
   width: 100%;
@@ -170,5 +201,16 @@ export default {
   font-size: 1rem;
   color: #737373;
   font-weight: 200;
+}
+
+.notification_MarkAll {
+  font-size: 0.8rem;
+  color: #327e60;
+  cursor: pointer;
+  margin: 0;
+}
+
+.notification_MarkAll:hover {
+  text-decoration: underline;
 }
 </style>

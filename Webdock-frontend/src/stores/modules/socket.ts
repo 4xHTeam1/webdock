@@ -63,6 +63,16 @@ export default {
         );
       }
     },
+    markAllAsRead({ state }: any) {
+      state.notifications = [];
+      /*  if (state.socket) {
+        state.socket.send(
+          JSON.stringify({
+            type: "markAllAsRead",
+          })
+        );
+      } */
+    },
   },
   getters: {
     notifications: (state: any) => state.notifications,
