@@ -97,6 +97,9 @@ export default {
       const comments = await getAllComments(id);
       commit("setSelectedFeatureComments", comments);
     },
+    async test({ commit }: any, id: number) {
+      console.log(id);
+    },
     async upvoteFeature({ commit }: any, info: any) {
       try {
         upvoteValidator(info);
