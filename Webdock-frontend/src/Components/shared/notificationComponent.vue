@@ -122,7 +122,7 @@ export default {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: #ff0000;
+  background-color: #327e60;
   color: #fff;
   display: flex;
   justify-content: center;
