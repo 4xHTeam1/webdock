@@ -1,19 +1,18 @@
 import { ESocketTypes } from "./ESockets";
 
 export interface ISocketUpvote {
-  type: SocketTypes.UPVOTE;
-  postId: string;
-  userId: string;
+  postId: number;
+  userId: number;
 }
 
 export interface ISocketComment {
-  type: SocketTypes.COMMENT;
+  type: ESocketTypes.COMMENT;
   postId: string;
   userId: string;
 }
 
 export interface ISocketReply {
-  type: SocketTypes.REPLY;
+  type: ESocketTypes.REPLY;
   postId: string;
   userId: string;
 }

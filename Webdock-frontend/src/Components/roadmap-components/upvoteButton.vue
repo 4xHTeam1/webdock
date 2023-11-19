@@ -40,6 +40,10 @@ export default {
             featureId: this.feature.id,
             userId: this.$store.state.auth.user.id,
           });
+          await this.$store.dispatch("socket/sendUpvote", {
+            postId: this.feature.id,
+            userId: this.$store.state.auth.user.id,
+          });
         } else {
           await this.$store.dispatch("features/downvoteFeature", {
             featureId: this.feature.id,
