@@ -11,6 +11,9 @@ export const upvote = async ({ postId, userId }: ISocketUpvote) => {
   return {
     type: "notification",
     data: {
+      image: user!.avatarURL,
+      name: user!.name,
+      type: "upvote",
       message: `${user!.name} upvoted your feature request`,
       data: featureRequest,
     },

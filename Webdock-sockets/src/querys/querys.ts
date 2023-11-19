@@ -18,6 +18,7 @@ export const getUserNameById = async (id: number) => {
     },
     select: {
       name: true,
+      avatarURL: true,
     },
   });
   return user;
