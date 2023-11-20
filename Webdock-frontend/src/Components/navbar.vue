@@ -2,19 +2,19 @@
   <div class="nav-container">
     <div class="container">
       <div class="logo-icon-flex" id="webdock-logo">
-        <router-link to="/roadmap" tag="div" class="homelink">
+        <router-link to="/" tag="div" class="homelink">
           <div>
             <img class="img-size" src="../Assets/webdock-logo-hvid.svg">
           </div>
         </router-link>
         <div class="icon-parent-container">
           <notification v-if="this.$store.state.auth.user !== null" />
-          <profil v-if="this.$store.state.auth.user !== null"></profil>
+          <profil v-if="this.$store.state.auth.user !== null" />
           <login v-if="this.$store.state.auth.user === null" />
         </div>
       </div>
       <div class="tap-parent-container">
-        <router-link to="/roadmap" :class="{ active: roadmapActive }" style="text-decoration: none;"
+        <router-link to="/" :class="{ active: roadmapActive }" style="text-decoration: none;"
           @click="setroadmapActive">
           <taps buttontext="ROADMAP" imageSrc="src/assets/icons/three-dots-vertical.svg" :isActive="roadmapActive"></taps>
         </router-link>
@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      roadmapActive: document.location.pathname === "/roadmap",
+      roadmapActive: document.location.pathname === "/",
       featureActive: document.location.pathname === "/feature-request"
     }
   },
