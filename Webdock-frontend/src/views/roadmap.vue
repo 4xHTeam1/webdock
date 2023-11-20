@@ -1,9 +1,7 @@
 <template>
+    <navbar/>
 
-<div class="container">
-    <div class="nav-container"><navbar/></div>
 
-</div>
 
 
 

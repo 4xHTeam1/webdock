@@ -1,25 +1,49 @@
 <template>
     <div class="tap-container">
-        <img src="../../Assets/icons/three-dots-vertical.svg">
-        <p id="roadmap-tap" class="fw-bolder">ROADMAP</p>
+        <img class="img-color" :src="imageSrc">
+        <p id="roadmap-tap" class="fw-bolder noHover">{{ buttontext }}</p>
     </div>
 </template>
 
-<style>
-.tap-container{
-    margin: 50px;
+<script>
+export default {
+  props: {
+    buttontext: {
+      type: String,
+      required: true
+    },
+    imageSrc: String
+  }
+}
+</script>
 
+<style>
+
+#roadmap-tap{
+  text-decoration: none;
+  
+}
+.img-color{
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(140deg) brightness(102%) contrast(110%);
+}
+
+.tap-container{
     max-width: fit-content;
     display: flex;
     flex-direction: row;
 
-    border: 1px solid #fff ;
+    border: 3px solid #fff ;
     border-radius: 11px 11px 0 0;
 
     padding: 5px;
     padding-right: 7px;    
+    background: none;
 }
+
 #roadmap-tap {
     margin-bottom: 0;
+    text-decoration: none;
+    color: inherit;
 }
 </style>
+
