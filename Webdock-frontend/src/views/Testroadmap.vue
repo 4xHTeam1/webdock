@@ -5,6 +5,7 @@
     <div class="Testroadmap_Info">
       <h1 class="Testroadmap_Title">Testroadmap</h1>
       <div class="Testroadmap_InteractionContainer">
+        <notificationComponent />
         <filterComponent />
         <searchComponent />
       </div>
@@ -34,7 +35,9 @@ import navbar from "../Components/navbar.vue";
 import StatusContainer from "../Components/roadmap-components/statusContainer.vue";
 import searchComponent from "../Components/shared/searchComponent.vue";
 import filterComponent from "../Components/shared/filterComponent.vue";
+import notificationComponent from "../Components/shared/notificationComponent.vue";
 import { mapGetters, mapState } from "vuex";
+import notificationComponentVue from "../Components/shared/notificationComponent.vue";
 
 export default {
   computed: {
@@ -56,7 +59,8 @@ export default {
     StatusContainer,
     searchComponent,
     filterComponent,
-    navbar
+    navbar,
+    notificationComponent,
   },
 };
 </script>
