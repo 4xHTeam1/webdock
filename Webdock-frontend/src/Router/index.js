@@ -7,6 +7,11 @@ const router = createRouter({
       path: '/',
       name: 'roadmap',
       component: () => import('../views/roadmap.vue')
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/admindashboard.vue')
     }
   ]
 })
