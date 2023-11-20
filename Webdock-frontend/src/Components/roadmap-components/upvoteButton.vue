@@ -33,15 +33,19 @@ export default {
     },
   },
   methods: {
-    toggleUpvote() {
+    async toggleUpvote() {
       try {
         if (!this.activated) {
-          this.$store.dispatch("features/upvoteFeature", {
+          await this.$store.dispatch("features/upvoteFeature", {
             featureId: this.feature.id,
             userId: this.$store.state.auth.user.id,
           });
+          await this.$store.dispatch("socket/sendUpvote", {
+            postId: this.feature.id,
+            userId: this.$store.state.auth.user.id,
+          });
         } else {
-          this.$store.dispatch("features/downvoteFeature", {
+          await this.$store.dispatch("features/downvoteFeature", {
             featureId: this.feature.id,
             userId: this.$store.state.auth.user.id,
           });

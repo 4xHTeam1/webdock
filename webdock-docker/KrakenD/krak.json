@@ -21,8 +21,10 @@
       "allow_headers": [
         "Content-Type",
         "requesterId",
-        "Content-Length"
-      ]
+        "Content-Length",
+        "Cache-Control"
+      ],
+      "expose_headers": []
     },
     "router": {
       "return_error_msg": true

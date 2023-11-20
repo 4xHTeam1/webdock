@@ -5,6 +5,7 @@ import {
   unvoteFeature,
   upvoteFeature,
 } from "../../services/featureService";
+import { upvoteValidator } from "../validators/featureValidator";
 
 export default {
   namespaced: true,
@@ -62,13 +63,25 @@ export default {
         feature._count.featureUpvotes++;
       } */
 
-      if(typeof feature === "undefined") return;
+      /**
+       * Checks if the feature returned by the backend is undefined. If so it returns out of the function.
+       */
+      if (typeof feature === "undefined") return;
 
-      const featureToUpdate = state.allFeatures.find(
-        (feature: any) => feature.id === feature.id
-      );
-      console.log(state.allFeatures.indexOf(featureToUpdate));
+      /**
+       * Gets the feature from the state and updates it with the new feature returned from the backend
+       * if its not null.
+       */
+      let featureToUpdate = null;
+      state.allFeatures.forEach((f: any) => {
+        if (f.id === feature.id) {
+          featureToUpdate = f;
+        }
+      });
+      if (featureToUpdate === null) return;
       state.allFeatures[state.allFeatures.indexOf(featureToUpdate)] = feature;
+
+      return;
     },
   },
   actions: {
@@ -84,23 +97,32 @@ export default {
       const comments = await getAllComments(id);
       commit("setSelectedFeatureComments", comments);
     },
+    async test({ commit }: any, id: number) {
+      console.log(id);
+    },
     async upvoteFeature({ commit }: any, info: any) {
-      const feature = await upvoteFeature({
-        id: info.featureId,
-        userId: info.userId,
-      });
-      commit("toggleUpvote", feature);
+      try {
+        upvoteValidator(info);
+        const feature = await upvoteFeature({
+          id: info.featureId,
+          userId: info.userId,
+        });
+        commit("toggleUpvote", feature);
+      } catch (error) {
+        console.log(error);
+      }
     },
     async downvoteFeature({ commit }: any, info: any) {
-      console.log({
-        id: info.featureId,
-        userId: info.userId,
-      });
-      const feature = await unvoteFeature({
-        id: info.featureId,
-        userId: info.userId,
-      });
-      commit("toggleUpvote", feature);
+      try {
+        upvoteValidator(info);
+        const feature = await unvoteFeature({
+          id: info.featureId,
+          userId: info.userId,
+        });
+        await commit("toggleUpvote", feature);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
