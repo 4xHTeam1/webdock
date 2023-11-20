@@ -5,8 +5,8 @@
         </div>    
         <div class="profil-dropdown" v-if="OpenMenu">
             <ul class="content-list">
-                <li class="content-li">Logout</li>
-                <li class="content-li">Dashboard</li>
+                <li class="content-li"><img src="../../Assets/icons/logout.svg"/>Logout</li>
+                <li class="content-li"><img src="../../Assets/icons/.svg"/>Dashboard</li>
             </ul>
         </div>
     </div>
