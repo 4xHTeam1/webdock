@@ -69,7 +69,8 @@ body {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   border: 2px solid #fcfcfc;
-  width: 150px;
+  width: 180px;
+  z-index: 10;
   
  }
  
@@ -82,6 +83,7 @@ body {
   height: 20px;
   text-align:left;
   cursor: pointer;
+  justify-content: center;
 }
 .nav-link:hover{
   color: #fcfcfc;

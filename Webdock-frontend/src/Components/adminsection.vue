@@ -1,5 +1,5 @@
 <template>
-<div id="white">
+<div id="white" style="z-index: 20;" >
 
   <div class="h2">
     Admins
@@ -11,7 +11,7 @@
     <div class="name">
       Arni
       <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-      <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
+      <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP9MsWLXHwAzFwf_WW_riCRT8bgPEzgPa_CP08SqZiSScXf9XEV2besd2-vGs5pyRL&usqp=CAU" alt="logo" style="height: 20px; width: 20px;">
     </div>
 </div>
 
@@ -19,7 +19,7 @@
     <div class="name">
       Arni
       <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-      <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
+      <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP9MsWLXHwAzFwf_WW_riCRT8bgPEzgPa_CP08SqZiSScXf9XEV2besd2-vGs5pyRL&usqp=CAU" alt="logo" style="height: 20px; width: 20px;">
     </div>
 </div>
 
@@ -27,7 +27,7 @@
     <div class="name">
       Arni
       <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-      <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
+      <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP9MsWLXHwAzFwf_WW_riCRT8bgPEzgPa_CP08SqZiSScXf9XEV2besd2-vGs5pyRL&usqp=CAU" alt="logo" style="height: 20px; width: 20px;">
     </div>
 </div>
 
@@ -35,7 +35,7 @@
     <div class="name">
       Arni
       <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-      <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
+      <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP9MsWLXHwAzFwf_WW_riCRT8bgPEzgPa_CP08SqZiSScXf9XEV2besd2-vGs5pyRL&usqp=CAU" alt="logo" style="height: 20px; width: 20px;">
     </div>
 </div>
 
@@ -46,13 +46,12 @@
     Users
   </div>
 
-  <div class="content">
+  <div Class= "content"  >
 
 <div class="user">
   <div class="name">
     Arni
     <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
   </div>
 </div>
 
@@ -60,7 +59,6 @@
   <div class="name">
     Arni
     <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
   </div>
 </div>
 
@@ -68,7 +66,6 @@
   <div class="name">
     Arni
     <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
   </div>
 </div>
 
@@ -76,7 +73,15 @@
   <div class="name">
     Arni
     <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
+  </div>
+</div>
+  </div>
+
+  <div Class= "content"  >
+<div class="user">
+  <div class="name">
+    Arni
+    <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
   </div>
 </div>
 
@@ -84,7 +89,6 @@
   <div class="name">
     Arni
     <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
   </div>
 </div>
 
@@ -92,7 +96,6 @@
   <div class="name">
     Arni
     <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
   </div>
 </div>
 
@@ -100,53 +103,11 @@
   <div class="name">
     Arni
     <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
   </div>
 </div>
-
-<div class="user">
-  <div class="name">
-    Arni
-    <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
-  </div>
+</div>
 </div>
 
-<div class="user">
-  <div class="name">
-    Arni
-    <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
-  </div>
-</div>
-
-<div class="user">
-  <div class="name">
-    Arni
-    <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
-  </div>
-</div>
-
-<div class="user">
-  <div class="name">
-    Arni
-    <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
-  </div>
-</div>
-
-<div class="user">
-  <div class="name">
-    Arni
-    <img src="https://kattens-vaern.dk/wp-content/uploads/2023/02/Katte-kan-ogsaa-have-nytaarsangst1-jpg.webp" alt="useravatar">
-    <img class="logo" src="../Assets/webdock-logo-hvid.svg" alt="logo">
-  </div>
-</div>
-
-</div>
-
-</div>
 
 
 
@@ -163,6 +124,8 @@
   background-color: #fcfcfc;
     width: auto;
     height: 1000px;
+    justify-content:center
+    
   
  
 }
@@ -174,6 +137,8 @@
   display: flex;
   justify-content: center;
 }
+
+
 
 .h2{
   margin-left: 20px;
@@ -192,7 +157,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  width: 200px;
+  width: 180px;
+  height: 80px;
   margin-left: 20px;
   margin-bottom: 20px;
 }
@@ -207,9 +173,7 @@
 
 .logo{
   position: relative;
-  right: 10px; /* Justér right-værdien efter behov for at kontrollere den vandrette placering */
-  width: 50px; /* Justér bredden efter behov */
-  height: auto; /* Vedligeholder logoets sideforhold */
+  margin-left: 20px; /* Justér right-værdien efter behov for at kontrollere den vandrette placering */
   bottom: 20px;
 }
 
