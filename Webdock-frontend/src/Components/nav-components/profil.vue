@@ -4,9 +4,9 @@
             <p class="icon-p">{{ letterSrc }}</p>
         </div>    
         <div class="profil-dropdown" v-if="OpenMenu">
-            <ul>
-                <li>Logout</li>
-                <li>Dashboard</li>
+            <ul class="content-list">
+                <li class="content-li">Logout</li>
+                <li class="content-li">Dashboard</li>
             </ul>
         </div>
     </div>
@@ -33,12 +33,23 @@ export default {
 </script>
 
 <style>
+.content-li{
+    position: relative;
+}
+.content-list{
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 0;
+}
 .profil-container{
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
+    cursor: pointer;
+    user-select: none;
+
 }
 .profil-dropdown{
     position: absolute;
@@ -46,13 +57,14 @@ export default {
     right: 0;
     min-width: fit-content;
     width: 100%;
-    background-color: #fff;
+    background-color: #F2F2F2;
     height: fit-content;
     display: flex;
     flex-direction: column;
     border: 2px solid #e0e0e0;
-    gap: 10px;
     z-index: 100;
+    user-select: none;
+    
 }
 
 
