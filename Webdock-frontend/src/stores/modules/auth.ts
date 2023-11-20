@@ -13,7 +13,13 @@ export default {
   actions: {
     async login(context: any, token: string) {
       let user = await Authenticate(token);
+      localStorage.setItem("token", token);
       context.commit("setUser", user);
+    },
+    async logout(context: any) {
+      localStorage.removeItem("token");
+      context.commit("setUser", null);
+      window.location.href = window.location.pathname;
     },
   },
 };

@@ -8,12 +8,14 @@
           </div>
         </router-link>
         <div class="icon-parent-container">
-          <notification />
-          <profil letterSrc="J"></profil>
+          <notification v-if="this.$store.state.auth.user !== null" />
+          <profil v-if="this.$store.state.auth.user !== null"></profil>
+          <login v-if="this.$store.state.auth.user === null" />
         </div>
       </div>
       <div class="tap-parent-container">
-        <router-link to="/roadmap" :class="{ active: roadmapActive }" style="text-decoration: none;" @click="setroadmapActive">
+        <router-link to="/roadmap" :class="{ active: roadmapActive }" style="text-decoration: none;"
+          @click="setroadmapActive">
           <taps buttontext="ROADMAP" imageSrc="src/assets/icons/three-dots-vertical.svg" :isActive="roadmapActive"></taps>
         </router-link>
         <router-link to="/feature-request" :class="{ active: featureActive }" style="text-decoration: none;"
@@ -31,7 +33,12 @@
 import taps from '../Components/nav-components/taps.vue';
 import profil from '../Components/nav-components/profil.vue';
 import notification from '../Components/shared/notificationComponent.vue';
+import login from '../Components/shared/Login.vue'
+import { mapState } from 'vuex';
 export default {
+  computed: {
+    ...mapState(["auth"]),
+  },
   data() {
     return {
       roadmapActive: document.location.pathname === "/roadmap",
@@ -41,7 +48,8 @@ export default {
   components: {
     taps,
     profil,
-    notification
+    notification,
+    login
   },
   methods: {
     setroadmapActive() {
@@ -103,7 +111,7 @@ a:hover {
 .icon-parent-container {
   display: flex;
   flex-direction: row;
-  padding-left: 10px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -133,4 +141,5 @@ a:hover {
 .img-size {
   width: 20vw;
   min-width: 200px;
-}</style>
+}
+</style>

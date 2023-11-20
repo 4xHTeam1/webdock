@@ -1,32 +1,37 @@
 <template>
     <div class="profil-container">
-        <div class="icon-dot icon-profile" :class={toggle:OpenMenu} @click="toggleMenu">
-            <p class="icon-p">{{ letterSrc }}</p>
-        </div>    
+        <div class="icon-dot icon-profile" :class="{ toggle: OpenMenu }" @click="toggleMenu">
+            <p class="icon-p">{{ this.$store.state.auth.user.name[0] }}</p>
+        </div>
         <div class="profil-dropdown" v-if="OpenMenu">
             <ul class="content-list">
-                <li class="content-li"><img src="../../Assets/icons/logout.svg"/>Logout</li>
-                <li class="content-li"><img src="../../Assets/icons/webdock-dashboard.svg"/>Dashboard</li>
+                <li class="content-li" @click="logout" ><img src="../../Assets/icons/logout.svg" />Logout</li>
+                <li class="content-li"><img src="../../Assets/icons/webdock-dashboard.svg" />Dashboard</li>
             </ul>
         </div>
     </div>
-    <div class="closeContainer" v-if="OpenMenu" @click="toggleMenu" ></div>
+    <div class="closeContainer" v-if="OpenMenu" @click="toggleMenu"></div>
 </template>
 
-<script lang="ts">
+<script>
+import { mapState } from 'vuex';
 export default {
+    computed: {
+        ...mapState(["auth"]),
+    },
     data() {
-        return{
+        return {
             OpenMenu: false,
         }
     },
     methods: {
         toggleMenu() {
             this.OpenMenu = !this.OpenMenu;
+        },
+        logout() {
+            console.log("logout")
+            this.$store.dispatch("auth/logout");
         }
-    },
-    props: {
-        letterSrc: String
     }
 }
 
@@ -34,7 +39,7 @@ export default {
 </script>
 
 <style>
-.closeContainer{
+.closeContainer {
     position: absolute;
     top: 0;
     right: 0;
@@ -42,20 +47,23 @@ export default {
     height: 100%;
     z-index: 99;
 }
-.content-li{
+
+.content-li {
     display: flex;
     gap: 15px;
     justify-content: flex-start;
     margin: 0 10px 0 10px;
     position: relative;
 }
-.content-list{
+
+.content-list {
     list-style-type: none;
     margin-left: 0;
     padding-left: 0;
     margin-bottom: 0;
 }
-.profil-container{
+
+.profil-container {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -63,7 +71,8 @@ export default {
     user-select: none;
 
 }
-.profil-dropdown{
+
+.profil-dropdown {
     position: absolute;
     top: calc(100% + 5px);
     right: 0;
@@ -80,23 +89,24 @@ export default {
 }
 
 
-.icon-dot{
+.icon-dot {
     max-width: fit-content;
     display: flex;
     flex-direction: row;
 
     border-radius: 50%;
-    border: 4px solid #fff ;
+    border: 4px solid #fff;
 
     min-height: 36px;
-    min-width:  36px;
+    min-width: 36px;
     max-height: 36px;
-    max-width:  36px;
-    
+    max-width: 36px;
+
     margin-left: 10px;
 }
-.icon-profile{
-    color:#ffffff;
+
+.icon-profile {
+    color: #ffffff;
     font-size: 18px;
     font-weight: bold;
     display: flex;
@@ -105,11 +115,10 @@ export default {
 }
 
 
-.icon-size{
+.icon-size {
     height: 20px;
-    width:  20px;
+    width: 20px;
     margin: auto;
 }
-
 </style>
 
