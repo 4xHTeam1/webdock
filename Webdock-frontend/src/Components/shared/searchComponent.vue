@@ -49,10 +49,11 @@ export default {
   gap: 2px;
   justify-content: center;
   align-items: center;
+  padding:0 10px;
 }
 
 .Search_Icon {
-  width: 16px;
+  width: 24px;
   aspect-ratio: 1/1;
 }
 
@@ -63,8 +64,7 @@ export default {
   outline: none;
   font-size: 0.8rem;
   font-weight: bold;
-  padding: 0 10px;
-  color: #000;
+  color: #fff;
   background-color: transparent;
 }
 

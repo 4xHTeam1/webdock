@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="test_data">
     {{
       this.$store.state.socket.socket !== null ? `Connected` : "not connected"
     }}
@@ -93,6 +93,13 @@ export default {
 </script>
 
 <style>
+
+.test_data{
+  display:flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 .notification_container {
   width: fit-content;
   display: flex;
@@ -107,13 +114,10 @@ export default {
   min-width: 32px;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  border: 3px solid #000;
+  border: 3px solid #fff;
   cursor: pointer;
 }
 
-.notification_icon {
-  filter: invert(100%);
-}
 
 .notification_iconAmount {
   position: absolute;

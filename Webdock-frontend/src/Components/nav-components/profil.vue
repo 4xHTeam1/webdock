@@ -59,7 +59,6 @@ export default {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100%;
     cursor: pointer;
     user-select: none;
 

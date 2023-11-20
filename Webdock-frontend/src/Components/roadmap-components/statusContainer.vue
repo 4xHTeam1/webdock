@@ -6,11 +6,7 @@
       </p>
     </div>
     <div class="Status_SlotContainer">
-      <roadmap-features
-        v-for="feature in featureList"
-        v-bind:key="feature.id"
-        :feature="feature"
-      />
+      <roadmap-features v-for="feature in featureList" v-bind:key="feature.id" :feature="feature" />
     </div>
   </div>
 </template>
@@ -46,7 +42,7 @@ export default {
 
 <style>
 .Status_Container {
-  max-height: 500px;
+  max-height: calc(100% - 100px);
   height: 100%;
   max-width: 300px;
   min-width: 300px;
@@ -55,6 +51,7 @@ export default {
   flex-direction: column;
   gap: 10px;
   border: 1px solid #c1c1c1;
+  background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 19px rgba(0, 0, 0, 0.4);
 }

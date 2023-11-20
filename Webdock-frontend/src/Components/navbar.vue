@@ -5,23 +5,24 @@
         <router-link to="/roadmap" tag="div" class="homelink">
           <div>
             <img class="img-size" src="../Assets/webdock-logo-hvid.svg">
-        </div>
+          </div>
         </router-link>
         <div class="icon-parent-container">
-          <notifikation iconSrc="src/assets/icons/bell.svg"/>
-          <profil letterSrc="J" ></profil>
+          <notification />
+          <profil letterSrc="J"></profil>
         </div>
       </div>
-        <div class="tap-parent-container">
-          <router-link to="/roadmap" :class={active:roadmapActive} @click="setroadmapActive">
-            <taps buttontext="ROADMAP" imageSrc="src/assets/icons/three-dots-vertical.svg"></taps>
-          </router-link>
-          <router-link to="/feature-request" :class={active:featureActive} @click="setfeatureActive">
-            <taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/lightbulb.svg"></taps>
-          </router-link>
-        </div>
+      <div class="tap-parent-container">
+        <router-link to="/roadmap" :class="{ active: roadmapActive }" style="text-decoration: none;" @click="setroadmapActive">
+          <taps buttontext="ROADMAP" imageSrc="src/assets/icons/three-dots-vertical.svg" :isActive="roadmapActive"></taps>
+        </router-link>
+        <router-link to="/feature-request" :class="{ active: featureActive }" style="text-decoration: none;"
+          @click="setfeatureActive">
+          <taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/lightbulb.svg" :isActive="featureActive"></taps>
+        </router-link>
+      </div>
     </div>
-      <div class="seperating-line"></div>
+    <div class="seperating-line"></div>
   </div>
 </template>
 
@@ -29,25 +30,25 @@
 <script lang="ts">
 import taps from '../Components/nav-components/taps.vue';
 import profil from '../Components/nav-components/profil.vue';
-import notifikation from '../Components/nav-components/notifikation.vue';
+import notification from '../Components/shared/notificationComponent.vue';
 export default {
-  data(){
-    return{
-    roadmapActive: document.location.pathname === "/roadmap",
-    featureActive: document.location.pathname === "/feature-request"
+  data() {
+    return {
+      roadmapActive: document.location.pathname === "/roadmap",
+      featureActive: document.location.pathname === "/feature-request"
     }
   },
   components: {
     taps,
     profil,
-    notifikation
+    notification
   },
   methods: {
-    setroadmapActive(){
+    setroadmapActive() {
       this.roadmapActive = true;
       this.featureActive = false;
     },
-    setfeatureActive(){
+    setfeatureActive() {
       this.featureActive = true;
       this.roadmapActive = false;
     },
@@ -57,7 +58,7 @@ export default {
       type: String,
       required: true
     },
-      imageSrc: String,
+    imageSrc: String,
     letterSrc: {
       type: String,
       required: true
@@ -68,61 +69,68 @@ export default {
 
 </script>
 <style>
-.active{ 
+.active {
   background: white;
-  color: #000; 
+  color: #000;
   border-radius: 11px 11px 0 0;
 }
-.active:hover{
+
+.active:hover {
   text-decoration: none;
   color: #000;
 }
+
 a {
   text-decoration: none;
   color: #fff;
 }
-a:hover{
+
+a:hover {
   text-decoration: none;
   color: #fff;
 }
 
 
 
-.active > .tap-container >.img-color{
+.active>.tap-container>.img-color {
   filter: invert(0%) sepia(94%) saturate(4%) hue-rotate(239deg) brightness(99%) contrast(101%);
 }
-.homelink{
+
+.homelink {
   background: none;
 }
 
-.icon-parent-container{
+.icon-parent-container {
   display: flex;
   flex-direction: row;
   padding-left: 10px;
   align-items: center;
 }
-.logo-icon-flex{
+
+.logo-icon-flex {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.nav-container{
+
+.nav-container {
   margin-top: 1.5vh;
 }
-.seperating-line{
-  width:100vw;
-  height:3px;
-  background:#fff;
+
+.seperating-line {
+  width: 100vw;
+  height: 3px;
+  background: #fff;
 }
-.tap-parent-container{
+
+.tap-parent-container {
   margin-top: 15px;
 
   display: flex;
   flex-direction: row;
 }
-.img-size{
+
+.img-size {
   width: 20vw;
   min-width: 200px;
-}
-
-</style>
+}</style>

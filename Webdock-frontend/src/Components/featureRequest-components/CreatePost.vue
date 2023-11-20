@@ -92,7 +92,7 @@ export default {
     font-weight: bold;
     background-color: rgb(235, 235, 235);
     border-radius: 10px 10px 0 0;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    box-shadow: 0px 12px 25px -5px rgba(0, 0, 0, 0.25)
 }
 
 
