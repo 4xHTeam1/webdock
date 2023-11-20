@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import CreatePost from '../Components/CreatePost.vue'
-import requestOverview from '../Components/requestOverview.vue'
+import CreatePost from '../Components/featureRequest-components/CreatePost.vue'
+import requestOverview from '../Components/featureRequest-components/requestOverview.vue'
 export default {
     components: {
     CreatePost,
