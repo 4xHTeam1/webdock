@@ -10,7 +10,7 @@ export const IsAdministrator = async ({ requesterId }: IAdmin) => {
 
   const user = await prisma.user.findUnique({
     where: {
-      id: requesterId,
+      id: Number(requesterId),
     },
     select: {
       role: true,

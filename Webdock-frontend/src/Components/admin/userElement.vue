@@ -1,17 +1,18 @@
 <template>
     <!-- userOverviewContainer er den div som indeholder de elementer som skal have data fra users -->
     <div class="userOverviewContainer">
-        <div class="user_ID">#404</div>
+        <div class="user_ID">{{ user.id }}</div>
         <!-- userInfoContainer indeholder users firstname og lastname samtidigt med indeholder avatarURL som skal hentes fra databasen -->
         <div class="userInfoContainer">
             <div class="usersAvatar">
-                <div class="noneAvatar" style="background-color:#9cb;">L</div>
+                <div class="noneAvatar" style="background-color:#9cb;"
+                    v-if="user.avatarURL === null || user.avatarURL === ''">{{ user.name[0] }}</div>
+                <img :src="user.avatarURL" v-else />
             </div>
-            <div class="firstName">Lars</div>
-            <div class="lastName"> Larsen</div>
+            <div class="name">{{ user.name }}</div>
         </div>
-        <div class="userEmail">Lars@gmail.com</div>
-        <div class="userRole">User</div>
+        <div class="userEmail">{{ user.email }}</div>
+        <div class="userRole">{{ user.role }}</div>
         <!-- userSettings, er den div som har tandhjulet og skal have en dropdown menu når man klikker på svg'en dropdown menuen skal laves via script og have styling -->
         <div class="userSettings">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-gear-fill"
@@ -38,7 +39,6 @@ export default {
 .userOverviewContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100px;
@@ -50,10 +50,27 @@ export default {
     z-index: 1;
 }
 
+.name{
+    flex: 1
+}
+.user_ID{
+    flex: 1
+}
+.userEmail{
+    flex: 1
+}
+
+.userRole{
+    flex: 1
+}
+
+
+
 .userInfoContainer {
     display: flex;
     flex-direction: row;
     gap: 10px;
+    flex: 1;
 }
 
 .usersAvatar {

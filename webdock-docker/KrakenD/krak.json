@@ -54,12 +54,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Users",
+      "endpoint": "/admin/users",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Users/",
+          "url_pattern": "/users/",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -79,12 +79,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Users/{id}",
+      "endpoint": "/admin/users/{id}",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Users/{id}",
+          "url_pattern": "/users/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -104,12 +104,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Users/role/{id}",
+      "endpoint": "/admin/users/role/{id}",
       "method": "PUT",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Users/role/{id}",
+          "url_pattern": "/users/role/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
@@ -133,12 +133,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Categories",
+      "endpoint": "/admin/categories",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories",
+          "url_pattern": "/categories",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -158,12 +158,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Categories/{id}",
+      "endpoint": "/admin/categories/{id}",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories/{id}",
+          "url_pattern": "/categories/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -183,12 +183,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Categories/",
+      "endpoint": "/admin/categories/",
       "method": "POST",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories/",
+          "url_pattern": "/categories/",
           "encoding": "json",
           "sd": "static",
           "method": "POST",
@@ -212,12 +212,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Categories/{id}",
+      "endpoint": "/admin/categories/{id}",
       "method": "PUT",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories/{id}",
+          "url_pattern": "/categories/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
@@ -241,12 +241,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Categories/{id}",
+      "endpoint": "/admin/categories/{id}",
       "method": "DELETE",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories/{id}",
+          "url_pattern": "/categories/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
@@ -266,12 +266,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Statuses",
+      "endpoint": "/admin/statuses",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/",
+          "url_pattern": "/statuses/",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -291,12 +291,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Statuses/{id}",
+      "endpoint": "/admin/statuses/{id}",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/{id}",
+          "url_pattern": "/statuses/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -316,12 +316,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Statuses/",
+      "endpoint": "/admin/statuses/",
       "method": "POST",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/",
+          "url_pattern": "/statuses/",
           "encoding": "json",
           "sd": "static",
           "method": "POST",
@@ -345,12 +345,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Statuses/{id}",
+      "endpoint": "/admin/statuses/{id}",
       "method": "PUT",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/{id}",
+          "url_pattern": "/statuses/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
@@ -374,12 +374,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Statuses/{id}",
+      "endpoint": "/admin/statuses/{id}",
       "method": "DELETE",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/{id}",
+          "url_pattern": "/statuses/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
