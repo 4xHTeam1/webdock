@@ -1,36 +1,37 @@
 <template>
-
-    <div class="container d-flex">
-        <adminMenu/>
-        
-      <div class="container">
-         <whitebg/> 
-        <adminsection/>
+    <div class="Admin_Container">
+        <adminMenu />
+        <div class="Admin_UserElements">
+            <router-view> </router-view>
         </div>
-    </div>     
+    </div>
 </template>
 
 <script>
-import adminMenu from '../Components/adminMenu.vue'
-import adminsection from '../Components/adminsection.vue'
-import whitebg from '../Components/whitebg.vue'
+import adminMenu from '../Components/admin/adminMenu.vue'
 export default {
     components: {
-    adminMenu,
-    whitebg,
-    adminsection,
-    
-  }
+        adminMenu,
+    }
 }
-
-
-
 </script>
 
 
 <style>
-.container{
-    float: left;
+.Admin_Container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
 
+.Admin_UserElements {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    overflow-y: scroll;
+    background: #fff;
+}
 </style>
