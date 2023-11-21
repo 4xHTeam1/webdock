@@ -1,7 +1,7 @@
 <template>
   <div class="container Testroadmap_Container">
     <div class="Testroadmap_Info">
-      <h1 class="Testroadmap_Title">Testroadmap</h1>
+      <h1 class="Testroadmap_Title">Roadmap</h1>
       <div class="Testroadmap_InteractionContainer">
         <filterComponent />
         <searchComponent />
