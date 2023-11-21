@@ -5,7 +5,7 @@
         <!-- userInfoContainer indeholder users firstname og lastname samtidigt med indeholder avatarURL som skal hentes fra databasen -->
         <div class="userInfoContainer">
             <div class="usersAvatar">
-                  <div class="noneAvatar" style="background-color:#9cb;">R</div>
+                  <div class="noneAvatar" style="background-color:#9cb;">L</div>
             </div>
             <div class="firstName">Lars</div>
             <div class="lastName"> Larsen</div>
@@ -36,11 +36,11 @@
     width: 100%;
     height: 100px;
     background-color: #24AB95;
-    border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     gap: 20px;
     padding: 40px;
     color: white;
+    z-index: 1;
 }
 
 .userInfoContainer {

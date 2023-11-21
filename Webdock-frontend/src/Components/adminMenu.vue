@@ -9,31 +9,6 @@
               Users
             </p>
           </li>
-          <li class="nav-item">
-            <p class="nav-link">
-              Nye Opslag
-            </p>
-          </li>
-          <li class="nav-item">
-            <p class="nav-link">
-              Gemte Opslag
-            </p>
-          </li>
-          <li class="nav-item">
-            <p class="nav-link">
-              Slettede Opslag
-            </p>
-          </li>
-          <li class="nav-item">
-            <p class="nav-link">
-              Opslag til Trello
-            </p>
-          </li>
-          <li class="nav-item">
-            <p class="nav-link">
-              IDK Yet
-            </p>
-          </li>
         </ul>
       </div>
     </nav>
@@ -65,12 +40,11 @@ body {
     background-repeat: no-repeat;
   }
  .nav-item{
-  margin-top: 3px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border: 2px solid #fcfcfc;
-  width: 180px;
+  border-top: 3.5px solid #fcfcfc;
+  border-bottom: 3.55px solid #fcfcfc;
+  width: 200px;
   z-index: 10;
+
   
  }
  
