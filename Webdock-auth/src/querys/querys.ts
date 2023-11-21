@@ -3,15 +3,14 @@ import { User, PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 /**
- * Finds the first user in the database with the given uuid.
- * @param uuid The given uuid, we search for.
+ * Finds the first user in the database with the given id.
+ * @param id The given id, we search for.
  * @returns The user object, or null.
  */
-export const getUserByUUID = async (uuid: string) => {
-  console.log(uuid);
+export const getUserByID = async (id: number) => {
   const user = await prisma.user.findFirst({
     where: {
-      id: uuid,
+      id: id,
     },
   });
 
@@ -26,6 +25,7 @@ export const getUserByUUID = async (uuid: string) => {
  */
 export const addUser = async (user: User) => {
   try {
+    console.log(user);
     const created = await prisma.user.create({
       data: user,
     });
