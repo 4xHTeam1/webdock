@@ -86,6 +86,7 @@ export default {
   width: 100%;
   height: 100%;
   min-height: 70px;
+  max-height: 70px;
   min-width: 300px;
   display: flex;
   flex-direction: row;

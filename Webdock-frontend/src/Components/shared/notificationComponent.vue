@@ -150,17 +150,6 @@ export default {
   flex-direction: column;
 }
 
-.notification_iconContainer::before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: 6px;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid #f2f2f2;
-}
 .CloseContainer {
   position: absolute;
   top: 0;
@@ -189,6 +178,7 @@ export default {
 .notification_InfoContainer_Notifications {
   flex: 1 0 0;
   width: 100%;
+
   overflow-y: auto;
   padding: 5px;
   display: flex;
