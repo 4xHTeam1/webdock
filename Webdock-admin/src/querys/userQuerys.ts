@@ -11,7 +11,7 @@ const prisma = new PrismaClient();
 export const GetAllUsers = async () => {
   try {
     const result = await prisma.user.findMany();
-    return result;
+    return { result };
   } catch (error) {
     //TODO: Add error handling
   }

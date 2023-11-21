@@ -43,10 +43,10 @@ export default {
       state.selectedStatus = status;
     },
   },
-  action: {
-    async getUsers({ commit }: any, requesterId: string) {
+  actions: {
+    async getUsers({ commit }: any, requesterId: number) {
       let users = await GetUsers(requesterId);
-      commit("setUsers", users.data.users);
+      commit("setUsers", users);
     },
 
     async getUser(
