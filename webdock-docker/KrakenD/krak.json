@@ -850,6 +850,28 @@
       ]
     },
     {
+      "endpoint": "/features/categories",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/categories",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "host": [
+            "http://features:3000"
+          ],
+          "disable_host_sanitize": false,
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          }
+        }
+      ]
+    },
+    {
       "endpoint": "/search/status",
       "method": "GET",
       "output_encoding": "json",

@@ -363,3 +363,14 @@ export const getFeatureUpvoteCount = async (id: number) => {
     return feature;
   } catch (e) {}
 };
+
+export const getCategories = async () => {
+  try {
+    const categories = await prisma.category.findMany({
+
+    })
+    return {
+      categories
+    }
+  } catch(err) {}
+};

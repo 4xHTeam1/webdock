@@ -6,6 +6,7 @@ import {
   deleteCommentReply,
   deleteFeature,
   getAllComments,
+  getCategories,
   getFeature,
   getFeatureUpvoteCount,
   getFeatures,
@@ -74,7 +75,6 @@ const app = new Elysia()
           "description",
           "userId",
           "categoryId",
-          "statusId",
         ]);
         return await createFeature(body as ICreateFeature);
       })
@@ -167,7 +167,10 @@ const app = new Elysia()
         ParamValidation(id);
         return await getFeatureUpvoteCount(Number(id));
       })
-  )
+  ).
+  get("/categories", async () =>{
+    return await getCategories();
+  })
   .listen(3000);
 
 console.log(

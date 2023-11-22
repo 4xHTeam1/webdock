@@ -7,17 +7,14 @@
         <div class="catagory">
             <div class="catagory-title">Catagory</div>
             <div class="catagory-dropdown" @click="toggleDropdown">
-                {{ selectedOption }}
+                {{ selectedOption.name }}
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </div>
             <div class="dropdown-content" v-if="isDropdownOpen">
-                <input class="src-catagory" type="text" placeholder="Search..." @click.stop />
                 <div class="catagory-options">
-                    <p @click="selectOption('test1')">test1</p>
-                    <p @click="selectOption('test2')">test2</p>
-                    <p @click="selectOption('test3')">test3</p>
+                    <p @click="selectOption(category)" v-for="category in this.$store.state.features.categories" :key="category.id">{{ category.name }}</p>
                 </div>
             </div>
         </div>
@@ -37,11 +34,16 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
+    computed: {
+        ...mapState(["features"])
+    },
   data() {
     return {
       isDropdownOpen: false,
-      selectedOption: "Select Catagory"
+      selectedOption: {id:0, name:"select Option"}
     };
   },
   methods: {
@@ -60,9 +62,7 @@ export default {
   },
   mounted() {
     window.addEventListener('click', this.closeDropdown);
-  },
-  beforeDestroy() {
-    window.removeEventListener('click', this.closeDropdown);
+    this.$store.dispatch("features/getAllCategories");
   }
 };
 </script>
