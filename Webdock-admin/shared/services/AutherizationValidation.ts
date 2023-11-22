@@ -4,13 +4,13 @@ import { IAdmin } from "./interfaces/IAdministrator";
 const prisma = new PrismaClient();
 
 export const IsAdministrator = async ({ requesterId }: IAdmin) => {
+  console.log(typeof requesterId);
   if (requesterId === undefined || requesterId === null) {
     throw new Error("Unauthorized");
   }
-
   const user = await prisma.user.findUnique({
     where: {
-      id: requesterId,
+      id: Number(requesterId),
     },
     select: {
       role: true,

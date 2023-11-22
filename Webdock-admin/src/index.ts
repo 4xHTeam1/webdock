@@ -36,9 +36,7 @@ import { GetUsers } from "../../Webdock-frontend/src/services/adminService";
 
 const app = new Elysia()
   .get("/status", async ({ request: { headers } }) => {
-    await IsAdministrator({
-      requesterId: headers.get("requesterId"),
-    } as IAdmin);
+
 
     return await GetAllUsers();
   })
@@ -47,40 +45,35 @@ const app = new Elysia()
       status: 401,
     });
   })
-  /**
-   * TODO: LAV USER FUNKTIONALITET FOR ADMINS DER KAN FÅ ALLE USERS, FÅ USERS PER ID OG OPDATERE USERS ROLLE
-   */
- .group("/users", (app) =>
- app 
- .get ("/", async ({request: { headers }}) => {
-  await IsAdministrator({
-    requesterId: headers.get("requesterId"),
-  } as IAdmin);
-  return await GetAllUsers()
- })
- .get ("/:id", async ({params: {id},request: { headers}}) => {
-  await IsAdministrator({
-    requesterId: headers.get("requesterId"),
-  } as IAdmin);
-  return await GetUser ({id} as IGetUser)
- } )
+  .group("/users", (app) =>
+    app
+      .get("/", async ({ request: { headers } }) => {
+        await IsAdministrator({
+          requesterId: headers.get("requesterId"),
+        } as IAdmin);
+        return await GetAllUsers();
+      })
+      .get("/:id", async ({ params: { id }, request: { headers } }) => {
+        await IsAdministrator({
+          requesterId: headers.get("requesterId"),
+        } as IAdmin);
+        return await GetUser({ id } as IGetUser);
+      })
 
-.put ("/role/:id", async ({params: {id},body, request: { headers}}) => {
-  await IsAdministrator({
-    requesterId: headers.get("requesterId"),
-  } as IAdmin);
-  BodyValidation(body,"role")
-  const {role} = body as IUpdateUserRole
-  return await UpdateUserRole({id, role} as IUpdateUserRole)
-})
- )
+      .put(
+        "/role/:id",
+        async ({ params: { id }, body, request: { headers } }) => {
+          await IsAdministrator({
+            requesterId: headers.get("requesterId"),
+          } as IAdmin);
+          BodyValidation(body, "role");
+          const { role } = body as IUpdateUserRole;
+          return await UpdateUserRole({ id, role } as IUpdateUserRole);
+        }
+      )
+  )
 
-
-
-
-
-
-  .group("/Categories", (app) =>
+  .group("/categories", (app) =>
     app
       .get("/", async ({ request: { headers } }) => {
         await IsAdministrator({
@@ -131,7 +124,7 @@ const app = new Elysia()
         return await DeleteCategory({ id: Number(id) } as IDeleteCategory);
       })
   )
-  .group("/Statuses", (app) =>
+  .group("/statuses", (app) =>
     app
       .get("/", async ({ request: { headers } }) => {
         await IsAdministrator({
