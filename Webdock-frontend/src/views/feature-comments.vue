@@ -34,7 +34,6 @@
                 </div>
             </div>
         </div>
-        <userOverview/>
     </div>
 </template>
 
@@ -43,14 +42,12 @@ import sideBar from '../Components/featureRequest-components/featureComment-comp
 import postComment from '../Components/featureRequest-components/featureComment-components/postComment.vue'
 import postStatusChange from '../Components/featureRequest-components/featureComment-components/postStatusChange.vue'
 import postOverview from '../Components/featureRequest-components/featureComment-components/postOverview.vue'
-import userOverview from '../Components/featureRequest-components/userOverview.vue'
 export default {
     components: {
         postOverview,
         postStatusChange,
         postComment,
         sideBar,
-        userOverview
     }
 }
 </script>
