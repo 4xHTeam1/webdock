@@ -94,7 +94,7 @@ export default {
   background: white;
   color: #000;
   border-radius: 11px 11px 0 0;
-  margin-left: -3px;
+  
   
 }
 
