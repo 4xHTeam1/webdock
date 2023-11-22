@@ -16,7 +16,7 @@
       <div class="tap-parent-container">
         <router-link to="/" :class="{ active: roadmapActive }" style="text-decoration: none;"
           @click="setroadmapActive">
-          <taps buttontext="ROADMAP" imageSrc="src/Assets/icons/three-dots-vertical.svg" :isActive="roadmapActive"></taps>
+          <taps buttontext="ROADMAP" imageSrc="src/Assets/icons/three-dots-vertical.svg" :isActive="roadmapActive" ></taps>
         </router-link>
         <router-link to="/feature-request" :class="{ active: featureActive }" style="text-decoration: none;"
           @click="setfeatureActive">
@@ -94,6 +94,8 @@ export default {
   background: white;
   color: #000;
   border-radius: 11px 11px 0 0;
+  margin-left: -3px;
+  
 }
 
 .active:hover {
