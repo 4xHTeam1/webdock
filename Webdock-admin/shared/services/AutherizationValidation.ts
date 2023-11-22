@@ -19,4 +19,5 @@ export const IsAdministrator = async ({ requesterId }: IAdmin) => {
   if (user?.role !== Role.ADMIN) {
     throw new Error("Unauthorized");
   }
+  //
 };
