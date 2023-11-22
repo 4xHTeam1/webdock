@@ -22,7 +22,7 @@
           @click="setfeatureActive">
           <taps buttontext="FEATURE REQUEST" imageSrc="./src/Assets/icons/lightbulb.svg" :isActive="featureActive"></taps>
         </router-link>
-        <router-link to="/admindashboard" :class="{ active: adminActive }" style="text-decoration: none;"
+        <router-link to="/admin" :class="{ active: adminActive }" style="text-decoration: none;"
           @click="setadminActive">
           <taps buttontext="ADMIN DASHBOARD" imageSrc="./src/Assets/icons/webdock-logo.svg" :isActive="adminActive"></taps>
         </router-link>
@@ -47,7 +47,7 @@ export default {
     return {
       roadmapActive: document.location.pathname === "/",
       featureActive: document.location.pathname === "/feature-request",
-      adminActive: document.location.pathname === ""
+      adminActive: document.location.pathname === "/admin"
     }
   },
   components: {
