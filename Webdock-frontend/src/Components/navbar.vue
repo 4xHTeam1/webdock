@@ -16,11 +16,11 @@
       <div class="tap-parent-container">
         <router-link to="/" :class="{ active: roadmapActive }" style="text-decoration: none;"
           @click="setroadmapActive">
-          <taps buttontext="ROADMAP" imageSrc="./src/Assets/icons/three-dots-vertical.svg" :isActive="roadmapActive"></taps>
+          <taps buttontext="ROADMAP" imageSrc="src/Assets/icons/three-dots-vertical.svg" :isActive="roadmapActive"></taps>
         </router-link>
         <router-link to="/feature-request" :class="{ active: featureActive }" style="text-decoration: none;"
           @click="setfeatureActive">
-          <taps buttontext="FEATURE REQUEST" imageSrc="./src/Assets/icons/lightbulb.svg" :isActive="featureActive"></taps>
+          <taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/lightbulb.svg" :isActive="featureActive"></taps>
         </router-link>
         <router-link to="/admin" :class="{ active: adminActive }" style="text-decoration: none;"
           @click="setadminActive">
