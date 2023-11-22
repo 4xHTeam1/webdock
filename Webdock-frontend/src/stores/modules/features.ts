@@ -5,6 +5,7 @@ import {
   unvoteFeature,
   upvoteFeature,
   getAllCategories,
+  createFeature,
 } from "../../services/featureService";
 import { upvoteValidator } from "../validators/featureValidator";
 
@@ -34,6 +35,9 @@ export default {
     },
   },
   mutations: {
+    pushFeature(state: any, feature: any) {
+      state.allFeatures.push(feature);
+    },
     setCategories(state: any, categories: any) {
       state.categories = categories;
     },
@@ -90,6 +94,10 @@ export default {
     },
   },
   actions: {
+    async createPost({ commit }: any, feature:any) {
+      const post = await createFeature(feature);
+      commit("pushFeature", post);
+    },
     async getAllCategories({ commit }: any) {
       const categories = await getAllCategories();
       commit("setCategories", categories);

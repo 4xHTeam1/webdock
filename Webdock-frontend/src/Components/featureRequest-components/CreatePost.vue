@@ -20,14 +20,14 @@
         </div>
         <div class="heading">
             <div class="heading-title">Title</div>
-            <input class="heading-textfield" type="text" placeholder="Short, descriptive title">
+            <input class="heading-textfield" type="text" placeholder="Short, descriptive title" :value="selectedTitle" @keyup="setTitle($event)">
         </div>
         <div class="details">
             <div class="details-title">Details</div>
-            <textarea class="details-textarea" v-model="message" placeholder="Any additional details…"></textarea>
+            <textarea class="details-textarea" placeholder="Any additional details…" :value="selectedDescription" @keyup="setDecription($event)"></textarea>
         </div>
         <div class="submit-area">
-            <div class="submit-button">Create Post</div>
+            <div class="submit-button" @click="createPost()">Create Post</div>
         </div>
     </div>
 </div>
@@ -43,10 +43,25 @@ export default {
   data() {
     return {
       isDropdownOpen: false,
-      selectedOption: {id:0, name:"select Option"}
+      selectedOption: {id:0, name:"select Option"},
+      selectedTitle: "",
+      selectedDescription: ""
     };
   },
   methods: {
+    createPost() {
+        if (this.$store.state.auth.user === null) {return}
+        const data = {
+        title: this.selectedTitle,
+        description: this.selectedDescription,
+        categoryId: this.selectedOption.id,
+        userId: this.$store.state.auth.user.id
+      }
+      this.$store.dispatch("features/createPost",data)
+      this.selectedTitle=""
+      this.selectedDescription=""
+      this.selectedOption={id:0, name:"select Option"}
+    },
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
@@ -58,6 +73,12 @@ export default {
       if (!event.target.closest('.catagory-dropdown')) {
         this.isDropdownOpen = false;
       }
+    },
+    setTitle(event) {
+        this.selectedTitle = event.target.value;
+    },
+    setDecription(event) {
+        this.selectedDescription = event.target.value;
     }
   },
   mounted() {
