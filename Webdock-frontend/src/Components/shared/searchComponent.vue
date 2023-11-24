@@ -24,6 +24,7 @@ export default {
     searchInput: function (event: any) {
       if (event.key === "Enter") {
         this.search = event.target.value;
+        window.location.href = '/search?query=' + encodeURIComponent(this.search)
       } else {
         clearTimeout(timeout);
 
