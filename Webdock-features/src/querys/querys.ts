@@ -83,6 +83,10 @@ export const createFeature = async ({
         categoryId,
         statusId:1,
       },
+      include: {
+        category: true,
+        status: true,
+        },
     });
     return feature;
   } catch (err) {

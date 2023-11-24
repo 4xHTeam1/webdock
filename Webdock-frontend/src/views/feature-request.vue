@@ -3,7 +3,7 @@
         <CreatePost />
         <div class="featureRequest_OverviewContainer">
             <div class="overview-area">
-                <requestOverview status="planned" color="#1FA0FF" />
+                <requestOverview  v-for="feature in this.$store.state.features.allFeatures" :key="feature.id" :feature="feature" color="#1FA0FF"/>
             </div>
         </div>
     </div>
@@ -18,6 +18,9 @@ export default {
         CreatePost,
         requestOverview,
         navbar
+    },
+    mounted: async function() {
+       await this.$store.dispatch("features/getAllFeatures");
     }
 }
 </script>
