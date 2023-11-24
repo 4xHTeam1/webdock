@@ -1,4 +1,12 @@
 <template>
+    <div class="container">
+        <RouterLink to="/feature-request" class="link-decoration">
+            <div class="goback-row">
+                <img class="goback-arrow" src="../Assets/icons/arrow-left.svg">
+                <div class="goback-p" > GO BACK</div>
+            </div>
+        </RouterLink>
+    </div>
   <div class="container d-flex justify-content-center Comments_Container">
     <sideBar />
     <div class="Comments_OverviewContainer">
@@ -44,10 +52,29 @@ export default {
 </script>
 
 <style>
+.goback-row{
+    margin-left: 5px;
+    margin-top: 5px;
+    display: flex;
+    color: #fff;
+}
+.goback-arrow{
+    scale: 2;
+}
+.goback-p{
+    margin-bottom: auto;
+    padding-left: 14px;
+    font-weight: bold;
+}
+.link-decoration{
+    text-decoration: none;
+}
+
 .Comments_Container {
-  flex: 1 1 0;
-  gap: 18px;
-  padding: 24px 0;
+    flex: 1 1 0;
+    gap: 18px;
+    padding: 24px 0;
+    padding-top: 10px;
 }
 
 .activityList {
