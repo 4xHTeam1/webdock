@@ -2,7 +2,7 @@
   <div class="postContainer">
     <!-- <upvoteButton/> -->
     <div class="postHeading">
-      <div class="postTitle">bandwidth usage</div>
+      <div class="postTitle"><h1>bandwidth usage</h1></div>
       <div class="postStatus" :style="{ '--color': color }">{{ status }}</div>
       <div class="postUserInfo">
         <div class="usersAvatar">
@@ -10,11 +10,8 @@
         </div>
         <div class="userName">Robin Edwards</div>
       </div>
-      <div class="description">
-        Can we please have an reporting tab which shows monthly bandwidth usage
-        for a server ...
-      </div>
-      <div class="date">19 oktober 2023</div>
+      <div class="description"><p>Can we please have an reporting tab which shows monthly bandwidth usage for a server ...</p></div>
+      <div class="date"><p>19 oktober 2023</p></div>
       <div class="commentContainer">
         <textarea
           class="inputArea"

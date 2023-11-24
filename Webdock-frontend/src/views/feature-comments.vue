@@ -7,15 +7,6 @@
         <div class="postActivity">
           <div class="publicHeader">
             <div class="headerLeft">Activity Feed</div>
-            <div class="headerRight">
-              <span class="sortBy">Sort by</span>
-              <div class="sortByDropdown">
-                <select class="sortSelect">
-                  <option value="Newest first">Newest first</option>
-                  <option value="Oldest first">Oldest first</option>
-                </select>
-              </div>
-            </div>
           </div>
           <div class="ActivityList_Container">
             <div class="activityList">
