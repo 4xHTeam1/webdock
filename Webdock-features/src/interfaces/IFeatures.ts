@@ -3,7 +3,6 @@ export interface ICreateFeature {
   description: string;
   userId: number;
   categoryId: number;
-  statusId: number;
 }
 
 export interface IUpdateFeature {
