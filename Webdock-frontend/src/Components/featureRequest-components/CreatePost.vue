@@ -92,7 +92,7 @@ export default {
 .createbox{
     background-color: #FCFCFC;
     width: 320px;
-    height: 410px;
+    max-height: 380px;
     border-radius: 10px;
 }
 
@@ -143,6 +143,10 @@ export default {
     padding: 10px;
 }
 
+.catagory-options p{
+    cursor: pointer;
+}
+
 
 
 .heading-title{
@@ -156,6 +160,8 @@ export default {
     border-right: none;
     border-bottom: 2px solid rgb(129, 129, 129);
     outline: none;
+    background-color: #FCFCFC;
+    color: black;
 }
 
 
@@ -171,6 +177,8 @@ export default {
     border: 2px solid rgb(129, 129, 129);
     border-radius: 4px;
     resize: none;
+    background-color: #E8E8E8;
+    color: black;
 }
 
 .submit-area{
@@ -190,6 +198,11 @@ export default {
     padding: 8px;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.submit-button:hover{
+    background-color: #016134;
+    transition: ease-in 0.2s;
 }
 
 </style>

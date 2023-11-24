@@ -78,6 +78,7 @@ export default {
 </script>
 
 <style>
+
 .postUserInfo {
   display: flex;
   flex-direction: row;

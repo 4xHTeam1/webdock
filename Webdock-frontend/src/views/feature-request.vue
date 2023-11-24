@@ -4,13 +4,6 @@
         <div class="featureRequest_OverviewContainer">
             <div class="overview-area">
                 <requestOverview status="planned" color="#1FA0FF" />
-                <requestOverview status="under review" color="#85B5B5" />
-                <requestOverview status="in progress" color="#C17AFF" />
-                <requestOverview status="in progress" color="#C17AFF" />
-                <requestOverview status="in progress" color="#C17AFF" />
-                <requestOverview status="in progress" color="#C17AFF" />
-                <requestOverview status="in progress" color="#C17AFF" />
-                <requestOverview status="in progress" color="#C17AFF" />
             </div>
         </div>
     </div>
