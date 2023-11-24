@@ -46,7 +46,7 @@ model FeatureRequest {
   category       Category        @relation(fields: [categoryId], references: [id])
   categoryId     Int
   status         Status          @relation(fields: [statusId], references: [id])
-  statusId       Int
+  statusId       Int             @default(1)
   comments       Comment[]
   featureUpvotes FeatureUpvote[]
 }

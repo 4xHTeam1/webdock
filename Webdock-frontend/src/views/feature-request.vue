@@ -1,4 +1,4 @@
-<template>
+<template>  
     <div class="container d-flex justify-content-center featureRequest_Container">
         <CreatePost />
         <div class="featureRequest_OverviewContainer">

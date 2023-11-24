@@ -7,50 +7,61 @@
         <div class="catagory">
             <div class="catagory-title">Catagory</div>
             <div class="catagory-dropdown" @click="toggleDropdown">
-                {{ selectedOption }}
+                {{ selectedOption.name }}
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </div>
             <div class="dropdown-content" v-if="isDropdownOpen">
-                <input class="src-catagory" type="text" placeholder="Search..." @click.stop />
                 <div class="catagory-options">
-                    <p @click="selectOption('test1')">test1</p>
-                    <p @click="selectOption('test2')">test2</p>
-                    <p @click="selectOption('test3')">test3</p>
+                    <p @click="selectOption(category)" v-for="category in this.$store.state.features.categories" :key="category.id">{{ category.name }}</p>
                 </div>
             </div>
         </div>
         <div class="heading">
             <div class="heading-title">Title</div>
-            <input class="heading-textfield" type="text" placeholder="Short, descriptive title">
+            <input class="heading-textfield" type="text" placeholder="Short, descriptive title" :value="selectedTitle" @keyup="setTitle($event)">
         </div>
         <div class="details">
             <div class="details-title">Details</div>
-            <textarea class="details-textarea" v-model="message" placeholder="Any additional details…"></textarea>
+            <textarea class="details-textarea" placeholder="Any additional details…" :value="selectedDescription" @keyup="setDecription($event)"></textarea>
         </div>
         <div class="submit-area">
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="#6F6E77" class="bi bi-image" viewBox="0 0 16 16">
-                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
-                </svg>
-            </div>
-            <div class="submit-button">Create Post</div>
+            <div class="submit-button" @click="createPost()">Create Post</div>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
+    computed: {
+        ...mapState(["features"])
+    },
   data() {
     return {
       isDropdownOpen: false,
-      selectedOption: "Select Catagory"
+      selectedOption: {id:0, name:"select Option"},
+      selectedTitle: "",
+      selectedDescription: ""
     };
   },
   methods: {
+    createPost() {
+        if (this.$store.state.auth.user === null) {return}
+        const data = {
+        title: this.selectedTitle,
+        description: this.selectedDescription,
+        categoryId: this.selectedOption.id,
+        userId: this.$store.state.auth.user.id
+      }
+      this.$store.dispatch("features/createPost",data)
+      this.selectedTitle=""
+      this.selectedDescription=""
+      this.selectedOption={id:0, name:"select Option"}
+    },
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
@@ -62,13 +73,17 @@ export default {
       if (!event.target.closest('.catagory-dropdown')) {
         this.isDropdownOpen = false;
       }
+    },
+    setTitle(event) {
+        this.selectedTitle = event.target.value;
+    },
+    setDecription(event) {
+        this.selectedDescription = event.target.value;
     }
   },
   mounted() {
     window.addEventListener('click', this.closeDropdown);
-  },
-  beforeDestroy() {
-    window.removeEventListener('click', this.closeDropdown);
+    this.$store.dispatch("features/getAllCategories");
   }
 };
 </script>

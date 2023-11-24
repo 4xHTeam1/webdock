@@ -131,13 +131,10 @@ export const unvoteFeature = async (downvote: any) => {
   }
 };
 
-/**
- * TODO: make this endpoint
- */
 export const getAllCategories = async () => {
   try {
     const response = await http.get("/features/categories");
-    return response.data;
+    return response.data.categories;
   } catch (error) {
     console.error(error);
   }

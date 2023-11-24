@@ -71,11 +71,9 @@ export const createFeature = async ({
   description,
   userId,
   categoryId,
-  statusId,
 }: ICreateFeature) => {
   try {
     if (!categoryId) categoryId = 1;
-    if (!statusId) statusId = 1;
 
     const feature = await prisma.featureRequest.create({
       data: {
@@ -83,7 +81,7 @@ export const createFeature = async ({
         description,
         userId,
         categoryId,
-        statusId,
+        statusId:1,
       },
     });
     return feature;
@@ -362,4 +360,15 @@ export const getFeatureUpvoteCount = async (id: number) => {
     });
     return feature;
   } catch (e) {}
+};
+
+export const getCategories = async () => {
+  try {
+    const categories = await prisma.category.findMany({
+
+    })
+    return {
+      categories
+    }
+  } catch(err) {}
 };
