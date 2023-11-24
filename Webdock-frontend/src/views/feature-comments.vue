@@ -163,13 +163,6 @@ export default {
   outline: none;
 }
 
-.submitContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 12px;
-}
-
 .showBorder {
   border: 2px solid #ebebeb;
   border-top: none;
