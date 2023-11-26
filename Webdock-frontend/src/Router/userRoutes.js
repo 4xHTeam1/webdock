@@ -16,4 +16,9 @@ export default [
     name: "feature-comments",
     component: () => import("../views/feature-comments.vue"),
   },
+  {
+    path: "/search",
+    name: "search",
+    component: () => import("../views/searchsite.vue"),
+  },
 ];
