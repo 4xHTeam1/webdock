@@ -1,16 +1,7 @@
 <template>
   <div class="Search_Container">
-    <img
-      class="Search_Icon"
-      src="../../Assets/icons/searchIcon.svg"
-      alt="search"
-    />
-    <input
-      class="Search_Input"
-      type="text"
-      placeholder="Search"
-      @keyup="searchInput($event)"
-    />
+    <img class="Search_Icon" src="../../Assets/icons/searchIcon.svg" alt="search" />
+    <input class="Search_Input" type="text" placeholder="Search" @keyup="searchInput($event)" />
   </div>
 </template>
 
@@ -30,6 +21,7 @@ export default {
 
         timeout = setTimeout(() => {
           this.search = event.target.value;
+          window.location.href = '/search?query=' + encodeURIComponent(this.search)
         }, 1000);
       }
     },
@@ -50,7 +42,7 @@ export default {
   gap: 2px;
   justify-content: center;
   align-items: center;
-  padding:0 10px;
+  padding: 0 10px;
 }
 
 .Search_Icon {
