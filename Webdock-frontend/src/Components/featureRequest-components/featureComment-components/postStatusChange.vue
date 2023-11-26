@@ -40,7 +40,6 @@
                     </svg>
                 </div>
                 <div class="menuTimestamp">August 8, 2023 </div>
-                <div class="menuReply">Reply</div>
             </div>
         </div>
     </div>

@@ -96,6 +96,7 @@ export default {
   actions: {
     async createPost({ commit }: any, feature:any) {
       const post = await createFeature(feature);
+      console.log(post)
       commit("pushFeature", post);
     },
     async getAllCategories({ commit }: any) {

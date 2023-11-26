@@ -2,10 +2,9 @@
   <div class="feature-container">
     <!-- <upvoteButton/> -->
     <div class="feature-textall">
-      <div class="feature-heading">bandwidth usage</div>
-      <div class="feature-status" :style="{ '--color': color }">{{ status }}</div>
-      <div class="feature-text">Can we please have an reporting tab which shows monthly bandwidth usage for a server ...
-      </div>
+      <div class="feature-heading">{{ feature.title }}</div>
+      <div class="feature-status" :style="{ '--color': color }">{{ feature.status.name }}</div>
+      <div class="feature-text">{{ feature.description }}</div>
     </div>
     <router-link style="text-decoration: none; color: inherit;" to="/feature-request/feature-comments">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#bbb" class="bi bi-chat-left"
@@ -24,9 +23,10 @@ export default {
     // upvoteButton,
   },
   props: {
-    status: {
-      type: String,
+    feature:{
+      type: Object,
       required: true,
+
     },
     color: {
       type: String,
