@@ -53,6 +53,17 @@ export const getFeature = async ({ id }: IFeatureById) => {
       include: {
         category: true,
         status: true,
+        user: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
       },
     });
     return feature;
@@ -81,12 +92,12 @@ export const createFeature = async ({
         description,
         userId,
         categoryId,
-        statusId:1,
+        statusId: 1,
       },
       include: {
         category: true,
         status: true,
-        },
+      },
     });
     return feature;
   } catch (err) {
@@ -267,6 +278,7 @@ export const getAllComments = async ({ id }: IGetAllComments) => {
       select: {
         comments: {
           include: {
+            user: true,
             commentReplys: {
               include: {
                 user: true,
@@ -368,11 +380,9 @@ export const getFeatureUpvoteCount = async (id: number) => {
 
 export const getCategories = async () => {
   try {
-    const categories = await prisma.category.findMany({
-
-    })
+    const categories = await prisma.category.findMany({});
     return {
-      categories
-    }
-  } catch(err) {}
+      categories,
+    };
+  } catch (err) {}
 };

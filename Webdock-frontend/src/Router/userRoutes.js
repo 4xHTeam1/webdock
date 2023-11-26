@@ -12,7 +12,7 @@ export default [
     component: () => import("../views/feature-request.vue"),
   },
   {
-    path: "/feature-request/feature-comments",
+    path: "/feature-request/:id",
     name: "feature-comments",
     component: () => import("../views/feature-comments.vue"),
   },

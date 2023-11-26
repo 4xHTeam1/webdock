@@ -48,7 +48,8 @@ export const deleteFeature = async (id: number) => {
 export const getAllComments = async (id: number) => {
   try {
     const response = await http.get(`/features/comment/${id}`);
-    return response.data;
+    console.log(response.data.comments)
+    return response.data.comments;
   } catch (error) {
     console.error(error);
   }

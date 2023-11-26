@@ -1,17 +1,17 @@
 <template>
-    <div class="container">
-        <RouterLink to="/feature-request" class="link-decoration">
-            <div class="goback-row">
-                <img class="goback-arrow" src="../Assets/icons/arrow-left.svg">
-                <div class="goback-p" > GO BACK</div>
-            </div>
-        </RouterLink>
-    </div>
+  <div class="container" v-if="selectedFeature && selectedFeatureComments">
+    <RouterLink to="/feature-request" class="link-decoration">
+      <div class="goback-row">
+        <img class="goback-arrow" src="../Assets/icons/arrow-left.svg">
+        <div class="goback-p"> GO BACK</div>
+      </div>
+    </RouterLink>
+  </div>
   <div class="container d-flex justify-content-center Comments_Container">
-    <sideBar />
+    <sideBar v-if="selectedFeature" :feature="this.$store.state.features.selectedFeature" />
     <div class="Comments_OverviewContainer">
       <div class="overview-comments">
-        <postOverview />
+        <postOverview v-if="selectedFeature" :feature="this.$store.state.features.selectedFeature" />
         <div class="postActivity">
           <div class="publicHeader">
             <div class="headerLeft">Activity Feed</div>
@@ -21,11 +21,11 @@
               <div class="postStatusChange">
                 <postStatusChange status="planned" color="#1FA0FF" />
               </div>
-              <div class="postComments">
-                <postComment />
-                <div class="replyComment">
-                  <postComment />
-                  <postComment />
+              <div class="postComments" v-for="comment in this.$store.state.features.selectedFeatureComments"
+                :key="comment.id">
+                <postComment :comment="comment" />
+                <div class="replyComment" v-for="reply in comment.commentReplys" :key="reply.id">
+                  <postComment :comment="reply" />
                 </div>
               </div>
             </div>
@@ -48,33 +48,49 @@ export default {
     postComment,
     sideBar,
   },
+  computed: {
+    selectedFeature() {
+      return this.$store.state.features.selectedFeature;
+    },
+    selectedFeatureComments() {
+      return this.$store.state.features.selectedFeatureComments;
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
+    await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
+    console.log(this.$store.state.features.selectedFeatureComments)
+  },
 };
 </script>
 
 <style>
-.goback-row{
-    margin-left: 5px;
-    margin-top: 5px;
-    display: flex;
-    color: #fff;
+.goback-row {
+  margin-left: 5px;
+  margin-top: 5px;
+  display: flex;
+  color: #fff;
 }
-.goback-arrow{
-    scale: 2;
+
+.goback-arrow {
+  scale: 2;
 }
-.goback-p{
-    margin-bottom: auto;
-    padding-left: 14px;
-    font-weight: bold;
+
+.goback-p {
+  margin-bottom: auto;
+  padding-left: 14px;
+  font-weight: bold;
 }
-.link-decoration{
-    text-decoration: none;
+
+.link-decoration {
+  text-decoration: none;
 }
 
 .Comments_Container {
-    flex: 1 1 0;
-    gap: 18px;
-    padding: 24px 0;
-    padding-top: 10px;
+  flex: 1 1 0;
+  gap: 18px;
+  padding: 24px 0;
+  padding-top: 10px;
 }
 
 .activityList {

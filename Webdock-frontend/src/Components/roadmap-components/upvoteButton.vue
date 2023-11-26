@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="UpvoteButton_Container"
-    :class="{ active: activated }"
-    @click="toggleUpvote"
-  >
+  <div class="UpvoteButton_Container" :class="{ active: activated }" @click="toggleUpvote">
     <img class="UpvoteButton_Image" src="../../Assets/icons/upvote.svg" />
     <div class="UpvoteButton_Upvote">{{ feature._count.featureUpvotes }}</div>
   </div>
@@ -16,20 +12,15 @@ export default {
       activated:
         this.$store.state.auth.user !== null
           ? this.feature.featureUpvotes.some(
-              (upvote) => upvote.userId === this.$store.state.auth.user.id
-            )
+            (upvote) => upvote.userId === this.$store.state.auth.user.id
+          )
           : false,
-      upvotesNumber: this.upvotes,
     };
   },
   props: {
-    upvotes: {
-      type: Number,
-      required: true,
-    },
     feature: {
       type: Object,
-      required: false,
+      required: true,
     },
   },
   methods: {
@@ -95,7 +86,6 @@ export default {
 }
 
 .active .UpvoteButton_Image {
-  filter: invert(22%) sepia(53%) saturate(5161%) hue-rotate(150deg)
-    brightness(93%) contrast(99%);
+  filter: invert(22%) sepia(53%) saturate(5161%) hue-rotate(150deg) brightness(93%) contrast(99%);
 }
 </style>
