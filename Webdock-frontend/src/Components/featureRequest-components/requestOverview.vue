@@ -1,17 +1,15 @@
 <template>
   <div class="feature-container">
-    <upvoteButton :feature="feature" />
-    <div class="feature-textall">
-      <div class="feature-heading">{{ feature.title }}</div>
-      <div class="feature-status" :style="{ '--color': color }">{{ feature.status.name }}</div>
-      <div class="feature-text">{{ feature.description }}</div>
+    <div class="featureHeadContainer">
+        <upvoteButton :feature="feature" />
+        <div class="featureHeadText">
+            <div class="feature-heading"><h1>{{ feature.title }}</h1></div>
+            <div class="feature-status" :style="{ '--color': color }"><p>{{ feature.status.name }}</p></div>
+            <div class="feature-text"><p>{{ feature.description }}</p></div>
+        </div>
     </div>
     <router-link style="text-decoration: none; color: inherit;" :to="`/feature-request/${feature.id}`">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#bbb" class="bi bi-chat-left"
-        viewBox="0 0 16 16">
-        <path
-          d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-      </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#bbb" class="bi bi-chat-left" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" /></svg>
     </router-link>
   </div>
 </template>
@@ -47,14 +45,22 @@ export default {
   margin: 16px;
 }
 
-.feature-textall {
+.featureHeadContainer{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }
 
-.feature-heading {
-  font-size: 2rem;
+.featureHeadContainer h1 {
+    font-size: 1.5rem;
 }
+
+.featureHeadContainer p{
+    font-size: 18px;
+    margin: 0px;
+}
+
 
 .feature-status {
   font-size: 1rem;
@@ -65,6 +71,6 @@ export default {
 .feature-text {
   font-size: 1rem;
   text-overflow: ellipsis;
-  width: 90%;
+  width: 100%;
 }
 </style>
