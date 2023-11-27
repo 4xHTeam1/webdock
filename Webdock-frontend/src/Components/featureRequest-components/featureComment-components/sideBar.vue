@@ -42,7 +42,6 @@
     width: 300px;
     padding: 20px;
     height: fit-content;
-    margin-right: 18px;
     border: 2px solid #d9d9d9;
 }
 
