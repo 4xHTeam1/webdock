@@ -1,12 +1,12 @@
 <template>
   <div class="feature-container">
-    <!-- <upvoteButton/> -->
+    <upvoteButton :feature="feature" />
     <div class="feature-textall">
       <div class="feature-heading">{{ feature.title }}</div>
       <div class="feature-status" :style="{ '--color': color }">{{ feature.status.name }}</div>
       <div class="feature-text">{{ feature.description }}</div>
     </div>
-    <router-link style="text-decoration: none; color: inherit;" to="/feature-request/feature-comments">
+    <router-link style="text-decoration: none; color: inherit;" :to="`/feature-request/${feature.id}`">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#bbb" class="bi bi-chat-left"
         viewBox="0 0 16 16">
         <path
@@ -17,13 +17,13 @@
 </template>
 
 <script>
-//  import upvoteButton from '../Components/upvoteButton.vue'
+import upvoteButton from '../roadmap-components/upvoteButton.vue'
 export default {
   components: {
-    // upvoteButton,
+    upvoteButton,
   },
   props: {
-    feature:{
+    feature: {
       type: Object,
       required: true,
 

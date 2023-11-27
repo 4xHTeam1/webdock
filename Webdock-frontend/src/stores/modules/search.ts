@@ -20,9 +20,10 @@ export default {
     },
   },
   actions: {
-    async searchAll({ commit }: any, query: string) {
+    async searchAll({ commit, state }: any, query: string) {
       let searchResults = await searchAll(query);
       commit("setSearchResults", searchResults);
+      console.log(state.searchResults)
     },
 
     async searchUserName({ commit }: any, query: string) {

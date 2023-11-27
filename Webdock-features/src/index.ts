@@ -71,10 +71,11 @@ const app = new Elysia()
       })
       .post("/", async ({ body }) => {
         BodyValidation(body, [
+          "id",
           "title",
           "description",
           "userId",
-          "categoryId",
+          "category",
         ]);
         return await createFeature(body as ICreateFeature);
       })
@@ -167,8 +168,8 @@ const app = new Elysia()
         ParamValidation(id);
         return await getFeatureUpvoteCount(Number(id));
       })
-  ).
-  get("/categories", async () =>{
+  )
+  .get("/categories", async () => {
     return await getCategories();
   })
   .listen(3000);

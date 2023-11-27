@@ -1,30 +1,30 @@
 <template>
   <div class="postContainer">
-    <!-- <upvoteButton/> -->
+    <upvoteButton :feature="feature" />
     <div class="postHeading">
-      <div class="postTitle"><h1>bandwidth usage</h1></div>
-      <div class="postStatus" :style="{ '--color': color }">{{ status }}</div>
+      <div class="postTitle">
+        <h1>{{ feature.title }}</h1>
+      </div>
+      <div class="postStatus" :style="{ '--color': color }">{{ feature.status.name }}</div>
       <div class="postUserInfo">
         <div class="usersAvatar">
-          <div class="noneAvatar" style="background-color: #9cb">R</div>
+          <div class="noneAvatar"
+            v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
+            style="background-color: #9cb">{{ feature.user.name[0] }}</div>
+          <img v-else :src="feature.user.avatarURL" alt="avatar" />
         </div>
-        <div class="userName">Robin Edwards</div>
+        <div class="userName">{{ feature.user.name }}</div>
       </div>
-      <div class="description"><p>Can we please have an reporting tab which shows monthly bandwidth usage for a server ...</p></div>
-      <div class="date"><p>19 oktober 2023</p></div>
+      <div class="description">
+        <p>{{ feature.description }}</p>
+      </div>
+      <div class="date">
+        <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
+      </div>
       <div class="commentContainer">
-        <textarea
-          class="inputArea"
-          placeholder="Leave a Comment"
-          @input="resize($event)"
-          @click="toggleControls"
-          ref="commentTextarea"
-        ></textarea>
-        <div
-          class="submitContainer"
-          v-if="showControls"
-          :class="{ showBorder: showControls }"
-        >
+        <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
+          ref="commentTextarea"></textarea>
+        <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
           <div class="submitBtn">Submit</div>
         </div>
       </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-//  import upvoteButton from '../Components/upvoteButton.vue'
+import upvoteButton from "../../roadmap-components/upvoteButton.vue";
 export default {
   data() {
     return {
@@ -59,9 +59,13 @@ export default {
     },
   },
   components: {
-    // upvoteButton,
+    upvoteButton,
   },
   props: {
+    feature: {
+      type: Object,
+      required: true,
+    },
     status: {
       type: String,
       required: true,
@@ -75,7 +79,6 @@ export default {
 </script>
 
 <style>
-
 .postUserInfo {
   display: flex;
   flex-direction: row;

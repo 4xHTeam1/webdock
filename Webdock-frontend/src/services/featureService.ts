@@ -1,4 +1,5 @@
 import { http } from "../http-common";
+import { webdockHttp } from "../webdockHttp";
 
 export const getAllFeatures = async () => {
   try {
@@ -20,8 +21,15 @@ export const getFeatureById = async (id: number) => {
 
 export const createFeature = async (feature: any) => {
   try {
-    const response = await http.post("/features", feature);
-    return response.data;
+    const webdockResponse = await webdockHttp.post("/feature_requests/new", {
+      userID: feature.userId,
+      title: feature.title,
+      description: feature.description,
+      category: feature.category.name,
+    });
+    console.log(webdockResponse.data);
+    /* const response = await http.post("/features", feature);
+    return response.data; */
   } catch (error) {
     console.error(error);
   }
@@ -48,7 +56,8 @@ export const deleteFeature = async (id: number) => {
 export const getAllComments = async (id: number) => {
   try {
     const response = await http.get(`/features/comment/${id}`);
-    return response.data;
+    console.log(response.data.comments);
+    return response.data.comments;
   } catch (error) {
     console.error(error);
   }

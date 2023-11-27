@@ -8,27 +8,26 @@ const prisma = new PrismaClient();
  * @returns A json object with users as an array of user objects and features as an array of feature requests that matches the query
  */
 export const searchAll = async (query: string) => {
-  const resultUser: User[] = await prisma.user.findMany({
-    where: {
-      OR: [
-        {
-          name: {
-            contains: query,
-          },
-        },
-        {
-          email: {
-            contains: query,
-          },
-        },
-      ],
-    },
-  });
-
   const resultFeatures: FeatureRequest[] = await prisma.featureRequest.findMany(
     {
       where: {
         OR: [
+          {
+            comments:{
+              some:{
+                comment:{
+                  contains:query
+                },
+                commentReplys:{
+                  some:{
+                    comment:{
+                      contains:query
+                    }
+                  }
+                }
+              }
+            }
+          },
           {
             user: {
               OR: [
@@ -68,7 +67,6 @@ export const searchAll = async (query: string) => {
   );
 
   const result = {
-    users: resultUser,
     features: resultFeatures,
   };
 

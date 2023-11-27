@@ -1,41 +1,40 @@
 <template>
-<div class="sidebarContainer">
-    <div class="sidebarSelection">
-        <div class="sidebarCatagory">
-            <div class="sidebarCataHeader">Catagory</div>
-            <div class="sidebarLabel">Dashboard features</div>
-        </div>
-        <div class="sidebarVoters">
-            <div class="sidebarVoteHeader">Voters</div>
-            <div class="postUpVoters">
-                <div class="upvoterInfo">
-                    <div class="userAvatar">
-                        <div class="noAvatar" style="background-color:rgb(154, 153, 204);">B</div>
+    <div class="sidebarContainer">
+        <div class="sidebarSelection">
+            <div class="sidebarCatagory">
+                <div class="sidebarCataHeader">Category</div>
+                <div class="sidebarLabel">{{ feature.category.name }}</div>
+            </div>
+            <div class="sidebarVoters">
+                <div class="sidebarVoteHeader">Voters</div>
+                <div class="postUpVoters">
+                    <div class="upvoterInfo" v-for="upvote in feature.featureUpvotes" :key="upvote">
+                        <div class="userAvatar">
+                            <div class="noAvatar"
+                                v-if="upvote.user.avatarURL === null || upvote.user.avatarURL === undefined || upvote.user.avatarURL === ''"
+                                style="background-color:rgb(154, 153, 204);">{{ upvote.user.name[0] }}</div>
+                            <img v-else :src="upvote.user.avatarURL" alt="avatar" />
+                        </div>
+                        <div class="userName">{{ upvote.user.name }}</div>
                     </div>
-                    <div class="userName">Benny blue</div>
-                </div>
-                <div class="upvoterInfo">
-                    <div class="userAvatar">
-                        <div class="noAvatar" style="background-color:rgb(154, 153, 204);">B</div>
-                    </div>
-                    <div class="userName">Benny blue</div>
-                </div>
-                <div class="upvoterInfo">
-                    <div class="userAvatar">
-                        <div class="noAvatar" style="background-color:rgb(154, 153, 204);">B</div>
-                    </div>
-                    <div class="userName">Benny blue</div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
-<script></script>
+<script>
+export default {
+    props: {
+        feature: {
+            type: Object,
+            required: true,
+        },
+    }
+}
+</script>
 
 <style>
-
 .sidebarContainer {
     background-color: #FCFCFC;
     border-radius: 10px;
@@ -45,15 +44,15 @@
     border: 2px solid #d9d9d9;
 }
 
-.sidebarCatagory{
+.sidebarCatagory {
     margin: 0 0 25px;
 }
 
-.sidebarCataHeader{
+.sidebarCataHeader {
     margin: 0 0 5px;
 }
 
-.sidebarVoteHeader{
+.sidebarVoteHeader {
     margin: 0 0 10px;
 }
 
@@ -86,10 +85,9 @@
     position: absolute;
 }
 
-.postUpVoters{
+.postUpVoters {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
 </style>
