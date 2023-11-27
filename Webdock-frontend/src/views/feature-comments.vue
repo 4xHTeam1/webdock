@@ -177,7 +177,6 @@ export default {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
 }
 
 .inputArea {
