@@ -6,7 +6,7 @@
           <div class="noneAvatar"
             v-if="comment.user.avatarURL === null || comment.user.avatarURL === '' || comment.user.avatarURL === undefined"
             style="background-color: #9cb">{{ comment.user.name[0] }}</div>
-          <img v-else :src="comment.user.avatarURL" alt="" />
+          <img v-else :src="comment.user.avatarURL" alt="avatar" />
         </div>
         <div class="userName">{{ comment.user.name }}</div>
       </div>

@@ -13,7 +13,7 @@
           <div class="noneAvatar"
             v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
             style="background-color: #9cb">{{ feature.user.name[0] }}</div>
-          <img class="imgUrlContainer" v-else :src="feature.user.avatarURL" alt="avatar" />
+          <img v-else :src="feature.user.avatarURL" alt="avatar" />
         </div>
         <div class="userName">{{ feature.user.name }}</div>
       </div>
@@ -94,7 +94,6 @@ export default {
   position: relative;
   z-index: 1;
   margin: 0 10px 0 0;
-  background-color: red;
 }
 
 .noneAvatar {
@@ -144,10 +143,6 @@ export default {
 
 .description{
   margin-top: 10px;
-}
-
-.imgUrlContainer{
-  display: none;
 }
 
 </style>
