@@ -93,7 +93,7 @@ export default {
   border-radius: 100px;
   position: relative;
   z-index: 1;
-  margin: 0 10px 0 0;
+  margin: 0 10px 0 10px;
 }
 
 .noneAvatar {
