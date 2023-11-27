@@ -6,7 +6,7 @@
           <div class="noneAvatar"
             v-if="comment.user.avatarURL === null || comment.user.avatarURL === '' || comment.user.avatarURL === undefined"
             style="background-color: #9cb">{{ comment.user.name[0] }}</div>
-          <img v-else :src="comment.user.avatarURL" alt="avatar" />
+          <img v-else :src="comment.user.avatarURL" alt="" />
         </div>
         <div class="userName">{{ comment.user.name }}</div>
       </div>
@@ -78,34 +78,14 @@ export default {
 </script>
 
 <style>
+
+.bottomContainer{
+  margin: 0px 0px 0px 34px;
+}
+
 .postUserInfo {
   display: flex;
   flex-direction: row;
-}
-
-.usersAvatar {
-  min-width: 26px;
-  width: 26px;
-  height: 26px;
-  border-radius: 100px;
-  position: relative;
-  z-index: 1;
-  margin: 0 10px 0 10px;
-}
-
-.noneAvatar {
-  font-size: 18px;
-  color: white;
-  width: 100%;
-  height: 100%;
-  background: grey;
-  border-radius: 100%;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  text-transform: uppercase;
-  position: absolute;
 }
 
 .commentReply {

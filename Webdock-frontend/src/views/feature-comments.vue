@@ -177,6 +177,7 @@ export default {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
+  margin-left: 10px;
 }
 
 .inputArea {
@@ -222,6 +223,12 @@ export default {
   padding: 8px;
   cursor: pointer;
   border-radius: 4px;
+}
+
+.postComments{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .replyComment {
