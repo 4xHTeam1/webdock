@@ -1,7 +1,7 @@
 <template>
   <div class="Search_Container">
     <img class="Search_Icon" src="../../Assets/icons/searchIcon.svg" alt="search" />
-    <input class="Search_Input" type="text" placeholder="Search" @keyup="searchInput($event)" />
+    <input class="Search_Input" type="text" placeholder="Search" :value="search" @keyup="searchInput($event)" />
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 let timeout: any = null;
 export default {
   data: () => ({
-    search: "",
+    search: new URLSearchParams(window.location.search).get("query") || "",
   }),
   methods: {
     searchInput: function (event: any) {
