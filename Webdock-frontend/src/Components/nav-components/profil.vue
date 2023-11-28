@@ -1,11 +1,14 @@
 <template>
     <div class="profil-container">
         <div class="icon-dot icon-profile" :class="{ toggle: OpenMenu }" @click="toggleMenu">
-            <p class="icon-p">{{ this.$store.state.auth.user.name[0] }}</p>
+            <p class="icon-p"
+                v-if="this.$store.state.auth.user.avatarURL === null || this.$store.state.auth.user.avatarURL === '' || this.$store.state.auth.user.avatarURL === undefined">
+                {{ this.$store.state.auth.user.name[0] }}</p>
+            <img v-else :src="this.$store.state.auth.user.avatarURL" alt="avatar" class="user_img" />
         </div>
         <div class="profil-dropdown" v-if="OpenMenu">
             <ul class="content-list">
-                <li class="content-li" @click="logout" ><img src="../../Assets/icons/logout.svg" />Logout</li>
+                <li class="content-li" @click="logout"><img src="../../Assets/icons/logout.svg" />Logout</li>
                 <li class="content-li"><img src="../../Assets/icons/webdock-dashboard.svg" />Dashboard</li>
             </ul>
         </div>
@@ -119,6 +122,13 @@ export default {
     height: 20px;
     width: 20px;
     margin: auto;
+}
+
+.user_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  object-fit: cover;
 }
 </style>
 

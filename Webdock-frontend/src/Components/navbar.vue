@@ -10,7 +10,7 @@
         <div class="icon-parent-container">
           <notification v-if="this.$store.state.auth.user !== null" />
           <profil v-if="this.$store.state.auth.user !== null" />
-          <login v-if="this.$store.state.auth.user === null" />
+          <login v-else />
         </div>
       </div>
       <div class="tap-parent-container">
