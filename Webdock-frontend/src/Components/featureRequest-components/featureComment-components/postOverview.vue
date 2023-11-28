@@ -1,11 +1,13 @@
 <template>
   <div class="postContainer">
-    <upvoteButton :feature="feature" />
     <div class="postHeading">
-      <div class="postTitle">
-        <h1>{{ feature.title }}</h1>
+      <div class="postHeadContainer">
+        <upvoteButton :feature="feature" />
+        <div class="postTitle">
+          <h1>{{ feature.title }}</h1>
+          <div class="postStatus" :style="{ '--color': color }">{{ feature.status.name }}</div>
+        </div>
       </div>
-      <div class="postStatus" :style="{ '--color': color }">{{ feature.status.name }}</div>
       <div class="postUserInfo">
         <div class="usersAvatar">
           <div class="noneAvatar"
@@ -115,4 +117,32 @@ export default {
   justify-content: end;
   padding: 12px;
 }
+
+.postHeading{
+  display: flex;
+  flex-direction: column;
+}
+
+.postHeadContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.postHeadContainer h1{
+  font-size: 24px;
+  margin: 0;
+}
+
+.postTitle{
+  display: flex;
+  flex-direction: column;
+}
+
+.description{
+  margin-top: 10px;
+}
+
 </style>
