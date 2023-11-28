@@ -78,7 +78,6 @@ export const getFeature = async ({ id }: IFeatureById) => {
  * @returns {Promise<FeatureRequest>} - A promise that resolves with the newly created feature request.
  */
 export const createFeature = async ({
-  id,
   title,
   description,
   userId,
@@ -89,7 +88,6 @@ export const createFeature = async ({
 
     const feature = await prisma.featureRequest.create({
       data: {
-        id: id,
         title,
         description,
         userId,
@@ -99,6 +97,12 @@ export const createFeature = async ({
       include: {
         category: true,
         status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
       },
     });
     return feature;
