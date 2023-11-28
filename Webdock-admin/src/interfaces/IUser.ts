@@ -1,9 +1,9 @@
 import { Role } from "@prisma/client";
 export interface IGetUser {
-  id: string;
+  id: number;
 }
 
 export interface IUpdateUserRole {
-  id: string;
+  id: number;
   role: Role;
 }

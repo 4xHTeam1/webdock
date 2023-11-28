@@ -14,17 +14,16 @@
         </div>
       </div>
       <div class="tap-parent-container">
-        <router-link to="/" :class="{ active: roadmapActive }" style="text-decoration: none;"
-          @click="setroadmapActive">
-          <taps buttontext="ROADMAP" imageSrc="src/Assets/icons/three-dots-vertical.svg" :isActive="roadmapActive" ></taps>
+        <router-link to="/" :class="{ active: roadmapActive }" style="text-decoration: none;" @click="setroadmapActive">
+          <taps buttontext="ROADMAP" imageSrc="src/Assets/icons/three-dots-vertical.svg" :isActive="roadmapActive"></taps>
         </router-link>
         <router-link to="/feature-request" :class="{ active: featureActive }" style="text-decoration: none;"
           @click="setfeatureActive">
           <taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/lightbulb.svg" :isActive="featureActive"></taps>
         </router-link>
-        <router-link to="/admin" :class="{ active: adminActive }" style="text-decoration: none;"
-          @click="setadminActive">
-          <taps buttontext="ADMIN DASHBOARD" imageSrc="./src/Assets/icons/webdock-logo.svg" :isActive="adminActive"></taps>
+        <router-link to="/admin" :class="{ active: adminActive }" style="text-decoration: none;" @click="setadminActive">
+          <taps buttontext="ADMIN DASHBOARD" imageSrc="./src/Assets/icons/webdock-logo.svg" :isAdmin="true"
+            :isActive="adminActive"></taps>
         </router-link>
       </div>
     </div>
@@ -64,11 +63,11 @@ export default {
 
     },
     setfeatureActive() {
-      this.roadmapActive = false;      
+      this.roadmapActive = false;
       this.featureActive = true;
       this.adminActive = false;
     },
-    setadminActive(){
+    setadminActive() {
       this.featureActive = false;
       this.roadmapActive = false;
       this.adminActive = true;
@@ -94,8 +93,8 @@ export default {
   background: white;
   color: #000;
   border-radius: 11px 11px 0 0;
-  
-  
+
+
 }
 
 .active:hover {
