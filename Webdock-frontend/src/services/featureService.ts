@@ -21,6 +21,7 @@ export const getFeatureById = async (id: number) => {
 
 export const createFeature = async (feature: any) => {
   try {
+    /*
     const webdockResponse = await webdockHttp.post("/feature_requests/new", {
       userID: feature.userId,
       title: feature.title,
@@ -28,8 +29,9 @@ export const createFeature = async (feature: any) => {
       category: feature.category.name,
     });
     console.log(webdockResponse.data);
-    /* const response = await http.post("/features", feature);
-    return response.data; */
+    */
+    const response = await http.post("/features", feature);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
