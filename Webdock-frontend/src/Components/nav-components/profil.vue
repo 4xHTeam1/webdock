@@ -2,9 +2,9 @@
     <div class="profil-container">
         <div class="icon-dot icon-profile" :class="{ toggle: OpenMenu }" @click="toggleMenu">
             <p class="icon-p"
-                v-if="this.$store.state.auth.user.avatarURL === null || this.$store.state.auth.user.avatarURL === '' || this.$store.state.auth.user.avatarURL === undefined">
-                {{ this.$store.state.auth.user.name[0] }}</p>
-            <img v-else :src="this.$store.state.auth.user.avatarURL" alt="avatar" class="user_img" />
+                v-if="auth.user.avatarURL === null || auth.user.avatarURL === '' || auth.user.avatarURL === undefined">
+                {{ auth.user.name[0] }}</p>
+            <img v-else :src="auth.user.avatarURL" alt="avatar" class="user_img" />
         </div>
         <div class="profil-dropdown" v-if="OpenMenu">
             <ul class="content-list">
@@ -125,10 +125,10 @@ export default {
 }
 
 .user_img {
-  width: 100%;
-  height: 100%;
-  border-radius: 100px;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    object-fit: cover;
 }
 </style>
 
