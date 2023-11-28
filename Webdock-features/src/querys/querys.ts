@@ -172,6 +172,14 @@ export const commentOnFeature = async ({
         userId,
         comment,
       },
+      include: {
+        user: true,
+        commentReplys: {
+          include: {
+            user: true,
+          },
+        },
+      },
     });
     const test = "asdasd";
     console.log(test);
@@ -194,6 +202,10 @@ export const replyToComment = async ({ id, userId, comment }: ICreateReply) => {
         commentId: id,
         userId,
         comment,
+      },
+      include: {
+        comment_relation: true,
+        user: true,
       },
     });
     return feature;

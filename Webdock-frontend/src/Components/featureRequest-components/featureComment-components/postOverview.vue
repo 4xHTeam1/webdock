@@ -24,10 +24,10 @@
         <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
       </div>
       <div class="commentContainer">
-        <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
-          ref="commentTextarea"></textarea>
+        <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" :value="this.comment"
+          @keyup="this.comment = $event.target.value" @click="toggleControls" ref="commentTextarea"></textarea>
         <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
-          <div class="submitBtn">Submit</div>
+          <div class="submitBtn" @click="handleSubmitComment()">Submit</div>
         </div>
       </div>
     </div>
@@ -40,6 +40,7 @@ export default {
   data() {
     return {
       showControls: false,
+      comment: ""
     };
   },
   methods: {
@@ -59,6 +60,14 @@ export default {
         }
       }
     },
+    handleSubmitComment() {
+      if (!this.$store.state.auth.user) { return }
+      this.$store.dispatch("features/createComment", {
+        id: this.feature.id,
+        userId: this.$store.state.auth.user.id,
+        comment: this.comment
+      });
+    }
   },
   components: {
     upvoteButton,
@@ -118,12 +127,12 @@ export default {
   padding: 12px;
 }
 
-.postHeading{
+.postHeading {
   display: flex;
   flex-direction: column;
 }
 
-.postHeadContainer{
+.postHeadContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -131,18 +140,17 @@ export default {
   margin-bottom: 20px;
 }
 
-.postHeadContainer h1{
+.postHeadContainer h1 {
   font-size: 24px;
   margin: 0;
 }
 
-.postTitle{
+.postTitle {
   display: flex;
   flex-direction: column;
 }
 
-.description{
+.description {
   margin-top: 10px;
 }
-
 </style>

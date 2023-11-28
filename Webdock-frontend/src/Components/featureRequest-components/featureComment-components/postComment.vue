@@ -30,9 +30,10 @@
       </div>
       <div class="commentReplyContainer" v-if="showCommentReplyContainer">
         <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
+          :value="this.commentMessage" @keyup="this.commentMessage = $event.target.value"
           ref="commentTextarea"></textarea>
         <div class="submitContainer" v-if="showControls" :class="{ 'showBorder': showControls }">
-          <div class="submitBtn">Submit</div>
+          <div class="submitBtn" @click="handleSubmitReply()">Submit</div>
         </div>
       </div>
     </div>
@@ -45,6 +46,7 @@ export default {
     return {
       showControls: false,
       showCommentReplyContainer: false,
+      commentMessage: `${this.comment.user.name} `,
     };
   },
   props: {
@@ -56,7 +58,7 @@ export default {
   methods: {
     resize(e) {
       e.target.style.height = "45px";
-      e.target.style.height = `${e.target.scrollHeight}px`;
+      e.target.style.height = `${e.target.scrollHeight} px`;
     },
     toggleControls() {
       this.showControls = true;
@@ -72,14 +74,24 @@ export default {
           this.showControls = false;
         }
       }
+    },
+    handleSubmitReply() {
+      if (!this.$store.state.auth.user) { return }
+      this.$store.dispatch("features/createReplyComment", {
+        id: this.comment.id,
+        userId: this.$store.state.auth.user.id,
+        comment: this.commentMessage
+      });
+      this.showCommentReplyContainer = false;
+      this.showControls = false;
+      this.commentMessage = "";
     }
   },
 };
 </script>
 
 <style>
-
-.bottomContainer{
+.bottomContainer {
   margin: 0px 0px 0px 34px;
 }
 
