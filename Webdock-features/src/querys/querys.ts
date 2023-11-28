@@ -81,22 +81,28 @@ export const createFeature = async ({
   title,
   description,
   userId,
-  categoryId,
+  category,
 }: ICreateFeature) => {
   try {
-    if (!categoryId) categoryId = 1;
+    if (!category.id) category.id = 1;
 
     const feature = await prisma.featureRequest.create({
       data: {
         title,
         description,
         userId,
-        categoryId,
+        categoryId: category.id,
         statusId: 1,
       },
       include: {
         category: true,
         status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
       },
     });
     return feature;

@@ -224,6 +224,12 @@ export default {
   border-radius: 4px;
 }
 
+.postComments{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .replyComment {
   padding: 12px 0 12px 43px;
 }

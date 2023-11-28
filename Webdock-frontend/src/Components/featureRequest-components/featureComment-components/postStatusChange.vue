@@ -1,5 +1,5 @@
 <template>
-    <div class="topContainer">
+    <div class="statusTopContainer">
         <div class="topLeft">
             <div class="update">
                 <div class="userLockupContainer">
@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div class="bottomContainer">
+    <div class="statusBottomContainer">
         <div class="commentBody">
             <div class="commentValue">
                 <div class="commentText">
@@ -129,7 +129,7 @@ export default {
 }
 
 
-.bottomContainer{
+.statusBottomContainer{
     display: flex;
     flex-direction: column;
     padding: 5px 32px 0 46px;

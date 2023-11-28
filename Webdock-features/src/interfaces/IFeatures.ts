@@ -2,7 +2,10 @@ export interface ICreateFeature {
   title: string;
   description: string;
   userId: number;
-  categoryId: number;
+  category: {
+    id: number;
+    name: string;
+  };
 }
 
 export interface IUpdateFeature {
