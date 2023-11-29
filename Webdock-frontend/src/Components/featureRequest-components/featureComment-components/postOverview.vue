@@ -24,12 +24,12 @@
         <div class="date">
           <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
         </div>
-      </div>
-      <div class="commentContainer">
-        <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
+        <div class="commentContainer">
+          <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
           ref="commentTextarea"></textarea>
-        <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
-          <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }">Submit</div>
+          <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
+            <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }">Submit</div>
+          </div>
         </div>
       </div>
     </div>
