@@ -32,7 +32,7 @@
         <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
           ref="commentTextarea"></textarea>
         <div class="submitContainer" v-if="showControls" :class="{ 'showBorder': showControls }">
-          <div class="submitBtn"><p>Submit</p></div>
+          <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }">Submit</div>
         </div>
       </div>
     </div>
@@ -45,6 +45,7 @@ export default {
     return {
       showControls: false,
       showCommentReplyContainer: false,
+      isSubmitBtnActive: false,
     };
   },
   props: {
@@ -57,6 +58,7 @@ export default {
     resize(e) {
       e.target.style.height = "45px";
       e.target.style.height = `${e.target.scrollHeight}px`;
+      this.isSubmitBtnActive = event.target.value.trim() !== '';
     },
     toggleControls() {
       this.showControls = true;
@@ -97,5 +99,12 @@ export default {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
+}
+
+.btnActive {
+  transition: ease-in 0.2s;
+  background-color: #018647;
+  opacity: 100%;
+  cursor: pointer;
 }
 </style>

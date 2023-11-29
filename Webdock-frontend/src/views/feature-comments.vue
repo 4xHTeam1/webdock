@@ -212,18 +212,6 @@ export default {
   border-radius: 6px;
 }
 
-.submitBtn {
-  width: 80px;
-  height: auto;
-  text-align: center;
-  font-size: 16px;
-  background-color: #018647;
-  color: white;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
 .postComments{
   display: flex;
   flex-direction: column;

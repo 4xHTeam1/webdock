@@ -27,7 +27,7 @@
         <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
           ref="commentTextarea"></textarea>
         <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
-          <div class="submitBtn">Submit</div>
+          <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }">Submit</div>
         </div>
       </div>
     </div>
@@ -40,12 +40,14 @@ export default {
   data() {
     return {
       showControls: false,
+      isSubmitBtnActive: false,
     };
   },
   methods: {
     resize(e) {
       e.target.style.height = "45px";
       e.target.style.height = `${e.target.scrollHeight}px`;
+      this.isSubmitBtnActive = event.target.value.trim() !== '';
     },
     toggleControls() {
       this.showControls = true;
@@ -118,12 +120,12 @@ export default {
   padding: 12px;
 }
 
-.postHeading{
+.postHeading {
   display: flex;
   flex-direction: column;
 }
 
-.postHeadContainer{
+.postHeadContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -131,18 +133,39 @@ export default {
   margin-bottom: 20px;
 }
 
-.postHeadContainer h1{
+.postHeadContainer h1 {
   font-size: 24px;
   margin: 0;
 }
 
-.postTitle{
+.postTitle {
   display: flex;
   flex-direction: column;
 }
 
-.description{
+.description {
   margin-top: 10px;
 }
+
+.submitBtn {
+  width: 80px;
+  height: auto;
+  text-align: center;
+  font-size: 16px;
+  opacity: 50%;
+  background-color: #018647;
+  color: white;
+  cursor: default;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.btnActive {
+  transition: ease-in 0.2s;
+  background-color: #018647;
+  opacity: 100%;
+  cursor: pointer;
+}
+
 
 </style>
