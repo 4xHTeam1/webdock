@@ -72,6 +72,7 @@ export default {
   padding: 40px;
   color: white;
   z-index: 1;
+  border-radius: 6px;
 }
 
 .name {

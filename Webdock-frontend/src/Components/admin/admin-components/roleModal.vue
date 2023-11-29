@@ -116,8 +116,8 @@ export default {
 .roleModalContainer {
   background-color: rgb(240, 240, 240);
   border-radius: 8px;
-  width: 100%; /* You can adjust the width as needed */
-  max-width: 400px; /* Set a maximum width if desired */
+  width: 100%; 
+  max-width: 400px; 
 }
 
 .modalHeader {
@@ -186,8 +186,10 @@ export default {
   background-color: #fcfcfc;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 10px 10px;
-  position: relative;
+  position: absolute;
+  bottom: 327px;
   width: 100%;
+  max-width: 240px;
 }
 
 .roleOptions {
