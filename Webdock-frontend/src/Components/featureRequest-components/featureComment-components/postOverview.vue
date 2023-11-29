@@ -36,12 +36,16 @@
 
 <script>
 import upvoteButton from "../../roadmap-components/upvoteButton.vue";
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       showControls: false,
       comment: ""
     };
+  },
+  computed: {
+    ...mapState(["auth"])
   },
   methods: {
     resize(e) {
@@ -61,10 +65,10 @@ export default {
       }
     },
     handleSubmitComment() {
-      if (!this.$store.state.auth.user) { return }
+      if (!this.auth.user) { return }
       this.$store.dispatch("features/createComment", {
         id: this.feature.id,
-        userId: this.$store.state.auth.user.id,
+        userId: this.auth.user.id,
         comment: this.comment
       });
     }
@@ -105,7 +109,7 @@ export default {
   margin: 0 10px 0 10px;
 }
 
-.user_img{
+.user_img {
   width: 100%;
   height: 100%;
   border-radius: 100px;

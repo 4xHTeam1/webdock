@@ -6,11 +6,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       isLoggedIn: false,
     }
+  },
+  computed:{
+    ...mapState(["auth"]),
   },
   props: {
     isAdmin: {
@@ -31,8 +35,8 @@ export default {
   methods: {
     checkIfShow() {
       if (this.isAdmin) {
-        if (this.$store.state.auth.user === null) return false
-        return this.$store.state.auth.user.role.toLowerCase() === 'admin'
+        if (this.auth.user === null) return false
+        return this.auth.user.role.toLowerCase() === 'admin'
       }
       return true
     }
