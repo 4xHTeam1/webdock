@@ -8,20 +8,22 @@
           <div class="postStatus" :style="{ '--color': color }">{{ feature.status.name }}</div>
         </div>
       </div>
-      <div class="postUserInfo">
-        <div class="usersAvatar">
-          <div class="noneAvatar"
-            v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
-            style="background-color: #9cb">{{ feature.user.name[0] }}</div>
-          <img v-else :src="feature.user.avatarURL" alt="avatar" />
+      <div class="postHeadBotContainer">
+        <div class="postUserInfo">
+          <div class="usersAvatar postUserAvatar">
+            <div class="noneAvatar"
+              v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
+              style="background-color: #9cb">{{ feature.user.name[0] }}</div>
+            <img v-else :src="feature.user.avatarURL" alt="avatar" />
+          </div>
+          <div class="userName">{{ feature.user.name }}</div>
         </div>
-        <div class="userName">{{ feature.user.name }}</div>
-      </div>
-      <div class="description">
-        <p>{{ feature.description }}</p>
-      </div>
-      <div class="date">
-        <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
+        <div class="description">
+          <p>{{ feature.description }}</p>
+        </div>
+        <div class="date">
+          <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
+        </div>
       </div>
       <div class="commentContainer">
         <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
@@ -98,6 +100,10 @@ export default {
   margin: 0 10px 0 10px;
 }
 
+.postUserAvatar{
+  margin: 0 10px 0 0;
+}
+
 .noneAvatar {
   font-size: 18px;
   color: white;
@@ -120,7 +126,7 @@ export default {
   padding: 12px;
 }
 
-.postHeading {
+.postHeading{
   display: flex;
   flex-direction: column;
 }
@@ -130,7 +136,11 @@ export default {
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.postHeadBotContainer{
+  margin-left: 50px;
 }
 
 .postHeadContainer h1 {

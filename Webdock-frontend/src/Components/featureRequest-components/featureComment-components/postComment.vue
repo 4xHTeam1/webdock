@@ -82,7 +82,7 @@ export default {
 <style>
 
 .bottomContainer{
-  margin: 0px 0px 0px 34px;
+  margin: 0px 0px 0px 44px;
 }
 
 .postUserInfo {
