@@ -9,12 +9,7 @@
 export default {
   data() {
     return {
-      activated:
-        this.$store.state.auth.user !== null
-          ? this.feature.featureUpvotes.some(
-            (upvote) => upvote.userId === this.$store.state.auth.user.id
-          )
-          : false,
+      activated: false
     };
   },
   props: {
@@ -22,6 +17,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  mounted: function () {
+    this.activated = this.$store.state.auth.user !== null ? this.feature.featureUpvotes.some(
+      (upvote) => upvote.userId === this.$store.state.auth.user.id
+    ) : false;
   },
   methods: {
     async toggleUpvote() {
