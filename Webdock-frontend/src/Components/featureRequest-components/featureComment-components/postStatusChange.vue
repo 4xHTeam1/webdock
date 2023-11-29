@@ -8,7 +8,7 @@
                             <div class="userAvatar">
                                 <div class="missingAvatar" style="background-color:#9cb;">A</div>
                                 <div class="webdockBadge">
-                                    <img src="../../../Assets/webdock-logo-facebook (1).png" alt="WebdockBadge">
+                                    <img src="../../../Assets/webdock-logo-farvet.png" alt="WebdockBadge">
                                 </div>
                             </div>
                         </div>

@@ -14,8 +14,13 @@
                                 v-if="upvote.user.avatarURL === null || upvote.user.avatarURL === undefined || upvote.user.avatarURL === ''"
                                 style="background-color:rgb(154, 153, 204);">{{ upvote.user.name[0] }}</div>
                             <img v-else :src="upvote.user.avatarURL" alt="avatar" class="user_img" />
+                            <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
+                                v-if="upvote.user.role.toLowerCase() === 'admin'" class="admin_logo">
                         </div>
-                        <div class="userName">{{ upvote.user.name }}</div>
+                        <div class="userName"
+                            :style="{ color: upvote.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">{{
+                                upvote.user.role.toLowerCase() === 'admin' ? upvote.user.name + ' from Webdock' :
+                                upvote.user.name }}</div>
                     </div>
                 </div>
             </div>

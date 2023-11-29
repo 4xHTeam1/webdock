@@ -7,8 +7,12 @@
             v-if="comment.user.avatarURL === null || comment.user.avatarURL === '' || comment.user.avatarURL === undefined"
             style="background-color: #9cb">{{ comment.user.name[0] }}</div>
           <img v-else :src="comment.user.avatarURL" alt="avatar" class="user_img" />
+          <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
+            v-if="comment.user.role.toLowerCase() === 'admin'" class="admin_logo">
         </div>
-        <div class="userName">{{ comment.user.name }}</div>
+        <div class="userName" :style="{ color: comment.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">{{
+          comment.user.role.toLowerCase() === 'admin' ? comment.user.name + ' from Webdock' :
+          comment.user.name }}</div>
       </div>
     </div>
     <div class="bottomContainer">
@@ -99,11 +103,23 @@ export default {
   margin: 0px 0px 0px 34px;
 }
 
+
 .user_img {
   width: 100%;
   height: 100%;
   border-radius: 100px;
   object-fit: cover;
+}
+
+.admin_logo {
+  left: 16px;
+  top: 15px;
+  border-radius: 100%;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  padding: px;
+  background-color: white;
 }
 
 .postUserInfo {

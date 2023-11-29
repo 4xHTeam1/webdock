@@ -14,8 +14,12 @@
             v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
             style="background-color: #9cb">{{ feature.user.name[0] }}</div>
           <img v-else :src="feature.user.avatarURL" alt="avatar" class="user_img" />
+          <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
+            v-if="feature.user.role.toLowerCase() === 'admin'" class="admin_logo">
         </div>
-        <div class="userName">{{ feature.user.name }}</div>
+        <div class="userName" :style="{ color: feature.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">{{
+          feature.user.role.toLowerCase() === 'admin' ? feature.user.name + ' from Webdock' :
+          feature.user.name }}</div>
       </div>
       <div class="description">
         <p>{{ feature.description }}</p>
