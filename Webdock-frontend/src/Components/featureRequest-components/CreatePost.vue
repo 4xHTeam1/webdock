@@ -1,5 +1,5 @@
 <template>
-    <div class="createbox">
+    <div class="createbox" v-if="isLoggedIn">
         <div class="titlebox d-flex justify-content-center">
             Create Post
         </div>
@@ -16,8 +16,8 @@
                 </div>
                 <div class="dropdown-content" v-if="isDropdownOpen">
                     <div class="catagory-options">
-                        <p @click="selectOption(category)" v-for="category in features.categories"
-                            :key="category.id">{{ category.name }}</p>
+                        <p @click="selectOption(category)" v-for="category in features.categories" :key="category.id">{{
+                            category.name }}</p>
                     </div>
                 </div>
             </div>
@@ -36,10 +36,19 @@
             </div>
         </div>
     </div>
+    <div class="createbox" v-else>
+        <p class="noLoginText">
+            Log in to your Webdock.io account to give feedback
+        </p>
+        <div class="noLoginButtonContainer">
+            <login :className="'loginButton'" />
+        </div>
+    </div>
 </template>
 
 <script>
 import { mapState } from "vuex"
+import login from "../shared/Login.vue"
 
 export default {
     computed: {
@@ -50,8 +59,12 @@ export default {
             isDropdownOpen: false,
             selectedOption: { id: 0, name: "select Option" },
             selectedTitle: "",
-            selectedDescription: ""
+            selectedDescription: "",
+            isLoggedIn: false
         };
+    },
+    components: {
+        login
     },
     methods: {
         createPost() {
@@ -87,6 +100,7 @@ export default {
         }
     },
     mounted() {
+        this.isLoggedIn = this.$store.state.auth.user !== null
         window.addEventListener('click', this.closeDropdown);
         this.$store.dispatch("features/getAllCategories");
     }
@@ -99,6 +113,43 @@ export default {
     width: 320px;
     max-height: 380px;
     border-radius: 10px;
+    height: fit-content;
+}
+
+.noLoginText {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    margin: 7px 0;
+    text-align: center;
+    color: #000;
+    padding: 12px;
+}
+
+.loginButton {
+    width: 100%;
+    height: 35px;
+    padding: 0 10px;
+    border-radius: 5px;
+    color: #fff;
+    background: #018647;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+    border: none;
+    min-width: 90px;
+}
+
+.loginButton:hover {
+    color: #fff;
+    background: #016134;
+}
+
+.noLoginButtonContainer {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    align-items: stretch;
+
 }
 
 .createbox-content {

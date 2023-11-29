@@ -1,11 +1,18 @@
 <template>
-  <button class="Login_Button" @click="login">Login</button>
+  <button :class="className" :style="style" @click="login">Log in</button>
 </template>
 
 <script>
 import { mapState } from "vuex";
 export default {
   name: "roadmapStatusContainer",
+  props: {
+    className: {
+      type: String,
+      required: false,
+      default: "Login_Button",
+    },
+  },
   computed: {
     ...mapState(["auth"]),
   },
