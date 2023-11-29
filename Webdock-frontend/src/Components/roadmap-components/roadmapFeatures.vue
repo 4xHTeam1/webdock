@@ -47,7 +47,7 @@ export default {
 }
 
 .Feature_InfoContainer {
-  flex: 0 1 auto;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 5px;
