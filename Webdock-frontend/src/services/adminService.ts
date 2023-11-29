@@ -31,7 +31,25 @@ export const GetUser = async (requesterId: string, userId: string) => {
       console.log(error);
     });
 
-  return user;
+  return user.data;
+};
+
+export const UpdateUserRole = async ({ requesterId, userId, role }: any) => {
+  let user = await http
+    .put(
+      "/admin/users/role/" + userId,
+      { role: role.toUpperCase() },
+      {
+        headers: {
+          requesterId: requesterId,
+        },
+      }
+    )
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return user.data;
 };
 
 export const GetUserRoles = async (requesterId: string, userId: string) => {

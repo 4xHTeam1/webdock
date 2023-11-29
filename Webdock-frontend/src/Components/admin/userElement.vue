@@ -16,7 +16,7 @@
     <div class="userEmail">{{ user.email }}</div>
     <div class="userRole">{{ user.role }}</div>
     <!-- userSettings, er den div som har tandhjulet og skal have en dropdown menu når man klikker på svg'en dropdown menuen skal laves via script og have styling -->
-    <div class="userSettings" @click="showRoleModal = true">
+    <div class="userSettings" @click="showModal()">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-gear-fill"
         viewBox="0 0 16 16">
         <path
@@ -28,6 +28,7 @@
 
 <script>
 import RoleModal from "./admin-components/roleModal.vue";
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -44,6 +45,16 @@ export default {
       required: true,
     },
   },
+  computed: {
+    ...mapState(["admin", "auth"]),
+  },
+  methods: {
+    async showModal() {
+      await this.$store.dispatch("admin/getUser", { requesterId: this.auth.user.id, userId: this.user.id });
+      console.log(this.admin.selectedUser.role)
+      this.showRoleModal = true;
+    },
+  }
 };
 </script>
 
