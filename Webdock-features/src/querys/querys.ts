@@ -334,7 +334,11 @@ export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
       include: {
         category: true,
         status: true,
-        featureUpvotes: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
         _count: {
           select: {
             featureUpvotes: true,
@@ -371,7 +375,11 @@ export const unvoteFeature = async ({ id, userId }: IDownvoteFeature) => {
       include: {
         category: true,
         status: true,
-        featureUpvotes: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
         _count: {
           select: {
             featureUpvotes: true,

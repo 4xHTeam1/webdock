@@ -69,6 +69,13 @@ export default {
        */
       if (typeof feature === "undefined") return;
 
+      if (
+        state.selectedFeature !== null &&
+        state.selectedFeature.id === feature.id
+      ) {
+        console.log("setting selected feature", feature);
+        state.selectedFeature = { ...state.selectedFeature, ...feature };
+      }
       /**
        * Gets the feature from the state and updates it with the new feature returned from the backend
        * if its not null.
