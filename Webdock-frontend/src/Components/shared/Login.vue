@@ -22,6 +22,8 @@ export default {
     if (token) {
       localStorage.setItem("token", token);
       this.$store.dispatch("auth/login", token);
+    } else if (localStorage.getItem("token") !== null) {
+      this.$store.dispatch("auth/login", localStorage.getItem("token"));
     }
   },
 };
