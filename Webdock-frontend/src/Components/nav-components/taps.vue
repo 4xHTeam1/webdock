@@ -13,7 +13,7 @@ export default {
       isLoggedIn: false,
     }
   },
-  computed:{
+  computed: {
     ...mapState(["auth"]),
   },
   props: {
@@ -30,7 +30,10 @@ export default {
       type: Boolean,
       required: true
     },
-    imageSrc: String
+    imageSrc: {
+      type: String,
+      required: true
+    }
   },
   methods: {
     checkIfShow() {
