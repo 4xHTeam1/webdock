@@ -8,8 +8,8 @@
           </div>
         </router-link>
         <div class="icon-parent-container">
-          <notification v-if="this.$store.state.auth.user !== null" />
-          <profil v-if="this.$store.state.auth.user !== null" />
+          <notification v-if="auth.user !== null" />
+          <profil v-if="auth.user !== null" />
           <login v-else />
         </div>
       </div>
