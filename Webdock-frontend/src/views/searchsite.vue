@@ -5,7 +5,7 @@
             <searchComponent />
         </div>
         <div class="results-container">
-            <request-overview v-for="feature in this.$store.state.search.searchResults.features" :key="feature.id"
+            <request-overview v-for="feature in this.search.searchResults.features" :key="feature.id"
                 :feature="feature" />
         </div>
     </div>
