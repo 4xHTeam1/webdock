@@ -43,12 +43,14 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin: 16px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 6px;
 }
 
 .featureHeadContainer{
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 16px;
   align-items: center;
 }
 

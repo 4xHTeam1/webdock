@@ -45,12 +45,10 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     flex: 1 1 0;
     overflow-y: auto;
     overflow-x: hidden;
     border-radius: 10px;
-
 }
 
 .search_TitleContainer {
