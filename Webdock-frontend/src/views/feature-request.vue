@@ -43,6 +43,8 @@ export default {
     gap: 20px;
     justify-content: center;
     align-items: center;
+    flex: 1;
+    max-width: 600px;
 }
 
 .overview-area {
@@ -53,5 +55,9 @@ export default {
     background: #FCFCFC;
     border-radius: 10px;
     max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 </style>
