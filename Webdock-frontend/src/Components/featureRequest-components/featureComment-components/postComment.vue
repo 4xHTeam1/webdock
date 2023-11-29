@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -48,6 +49,9 @@ export default {
       showCommentReplyContainer: false,
       commentMessage: `${this.comment.user.name} `,
     };
+  },
+  computed: {
+    ...mapState(["auth"])
   },
   props: {
     comment: {
@@ -76,10 +80,10 @@ export default {
       }
     },
     handleSubmitReply() {
-      if (!this.$store.state.auth.user) { return }
+      if (!this.auth.user) { return }
       this.$store.dispatch("features/createReplyComment", {
         id: this.comment.id,
-        userId: this.$store.state.auth.user.id,
+        userId: this.auth.user.id,
         comment: this.commentMessage
       });
       this.showCommentReplyContainer = false;
