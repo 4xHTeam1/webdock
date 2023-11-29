@@ -1,17 +1,9 @@
 <template>
   <div class="notificationItem_Container">
     <div class="notificationItem_ImageContainer">
-      <img
-        class="notificationItem_Image"
-        src="{{ notification.avatarURL }}"
-        alt="avatarURL"
-        v-if="!checkNotificationPic()"
-      />
-      <div
-        class="notificationItem_ImageDefault"
-        :style="{ backgroundColor: randomPastelColor, color: textColor }"
-        v-if="checkNotificationPic()"
-      >
+      <img class="notificationItem_Image" :src="notification.image" alt="avatarURL" v-if="!checkNotificationPic()" />
+      <div class="notificationItem_ImageDefault" :style="{ backgroundColor: randomPastelColor, color: textColor }"
+        v-if="checkNotificationPic()">
         {{ notification.name[0] }}
       </div>
     </div>
@@ -72,9 +64,9 @@ export default {
         this.notification === null ||
         this.notification === undefined ||
         this.notification === "" ||
-        this.notification.avatarURL === null ||
-        this.notification.avatarURL === undefined ||
-        this.notification.avatarURL === ""
+        this.notification.image === null ||
+        this.notification.image === undefined ||
+        this.notification.image === ""
       );
     },
   },
@@ -100,6 +92,7 @@ export default {
 
 .notificationItem_ImageContainer {
   width: 37px;
+  height: 37px;
   aspect-ratio: 1/1;
   border-radius: 50%;
   display: flex;
@@ -114,6 +107,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.notificationItem_Image {
+
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  object-fit: cover;
 }
 
 .notificationItem_InfoContainer {
