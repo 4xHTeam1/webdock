@@ -16,7 +16,7 @@
                 </div>
                 <div class="dropdown-content" v-if="isDropdownOpen">
                     <div class="catagory-options">
-                        <p @click="selectOption(category)" v-for="category in this.$store.state.features.categories"
+                        <p @click="selectOption(category)" v-for="category in features.categories"
                             :key="category.id">{{ category.name }}</p>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ import { mapState } from "vuex"
 
 export default {
     computed: {
-        ...mapState(["features"])
+        ...mapState(["features", "auth"]),
     },
     data() {
         return {
@@ -55,12 +55,12 @@ export default {
     },
     methods: {
         createPost() {
-            if (this.$store.state.auth.user === null) { return }
+            if (this.auth.user === null) { return }
             const data = {
                 title: this.selectedTitle,
                 description: this.selectedDescription,
                 category: this.selectedOption,
-                userId: this.$store.state.auth.user.id
+                userId: this.auth.user.id
             }
             this.$store.dispatch("features/createPost", data)
             this.selectedTitle = ""
@@ -208,4 +208,5 @@ export default {
 .submit-button:hover {
     background-color: #016134;
     transition: ease-in 0.2s;
-}</style>
+}
+</style>
