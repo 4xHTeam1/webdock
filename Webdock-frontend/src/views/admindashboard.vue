@@ -9,6 +9,7 @@
 
 <script>
 import adminMenu from '../Components/admin/adminMenu.vue'
+import { mapState } from 'vuex';
 export default {
     data() {
         return {
@@ -18,8 +19,11 @@ export default {
     components: {
         adminMenu,
     },
+    computed: {
+        ...mapState(["auth"]),
+    },
     mounted() {
-        if (this.$store.state.auth.user === null || this.$store.state.auth.user.role.toLowerCase() !== 'admin') {
+        if (this.auth.user === null || this.auth.user.role.toLowerCase() !== 'admin') {
             this.$router.push('/')
         } else {
             this.isLoggedIn = true
