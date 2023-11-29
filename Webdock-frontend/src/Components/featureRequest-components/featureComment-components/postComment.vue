@@ -25,14 +25,14 @@
             </svg>
           </div>
           <div class="commentTimestamp">{{ new Date(comment.dateSubmitted).toLocaleDateString("en-GB") }} </div>
-          <div class="commentReply" @click="toggleCommentReplyContainer">Reply</div>
+          <div class="commentReply" @click="toggleCommentReplyContainer"><p>Reply</p></div>
         </div>
       </div>
       <div class="commentReplyContainer" v-if="showCommentReplyContainer">
         <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
           ref="commentTextarea"></textarea>
         <div class="submitContainer" v-if="showControls" :class="{ 'showBorder': showControls }">
-          <div class="submitBtn">Submit</div>
+          <div class="submitBtn"><p>Submit</p></div>
         </div>
       </div>
     </div>

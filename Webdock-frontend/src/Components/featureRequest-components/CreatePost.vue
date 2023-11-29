@@ -1,11 +1,9 @@
 <template>
     <div class="createbox">
-        <div class="titlebox d-flex justify-content-center">
-            Create Post
-        </div>
+        <div class="titlebox d-flex justify-content-center"><h1>Create Post</h1></div>
         <div class="createbox-content">
             <div class="catagory">
-                <div class="catagory-title">Catagory</div>
+                <div class="catagory-title"><h1>Catagory</h1></div>
                 <div class="catagory-dropdown" @click="toggleDropdown">
                     {{ selectedOption.name }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -22,12 +20,12 @@
                 </div>
             </div>
             <div class="heading">
-                <div class="heading-title">Title</div>
+                <div class="heading-title"><h1>Title</h1></div>
                 <input class="heading-textfield" type="text" placeholder="Short, descriptive title" :value="selectedTitle"
                     @keyup="setTitle($event)">
             </div>
             <div class="details">
-                <div class="details-title">Details</div>
+                <div class="details-title"><h1>Details</h1></div>
                 <textarea class="details-textarea" placeholder="Any additional details…" :value="selectedDescription"
                     @keyup="setDecription($event)"></textarea>
             </div>
