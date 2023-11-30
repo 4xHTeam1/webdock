@@ -44,7 +44,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex: 1;
-    max-width: 600px;
+    width: 100%;
 }
 
 .overview-area {
@@ -54,11 +54,11 @@ export default {
     flex-wrap: nowrap;
     background: #FCFCFC;
     border-radius: 10px;
-    max-width: 600px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    padding: 15px;
 }
 </style>

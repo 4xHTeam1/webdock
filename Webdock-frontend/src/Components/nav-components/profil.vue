@@ -113,8 +113,8 @@ export default {
     font-size: 18px;
     font-weight: bold;
     display: flex;
-    align-items: space-around;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
 }
 
 
