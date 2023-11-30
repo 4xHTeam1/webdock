@@ -172,7 +172,6 @@ export default {
 }
 
 .postHeadContainer h1 {
-  font-size: 24px;
   margin: 0;
 }
 

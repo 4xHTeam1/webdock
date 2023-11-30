@@ -3,7 +3,7 @@
     <RouterLink to="/feature-request" class="link-decoration">
       <div class="goback-row">
         <img class="goback-arrow" src="../Assets/icons/arrow-left.svg">
-        <div class="goback-p"> GO BACK</div>
+        <div class="goback-p">GO BACK</div>
       </div>
     </RouterLink>
   </div>
