@@ -86,8 +86,8 @@ async function main() {
     where: { id: 1 },
     update: {},
     create: {
-      title: "Test Feature Request 1",
-      description: "Test Description",
+      title: "Support for security keys",
+      description: "It would be nice to have support for security keys like Yubikey for 2FA or as a passwordless sign-in option",
       userId: 1,
       statusId: 1,
       categoryId: 1,
@@ -98,8 +98,9 @@ async function main() {
     where: { id: 2 },
     update: {},
     create: {
-      title: "Test Feature Request 2",
-      description: "Test Description",
+      title: "Auto-deploy one or more ssh keys on provision",
+      description:
+        "Add the ability to mark one or more SSH Public Keys as 'auto deploy' which will then be automatically added to the default LAMP/LEMP stack admin user, or in the case of clean OS installs a default user is created with a random password set.",
       userId: 2,
       statusId: 2,
       categoryId: 2,
@@ -110,8 +111,9 @@ async function main() {
     where: { id: 3 },
     update: {},
     create: {
-      title: "Test Feature Request 3",
-      description: "Test Description",
+      title: "Add Features to customize server package",
+      description:
+        "Could you kindly add more features that enable users to fully customize their server package according to their specific needs and preferences like upgrade RAM, upgrading Disk, and more ? This would greatly enhance the user experience and provide greater flexibility in choosing the right server package for their needs.",
       userId: 3,
       statusId: 3,
       categoryId: 3,
