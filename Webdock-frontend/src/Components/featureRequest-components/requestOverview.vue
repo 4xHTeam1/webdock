@@ -1,9 +1,18 @@
 <template>
   <div class="feature-container">
     <upvoteButton :feature="feature" />
-    <router-link class="feature_wrapper"
-      style="text-decoration: none; color: inherit; display: flex; flex-direction: row; align-items: center; gap: 10px;"
-      :to="`/feature-request/${feature.id}`">
+    <router-link
+      class="feature_wrapper"
+      style="
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+      "
+      :to="`/feature-request/${feature.id}`"
+    >
       <div class="featureHeadContainer">
         <div class="featureHeadText">
           <div class="feature-heading">
@@ -18,17 +27,24 @@
         </div>
       </div>
 
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#bbb" class="bi bi-chat-left"
-        viewBox="0 0 16 16">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="#bbb"
+        class="bi bi-chat-left"
+        viewBox="0 0 16 16"
+      >
         <path
-          d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+          d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+        />
       </svg>
     </router-link>
   </div>
 </template>
 
 <script>
-import upvoteButton from '../roadmap-components/upvoteButton.vue'
+import upvoteButton from "../roadmap-components/upvoteButton.vue";
 export default {
   components: {
     upvoteButton,
@@ -37,7 +53,6 @@ export default {
     feature: {
       type: Object,
       required: true,
-
     },
     color: {
       type: String,
@@ -45,7 +60,6 @@ export default {
     },
   },
 };
-
 </script>
 
 <style>
@@ -64,7 +78,7 @@ export default {
   flex-direction: row;
   gap: 10px;
   align-items: center;
-  flex:1;
+  flex: 1;
 }
 
 .featureHeadContainer h1 {
@@ -76,7 +90,6 @@ export default {
   margin: 0px;
 }
 
-
 .feature-status {
   font-size: 1rem;
   color: var(--color);
@@ -87,6 +100,10 @@ export default {
   font-size: 1rem;
   text-overflow: ellipsis;
   width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
 }
 
 .feature_wrapper {
