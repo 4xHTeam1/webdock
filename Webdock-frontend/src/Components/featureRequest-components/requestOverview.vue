@@ -54,15 +54,10 @@ export default {
   align-items: center;
 }
 
-.featureHeadContainer h1 {
-    font-size: 1.5rem;
-}
-
 .featureHeadContainer p{
     font-size: 18px;
     margin: 0px;
 }
-
 
 .feature-status {
   font-size: 1rem;
