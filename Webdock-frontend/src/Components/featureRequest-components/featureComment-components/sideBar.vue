@@ -2,20 +2,25 @@
     <div class="sidebarContainer">
         <div class="sidebarSelection">
             <div class="sidebarCategory">
-                <div class="sidebarCateHeader">Category</div>
+                <div class="sidebarCateHeader"><h1>Category</h1></div>
                 <div class="sidebarLabel">{{ feature.category.name }}</div>
             </div>
             <div class="sidebarVoters">
-                <div class="sidebarVoteHeader">Voters</div>
+                <div class="sidebarVoteHeader"><h1>Voters</h1></div>
                 <div class="postUpVoters">
                     <div class="upvoterInfo" v-for="upvote in feature.featureUpvotes" :key="upvote">
                         <div class="upvoteUserAvatar">
                             <div class="noAvatar"
                                 v-if="upvote.user.avatarURL === null || upvote.user.avatarURL === undefined || upvote.user.avatarURL === ''"
                                 style="background-color:rgb(154, 153, 204);">{{ upvote.user.name[0] }}</div>
-                            <img v-else :src="upvote.user.avatarURL" alt="avatar" />
+                            <img v-else :src="upvote.user.avatarURL" alt="avatar" class="user_img" />
+                            <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
+                                v-if="upvote.user.role.toLowerCase() === 'admin'" class="admin_logo">
                         </div>
-                        <div class="userName">{{ upvote.user.name }}</div>
+                        <div class="userName"
+                            :style="{ color: upvote.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">{{
+                                upvote.user.role.toLowerCase() === 'admin' ? upvote.user.name + ' from Webdock' :
+                                upvote.user.name }}</div>
                     </div>
                 </div>
             </div>
@@ -93,5 +98,16 @@ export default {
     margin: 0 10px 0 0;
 }
 
+.postUpVoters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+.user_img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    object-fit: cover;
+}
 </style>

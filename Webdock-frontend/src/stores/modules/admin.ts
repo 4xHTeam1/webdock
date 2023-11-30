@@ -11,6 +11,7 @@ import {
   CreateStatus,
   UpdateStatus,
   DeleteStatus,
+  UpdateUserRole,
 } from "../../services/adminService";
 
 export default {
@@ -26,6 +27,13 @@ export default {
   mutations: {
     setUsers(state: any, users: any) {
       state.users = users;
+    },
+    replaceUpdatedUser(state: any, user: any) {
+      state.users.forEach((element: any) => {
+        if (element.id == user.id) {
+          element = user;
+        }
+      });
     },
     setCategories(state: any, categories: any) {
       state.categories = categories;
@@ -53,11 +61,23 @@ export default {
       { commit }: any,
       payload: { requesterId: string; userId: string }
     ) {
+      console.log(payload);
       let user = await GetUser(payload.requesterId, payload.userId);
-
+      console.log(user);
       commit("setSelectedUser", user);
     },
 
+    async updateRole(
+      { commit }: any,
+      payload: { requesterId: string; userId: string; role: string }
+    ) {
+      let user = await UpdateUserRole({
+        requesterId: payload.requesterId,
+        userId: payload.userId,
+        role: payload.role,
+      });
+      commit("replaceUpdatedUser", user);
+    },
     async getCategories({ commit }: any, requesterId: string) {
       let categories = await GetCategories(requesterId);
       commit("setCategories", categories);

@@ -1,28 +1,9 @@
 <template>
-  <div class="test_data">
-    {{
-      this.$store.state.socket.socket !== null ? `Connected` : "not connected"
-    }}
-    <button @click="createConnection">connect</button>
-    <button @click="this.$store.dispatch('socket/disconnect')">
-      disconnect
-    </button>
-    <button @click="this.$store.dispatch('socket/connectDummy', 1)">
-      Connect Dummy
-    </button>
-  </div>
   <div class="notification_container">
     <div class="notification_iconContainer" @click="toggleNotification">
-      <img
-        class="notification_icon"
-        src="../../Assets/icons/bell.svg"
-        alt="notification-icon"
-      />
-      <div
-        class="notification_iconAmount"
-        v-if="this.$store.state.socket.notifications.length > 0"
-      >
-        {{ this.$store.state.socket.notifications.length }}
+      <img class="notification_icon" src="../../Assets/icons/bell.svg" alt="notification-icon" />
+      <div class="notification_iconAmount" v-if="this.socket.notifications.length > 0">
+        {{ this.socket.notifications.length }}
       </div>
     </div>
     <div class="notification_InfoContainer" v-if="notificationOpen">
@@ -33,25 +14,15 @@
         </p>
       </div>
       <div class="notification_InfoContainer_Notifications">
-        <p
-          class="notification_InfoContainer_noNotifications"
-          v-if="this.$store.state.socket.notifications.length === 0"
-        >
+        <p class="notification_InfoContainer_noNotifications" v-if="this.socket.notifications.length === 0">
           No new notifications
         </p>
-        <notificationItem
-          v-for="notification in this.$store.state.socket.notifications"
-          :key="notification"
-          :notification="notification"
-        />
+        <notificationItem v-for="notification in this.socket.notifications" :key="notification"
+          :notification="notification" />
       </div>
     </div>
   </div>
-  <div
-    class="CloseContainer"
-    @click="toggleNotification"
-    v-if="notificationOpen"
-  />
+  <div class="CloseContainer" @click="toggleNotification" v-if="notificationOpen" />
 </template>
 
 <script>
@@ -64,13 +35,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(["socket"]),
+    ...mapState(["socket", "auth"]),
   },
   methods: {
     async createConnection() {
       await this.$store.dispatch(
         "socket/connect",
-        this.$store.state.auth.user.id
+        this.auth.user.id
       );
     },
     toggleNotification() {
@@ -86,16 +57,15 @@ export default {
   unmounted: function () {
     this.$store.dispatch("socket/disconnect");
   },
-  /*   created: async function () {
+  created: async function () {
     await this.createConnection();
-  }, */
+  },
 };
 </script>
 
 <style>
-
-.test_data{
-  display:flex;
+.test_data {
+  display: flex;
   flex-direction: row;
   gap: 10px;
 }
@@ -107,6 +77,7 @@ export default {
   align-items: center;
   position: relative;
 }
+
 .notification_iconContainer {
   justify-content: center;
   align-items: center;
@@ -132,6 +103,7 @@ export default {
   justify-content: center;
   align-items: center;
   font-size: 0.8rem;
+  border: 1px solid #fff;
 }
 
 .notification_InfoContainer {

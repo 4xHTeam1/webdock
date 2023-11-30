@@ -38,8 +38,8 @@ model Status {
 
 model FeatureRequest {
   id             Int             @id @default(autoincrement())
-  title          String
-  description    String
+  title          String          @db.VarChar(255)
+  description    String          @db.VarChar(500)
   dateSubmitted  DateTime        @default(now())
   user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         Int
@@ -53,7 +53,7 @@ model FeatureRequest {
 
 model Comment {
   id               Int            @id @default(autoincrement())
-  comment          String
+  comment          String         @db.VarChar(500)
   dateSubmitted    DateTime       @default(now())
   user             User           @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userId           Int
@@ -64,7 +64,7 @@ model Comment {
 
 model CommentReply {
   id               Int      @id @default(autoincrement())
-  comment          String
+  comment          String   @db.VarChar(500)
   dateSubmitted    DateTime @default(now())
   user             User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userId           Int

@@ -6,9 +6,13 @@
           <div class="noneAvatar"
             v-if="comment.user.avatarURL === null || comment.user.avatarURL === '' || comment.user.avatarURL === undefined"
             style="background-color: #9cb">{{ comment.user.name[0] }}</div>
-          <img v-else :src="comment.user.avatarURL" alt="avatar" />
+          <img v-else :src="comment.user.avatarURL" alt="avatar" class="user_img" />
+          <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
+            v-if="comment.user.role.toLowerCase() === 'admin'" class="admin_logo">
         </div>
-        <div class="userName">{{ comment.user.name }}</div>
+        <div class="userName" :style="{ color: comment.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">{{
+          comment.user.role.toLowerCase() === 'admin' ? comment.user.name + ' from Webdock' :
+          comment.user.name }}</div>
       </div>
     </div>
     <div class="bottomContainer">
@@ -30,9 +34,10 @@
       </div>
       <div class="commentReplyContainer" v-if="showCommentReplyContainer">
         <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
+          :value="this.commentMessage" @keyup="this.commentMessage = $event.target.value"
           ref="commentTextarea"></textarea>
         <div class="submitContainer" v-if="showControls" :class="{ 'showBorder': showControls }">
-          <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }">Submit</div>
+          <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }" @click="handleSubmitReply()">Submit</div>
         </div>
       </div>
     </div>
@@ -40,13 +45,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       showControls: false,
       showCommentReplyContainer: false,
       isSubmitBtnActive: false,
+      commentMessage: `${this.comment.user.name} `,
     };
+  },
+  computed: {
+    ...mapState(["auth"])
   },
   props: {
     comment: {
@@ -74,15 +84,44 @@ export default {
           this.showControls = false;
         }
       }
+    },
+    handleSubmitReply() {
+      if (!this.auth.user) { return }
+      this.$store.dispatch("features/createReplyComment", {
+        id: this.comment.id,
+        userId: this.auth.user.id,
+        comment: this.commentMessage
+      });
+      this.showCommentReplyContainer = false;
+      this.showControls = false;
+      this.commentMessage = "";
     }
   },
 };
 </script>
 
 <style>
-
 .bottomContainer{
   margin: 0px 0px 0px 44px;
+}
+
+
+.user_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.admin_logo {
+  left: 16px;
+  top: 15px;
+  border-radius: 100%;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  padding: px;
+  background-color: white;
 }
 
 .postUserInfo {
