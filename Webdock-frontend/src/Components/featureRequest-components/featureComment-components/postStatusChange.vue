@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <span class="updateText">
-                    <span>Marked this post as </span>
+                    <span><p>Marked this post as</p></span>
                     <div class="updateStatus" :style="{ '--color': color}">{{status}}</div>
                 </span>
             </div>
@@ -28,7 +28,7 @@
         <div class="commentBody">
             <div class="commentValue">
                 <div class="commentText">
-                    We will implement this for all core statistics (Bandwidth, CPU, RAM and Disk), hopefully with a CO2 impact indication/calculation attached to the utilization
+                    <p>We will implement this for all core statistics (Bandwidth, CPU, RAM and Disk), hopefully with a CO2 impact indication/calculation attached to the utilization</p>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                     </svg>
                 </div>
-                <div class="menuTimestamp">August 8, 2023 </div>
+                <div class="menuTimestamp"><p>August 8, 2023</p></div>
             </div>
         </div>
     </div>

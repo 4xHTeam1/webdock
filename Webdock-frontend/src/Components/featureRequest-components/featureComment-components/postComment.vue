@@ -29,7 +29,7 @@
             </svg>
           </div>
           <div class="commentTimestamp">{{ new Date(comment.dateSubmitted).toLocaleDateString("en-GB") }} </div>
-          <div class="commentReply" @click="toggleCommentReplyContainer">Reply</div>
+          <div class="commentReply" @click="toggleCommentReplyContainer"><p>Reply</p></div>
         </div>
       </div>
       <div class="commentReplyContainer" v-if="showCommentReplyContainer">
@@ -37,7 +37,7 @@
           :value="this.commentMessage" @keyup="this.commentMessage = $event.target.value"
           ref="commentTextarea"></textarea>
         <div class="submitContainer" v-if="showControls" :class="{ 'showBorder': showControls }">
-          <div class="submitBtn" @click="handleSubmitReply()">Submit</div>
+          <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }" @click="handleSubmitReply()">Submit</div>
         </div>
       </div>
     </div>
@@ -51,6 +51,7 @@ export default {
     return {
       showControls: false,
       showCommentReplyContainer: false,
+      isSubmitBtnActive: false,
       commentMessage: `${this.comment.user.name} `,
     };
   },
@@ -66,7 +67,8 @@ export default {
   methods: {
     resize(e) {
       e.target.style.height = "45px";
-      e.target.style.height = `${e.target.scrollHeight} px`;
+      e.target.style.height = `${e.target.scrollHeight}px`;
+      this.isSubmitBtnActive = event.target.value.trim() !== '';
     },
     toggleControls() {
       this.showControls = true;
@@ -99,8 +101,8 @@ export default {
 </script>
 
 <style>
-.bottomContainer {
-  margin: 0px 0px 0px 34px;
+.bottomContainer{
+  margin: 0px 0px 0px 44px;
 }
 
 
@@ -136,5 +138,12 @@ export default {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
+}
+
+.btnActive {
+  transition: ease-in 0.2s;
+  background-color: #018647;
+  opacity: 100%;
+  cursor: pointer;
 }
 </style>

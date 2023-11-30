@@ -1,11 +1,13 @@
 <template>
   <div class="createbox" v-if="isLoggedIn">
-    <div class="titlebox d-flex justify-content-center">Create Post</div>
+    <div class="titlebox d-flex justify-content-center"><h1>Catagory</h1></div>
     <div class="createbox-content">
       <div class="catagory">
-        <div class="catagory-title">Catagory</div>
+        <div class="catagory-title"><h1>Catagory</h1></div>
         <div class="catagory-dropdown" @click="toggleDropdown">
+          <p>
           {{ selectedOption.name }}
+          </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

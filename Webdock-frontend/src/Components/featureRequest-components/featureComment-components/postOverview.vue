@@ -8,30 +8,36 @@
           <div class="postStatus" :style="{ '--color': color }">{{ feature.status.name }}</div>
         </div>
       </div>
-      <div class="postUserInfo">
-        <div class="usersAvatar">
-          <div class="noneAvatar"
+      <div class="postHeadBotContainer">
+        <div class="postUserInfo">
+          <div class="usersAvatar postUserAvatar">
+            <div class="noneAvatar"
             v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
             style="background-color: #9cb">{{ feature.user.name[0] }}</div>
           <img v-else :src="feature.user.avatarURL" alt="avatar" class="user_img" />
           <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
             v-if="feature.user.role.toLowerCase() === 'admin'" class="admin_logo">
         </div>
-        <div class="userName" :style="{ color: feature.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">{{
+        <div class="userName" :style="{ color: feature.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">
+          <p>
+          {{
           feature.user.role.toLowerCase() === 'admin' ? feature.user.name + ' from Webdock' :
-          feature.user.name }}</div>
-      </div>
-      <div class="description">
-        <p>{{ feature.description }}</p>
-      </div>
-      <div class="date">
-        <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
-      </div>
-      <div class="commentContainer">
-        <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" :value="this.comment"
-          @keyup="this.comment = $event.target.value" @click="toggleControls" ref="commentTextarea"></textarea>
-        <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
-          <div class="submitBtn" @click="handleSubmitComment()">Submit</div>
+          feature.user.name }}
+          </p>
+          </div>
+        </div>
+        <div class="description">
+          <p>{{ feature.description }}</p>
+        </div>
+        <div class="date">
+          <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
+        </div>
+        <div class="commentContainer">
+          <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls" :value="this.comment"
+          @keyup="this.comment = $event.target.value" ref="commentTextarea"></textarea>
+          <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
+            <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }" @click="handleSubmitComment()">Submit</div>
+          </div>
         </div>
       </div>
     </div>
@@ -45,6 +51,7 @@ export default {
   data() {
     return {
       showControls: false,
+      isSubmitBtnActive: false,
       comment: ""
     };
   },
@@ -55,6 +62,7 @@ export default {
     resize(e) {
       e.target.style.height = "45px";
       e.target.style.height = `${e.target.scrollHeight}px`;
+      this.isSubmitBtnActive = event.target.value.trim() !== '';
     },
     toggleControls() {
       this.showControls = true;
@@ -113,6 +121,10 @@ export default {
   margin: 0 10px 0 10px;
 }
 
+.postUserAvatar{
+  margin: 0 10px 0 0;
+}
+
 .user_img {
   width: 100%;
   height: 100%;
@@ -152,7 +164,11 @@ export default {
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.postHeadBotContainer{
+  margin-left: 50px;
 }
 
 .postHeadContainer h1 {
@@ -168,4 +184,25 @@ export default {
 .description {
   margin-top: 10px;
 }
+
+.submitBtn {
+  width: 80px;
+  height: auto;
+  text-align: center;
+  font-size: 16px;
+  opacity: 50%;
+  background-color: #018647;
+  color: white;
+  cursor: default;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.btnActive {
+  transition: ease-in 0.2s;
+  background-color: #018647;
+  opacity: 100%;
+  cursor: pointer;
+}
+
 </style>
