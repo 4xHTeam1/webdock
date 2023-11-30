@@ -12,11 +12,19 @@
         <div class="postUserInfo">
           <div class="usersAvatar postUserAvatar">
             <div class="noneAvatar"
-              v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
-              style="background-color: #9cb">{{ feature.user.name[0] }}</div>
-            <img v-else :src="feature.user.avatarURL" alt="avatar" />
+            v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
+            style="background-color: #9cb">{{ feature.user.name[0] }}</div>
+          <img v-else :src="feature.user.avatarURL" alt="avatar" class="user_img" />
+          <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
+            v-if="feature.user.role.toLowerCase() === 'admin'" class="admin_logo">
+        </div>
+        <div class="userName" :style="{ color: feature.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">
+          <p>
+          {{
+          feature.user.role.toLowerCase() === 'admin' ? feature.user.name + ' from Webdock' :
+          feature.user.name }}
+          </p>
           </div>
-          <div class="userName">{{ feature.user.name }}</div>
         </div>
         <div class="description">
           <p>{{ feature.description }}</p>
@@ -25,10 +33,10 @@
           <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
         </div>
         <div class="commentContainer">
-          <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
-          ref="commentTextarea"></textarea>
+          <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls" :value="this.comment"
+          @keyup="this.comment = $event.target.value" ref="commentTextarea"></textarea>
           <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
-            <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }">Submit</div>
+            <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }" @click="handleSubmitComment()">Submit</div>
           </div>
         </div>
       </div>
@@ -38,12 +46,17 @@
 
 <script>
 import upvoteButton from "../../roadmap-components/upvoteButton.vue";
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       showControls: false,
       isSubmitBtnActive: false,
+      comment: ""
     };
+  },
+  computed: {
+    ...mapState(["auth"])
   },
   methods: {
     resize(e) {
@@ -63,6 +76,14 @@ export default {
         }
       }
     },
+    handleSubmitComment() {
+      if (!this.auth.user) { return }
+      this.$store.dispatch("features/createComment", {
+        id: this.feature.id,
+        userId: this.auth.user.id,
+        comment: this.comment
+      });
+    }
   },
   components: {
     upvoteButton,
@@ -104,6 +125,13 @@ export default {
   margin: 0 10px 0 0;
 }
 
+.user_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
 .noneAvatar {
   font-size: 18px;
   color: white;
@@ -126,7 +154,7 @@ export default {
   padding: 12px;
 }
 
-.postHeading{
+.postHeading {
   display: flex;
   flex-direction: column;
 }
@@ -176,6 +204,5 @@ export default {
   opacity: 100%;
   cursor: pointer;
 }
-
 
 </style>

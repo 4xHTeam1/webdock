@@ -1,13 +1,27 @@
 <template>
-  <div class="tap-container">
+  <div class="tap-container" :style="{ display: checkIfShow() ? '' : 'none' }">
     <img class="img-color" :src="imageSrc">
     <p id="roadmap-tap" :style="{ color: isActive ? '#000' : '#fff' }" class="fw-bolder noHover">{{ buttontext }}</p>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+  data() {
+    return {
+      isLoggedIn: false,
+    }
+  },
+  computed: {
+    ...mapState(["auth"]),
+  },
   props: {
+    isAdmin: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     buttontext: {
       type: String,
       required: true
@@ -16,8 +30,20 @@ export default {
       type: Boolean,
       required: true
     },
-    imageSrc: String
-  }
+    imageSrc: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    checkIfShow() {
+      if (this.isAdmin) {
+        if (this.auth.user === null) return false
+        return this.auth.user.role.toLowerCase() === 'admin'
+      }
+      return true
+    }
+  },
 }
 </script>
 
@@ -34,7 +60,7 @@ export default {
   border: 3px solid #fff;
   border-bottom: none;
   border-radius: 11px 11px 0 0;
-  
+
   margin-left: -2px;
 
   padding: 5px;

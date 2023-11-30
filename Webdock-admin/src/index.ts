@@ -36,8 +36,6 @@ import { GetUsers } from "../../Webdock-frontend/src/services/adminService";
 
 const app = new Elysia()
   .get("/status", async ({ request: { headers } }) => {
-
-
     return await GetAllUsers();
   })
   .onError(({ error }) => {
@@ -57,7 +55,9 @@ const app = new Elysia()
         await IsAdministrator({
           requesterId: headers.get("requesterId"),
         } as IAdmin);
-        return await GetUser({ id } as IGetUser);
+        ParamValidation(id);
+        const userId = Number(id);
+        return await GetUser({ id: userId } as IGetUser);
       })
 
       .put(
@@ -68,7 +68,8 @@ const app = new Elysia()
           } as IAdmin);
           BodyValidation(body, "role");
           const { role } = body as IUpdateUserRole;
-          return await UpdateUserRole({ id, role } as IUpdateUserRole);
+          const userId = Number(id);
+          return await UpdateUserRole({ id: userId, role } as IUpdateUserRole);
         }
       )
   )

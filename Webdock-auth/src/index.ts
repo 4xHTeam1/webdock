@@ -53,12 +53,12 @@ const app = new Elysia()
 
     /* Query the database for the exisiting user. As if it doesn't exist, we need to add it */
     /* For backwards compatibility with the already existing user base from Webdock */
-    const dbUser = await getUserByID(id);
+    let dbUser = await getUserByID(id);
     /* If the dbUser doesnt exist, add it. If it does exist, do nothing. */
-    dbUser ?? (await addUser(verification as User));
+    dbUser ?? (dbUser = await addUser(verification as User));
 
     /* Returns the user */
-    return verification;
+    return dbUser;
   })
   .listen(3000);
 

@@ -8,23 +8,21 @@
           </div>
         </router-link>
         <div class="icon-parent-container">
-          <notification v-if="this.$store.state.auth.user !== null" />
-          <profil v-if="this.$store.state.auth.user !== null" />
-          <login v-if="this.$store.state.auth.user === null" />
+          <notification v-if="auth.user !== null" />
+          <profil v-if="auth.user !== null" />
+          <login v-else />
         </div>
       </div>
       <div class="tap-parent-container">
-        <router-link to="/" :class="{ active: roadmapActive }" style="text-decoration: none;"
-          @click="setroadmapActive">
-          <taps buttontext="ROADMAP" imageSrc="src/Assets/icons/three-dots-vertical.svg" :isActive="roadmapActive" ></taps>
+        <router-link to="/" :class="{ active: roadmapActive }" style="text-decoration: none;" @click="setroadmapActive">
+          <taps buttontext="ROADMAP" :imageSrc="threeDots" :isActive="roadmapActive"></taps>
         </router-link>
         <router-link to="/feature-request" :class="{ active: featureActive }" style="text-decoration: none;"
           @click="setfeatureActive">
-          <taps buttontext="FEATURE REQUEST" imageSrc="src/Assets/icons/lightbulb.svg" :isActive="featureActive"></taps>
+          <taps buttontext="FEATURE REQUEST" :imageSrc="lightbulb" :isActive="featureActive"></taps>
         </router-link>
-        <router-link to="/admin" :class="{ active: adminActive }" style="text-decoration: none;"
-          @click="setadminActive">
-          <taps buttontext="ADMIN DASHBOARD" imageSrc="./src/Assets/icons/webdock-logo.svg" :isActive="adminActive"></taps>
+        <router-link to="/admin" :class="{ active: adminActive }" style="text-decoration: none;" @click="setadminActive">
+          <taps buttontext="ADMIN DASHBOARD" :imageSrc="webdocklogo" :isAdmin="true" :isActive="adminActive"></taps>
         </router-link>
       </div>
     </div>
@@ -39,6 +37,9 @@ import profil from '../Components/nav-components/profil.vue';
 import notification from '../Components/shared/notificationComponent.vue';
 import login from '../Components/shared/Login.vue'
 import { mapState } from 'vuex';
+import webdocklogo from '../Assets/icons/webdock-logo.svg';
+import threeDots from '../Assets/icons/three-dots-vertical.svg';
+import lightbulb from '../Assets/icons/lightbulb.svg';
 export default {
   computed: {
     ...mapState(["auth"]),
@@ -47,7 +48,10 @@ export default {
     return {
       roadmapActive: document.location.pathname === "/",
       featureActive: document.location.pathname === "/feature-request",
-      adminActive: document.location.pathname === "/admin"
+      adminActive: document.location.pathname === "/admin",
+      webdocklogo,
+      threeDots,
+      lightbulb
     }
   },
   components: {
@@ -64,11 +68,11 @@ export default {
 
     },
     setfeatureActive() {
-      this.roadmapActive = false;      
+      this.roadmapActive = false;
       this.featureActive = true;
       this.adminActive = false;
     },
-    setadminActive(){
+    setadminActive() {
       this.featureActive = false;
       this.roadmapActive = false;
       this.adminActive = true;
@@ -94,8 +98,8 @@ export default {
   background: white;
   color: #000;
   border-radius: 11px 11px 0 0;
-  
-  
+
+
 }
 
 .active:hover {

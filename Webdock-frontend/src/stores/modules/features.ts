@@ -6,6 +6,8 @@ import {
   upvoteFeature,
   getAllCategories,
   createFeature,
+  createComment,
+  replyToComment,
 } from "../../services/featureService";
 import { upvoteValidator } from "../validators/featureValidator";
 
@@ -38,6 +40,17 @@ export default {
     pushFeature(state: any, feature: any) {
       state.allFeatures.push(feature);
     },
+    pushComment(state: any, comment: any) {
+      state.selectedFeatureComments.push(comment);
+    },
+    pushReplyComment(state: any, comment: any) {
+      let commentToUpdate = state.selectedFeatureComments.find(
+        (c: any) => c.id === comment.comment_relation.id
+      );
+      if (commentToUpdate) {
+        commentToUpdate.commentReplys.push(comment);
+      }
+    },
     setCategories(state: any, categories: any) {
       state.categories = categories;
     },
@@ -51,32 +64,18 @@ export default {
       state.selectedFeatureComments = comments;
     },
     toggleUpvote(state: any, feature: any) {
-      //remove upvote from featureUpvote table for a given user and feature request
-      /*       const feature = state.allFeatures.find(
-        (feature: any) => feature.id === info.featureId
-      );
-      const upvote = feature.featureUpvotes.find(
-        (upvote: any) => upvote.userId === info.userId
-      );
-
-      if (upvote) {
-        feature.featureUpvotes = feature.featureUpvotes.filter(
-          (upvote: any) => upvote.userId !== info.userId
-        );
-        feature._count.featureUpvotes--;
-      } else {
-        feature.featureUpvotes.push({
-          featureRequestId: info.featureId,
-          userId: info.userId,
-        });
-        feature._count.featureUpvotes++;
-      } */
-
       /**
        * Checks if the feature returned by the backend is undefined. If so it returns out of the function.
        */
       if (typeof feature === "undefined") return;
 
+      if (
+        state.selectedFeature !== null &&
+        state.selectedFeature.id === feature.id
+      ) {
+        console.log("setting selected feature", feature);
+        state.selectedFeature = { ...state.selectedFeature, ...feature };
+      }
       /**
        * Gets the feature from the state and updates it with the new feature returned from the backend
        * if its not null.
@@ -98,6 +97,35 @@ export default {
       const post = await createFeature(feature);
       console.log(post);
       commit("pushFeature", post);
+    },
+    async createComment({ commit }: any, comment: any) {
+      const newComment = await createComment(comment);
+      console.log(newComment);
+      commit("pushComment", newComment);
+    },
+    async createReplyComment({ commit, state }: any, comment: any) {
+      let selectedFeatureComments = state.selectedFeatureComments.find(
+        (c: any) => c.id === comment.id
+      );
+
+      let reply = null;
+
+      if (selectedFeatureComments !== undefined) {
+        reply = await replyToComment(comment);
+      } else {
+        let selectedFeatureComments = state.selectedFeatureComments.find(
+          (c: any) => c.commentReplys.find((r: any) => r.id === comment.id)
+        );
+
+        reply = await replyToComment({
+          ...comment,
+          id: selectedFeatureComments.id,
+        });
+      }
+
+      console.log(reply);
+      if (reply === null) return;
+      commit("pushReplyComment", reply);
     },
     async getAllCategories({ commit }: any) {
       const categories = await getAllCategories();

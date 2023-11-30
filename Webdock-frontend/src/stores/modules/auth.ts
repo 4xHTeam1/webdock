@@ -19,7 +19,6 @@ export default {
     async logout(context: any) {
       localStorage.removeItem("token");
       context.commit("setUser", null);
-      window.location.href = window.location.pathname;
     },
   },
 };

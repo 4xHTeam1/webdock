@@ -8,10 +8,10 @@
     </RouterLink>
   </div>
   <div class="container d-flex justify-content-center Comments_Container">
-    <sideBar v-if="selectedFeature" :feature="this.$store.state.features.selectedFeature" />
+    <sideBar v-if="selectedFeature" :feature="this.features.selectedFeature" />
     <div class="Comments_OverviewContainer">
       <div class="overview-comments">
-        <postOverview v-if="selectedFeature" :feature="this.$store.state.features.selectedFeature" />
+        <postOverview v-if="selectedFeature" :feature="this.features.selectedFeature" />
         <div class="postActivity">
           <div class="publicHeader">
             <div class="headerLeft">Activity Feed</div>
@@ -21,7 +21,7 @@
               <div class="postStatusChange">
                 <postStatusChange status="planned" color="#1FA0FF" />
               </div>
-              <div class="postComments" v-for="comment in this.$store.state.features.selectedFeatureComments"
+              <div class="postComments" v-for="comment in this.features.selectedFeatureComments"
                 :key="comment.id">
                 <postComment :comment="comment" />
                 <div class="replyComment" v-for="reply in comment.commentReplys" :key="reply.id">
@@ -41,6 +41,7 @@ import sideBar from "../Components/featureRequest-components/featureComment-comp
 import postComment from "../Components/featureRequest-components/featureComment-components/postComment.vue";
 import postStatusChange from "../Components/featureRequest-components/featureComment-components/postStatusChange.vue";
 import postOverview from "../Components/featureRequest-components/featureComment-components/postOverview.vue";
+import { mapState } from 'vuex';
 export default {
   components: {
     postOverview,
@@ -49,17 +50,18 @@ export default {
     sideBar,
   },
   computed: {
+    ...mapState(["features"]),
     selectedFeature() {
-      return this.$store.state.features.selectedFeature;
+      return this.features.selectedFeature;
     },
     selectedFeatureComments() {
-      return this.$store.state.features.selectedFeatureComments;
+      return this.features.selectedFeatureComments;
     },
   },
   async mounted() {
     await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
     await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
-    console.log(this.$store.state.features.selectedFeatureComments)
+    console.log(this.features.selectedFeatureComments)
   },
 };
 </script>
@@ -212,7 +214,19 @@ export default {
   border-radius: 6px;
 }
 
-.postComments{
+.submitBtn {
+  width: 80px;
+  height: auto;
+  text-align: center;
+  font-size: 16px;
+  background-color: #018647;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.postComments {
   display: flex;
   flex-direction: column;
   width: 100%;
