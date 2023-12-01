@@ -9,7 +9,6 @@
         <div class="profil-dropdown" v-if="OpenMenu">
             <ul class="content-list">
                 <li class="content-li" @click="logout"><img src="../../Assets/icons/logout.svg" />Logout</li>
-                <li class="content-li"><img src="../../Assets/icons/webdock-dashboard.svg" />Dashboard</li>
             </ul>
         </div>
     </div>
@@ -89,6 +88,7 @@ export default {
     z-index: 100;
     user-select: none;
     text-wrap: nowrap;
+    border-radius: 4px;
 }
 
 
