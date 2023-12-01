@@ -1,61 +1,48 @@
 <template>
   <div class="createbox" v-if="isLoggedIn">
-    <div class="titlebox d-flex justify-content-center"><h1>Catagory</h1></div>
+    <div class="titlebox d-flex justify-content-center">
+      <h1>Category</h1>
+    </div>
     <div class="createbox-content">
       <div class="catagory">
-        <div class="catagory-title"><h1>Catagory</h1></div>
+        <div class="catagory-title">
+          <p>Category</p>
+        </div>
         <div class="catagory-dropdown" @click="toggleDropdown">
           <p>
-          {{ selectedOption.name }}
+            {{ selectedOption.name }}
           </p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-chevron-down"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
           </svg>
         </div>
         <div class="dropdown-content" v-if="isDropdownOpen">
           <div class="catagory-options">
-            <p
-              @click="selectOption(category)"
-              v-for="category in features.categories"
-              :key="category.id"
-            >
+            <p @click="selectOption(category)" v-for="category in features.categories" :key="category.id">
               {{ category.name }}
             </p>
           </div>
         </div>
       </div>
       <div class="heading">
-        <div class="heading-title">Title</div>
-        <input
-          class="heading-textfield"
-          type="text"
-          placeholder="Short, descriptive title"
-          :value="selectedTitle"
-          @keyup="setTitle($event)"
-        />
+        <div class="heading-title"><p>Title</p></div>
+        <input class="heading-textfield" type="text" placeholder="Short, descriptive title" :value="selectedTitle"
+          maxlength="255" @keyup="setTitle($event)" />
+        <div class="char-counter">
+          <p class="char-counter-text">{{ selectedTitle.length }}/255</p>
+        </div>
       </div>
       <div class="details">
-        <div class="details-title">Details</div>
-        <textarea
-          class="details-textarea"
-          placeholder="Any additional details…"
-          :value="selectedDescription"
-          @keyup="setDecription($event)"
-          maxlength="500"
-        ></textarea>
+        <div class="details-title"><p>Details</p></div>
+        <textarea class="details-textarea" placeholder="Any additional details…" :value="selectedDescription"
+          @keyup="setDecription($event)" maxlength="500"></textarea>
+        <div class="char-counter">
+          <p class="char-counter-text">{{ selectedDescription.length }}/500</p>
+        </div>
       </div>
       <div class="submit-area">
-        <div class="char-counter">{{ selectedDescription.length }}/500</div>
         <div class="submit-button" @click="createPost()">Create Post</div>
       </div>
     </div>
@@ -81,7 +68,7 @@ export default {
   data() {
     return {
       isDropdownOpen: false,
-      selectedOption: { id: 0, name: "select Option" },
+      selectedOption: { id: 0, name: "Select Option" },
       selectedTitle: "",
       selectedDescription: "",
       isLoggedIn: false,
@@ -137,7 +124,6 @@ export default {
 .createbox {
   background-color: #fcfcfc;
   width: 320px;
-  max-height: 380px;
   border-radius: 10px;
   height: fit-content;
 }
@@ -277,5 +263,14 @@ export default {
 .submit-button:hover {
   background-color: #016134;
   transition: ease-in 0.2s;
+}
+
+.char-counter{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.char-counter-text{
+  color: #888888
 }
 </style>

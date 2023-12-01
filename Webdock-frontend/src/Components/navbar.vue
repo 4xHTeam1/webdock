@@ -158,7 +158,8 @@ a:hover {
 }
 
 .img-size {
-  width: 20vw;
-  min-width: 200px;
+  max-height: 36px;
+  width: 100%;
+  height: auto;
 }
 </style>

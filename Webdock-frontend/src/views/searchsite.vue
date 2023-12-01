@@ -49,6 +49,7 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
     border-radius: 10px;
+    padding: 25px;
 }
 
 .search_TitleContainer {

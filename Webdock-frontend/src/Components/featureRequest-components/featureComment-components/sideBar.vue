@@ -2,11 +2,11 @@
     <div class="sidebarContainer">
         <div class="sidebarSelection">
             <div class="sidebarCategory">
-                <div class="sidebarCateHeader">Category</div>
+                <div class="sidebarCateHeader"><h1>Category</h1></div>
                 <div class="sidebarLabel">{{ feature.category.name }}</div>
             </div>
             <div class="sidebarVoters">
-                <div class="sidebarVoteHeader">Voters</div>
+                <div class="sidebarVoteHeader"><h1>Voters</h1></div>
                 <div class="postUpVoters">
                     <div class="upvoterInfo" v-for="upvote in feature.featureUpvotes" :key="upvote">
                         <div class="upvoteUserAvatar">
