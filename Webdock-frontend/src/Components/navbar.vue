@@ -14,15 +14,18 @@
         </div>
       </div>
       <div class="tap-parent-container">
-        <router-link to="/" :class="{ active: roadmapActive }" style="text-decoration: none;" @click="setroadmapActive">
-          <taps buttontext="ROADMAP" :imageSrc="threeDots" :isActive="roadmapActive"></taps>
+        <router-link to="/" :class="{ active: activeTab === 'roadmap' }" style="text-decoration: none;"
+          @click="setroadmapActive">
+          <taps buttontext="ROADMAP" :imageSrc="threeDots" :isActive="activeTab === 'roadmap'"></taps>
         </router-link>
-        <router-link to="/feature-request" :class="{ active: featureActive }" style="text-decoration: none;"
+        <router-link to="/feature-request" :class="{ active: activeTab === 'feature' }" style="text-decoration: none;"
           @click="setfeatureActive">
-          <taps buttontext="FEATURE REQUEST" :imageSrc="lightbulb" :isActive="featureActive"></taps>
+          <taps buttontext="FEATURE REQUEST" :imageSrc="lightbulb" :isActive="activeTab === 'feature'"></taps>
         </router-link>
-        <router-link to="/admin" :class="{ active: adminActive }" style="text-decoration: none;" @click="setadminActive">
-          <taps buttontext="ADMIN DASHBOARD" :imageSrc="webdocklogo" :isAdmin="true" :isActive="adminActive"></taps>
+        <router-link to="/admin" :class="{ active: activeTab === 'admin' }" style="text-decoration: none;"
+          @click="setadminActive">
+          <taps buttontext="ADMIN DASHBOARD" :imageSrc="webdocklogo" :isAdmin="true" :isActive="activeTab === 'admin'">
+          </taps>
         </router-link>
       </div>
     </div>
@@ -46,12 +49,10 @@ export default {
   },
   data() {
     return {
-      roadmapActive: document.location.pathname === "/",
-      featureActive: document.location.pathname === "/feature-request",
-      adminActive: document.location.pathname === "/admin",
       webdocklogo,
       threeDots,
-      lightbulb
+      lightbulb,
+      activeTab: '',
     }
   },
   components: {
@@ -60,23 +61,24 @@ export default {
     notification,
     login
   },
+  watch: {
+    '$route': function () {
+      this.setActiveTab();
+    },
+  },
   methods: {
-    setroadmapActive() {
-      this.roadmapActive = true;
-      this.featureActive = false;
-      this.adminActive = false;
-
+    setActiveTab() {
+      if (this.$route.path.startsWith('/feature-request')) {
+        this.activeTab = 'feature';
+      } else if (this.$route.path.startsWith('/admin')) {
+        this.activeTab = 'admin';
+      } else {
+        this.activeTab = 'roadmap';
+      }
     },
-    setfeatureActive() {
-      this.roadmapActive = false;
-      this.featureActive = true;
-      this.adminActive = false;
-    },
-    setadminActive() {
-      this.featureActive = false;
-      this.roadmapActive = false;
-      this.adminActive = true;
-    },
+  },
+  mounted: function () {
+    this.setActiveTab();
   },
   props: {
     buttontext: {
