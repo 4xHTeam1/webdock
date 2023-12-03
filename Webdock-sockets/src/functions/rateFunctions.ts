@@ -1,7 +1,7 @@
 import { ISocketUpvote } from "../../../shared/interfaces/ISockets";
 import { getFeatureById, getUserNameById } from "../querys/querys";
 
-export const upvote = async ({ postId, userId }: ISocketUpvote) => {
+export const upvote = async ({ postId, userId, ownerId }: ISocketUpvote) => {
   let featureRequest = await getFeatureById(postId);
   let user = await getUserNameById(userId);
   if (!featureRequest || !user) {
@@ -11,12 +11,11 @@ export const upvote = async ({ postId, userId }: ISocketUpvote) => {
   return {
     type: "notification",
     data: {
-      
-      image: user!.avatarURL,
-      name: user!.name,
+      ownerId,
+      featureRequestId: postId,
       type: "upvote",
-      message: `${user!.name} upvoted your feature request`,
-      data: featureRequest,
+      featureRequest,
+      user,
     },
   };
 };

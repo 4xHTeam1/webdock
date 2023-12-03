@@ -32,7 +32,6 @@ export default {
         return;
       }
       const socket = await createSocket(userId);
-      console.log(new URL(socket.url).searchParams.get("userId"));
       commit("setSocket", socket);
 
       state.socket.addEventListener("message", (event: any) => {
@@ -53,12 +52,10 @@ export default {
         return;
       }
       const socket = await createSocket(userId);
-      console.log(socket);
       commit("setSocket", socket);
 
       state.socket.addEventListener("message", (event: any) => {
         const { type, data } = JSON.parse(event.data);
-        console.log(data);
         if (type === "notification") {
           commit("addNotification", data);
         }
@@ -66,11 +63,10 @@ export default {
     },
     async sendUpvote({ state }: any, { postId, userId, ownerId }: any) {
       if (state.socket) {
-        console.log(postId, userId);
         state.socket.send(
           JSON.stringify({
             type: "upvote",
-            data: { postId, userId },
+            data: { postId, userId, ownerId },
           })
         );
       }
