@@ -50,6 +50,7 @@ export default {
     overflow-x: hidden;
     border-radius: 10px;
     padding: 25px;
+    gap: 15px;
 }
 
 .search_TitleContainer {
