@@ -8,9 +8,12 @@
       </div>
     </div>
     <div class="Testroadmap_RoadmapContainers">
-      <StatusContainer status="Planned" color="#1FA0FF" :featureList="getFeaturesForStatus('status 1')" />
-      <StatusContainer status="In Progress" color="#C17AFF" :featureList="getFeaturesForStatus('status 2')" />
-      <StatusContainer status="Complete" color="#6CD345" :featureList="getFeaturesForStatus('status 3')" />
+      <StatusContainer status="Planned" :color="getFeaturesForStatus('status 1')[0].status.color"
+        :featureList="getFeaturesForStatus('status 1')" />
+      <StatusContainer status="In Progress" :color="getFeaturesForStatus('status 2')[0].status.color"
+        :featureList="getFeaturesForStatus('status 2')" />
+      <StatusContainer status="Complete" :color="getFeaturesForStatus('status 3')[0].status.color"
+        :featureList="getFeaturesForStatus('status 3')" />
     </div>
   </div>
 </template>
@@ -36,6 +39,7 @@ export default {
   },
   created: async function () {
     await this.getAllFeatures();
+    console.log(this.getFeaturesForStatus("status 1")[0].status.color);
   },
   components: {
     StatusContainer,

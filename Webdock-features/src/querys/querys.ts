@@ -26,7 +26,13 @@ export const getFeatures = async () => {
     const features = await prisma.featureRequest.findMany({
       include: {
         category: true,
-        status: true,
+        status: {
+          select: {
+            id: true,
+            name: true,
+            color: true,
+          },
+        },
         featureUpvotes: true,
         _count: {
           select: {
@@ -52,7 +58,13 @@ export const getFeature = async ({ id }: IFeatureById) => {
       where: { id },
       include: {
         category: true,
-        status: true,
+        status: {
+          select: {
+            id: true,
+            name: true,
+            color: true,
+          },
+        },
         user: true,
         featureUpvotes: {
           include: {
