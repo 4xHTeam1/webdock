@@ -42,7 +42,7 @@ export default {
 
 <style>
 .Status_Container {
-  max-height: calc(100% - 100px);
+  flex: 1 0 0;
   height: 100%;
   max-width: 300px;
   min-width: 300px;
@@ -54,6 +54,7 @@ export default {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 19px rgba(0, 0, 0, 0.4);
+  
 }
 
 .Status_Header {
@@ -87,7 +88,7 @@ export default {
 }
 
 .Status_SlotContainer {
-  flex: 1;
+  flex: 1 0 0;
   padding: 0px 15px 10px 15px;
   display: flex;
   flex-direction: column;
