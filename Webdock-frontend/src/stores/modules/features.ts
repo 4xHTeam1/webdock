@@ -1,3 +1,4 @@
+import { sendUpvoteEmail } from "../../services/emailService";
 import {
   getAllFeatures,
   getFeatureById,
@@ -159,6 +160,13 @@ export default {
           userId: info.userId,
         });
         await commit("toggleUpvote", feature);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async sendUpvoteEmail({ commit }: any, info: any) {
+      try {
+        await sendUpvoteEmail(info);
       } catch (error) {
         console.log(error);
       }

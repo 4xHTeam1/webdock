@@ -3,10 +3,15 @@ import { cron } from "@elysiajs/cron";
 import axios from "axios";
 import fs from "fs";
 import path from "path";
+import ejs from "ejs";
+import { BodyValidation } from "../shared/services/BodyValidation";
+import { getEmailByUserId } from "./querys/querys";
+import cors from "@elysiajs/cors";
 
 const instance = axios.create({
   baseURL: "https://api.postmarkapp.com/",
   timeout: 1000,
+  decompress: false,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -42,6 +47,12 @@ const app = new Elysia()
       },
     })
   )
+  .use(cors())
+  .onError(({ error }) => {
+    return new Response(error.toString(), {
+      status: 401,
+    });
+  })
   .get("/debug/sendMail", async () => {
     const results = await instance.post("email", {
       From: "uclfeedback@webdock.io",
@@ -58,6 +69,43 @@ const app = new Elysia()
     console.log(results.data);
 
     return results.data;
+  })
+  .post("/sendUpvoteEmail", async ({ body }) => {
+    BodyValidation(body, ["ownerId", "subject", "user", "feature", "link"]);
+
+    const { ownerId, subject, user, feature, link } = body as {
+      ownerId: number;
+      subject: string;
+      user: object;
+      feature: object;
+      link: string; //TODO: Change to real url when made
+    };
+
+    const email = await getEmailByUserId(Number(ownerId));
+
+    let templatePath = path.join(
+      import.meta.dir,
+      "/Email/upvoteNotification.ejs"
+    );
+
+    // Read the template file
+    let template = fs.readFileSync(templatePath, "utf-8");
+    const htmlBody = ejs.render(template, { subject, user, feature, link });
+
+    const results = await instance.post("email", {
+      From: "uclfeedback@webdock.io",
+      To: email,
+      Subject: subject,
+      HtmlBody: htmlBody,
+      TrackOpens: true,
+      TrackLinks: "None",
+      MessageStream: "outbound",
+    });
+
+    console.log("Send Email");
+    console.log(results.data);
+
+    return { message: "Email sent" };
   })
   .get("/status", () => {
     return {
