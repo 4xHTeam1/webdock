@@ -19,7 +19,6 @@ export default {
     },
   },
   mounted: function () {
-    console.log(this.feature)
     this.activated = this.$store.state.auth.user !== null ? this.feature.featureUpvotes.some(
       (upvote) => upvote.userId === this.$store.state.auth.user.id
     ) : false;
@@ -32,11 +31,13 @@ export default {
             featureId: this.feature.id,
             userId: this.$store.state.auth.user.id,
           });
-          await this.$store.dispatch("socket/sendUpvote", {
-            postId: this.feature.id,
-            userId: this.$store.state.auth.user.id,
-            ownerId: this.feature.userId,
-          });
+          if (this.$store.state.auth.user.id !== this.feature.userId) {
+            await this.$store.dispatch("socket/sendUpvote", {
+              postId: this.feature.id,
+              userId: this.$store.state.auth.user.id,
+              ownerId: this.feature.userId,
+            });
+          }
         } else {
           await this.$store.dispatch("features/downvoteFeature", {
             featureId: this.feature.id,
