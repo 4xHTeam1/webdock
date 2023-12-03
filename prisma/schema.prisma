@@ -33,6 +33,7 @@ model Category {
 model Status {
   id              Int              @id @default(autoincrement())
   name            String
+  color           String           @default("#000000")
   featureRequests FeatureRequest[]
 }
 
