@@ -1,3 +1,9 @@
+import {
+  getAllNotifications,
+  postNotification,
+  removeAllNotifications,
+  removeNotification,
+} from "../../services/featureService";
 import { createSocket } from "../../services/socketService";
 
 export default {
@@ -12,6 +18,12 @@ export default {
     },
     addNotification(state: any, notification: any) {
       state.notifications.push(notification);
+    },
+    setNotifications(state: any, notifications: any) {
+      state.notifications = notifications;
+    },
+    removeNotification(state: any, id: number) {
+      state.notifications = state.notifications.filter((n: any) => n.id !== id);
     },
   },
   actions: {
@@ -52,7 +64,7 @@ export default {
         }
       });
     },
-    sendUpvote({ state }: any, { postId, userId }: any) {
+    async sendUpvote({ state }: any, { postId, userId, ownerId }: any) {
       if (state.socket) {
         console.log(postId, userId);
         state.socket.send(
@@ -62,16 +74,33 @@ export default {
           })
         );
       }
+      const notification = {
+        ownerId,
+        userId,
+        featureRequestId: postId,
+        type: "upvote",
+      };
+
+      await postNotification(notification);
     },
-    markAllAsRead({ state }: any) {
-      state.notifications = [];
-      /*  if (state.socket) {
-        state.socket.send(
-          JSON.stringify({
-            type: "markAllAsRead",
-          })
-        );
-      } */
+    async markAllAsRead({ state }: any, ownerId: number) {
+      try {
+        await removeAllNotifications(ownerId);
+        state.notifications = [];
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async GetNotifications({ commit }: any, userId: number) {
+      const notifications = await getAllNotifications(userId);
+      commit("setNotifications", notifications);
+    },
+    async PostNotification({ commit }: any, data: any) {
+      await postNotification(data);
+    },
+    async RemoveNotification({ commit }: any, id: number) {
+      await removeNotification(id);
+      commit("removeNotification", id);
     },
   },
   getters: {

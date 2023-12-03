@@ -1,24 +1,26 @@
 <template>
-  <div class="notificationItem_Container">
+  <routerLink :to="`/feature-request/${notification.featureRequestId}`" @click="removeNotification()"
+    class="notificationItem_Container">
     <div class="notificationItem_ImageContainer">
-      <img class="notificationItem_Image" :src="notification.image" alt="avatarURL" v-if="!checkNotificationPic()" />
+      <img class="notificationItem_Image" :src="notification.user.avatarURL" alt="avatarURL"
+        v-if="!checkNotificationPic()" />
       <div class="notificationItem_ImageDefault" :style="{ backgroundColor: randomPastelColor, color: textColor }"
         v-if="checkNotificationPic()">
-        {{ notification.name[0] }}
+        {{ notification.user.name[0] }}
       </div>
     </div>
     <div class="notificationItem_InfoContainer">
       <div class="notificationItem_Info">
-        <p class="notificationItem_User">{{ notification.name }}</p>
+        <p class="notificationItem_User">{{ notification.user.name }}</p>
         <p class="notificationItem_Type">{{ notification.type }}</p>
       </div>
       <div class="notificationItem_Feature">
         <p class="notificationItem_FeatureTitle">
-          {{ notification.data.title }}
+          {{ notification.featureRequest.title }}
         </p>
       </div>
     </div>
-  </div>
+  </routerLink>
 </template>
 
 <script>
@@ -64,10 +66,13 @@ export default {
         this.notification === null ||
         this.notification === undefined ||
         this.notification === "" ||
-        this.notification.image === null ||
-        this.notification.image === undefined ||
-        this.notification.image === ""
+        this.notification.user.avatarURL === null ||
+        this.notification.user.avatarURL === undefined ||
+        this.notification.user.avatarURL === ""
       );
+    },
+    removeNotification() {
+      this.$store.dispatch("socket/RemoveNotification", this.notification.id);
     },
   },
 };
@@ -88,6 +93,7 @@ export default {
   padding: 5px;
   justify-items: center;
   gap: 5px;
+  text-decoration: none;
 }
 
 .notificationItem_ImageContainer {
@@ -134,7 +140,6 @@ export default {
 
 .notificationItem_User {
   font-size: 0.8rem;
-  font-weight: lighter;
   color: #a7a7a7;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -144,7 +149,6 @@ export default {
 
 .notificationItem_Type {
   font-size: 0.8rem;
-  font-weight: lighter;
   color: #327e60;
   text-overflow: ellipsis;
   overflow: hidden;

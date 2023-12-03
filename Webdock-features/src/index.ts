@@ -10,6 +10,10 @@ import {
   getFeature,
   getFeatureUpvoteCount,
   getFeatures,
+  getNotifications,
+  postNotification,
+  removeAllNotifications,
+  removeNotification,
   replyToComment,
   unvoteFeature,
   updateComment,
@@ -26,6 +30,7 @@ import {
   IDownvoteFeature,
   IFeatureById,
   IGetAllComments,
+  INotification,
   IUpdateComment,
   IUpdateFeature,
   IUpdateReply,
@@ -161,6 +166,25 @@ const app = new Elysia()
       .get("/upvoteCount/:id", async ({ params: { id } }) => {
         ParamValidation(id);
         return await getFeatureUpvoteCount(Number(id));
+      })
+  )
+  .group("/notification", (app) =>
+    app
+      .get("/:id", async ({ params: { id } }) => {
+        ParamValidation(id);
+        return await getNotifications(Number(id));
+      })
+      .post("/", async ({ body }) => {
+        BodyValidation(body, ["ownerId", "userId", "featureRequestId", "type"]);
+        return await postNotification(body as INotification);
+      })
+      .delete("/:id", async ({ params: { id } }) => {
+        ParamValidation(id);
+        return await removeNotification(Number(id));
+      })
+      .delete("/markAllAsRead/:id", async ({ params: { id } }) => {
+        ParamValidation(id);
+        return await removeAllNotifications(Number(id));
       })
   )
   .get("/categories", async () => {

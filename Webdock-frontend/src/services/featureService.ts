@@ -150,3 +150,41 @@ export const getAllCategories = async () => {
     console.error(error);
   }
 };
+
+export const getAllNotifications = async (userId: number) => {
+  try {
+    const response = await http.get(`/features/notification/${userId}`);
+    return response.data.notifications;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postNotification = async (notification: any) => {
+  try {
+    const response = await http.post("/features/notification", notification);
+    return response.data.notification;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const removeNotification = async (id: number) => {
+  try {
+    const response = await http.delete(`/features/notification/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const removeAllNotifications = async (userId: number) => {
+  try {
+    const response = await http.delete(
+      `/features/notification/markAllAsRead/${userId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

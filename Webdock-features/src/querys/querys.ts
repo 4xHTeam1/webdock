@@ -9,6 +9,7 @@ import {
   IDownvoteFeature,
   IFeatureById,
   IGetAllComments,
+  INotification,
   IUpdateComment,
   IUpdateFeature,
   IUpdateReply,
@@ -421,6 +422,76 @@ export const getCategories = async () => {
     const categories = await prisma.category.findMany({});
     return {
       categories,
+    };
+  } catch (err) {}
+};
+
+export const getNotifications = async (ownerId: number) => {
+  try {
+    const notifications = await prisma.notification.findMany({
+      where: {
+        ownerId,
+      },
+      include: {
+        user: true,
+        owner: true,
+        featureRequest: true,
+      },
+    });
+    return {
+      notifications,
+    };
+  } catch (err) {}
+};
+
+export const postNotification = async ({
+  ownerId,
+  userId,
+  featureRequestId,
+  type,
+}: INotification) => {
+  try {
+    const notification = await prisma.notification.create({
+      data: {
+        ownerId,
+        userId,
+        featureRequestId,
+        type,
+      },
+      include: {
+        user: true,
+        owner: true,
+        featureRequest: true,
+      },
+    });
+    return {
+      notification,
+    };
+  } catch (err) {}
+};
+
+export const removeNotification = async (id: number) => {
+  try {
+    const notification = await prisma.notification.delete({
+      where: {
+        id,
+      },
+    });
+    return {
+      notification,
+    };
+  } catch (err) {}
+};
+
+export const removeAllNotifications = async (ownerId: number) => {
+  try {
+    const notifications = await prisma.notification.deleteMany({
+      where: {
+        ownerId,
+      },
+    });
+    return {
+      notifications,
     };
   } catch (err) {}
 };

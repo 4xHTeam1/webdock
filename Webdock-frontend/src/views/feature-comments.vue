@@ -62,6 +62,12 @@ export default {
       this.$router.go(-1);
     },
   },
+  watch: {
+    async $route() {
+      await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
+      await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
+    },
+  },
   async mounted() {
     await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
     await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
