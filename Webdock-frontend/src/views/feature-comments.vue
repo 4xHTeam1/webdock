@@ -71,7 +71,6 @@ export default {
   async mounted() {
     await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
     await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
-    console.log(this.features.selectedFeatureComments)
   },
 };
 </script>

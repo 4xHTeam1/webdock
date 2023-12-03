@@ -73,7 +73,6 @@ export default {
         state.selectedFeature !== null &&
         state.selectedFeature.id === feature.id
       ) {
-        console.log("setting selected feature", feature);
         state.selectedFeature = { ...state.selectedFeature, ...feature };
       }
       /**
@@ -95,12 +94,10 @@ export default {
   actions: {
     async createPost({ commit }: any, feature: any) {
       const post = await createFeature(feature);
-      console.log(post);
       commit("pushFeature", post);
     },
     async createComment({ commit }: any, comment: any) {
       const newComment = await createComment(comment);
-      console.log(newComment);
       commit("pushComment", newComment);
     },
     async createReplyComment({ commit, state }: any, comment: any) {
@@ -123,7 +120,6 @@ export default {
         });
       }
 
-      console.log(reply);
       if (reply === null) return;
       commit("pushReplyComment", reply);
     },
@@ -142,9 +138,6 @@ export default {
     async getCommentsForFeature({ commit }: any, id: number) {
       const comments = await getAllComments(id);
       commit("setSelectedFeatureComments", comments);
-    },
-    async test({ commit }: any, id: number) {
-      console.log(id);
     },
     async upvoteFeature({ commit }: any, info: any) {
       try {

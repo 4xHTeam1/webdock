@@ -2,7 +2,6 @@ import { Category, Status } from "@prisma/client";
 import { http } from "../http-common";
 
 export const GetUsers = async (requesterId: number) => {
-  console.log(requesterId);
   let users = await http
     .get("/admin/users", {
       headers: {
@@ -13,7 +12,6 @@ export const GetUsers = async (requesterId: number) => {
       console.log(error);
     })
     .then((response) => {
-      console.log(response.data.result);
       return response.data.result;
     });
 

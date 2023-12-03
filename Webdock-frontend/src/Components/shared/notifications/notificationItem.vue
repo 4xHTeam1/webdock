@@ -57,9 +57,6 @@ export default {
       return brightness > 127.5 ? "black" : "white";
     },
   },
-  mounted: async function () {
-    console.log(this.notification);
-  },
   methods: {
     checkNotificationPic() {
       return (

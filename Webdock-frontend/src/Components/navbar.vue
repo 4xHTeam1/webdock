@@ -14,16 +14,13 @@
         </div>
       </div>
       <div class="tap-parent-container">
-        <router-link to="/" :class="{ active: activeTab === 'roadmap' }" style="text-decoration: none;"
-          @click="setroadmapActive">
+        <router-link to="/" :class="{ active: activeTab === 'roadmap' }" style="text-decoration: none;">
           <taps buttontext="ROADMAP" :imageSrc="threeDots" :isActive="activeTab === 'roadmap'"></taps>
         </router-link>
-        <router-link to="/feature-request" :class="{ active: activeTab === 'feature' }" style="text-decoration: none;"
-          @click="setfeatureActive">
+        <router-link to="/feature-request" :class="{ active: activeTab === 'feature' }" style="text-decoration: none;">
           <taps buttontext="FEATURE REQUEST" :imageSrc="lightbulb" :isActive="activeTab === 'feature'"></taps>
         </router-link>
-        <router-link to="/admin" :class="{ active: activeTab === 'admin' }" style="text-decoration: none;"
-          @click="setadminActive">
+        <router-link to="/admin" :class="{ active: activeTab === 'admin' }" style="text-decoration: none;">
           <taps buttontext="ADMIN DASHBOARD" :imageSrc="webdocklogo" :isAdmin="true" :isActive="activeTab === 'admin'">
           </taps>
         </router-link>
@@ -85,11 +82,6 @@ export default {
       type: String,
       required: true
     },
-    imageSrc: String,
-    letterSrc: {
-      type: String,
-      required: true
-    }
   }
 };
 

@@ -34,7 +34,7 @@
         </div>
         <div class="commentContainer">
           <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
-            :value="this.comment" @keyup="this.comment = $event.target.value" ref="commentTextarea"></textarea>
+            :value="this.comment" @keyup="this.comment = $event.target.value"></textarea>
           <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
             <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }" @click="handleSubmitComment()">Submit</div>
           </div>

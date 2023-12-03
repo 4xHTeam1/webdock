@@ -60,7 +60,6 @@ export default {
   created: async function () {
     await this.createConnection();
     await this.$store.dispatch("socket/GetNotifications", this.auth.user.id);
-    console.log(this.socket.notifications.notifications)
   },
 };
 </script>

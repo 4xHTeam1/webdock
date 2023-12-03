@@ -57,8 +57,6 @@ export default {
       this.activated = !this.activated;
     },
     toggleSelectAll() {
-      console.log(this.allSelected);
-
       this.filters.forEach((filter) => {
         filter.activated = !this.allSelected;
       });

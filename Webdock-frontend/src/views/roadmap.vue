@@ -39,7 +39,6 @@ export default {
   },
   created: async function () {
     await this.getAllFeatures();
-    console.log(this.getFeaturesForStatus("status 1")[0].status.color);
   },
   components: {
     StatusContainer,
