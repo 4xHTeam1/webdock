@@ -46,7 +46,25 @@ const app = new Elysia()
 
         const searched = await searchAll(query);
         return searched;
-      })/** TODO: LAV SEARCH FUNCTIONALITET FOR USERS. DER SKAL KUNNE SØGE PÅ USERS NAVN OG EMAIL */
+      })
+      
+      /** TODO: LAV SEARCH FUNCTIONALITET FOR USERS. DER SKAL KUNNE SØGE PÅ USERS NAVN OG EMAIL */
+
+      /* ENDPOINT */
+      .group("/user", (app) =>
+        app.get("/name", async ({ query: { query } }) => {
+          SearchValidation(query);
+          const result = await searchUserByName(query);
+          return result;
+        })
+        .get("/email", async ({ query: { query } }) => {
+          SearchValidation(query);
+          const result = await searchUserByEmail(query);
+          return result;
+        })
+      )
+
+
       .group("/feature", (app) =>
         app
           .get("/user/name", async ({ query: { query } }) => {
