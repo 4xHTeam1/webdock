@@ -32,7 +32,6 @@ export default {
             this.OpenMenu = !this.OpenMenu;
         },
         logout() {
-            console.log("logout")
             this.$store.dispatch("auth/logout");
         }
     }

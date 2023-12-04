@@ -13,15 +13,17 @@ datasource db {
 }
 
 model User {
-  id              Int              @id @default(autoincrement())
-  avatarURL       String?
-  email           String
-  name            String
-  featureRequests FeatureRequest[]
-  comments        Comment[]
-  commentReplys   CommentReply[]
-  featureUpvotes  FeatureUpvote[]
-  role            Role             @default(USER)
+  id                 Int              @id @default(autoincrement())
+  avatarURL          String?
+  email              String
+  name               String
+  featureRequests    FeatureRequest[]
+  comments           Comment[]
+  commentReplys      CommentReply[]
+  featureUpvotes     FeatureUpvote[]
+  role               Role             @default(USER)
+  ownerNotifications Notification[]   @relation("Owner")
+  userNotifications  Notification[]   @relation("User")
 }
 
 model Category {
@@ -50,6 +52,7 @@ model FeatureRequest {
   statusId       Int             @default(1)
   comments       Comment[]
   featureUpvotes FeatureUpvote[]
+  Notification   Notification[]
 }
 
 model Comment {
@@ -80,6 +83,17 @@ model FeatureUpvote {
   featureRequestId Int
 
   @@id([userId, featureRequestId])
+}
+
+model Notification {
+  id               Int            @id @default(autoincrement())
+  owner            User           @relation("Owner", fields: [ownerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  ownerId          Int
+  user             User           @relation("User", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId           Int
+  featureRequest   FeatureRequest @relation(fields: [featureRequestId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  featureRequestId Int
+  type             String
 }
 
 enum Role {

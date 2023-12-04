@@ -43,17 +43,18 @@ const app = new Elysia()
     },
 
     async message(ws, message: any) {
+      console.log(message);
       const { userId } = ws.data.query || {};
       if (!userId) {
         return;
       }
       switch (message.type) {
         case "upvote":
-          const { postId, userId } = message.data;
+          const { postId, userId, ownerId } = message.data;
           const postOwner = await getFeatureOwner(postId);
-          const ownerSocket = activeConnections[Number(postOwner!.userId)];
+          const ownerSocket = activeConnections[Number(ownerId)];
           if (ownerSocket) {
-            let data = await upvote({ postId, userId });
+            let data = await upvote({ postId, userId, ownerId });
             console.log(data);
             ownerSocket.send(JSON.stringify(data));
           }

@@ -3,6 +3,7 @@ import { ESocketTypes } from "./ESockets";
 export interface ISocketUpvote {
   postId: number;
   userId: number;
+  ownerId: number;
 }
 
 export interface ISocketComment {

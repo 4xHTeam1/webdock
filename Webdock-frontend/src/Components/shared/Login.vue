@@ -1,5 +1,5 @@
 <template>
-  <button :class="className" :style="style" @click="login">Log in</button>
+  <button :class="className" @click="login">Log in</button>
 </template>
 
 <script>

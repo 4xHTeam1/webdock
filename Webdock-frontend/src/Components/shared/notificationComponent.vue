@@ -48,7 +48,7 @@ export default {
       this.notificationOpen = !this.notificationOpen;
     },
     markAllAsRead() {
-      this.$store.dispatch("socket/markAllAsRead");
+      this.$store.dispatch("socket/markAllAsRead", this.auth.user.id);
     },
   },
   components: {
@@ -59,6 +59,7 @@ export default {
   },
   created: async function () {
     await this.createConnection();
+    await this.$store.dispatch("socket/GetNotifications", this.auth.user.id);
   },
 };
 </script>

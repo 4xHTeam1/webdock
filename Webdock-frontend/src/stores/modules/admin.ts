@@ -61,9 +61,7 @@ export default {
       { commit }: any,
       payload: { requesterId: string; userId: string }
     ) {
-      console.log(payload);
       let user = await GetUser(payload.requesterId, payload.userId);
-      console.log(user);
       commit("setSelectedUser", user);
     },
 

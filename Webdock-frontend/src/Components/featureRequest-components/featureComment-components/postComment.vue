@@ -29,13 +29,14 @@
             </svg>
           </div>
           <div class="commentTimestamp">{{ new Date(comment.dateSubmitted).toLocaleDateString("en-GB") }} </div>
-          <div class="commentReply" @click="toggleCommentReplyContainer"><p>Reply</p></div>
+          <div class="commentReply" @click="toggleCommentReplyContainer">
+            <p>Reply</p>
+          </div>
         </div>
       </div>
       <div class="commentReplyContainer" v-if="showCommentReplyContainer">
         <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
-          :value="this.commentMessage" @keyup="this.commentMessage = $event.target.value"
-          ref="commentTextarea"></textarea>
+          :value="this.commentMessage" @keyup="this.commentMessage = $event.target.value"></textarea>
         <div class="submitContainer" v-if="showControls" :class="{ 'showBorder': showControls }">
           <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }" @click="handleSubmitReply()">Submit</div>
         </div>
@@ -101,7 +102,7 @@ export default {
 </script>
 
 <style>
-.bottomContainer{
+.bottomContainer {
   margin: 0px 0px 0px 44px;
 }
 
