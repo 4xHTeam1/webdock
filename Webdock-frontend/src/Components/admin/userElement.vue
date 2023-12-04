@@ -1,9 +1,7 @@
 <template>
   <RoleModal v-if="showRoleModal" @close="showRoleModal = false" />
-  <!-- userOverviewContainer er den div som indeholder de elementer som skal have data fra users -->
   <div class="userOverviewContainer">
     <div class="user_ID">{{ user.id }}</div>
-    <!-- userInfoContainer indeholder users firstname og lastname samtidigt med indeholder avatarURL som skal hentes fra databasen -->
     <div class="userInfoContainer">
       <div class="usersAvatar">
         <div class="noneAvatar" style="background-color: #9cb" v-if="user.avatarURL === null || user.avatarURL === ''">
@@ -15,7 +13,6 @@
     </div>
     <div class="userEmail">{{ user.email }}</div>
     <div class="userRole">{{ user.role }}</div>
-    <!-- userSettings, er den div som har tandhjulet og skal have en dropdown menu når man klikker på svg'en dropdown menuen skal laves via script og have styling -->
     <div class="userSettings" @click="showModal()">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-gear-fill"
         viewBox="0 0 16 16">

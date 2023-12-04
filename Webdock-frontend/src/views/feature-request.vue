@@ -15,6 +15,7 @@ import navbar from '../Components/navbar.vue'
 import CreatePost from '../Components/featureRequest-components/CreatePost.vue'
 import requestOverview from '../Components/featureRequest-components/requestOverview.vue'
 import { mapState } from 'vuex';
+
 export default {
     components: {
         CreatePost,
