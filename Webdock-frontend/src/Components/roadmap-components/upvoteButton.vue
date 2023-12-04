@@ -35,8 +35,16 @@ export default {
             await this.$store.dispatch("socket/sendUpvote", {
               postId: this.feature.id,
               userId: this.$store.state.auth.user.id,
+              ownerId: this.feature.userId,
             });
           }
+          this.$store.dispatch("features/sendUpvoteEmail", {
+            ownerId: this.feature.userId,
+            subject: "Your feature has been upvoted!",
+            user: this.$store.state.auth.user,
+            feature: this.feature,
+            link: "http://localhost:5173/feature-request/" + this.feature.id,
+          })
         } else {
           await this.$store.dispatch("features/downvoteFeature", {
             featureId: this.feature.id,

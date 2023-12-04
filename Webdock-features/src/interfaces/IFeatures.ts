@@ -67,3 +67,10 @@ export interface IDownvoteFeature {
   id: number;
   userId: number;
 }
+
+export interface INotification {
+  ownerId: number;
+  userId: number;
+  featureRequestId: number;
+  type: string;
+}

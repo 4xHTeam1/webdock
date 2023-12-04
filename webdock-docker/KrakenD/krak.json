@@ -1092,6 +1092,101 @@
       "input_query_strings": [
         "query"
       ]
+    },
+    {
+      "endpoint": "/features/notification/{id}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/notification/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "host": [
+            "http://features:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/features/notification/",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/notification/",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {
+            "modifier/body-generator": {
+              "template": "ewogICAib3duZXJJZCI6IHt7LnJlcV9ib2R5Lm93bmVySWR9fSwKICAgInVzZXJJZCI6IHt7LnJlcV9ib2R5LnVzZXJJZH19LAogICAiZmVhdHVyZVJlcXVlc3RJZCI6IHt7LnJlcV9ib2R5LmZlYXR1cmVSZXF1ZXN0SWR9fSwKICAgInR5cGUiOiB7ey5yZXFfYm9keS50eXBlfX0KfQ=="
+            }
+          },
+          "host": [
+            "http://features:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/features/notification/{id}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/notification/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "DELETE",
+          "host": [
+            "http://features:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/features/notification/markAllAsRead/{id}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/notification/markAllAsRead/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "DELETE",
+          "host": [
+            "http://features:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/email/sendUpvoteEmail",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/sendUpvoteEmail",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {
+            "modifier/body-generator": {
+              "template": "ewogIm93bmVySWQiOiB7e3JlcV9ib2R5Lm93bmVySWR9fSwKICJzdWJqZWN0Ijoge3tyZXFfYm9keS5zdWJqZWN0fX0sCiAidXNlciI6IHt7cmVxX2JvZHkudXNlcn19LAogImZlYXR1cmUiOiB7e3JlcV9ib2R5LmZlYXR1cmV9fSwKICJsaW5rIjoge3tyZXFfYm9keS5saW5rfX0KfQ=="
+            }
+          },
+          "host": [
+            "http://email:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
     }
   ]
 }

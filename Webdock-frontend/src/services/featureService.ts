@@ -58,7 +58,6 @@ export const deleteFeature = async (id: number) => {
 export const getAllComments = async (id: number) => {
   try {
     const response = await http.get(`/features/comment/${id}`);
-    console.log(response.data.comments);
     return response.data.comments;
   } catch (error) {
     console.error(error);
@@ -146,6 +145,44 @@ export const getAllCategories = async () => {
   try {
     const response = await http.get("/features/categories");
     return response.data.categories;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllNotifications = async (userId: number) => {
+  try {
+    const response = await http.get(`/features/notification/${userId}`);
+    return response.data.notifications;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postNotification = async (notification: any) => {
+  try {
+    const response = await http.post("/features/notification", notification);
+    return response.data.notification;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const removeNotification = async (id: number) => {
+  try {
+    const response = await http.delete(`/features/notification/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const removeAllNotifications = async (userId: number) => {
+  try {
+    const response = await http.delete(
+      `/features/notification/markAllAsRead/${userId}`
+    );
+    return response.data;
   } catch (error) {
     console.error(error);
   }

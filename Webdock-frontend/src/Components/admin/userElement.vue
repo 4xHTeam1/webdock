@@ -51,7 +51,6 @@ export default {
   methods: {
     async showModal() {
       await this.$store.dispatch("admin/getUser", { requesterId: this.auth.user.id, userId: this.user.id });
-      console.log(this.admin.selectedUser.role)
       this.showRoleModal = true;
     },
   }

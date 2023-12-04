@@ -5,25 +5,25 @@
         <upvoteButton :feature="feature" />
         <div class="postTitle">
           <h1>{{ feature.title }}</h1>
-          <div class="postStatus" :style="{ '--color': color }">{{ feature.status.name }}</div>
+          <div class="postStatus" :style="{ 'color': feature.status.color }">{{ feature.status.name }}</div>
         </div>
       </div>
       <div class="postHeadBotContainer">
         <div class="postUserInfo">
           <div class="usersAvatar postUserAvatar">
             <div class="noneAvatar"
-            v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
-            style="background-color: #9cb">{{ feature.user.name[0] }}</div>
-          <img v-else :src="feature.user.avatarURL" alt="avatar" class="user_img" />
-          <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
-            v-if="feature.user.role.toLowerCase() === 'admin'" class="admin_logo">
-        </div>
-        <div class="userName" :style="{ color: feature.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">
-          <p>
-          {{
-          feature.user.role.toLowerCase() === 'admin' ? feature.user.name + ' from Webdock' :
-          feature.user.name }}
-          </p>
+              v-if="feature.user.avatarURL === null || feature.user.avatarURL === '' || feature.user.avatarURL === undefined"
+              style="background-color: #9cb">{{ feature.user.name[0] }}</div>
+            <img v-else :src="feature.user.avatarURL" alt="avatar" class="user_img" />
+            <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
+              v-if="feature.user.role.toLowerCase() === 'admin'" class="admin_logo">
+          </div>
+          <div class="userName" :style="{ color: feature.user.role.toLowerCase() === 'admin' ? '#018647' : '' }">
+            <p>
+              {{
+                feature.user.role.toLowerCase() === 'admin' ? feature.user.name + ' from Webdock' :
+                feature.user.name }}
+            </p>
           </div>
         </div>
         <div class="description">
@@ -33,8 +33,8 @@
           <p>{{ new Date(feature.dateSubmitted).toLocaleDateString('en-GB') }}</p>
         </div>
         <div class="commentContainer">
-          <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls" :value="this.comment"
-          @keyup="this.comment = $event.target.value" ref="commentTextarea"></textarea>
+          <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
+            :value="this.comment" @keyup="this.comment = $event.target.value"></textarea>
           <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
             <div class="submitBtn" :class="{ btnActive: isSubmitBtnActive }" @click="handleSubmitComment()">Submit</div>
           </div>
@@ -111,6 +111,7 @@ export default {
   flex-direction: row;
 }
 
+
 .usersAvatar {
   min-width: 26px;
   width: 26px;
@@ -121,7 +122,7 @@ export default {
   margin: 0 10px 0 10px;
 }
 
-.postUserAvatar{
+.postUserAvatar {
   margin: 0 10px 0 0;
 }
 
@@ -167,7 +168,7 @@ export default {
   margin-bottom: 10px;
 }
 
-.postHeadBotContainer{
+.postHeadBotContainer {
   margin-left: 50px;
 }
 
@@ -203,5 +204,4 @@ export default {
   opacity: 100%;
   cursor: pointer;
 }
-
 </style>

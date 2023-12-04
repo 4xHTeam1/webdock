@@ -63,6 +63,7 @@ async function main() {
     update: {},
     create: {
       name: "Status 1",
+      color: "#1FA0FF",
     },
   });
 
@@ -71,6 +72,7 @@ async function main() {
     update: {},
     create: {
       name: "Status 2",
+      color: "#C17AFF",
     },
   });
 
@@ -79,6 +81,7 @@ async function main() {
     update: {},
     create: {
       name: "Status 3",
+      color: "#6CD345",
     },
   });
 
@@ -87,7 +90,8 @@ async function main() {
     update: {},
     create: {
       title: "Support for security keys",
-      description: "It would be nice to have support for security keys like Yubikey for 2FA or as a passwordless sign-in option",
+      description:
+        "It would be nice to have support for security keys like Yubikey for 2FA or as a passwordless sign-in option",
       userId: 1,
       statusId: 1,
       categoryId: 1,

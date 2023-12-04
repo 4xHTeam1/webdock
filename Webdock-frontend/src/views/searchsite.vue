@@ -1,12 +1,11 @@
 <template>
     <div class="container search_container">
         <div class="search_TitleContainer">
-            <h1 class="search_Title">Search results</h1>
+            <h1 class="search_Title"><b>Search results</b></h1>
             <searchComponent />
         </div>
         <div class="results-container">
-            <request-overview v-for="feature in this.search.searchResults.features" :key="feature.id"
-                :feature="feature" />
+            <request-overview v-for="feature in this.search.searchResults.features" :key="feature.id" :feature="feature" />
         </div>
     </div>
 </template>
@@ -50,6 +49,7 @@ export default {
     overflow-x: hidden;
     border-radius: 10px;
     padding: 25px;
+    gap: 15px;
 }
 
 .search_TitleContainer {

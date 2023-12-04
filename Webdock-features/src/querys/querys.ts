@@ -9,6 +9,7 @@ import {
   IDownvoteFeature,
   IFeatureById,
   IGetAllComments,
+  INotification,
   IUpdateComment,
   IUpdateFeature,
   IUpdateReply,
@@ -26,7 +27,13 @@ export const getFeatures = async () => {
     const features = await prisma.featureRequest.findMany({
       include: {
         category: true,
-        status: true,
+        status: {
+          select: {
+            id: true,
+            name: true,
+            color: true,
+          },
+        },
         featureUpvotes: true,
         _count: {
           select: {
@@ -52,7 +59,13 @@ export const getFeature = async ({ id }: IFeatureById) => {
       where: { id },
       include: {
         category: true,
-        status: true,
+        status: {
+          select: {
+            id: true,
+            name: true,
+            color: true,
+          },
+        },
         user: true,
         featureUpvotes: {
           include: {
@@ -409,6 +422,76 @@ export const getCategories = async () => {
     const categories = await prisma.category.findMany({});
     return {
       categories,
+    };
+  } catch (err) {}
+};
+
+export const getNotifications = async (ownerId: number) => {
+  try {
+    const notifications = await prisma.notification.findMany({
+      where: {
+        ownerId,
+      },
+      include: {
+        user: true,
+        owner: true,
+        featureRequest: true,
+      },
+    });
+    return {
+      notifications,
+    };
+  } catch (err) {}
+};
+
+export const postNotification = async ({
+  ownerId,
+  userId,
+  featureRequestId,
+  type,
+}: INotification) => {
+  try {
+    const notification = await prisma.notification.create({
+      data: {
+        ownerId,
+        userId,
+        featureRequestId,
+        type,
+      },
+      include: {
+        user: true,
+        owner: true,
+        featureRequest: true,
+      },
+    });
+    return {
+      notification,
+    };
+  } catch (err) {}
+};
+
+export const removeNotification = async (id: number) => {
+  try {
+    const notification = await prisma.notification.delete({
+      where: {
+        id,
+      },
+    });
+    return {
+      notification,
+    };
+  } catch (err) {}
+};
+
+export const removeAllNotifications = async (ownerId: number) => {
+  try {
+    const notifications = await prisma.notification.deleteMany({
+      where: {
+        ownerId,
+      },
+    });
+    return {
+      notifications,
     };
   } catch (err) {}
 };

@@ -1,11 +1,11 @@
 <template>
   <div class="container" v-if="selectedFeature && selectedFeatureComments">
-    <RouterLink to="/feature-request" class="link-decoration">
+    <div @click="goBack" class="link-decoration">
       <div class="goback-row">
         <img class="goback-arrow" src="../Assets/icons/arrow-left.svg">
         <div class="goback-p">GO BACK</div>
       </div>
-    </RouterLink>
+    </div>
   </div>
   <div class="container d-flex justify-content-center Comments_Container">
     <sideBar v-if="selectedFeature" :feature="this.features.selectedFeature" />
@@ -21,8 +21,8 @@
               <div class="postStatusChange">
                 <postStatusChange status="planned" color="#1FA0FF" />
               </div>
-              <div class="postComments" v-for="comment in this.features.selectedFeatureComments"
-                :key="comment.id">
+              <div class="postComments" v-for="comment in this.features.selectedFeatureComments" :key="comment.id"
+                :id="comment.id">
                 <postComment :comment="comment" />
                 <div class="replyComment" v-for="reply in comment.commentReplys" :key="reply.id">
                   <postComment :comment="reply" />
@@ -58,15 +58,56 @@ export default {
       return this.features.selectedFeatureComments;
     },
   },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
+  },
+  watch: {
+    async $route() {
+      await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
+      await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
+    },
+  },
   async mounted() {
     await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
     await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
-    console.log(this.features.selectedFeatureComments)
+
+    const url = new URL(window.location.href);
+    const commentId = url.hash.substring(1); // get the fragment without the '#'
+    if (commentId) {
+      const element = document.getElementById(commentId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        element.classList.add('highlight');
+        setTimeout(() => {
+          element.classList.remove('highlight');
+        }, 1500); // remove the class after 2 seconds
+      }
+    }
   },
 };
 </script>
 
 <style>
+@keyframes highlight {
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: #24ab952c;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+.highlight {
+  animation: highlight 1.5s ease-in-out;
+}
+
 .goback-row {
   margin-left: 5px;
   margin-top: 5px;
@@ -86,6 +127,7 @@ export default {
 
 .link-decoration {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .Comments_Container {

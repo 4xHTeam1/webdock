@@ -8,9 +8,12 @@
       </div>
     </div>
     <div class="Testroadmap_RoadmapContainers">
-      <StatusContainer status="Planned" color="#1FA0FF" :featureList="getFeaturesForStatus('status 1')" />
-      <StatusContainer status="In Progress" color="#C17AFF" :featureList="getFeaturesForStatus('status 2')" />
-      <StatusContainer status="Complete" color="#6CD345" :featureList="getFeaturesForStatus('status 3')" />
+      <StatusContainer status="Planned" :color="getFeaturesForStatus('status 1')[0].status.color"
+        :featureList="getFeaturesForStatus('status 1')" />
+      <StatusContainer status="In Progress" :color="getFeaturesForStatus('status 2')[0].status.color"
+        :featureList="getFeaturesForStatus('status 2')" />
+      <StatusContainer status="Complete" :color="getFeaturesForStatus('status 3')[0].status.color"
+        :featureList="getFeaturesForStatus('status 3')" />
     </div>
   </div>
 </template>
@@ -47,8 +50,7 @@ export default {
 
 <style>
 .Testroadmap_Container {
-  width: 100%;
-  height: 100%;
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
 }
@@ -91,12 +93,16 @@ export default {
 }
 
 .Testroadmap_RoadmapContainers {
-  flex: 1;
   display: flex;
   flex-direction: row;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
+  gap: 10px;
+  flex: 1;
+  padding: 24px 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 </style>
 ../stores/features
