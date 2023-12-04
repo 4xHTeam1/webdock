@@ -1,7 +1,7 @@
 <template>
   <div class="createbox" v-if="isLoggedIn">
     <div class="titlebox d-flex justify-content-center">
-      <h1>Category</h1>
+      <h1>Create Post</h1>
     </div>
     <div class="createbox-content">
       <div class="catagory">
