@@ -101,8 +101,11 @@ export const searchUserByName = async (query: string) => {
       },
     },
   });
-  return result;
+
+  return {result};
 };
+/* Fungere så result søger i tabellen "User" fra SQL foresepørgelsen bliver lavet af prisma, der bliver 
+printet alt i tabellen "User" som der matcher det man har søgt, "hvor navn indeholder det du har søgt på"*/
 
 /**
  * Queries the database for all users by their email.
@@ -117,7 +120,7 @@ export const searchUserByEmail = async (query: string) => {
       },
     },
   });
-  return result;
+  return {result};;
 };
 
 /**
