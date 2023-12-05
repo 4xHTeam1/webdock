@@ -10,6 +10,7 @@
 <script>
 import adminMenu from '../Components/admin/adminMenu.vue'
 import { mapState } from 'vuex';
+
 export default {
     data() {
         return {

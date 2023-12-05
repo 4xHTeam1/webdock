@@ -54,7 +54,6 @@ export default {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 19px rgba(0, 0, 0, 0.4);
-  
 }
 
 .Status_Header {

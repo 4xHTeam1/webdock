@@ -42,6 +42,7 @@ import postComment from "../Components/featureRequest-components/featureComment-
 import postStatusChange from "../Components/featureRequest-components/featureComment-components/postStatusChange.vue";
 import postOverview from "../Components/featureRequest-components/featureComment-components/postOverview.vue";
 import { mapState } from 'vuex';
+
 export default {
   components: {
     postOverview,

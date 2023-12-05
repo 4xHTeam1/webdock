@@ -13,6 +13,7 @@
 import { mapState } from 'vuex';
 import requestOverview from '../Components/featureRequest-components/requestOverview.vue';
 import searchComponent from "../Components/shared/searchComponent.vue";
+
 export default {
     components: {
         requestOverview,
