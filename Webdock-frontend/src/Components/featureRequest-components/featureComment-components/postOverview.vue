@@ -5,6 +5,14 @@
         <upvoteButton :feature="feature" />
         <div class="postTitle">
           <h1>{{ feature.title }}</h1>
+          <div class="postStatus" v-if="auth.user.role.toLowerCase() === 'admin'">
+            <select v-model="selectedStatus" @change="updateStatus" :style="{ color: selectedStatus.color }">
+              <option v-for="status in features.statuses" :key="status.id" :value="status.id"
+                :style="{ color: status.color }">
+                {{ status.name }}
+              </option>
+            </select>
+          </div>
           <div class="postStatus" :style="{ color: feature.status.color }">
             {{ feature.status.name }}
           </div>
@@ -13,42 +21,25 @@
       <div class="postHeadBotContainer">
         <div class="postUserInfo">
           <div class="usersAvatar postUserAvatar">
-            <div
-              class="noneAvatar"
-              v-if="
-                feature.user.avatarURL === null ||
-                feature.user.avatarURL === '' ||
-                feature.user.avatarURL === undefined
-              "
-              style="background-color: #9cb"
-            >
+            <div class="noneAvatar" v-if="feature.user.avatarURL === null ||
+              feature.user.avatarURL === '' ||
+              feature.user.avatarURL === undefined
+              " style="background-color: #9cb">
               {{ feature.user.name[0] }}
             </div>
-            <img
-              v-else
-              :src="feature.user.avatarURL"
-              alt="avatar"
-              class="user_img"
-            />
-            <img
-              src="../../../Assets/webdock-logo-farvet.png"
-              alt="webdock admin"
-              v-if="feature.user.role.toLowerCase() === 'admin'"
-              class="admin_logo"
-            />
+            <img v-else :src="feature.user.avatarURL" alt="avatar" class="user_img" />
+            <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
+              v-if="feature.user.role.toLowerCase() === 'admin'" class="admin_logo" />
           </div>
-          <div
-            class="userName"
-            :style="{
-              color:
-                feature.user.role.toLowerCase() === 'admin' ? '#018647' : '',
-            }"
-          >
+          <div class="userName" :style="{
+            color:
+              feature.user.role.toLowerCase() === 'admin' ? '#018647' : '',
+          }">
             <p>
               {{
                 feature.user.role.toLowerCase() === "admin"
-                  ? feature.user.name + " from Webdock"
-                  : feature.user.name
+                ? feature.user.name + " from Webdock"
+                : feature.user.name
               }}
             </p>
           </div>
@@ -62,24 +53,10 @@
           </p>
         </div>
         <div class="commentContainer">
-          <textarea
-            class="inputArea"
-            placeholder="Leave a Comment"
-            @input="resize($event)"
-            @click="toggleControls"
-            :value="this.comment"
-            @keyup="this.comment = $event.target.value"
-          ></textarea>
-          <div
-            class="submitContainer"
-            v-if="showControls"
-            :class="{ showBorder: showControls }"
-          >
-            <div
-              class="submitBtn"
-              :class="{ btnActive: this.comment !== '' }"
-              @click="handleSubmitComment()"
-            >
+          <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
+            :value="this.comment" @keyup="this.comment = $event.target.value"></textarea>
+          <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
+            <div class="submitBtn" :class="{ btnActive: this.comment !== '' }" @click="handleSubmitComment()">
               Submit
             </div>
           </div>
@@ -98,10 +75,17 @@ export default {
       showControls: false,
       isSubmitBtnActive: false,
       comment: "",
+      selectedStatus: this.feature.status,
     };
   },
   computed: {
-    ...mapState(["auth"]),
+    ...mapState(["auth", "admin", "features"]),
+  },
+  created: async function () {
+    this.selectedStatus = this.feature.status;
+    if (this.features.statuses.length <= 0 || this.features.statuses === undefined) {
+      await this.$store.dispatch("features/getAllStatuses");
+    }
   },
   methods: {
     resize(e) {
@@ -132,6 +116,13 @@ export default {
 
       this.comment = "";
       this.showControls = false;
+    },
+    updateStatus() {
+      this.$store.dispatch("features/updateFeatureStatus", {
+        id: this.feature.id,
+        statusId: this.selectedStatus,
+        requesterId: this.auth.user.id,
+      });
     },
   },
   components: {

@@ -196,3 +196,19 @@ export const getAllStatuses = async () => {
     console.error(error);
   }
 };
+
+export const updateFeatureStatus = async (id: number, statusId: number, requesterId: number) => {
+  try {
+    const response = await http.put(
+      `/admin/features/status/${id}/${statusId}`,
+      {
+        headers: {
+          requesterId
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

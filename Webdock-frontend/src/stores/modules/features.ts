@@ -10,6 +10,7 @@ import {
   createComment,
   replyToComment,
   getAllStatuses,
+  updateFeatureStatus,
 } from "../../services/featureService";
 import { upvoteValidator } from "../validators/featureValidator";
 
@@ -53,6 +54,13 @@ export default {
       if (commentToUpdate) {
         commentToUpdate.commentReplys.push(comment);
       }
+    },
+    replaceUpdatedFeature(state: any, feature: any) {
+      state.allFeatures.forEach((element: any) => {
+        if (element.id == feature.id) {
+          element = feature;
+        }
+      });
     },
     setCategories(state: any, categories: any) {
       state.categories = categories;
@@ -176,6 +184,15 @@ export default {
     async sendUpvoteEmail({ commit }: any, info: any) {
       try {
         await sendUpvoteEmail(info);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updateFeatureStatus({ commit }: any, info: any) {
+      try {
+        const feature = await updateFeatureStatus(info.id, info.statusId, info.requesterId);
+        await commit("setSelectedFeature", feature);
+        await commit("replaceUpdatedFeature", feature);
       } catch (error) {
         console.log(error);
       }

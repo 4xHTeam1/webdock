@@ -332,6 +332,27 @@
       "input_headers": ["requesterId"]
     },
     {
+      "endpoint": "/admin/features/status/{id}/{statusId}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/features/status/{id}/{statusId}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "PUT",
+          "host": ["http://admin:3000"],
+          "disable_host_sanitize": false,
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          }
+        }
+      ],
+      "input_headers": ["requesterId"]
+    },
+    {
       "endpoint": "/auth/status",
       "method": "GET",
       "output_encoding": "json",
