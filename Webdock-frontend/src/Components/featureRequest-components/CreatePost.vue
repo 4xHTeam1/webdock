@@ -249,7 +249,6 @@ export default {
 }
 
 .submit-button {
-  width: 100px;
   height: auto;
   text-align: center;
   font-size: 16px;
