@@ -1,11 +1,8 @@
 import { Elysia } from "elysia";
 import swagger from "@elysiajs/swagger";
-import { PrismaClient } from "@prisma/client";
 import { upvote } from "./functions/rateFunctions";
-import { get } from "http";
 import { getFeatureOwner } from "./querys/querys";
 
-const prisma = new PrismaClient();
 const activeConnections: Record<number, any> = {};
 
 const app = new Elysia()
@@ -19,10 +16,6 @@ const app = new Elysia()
     return {
       status: "ok",
     };
-  })
-  .get("/metrics", async () => {
-    let prismaMetrics = await prisma.$metrics.prometheus();
-    return prismaMetrics;
   })
   .ws("/ws", {
     close: (ws) => {
