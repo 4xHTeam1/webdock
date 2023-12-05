@@ -9,6 +9,7 @@ import {
   createFeature,
   createComment,
   replyToComment,
+  getAllStatuses,
 } from "../../services/featureService";
 import { upvoteValidator } from "../validators/featureValidator";
 
@@ -19,6 +20,7 @@ export default {
     selectedFeature: null,
     selectedFeatureComments: [],
     categories: [],
+    statuses: [],
   },
   getters: {
     getAllFeatures(state: any) {
@@ -63,6 +65,9 @@ export default {
     },
     setSelectedFeatureComments(state: any, comments: any) {
       state.selectedFeatureComments = comments;
+    },
+    setStatuses(state: any, statuses: any) {
+      state.statuses = statuses;
     },
     toggleUpvote(state: any, feature: any) {
       /**
@@ -127,6 +132,10 @@ export default {
     async getAllCategories({ commit }: any) {
       const categories = await getAllCategories();
       commit("setCategories", categories);
+    },
+    async getAllStatuses({ commit }: any) {
+      const statuses = await getAllStatuses();
+      commit("setStatuses", statuses);
     },
     async getAllFeatures({ commit }: any) {
       const features = await getAllFeatures();

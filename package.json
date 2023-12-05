@@ -15,7 +15,10 @@
     "prisma:dev": "npx prisma generate && npx prisma migrate dev && npx prisma db seed",
     "frontend:dev": "vite Webdock-frontend --config Webdock-frontend/vite.config.ts",
     "frontend:build": "vite build Webdock-frontend --config Webdock-frontend/vite.config.ts",
-    "frontend:preview": "vite preview Webdock-frontend --config Webdock-frontend/vite.config.ts"
+    "frontend:preview": "vite preview Webdock-frontend --config Webdock-frontend/vite.config.ts",
+    "docker:up": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock up",
+    "docker:down": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock down",
+    "docker:restart": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock restart"
   },
   "dependencies": {
     "@elysiajs/cors": "^0.7.1",

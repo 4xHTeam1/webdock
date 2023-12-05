@@ -8,12 +8,21 @@
       </div>
     </div>
     <div class="Testroadmap_RoadmapContainers">
-      <StatusContainer status="Planned" :color="getFeaturesForStatus('status 1')[0].status.color"
-        :featureList="getFeaturesForStatus('status 1')" />
-      <StatusContainer status="In Progress" :color="getFeaturesForStatus('status 2')[0].status.color"
-        :featureList="getFeaturesForStatus('status 2')" />
-      <StatusContainer status="Complete" :color="getFeaturesForStatus('status 3')[0].status.color"
-        :featureList="getFeaturesForStatus('status 3')" />
+      <StatusContainer
+        :status="features.statuses[0].name || 'Planned'"
+        :color="features.statuses[0].color || 'red'"
+        :featureList="getFeaturesForStatus('status 1')"
+      />
+      <StatusContainer
+        :status="features.statuses[1].name || 'In Progress'"
+        :color="features.statuses[1].color || 'orange'"
+        :featureList="getFeaturesForStatus('status 2')"
+      />
+      <StatusContainer
+        :status="features.statuses[2].name || 'Completed'"
+        :color="features.statuses[2].color || 'green'"
+        :featureList="getFeaturesForStatus('status 3')"
+      />
     </div>
   </div>
 </template>
@@ -23,6 +32,7 @@ import StatusContainer from "../Components/roadmap-components/statusContainer.vu
 import searchComponent from "../Components/shared/searchComponent.vue";
 import filterComponent from "../Components/shared/filterComponent.vue";
 import { mapGetters, mapState } from "vuex";
+import { features } from "process";
 
 export default {
   computed: {
@@ -36,8 +46,12 @@ export default {
     async getAllFeatures() {
       this.$store.dispatch("features/getAllFeatures");
     },
+    async getAllStatuses() {
+      this.$store.dispatch("features/getAllStatuses");
+    },
   },
   created: async function () {
+    await this.getAllStatuses();
     await this.getAllFeatures();
   },
   components: {

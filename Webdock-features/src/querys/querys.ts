@@ -495,3 +495,12 @@ export const removeAllNotifications = async (ownerId: number) => {
     };
   } catch (err) {}
 };
+
+export const getStatuses = async () => {
+  try {
+    const statuses = await prisma.status.findMany({});
+    return {
+      statuses,
+    };
+  } catch (err) {}
+};

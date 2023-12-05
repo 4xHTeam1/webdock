@@ -11,6 +11,7 @@ import {
   getFeatureUpvoteCount,
   getFeatures,
   getNotifications,
+  getStatuses,
   postNotification,
   removeAllNotifications,
   removeNotification,
@@ -189,6 +190,9 @@ const app = new Elysia()
   )
   .get("/categories", async () => {
     return await getCategories();
+  })
+  .get("/statuses", async () => {
+    return await getStatuses();
   })
   .listen(3000);
 

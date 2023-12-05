@@ -187,3 +187,12 @@ export const removeAllNotifications = async (userId: number) => {
     console.error(error);
   }
 };
+
+export const getAllStatuses = async () => {
+  try {
+    const response = await http.get("/features/statuses");
+    return response.data.statuses;
+  } catch (error) {
+    console.error(error);
+  }
+};

@@ -6,7 +6,15 @@
       </p>
     </div>
     <div class="Status_SlotContainer">
-      <roadmap-features v-for="feature in featureList" v-bind:key="feature.id" :feature="feature" />
+      <div v-if="featureList.length <= 0" class="NoFeaturesInList">
+        <p>No features in this status</p>
+      </div>
+      <roadmap-features
+        v-else
+        v-for="feature in featureList"
+        v-bind:key="feature.id"
+        :feature="feature"
+      />
     </div>
   </div>
 </template>
@@ -41,6 +49,15 @@ export default {
 </script>
 
 <style>
+.NoFeaturesInList {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: wrap;
+  color: #a9a9a9
+}
+
 .Status_Container {
   flex: 1 0 0;
   height: 100%;
