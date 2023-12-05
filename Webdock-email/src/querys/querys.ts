@@ -2,6 +2,11 @@ import { PrismaClient, User, FeatureRequest } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+/**
+ * Retrieves the email of a user by their ID.
+ * @param id - The ID of the user.
+ * @returns The email of the user, or undefined if the user does not exist.
+ */
 export const getEmailByUserId = async (id: number) => {
   const user = await prisma.user.findUnique({
     where: {
@@ -27,9 +32,8 @@ export const getDaysFeatureRequests = async () => {
     },
   });
 
-  //add a link attribute to each feature request where the key is "link" and the value is "http://localhost:5173/feature-request/feature.id"
   features.forEach((feature) => {
-    feature.link = `http://localhost:5173/feature-request/${feature.id}`;
+    feature.link = `http://localhost:5173/feature-request/${feature.id}`; //TODO: Fix this link to be the actual link of server
   });
 
   return features;

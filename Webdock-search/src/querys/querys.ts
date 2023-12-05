@@ -3,9 +3,9 @@ import { PrismaClient, User, FeatureRequest } from "@prisma/client";
 const prisma = new PrismaClient();
 
 /**
- * Searches the database for all feature requests matching the given query.
- * @param query The search query
- * @returns An object containing an array of feature requests that match the query
+ * Searches for feature requests, comments, users, categories, titles, and descriptions that contain the specified query.
+ * @param query - The search query.
+ * @returns An object containing the search results.
  */
 export const searchAll = async (query: string) => {
   const resultFeatures: FeatureRequest[] = await prisma.featureRequest.findMany(

@@ -22,7 +22,6 @@ export const getUserByID = async (id: number) => {
   });
 
   return user;
-  //test
 };
 
 /**

@@ -7,31 +7,58 @@
             <h1>Change role</h1>
           </div>
           <div class="closeBtn" @click="closeModal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-x"
-              viewBox="0 0 16 16">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="black"
+              class="bi bi-x"
+              viewBox="0 0 16 16"
+            >
               <path
-                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+              />
             </svg>
           </div>
         </div>
         <div class="changeRole">
           <div class="userInfoContainer">
             <div class="usersAvatar">
-              <div class="noneAvatar" style="background-color: rgb(101, 148, 132)"
-                v-if="this.admin.selectedUser.avatarURL === ''">
-                {{ this.admin.selectedUser.name[0] }}
+              <div
+                class="noneAvatar"
+                style="background-color: rgb(101, 148, 132)"
+                v-if="this.admin.selectedUser.avatarURL === ''"
+              >
+                <p>
+                  {{ this.admin.selectedUser.name[0] }}
+                </p>
               </div>
-              <img :src="this.admin.selectedUser.avatarURL" alt="Avatar" class="user_img" v-else />
+              <img
+                :src="this.admin.selectedUser.avatarURL"
+                alt="Avatar"
+                class="user_img"
+                v-else
+              />
             </div>
-            <div class="firstName">{{ this.admin.selectedUser.name }}</div>
+            <div class="firstName">
+              <p style="margin: 0;">{{ this.admin.selectedUser.name }}</p>
+            </div>
           </div>
           <div class="roleSelecter">
             <div class="roleDropdown" @click="toggleDropdown">
-              {{ selectedOption }}
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-chevron-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+              <p>{{ selectedOption }}</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-chevron-down"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                />
               </svg>
               <div class="dropdownContent" v-if="isDropdownOpen">
                 <div class="roleOptions">
@@ -40,11 +67,12 @@
                 </div>
               </div>
             </div>
-
           </div>
           <div class="buttonContainer">
             <button class="btnCancel" @click="closeModal()">Cancel</button>
-            <button class="btnAccept" @click="handleUpdateUser()">Accept</button>
+            <button class="btnAccept" @click="handleUpdateUser()">
+              Accept
+            </button>
           </div>
         </div>
       </div>
@@ -117,8 +145,8 @@ export default {
 .roleModalContainer {
   background-color: rgb(240, 240, 240);
   border-radius: 8px;
-  width: 100%; 
-  max-width: 400px; 
+  width: 100%;
+  max-width: 400px;
 }
 
 .modalHeader {
@@ -152,15 +180,15 @@ export default {
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-  padding: 6px 0 6px 0;
+  padding: 15px 0;
   margin: 0 60px 20px 60px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .usersAvatar {
-  width: 64px;
-  height: 64px;
+  width: 40px;
+  height: 40px;
   border-radius: 100px;
   position: relative;
   z-index: 1;
@@ -198,6 +226,7 @@ export default {
   flex-direction: column;
   max-height: 200px;
   overflow-y: auto;
+  position: absolute;
 }
 
 .roleOptions {
@@ -205,14 +234,14 @@ export default {
   padding: 10px;
 }
 
-.roleOptions p{
+.roleOptions p {
   transition: ease-in-out 0.2s;
   padding: 5px;
 }
 
 .roleOptions p:hover {
   background-color: #cecece;
-  transition: ease-in-out 0.2s
+  transition: ease-in-out 0.2s;
 }
 
 .roleOptions p {
