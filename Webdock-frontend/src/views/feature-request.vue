@@ -3,7 +3,11 @@
     <CreatePost />
     <div class="featureRequest_OverviewContainer">
       <div class="overview-area">
+        <div v-if="this.features.allFeatures.length <= 0" class="NoFeaturesInList">
+          <p>There's No Features. Be the first to request a feature.</p>
+        </div>
         <requestOverview
+          v-else
           v-for="feature in this.features.allFeatures"
           :key="feature.id"
           :feature="feature"
@@ -36,6 +40,15 @@ export default {
 </script>
 
 <style>
+.NoFeaturesInList {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: wrap;
+  color: #a9a9a9
+}
+
 .featureRequest_Container {
   flex: 1 1 0;
   gap: 18px;
