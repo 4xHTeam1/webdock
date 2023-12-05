@@ -23,12 +23,6 @@ const instance = axios.create({
   },
 });
 
-const getFeatureRequests = () => {
-  let template = path.join(import.meta.dir, "/Email/emailtemplate.html");
-
-  return fs.readFileSync(template, "utf8");
-};
-
 const app = new Elysia()
   .use(
     cron({
@@ -111,7 +105,7 @@ const sendDailySummaryEmail = async () => {
   });
   await instance.post("email", {
     From: "uclfeedback@webdock.io",
-    To: "mikehovedskov@gmail.com",
+    To: "mikehovedskov@gmail.com", //TODO: Change to real email
     Subject: "Daily Summary",
     HtmlBody: htmlBody,
     TrackOpens: true,
