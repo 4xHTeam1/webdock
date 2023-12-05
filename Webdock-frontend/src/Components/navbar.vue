@@ -77,12 +77,6 @@ export default {
   mounted: function () {
     this.setActiveTab();
   },
-  props: {
-    buttontext: {
-      type: String,
-      required: true
-    },
-  }
 };
 
 

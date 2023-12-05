@@ -133,10 +133,6 @@ export default {
       type: Object,
       required: true,
     },
-    status: {
-      type: String,
-      required: true,
-    },
     color: {
       type: String,
       required: false,
