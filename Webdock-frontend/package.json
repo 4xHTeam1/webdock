@@ -1,27 +1,44 @@
 {
-  "name": "webdock-frontend",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "webdock",
+  "version": "1.0.50",
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed/seed.ts"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "admin:dev": "bun run --watch Webdock-admin/src/index.ts",
+    "auth:dev": "bun run --watch Webdock-auth/src/index.ts",
+    "email:dev": "bun run --watch Webdock-email/src/index.ts",
+    "features:dev": "bun run --watch Webdock-features/src/index.ts",
+    "search:dev": "bun run --watch Webdock-search/src/index.ts",
+    "sockets:dev": "bun run --watch Webdock-sockets/src/index.ts",
+    "sockets:demo": "bun run --watch Webdock-sockets/chat/index.ts",
+    "prisma:dev": "npx prisma generate && npx prisma migrate dev && npx prisma db seed",
+    "frontend:dev": "vite Webdock-frontend --config Webdock-frontend/vite.config.ts",
+    "frontend:build": "vite build Webdock-frontend --config Webdock-frontend/vite.config.ts",
+    "frontend:preview": "vite preview Webdock-frontend --config Webdock-frontend/vite.config.ts",
+    "docker:up": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock up",
+    "docker:down": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock down",
+    "docker:restart": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock restart"
   },
   "dependencies": {
-    "@floating-ui/vue": "^1.0.2",
-    "axios": "^1.6.0",
+    "@elysiajs/cors": "^0.7.1",
+    "@elysiajs/cron": "^0.7.0",
+    "@elysiajs/jwt": "^0.7.0",
+    "@elysiajs/swagger": "^0.7.3",
+    "@prisma/client": "^5.4.2",
+    "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
-    "bootstrap-icons": "^1.11.1",
-    "bootstrap-vue": "^2.23.1",
-    "portal-vue": "^3.0.0-beta.0",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.5",
-    "vuex": "^4.0.2"
+    "ejs": "^3.1.9",
+    "elysia": "latest",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@types/node": "^20.10.0",
     "@vitejs/plugin-vue": "^4.2.3",
-    "typescript": "^5.0.2",
+    "bun-types": "latest",
+    "prisma": "^5.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2",
     "vite": "^4.4.5",
     "vue-tsc": "^1.8.5"
   }

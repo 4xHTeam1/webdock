@@ -1,6 +1,15 @@
 version: 0.0.1
 
 services:
+  frontend:
+    image: franno0/webdock-images:webdock-frontendv1
+    ports:
+      - "80:5173"
+    environment:
+      - APIGATEWAY=krakend:8080
+    volumes:
+      - .:/app
+      - /app/node_modules
   auth:
     image: franno0/webdock-images:webdock-authv0.0.1
     ports:
