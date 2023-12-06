@@ -64,12 +64,12 @@
           <div class="commentTimestamp">
             {{ new Date(comment.dateSubmitted).toLocaleDateString("en-GB") }}
           </div>
-          <div class="commentReply" @click="toggleCommentReplyContainer">
+          <div class="commentReply" @click="toggleCommentReplyContainer" v-if=" auth.user !== null">
             <p>Reply</p>
           </div>
         </div>
       </div>
-      <div class="commentReplyContainer" v-if="showCommentReplyContainer">
+      <div class="commentReplyContainer" v-if="showCommentReplyContainer && auth.user !== null" >
         <textarea
           class="inputArea"
           placeholder="Leave a Comment"
@@ -77,6 +77,7 @@
           @click="toggleControls"
           :value="this.commentMessage"
           @keyup="this.commentMessage = $event.target.value"
+
         ></textarea>
         <div
           class="submitContainer"
