@@ -9,6 +9,7 @@ import {
   IDownvoteFeature,
   IFeatureById,
   IGetAllComments,
+  INotification,
   IUpdateComment,
   IUpdateFeature,
   IUpdateReply,
@@ -26,7 +27,19 @@ export const getFeatures = async () => {
     const features = await prisma.featureRequest.findMany({
       include: {
         category: true,
-        status: true,
+        status: {
+          select: {
+            id: true,
+            name: true,
+            color: true,
+          },
+        },
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
       },
     });
     return features;
@@ -46,7 +59,24 @@ export const getFeature = async ({ id }: IFeatureById) => {
       where: { id },
       include: {
         category: true,
-        status: true,
+        status: {
+          select: {
+            id: true,
+            name: true,
+            color: true,
+          },
+        },
+        user: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
       },
     });
     return feature;
@@ -64,20 +94,28 @@ export const createFeature = async ({
   title,
   description,
   userId,
-  categoryId,
-  statusId,
+  category,
 }: ICreateFeature) => {
   try {
-    if (!categoryId) categoryId = 1;
-    if (!statusId) statusId = 1;
+    if (!category.id) category.id = 1;
 
     const feature = await prisma.featureRequest.create({
       data: {
         title,
         description,
         userId,
-        categoryId,
-        statusId,
+        categoryId: category.id,
+        statusId: 1,
+      },
+      include: {
+        category: true,
+        status: true,
+        featureUpvotes: true,
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
       },
     });
     return feature;
@@ -147,9 +185,15 @@ export const commentOnFeature = async ({
         userId,
         comment,
       },
+      include: {
+        user: true,
+        commentReplys: {
+          include: {
+            user: true,
+          },
+        },
+      },
     });
-    const test = "asdasd";
-    console.log(test);
 
     return feature;
   } catch (err) {
@@ -169,6 +213,10 @@ export const replyToComment = async ({ id, userId, comment }: ICreateReply) => {
         commentId: id,
         userId,
         comment,
+      },
+      include: {
+        comment_relation: true,
+        user: true,
       },
     });
     return feature;
@@ -259,6 +307,7 @@ export const getAllComments = async ({ id }: IGetAllComments) => {
       select: {
         comments: {
           include: {
+            user: true,
             commentReplys: {
               include: {
                 user: true,
@@ -281,12 +330,29 @@ export const getAllComments = async ({ id }: IGetAllComments) => {
  */
 export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
   try {
-    const feature = await prisma.featureRequest.update({
+    await prisma.featureRequest.update({
       where: { id },
       data: {
         featureUpvotes: {
           create: {
             userId,
+          },
+        },
+      },
+    });
+    const feature = await prisma.featureRequest.findUnique({
+      where: { id },
+      include: {
+        category: true,
+        status: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
+        _count: {
+          select: {
+            featureUpvotes: true,
           },
         },
       },
@@ -297,8 +363,6 @@ export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
   }
 };
 
-//remove upvote from featureUpvote table for a given user and feature request
-
 /**
  * Removes an upvote from a feature request for a given user.
  * @param {IDownvoteFeature} - An object containing the feature request ID and the user ID.
@@ -307,11 +371,28 @@ export const upvoteFeature = async ({ id, userId }: IUpvoteFeature) => {
 
 export const unvoteFeature = async ({ id, userId }: IDownvoteFeature) => {
   try {
-    const feature = await prisma.featureUpvote.delete({
+    await prisma.featureUpvote.delete({
       where: {
         userId_featureRequestId: {
           userId,
           featureRequestId: id,
+        },
+      },
+    });
+    const feature = await prisma.featureRequest.findUnique({
+      where: { id },
+      include: {
+        category: true,
+        status: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
         },
       },
     });
@@ -321,6 +402,11 @@ export const unvoteFeature = async ({ id, userId }: IDownvoteFeature) => {
   }
 };
 
+/**
+ * Retrieves the upvote count for a specific feature request.
+ * @param id - The ID of the feature request.
+ * @returns The number of upvotes for the feature request.
+ */
 export const getFeatureUpvoteCount = async (id: number) => {
   try {
     const feature = await prisma.featureUpvote.count({
@@ -330,4 +416,120 @@ export const getFeatureUpvoteCount = async (id: number) => {
     });
     return feature;
   } catch (e) {}
+};
+
+/**
+ * Retrieves all categories from the database.
+ * @returns {Promise<{ categories: Category[] }>} A promise that resolves to an object containing the categories.
+ */
+export const getCategories = async () => {
+  try {
+    const categories = await prisma.category.findMany({});
+    return {
+      categories,
+    };
+  } catch (err) {}
+};
+
+/**
+ * Retrieves notifications for a given owner ID.
+ * @param ownerId - The ID of the owner.
+ * @returns An object containing the retrieved notifications.
+ */
+export const getNotifications = async (ownerId: number) => {
+  try {
+    const notifications = await prisma.notification.findMany({
+      where: {
+        ownerId,
+      },
+      include: {
+        user: true,
+        owner: true,
+        featureRequest: true,
+      },
+    });
+    return {
+      notifications,
+    };
+  } catch (err) {}
+};
+
+/**
+ * Creates a new notification and returns the created notification object.
+ * @param {INotification} notificationData - The data for creating the notification.
+ * @returns {Promise<{ notification: Notification }>} - The created notification object.
+ */
+export const postNotification = async ({
+  ownerId,
+  userId,
+  featureRequestId,
+  type,
+}: INotification) => {
+  try {
+    const notification = await prisma.notification.create({
+      data: {
+        ownerId,
+        userId,
+        featureRequestId,
+        type,
+      },
+      include: {
+        user: true,
+        owner: true,
+        featureRequest: true,
+      },
+    });
+    return {
+      notification,
+    };
+  } catch (err) {}
+};
+
+/**
+ * Removes a notification from the database.
+ * @param id - The ID of the notification to be removed.
+ * @returns An object containing the removed notification.
+ */
+export const removeNotification = async (id: number) => {
+  try {
+    const notification = await prisma.notification.delete({
+      where: {
+        id,
+      },
+    });
+    return {
+      notification,
+    };
+  } catch (err) {}
+};
+
+/**
+ * Removes all notifications for a given owner.
+ * @param ownerId - The ID of the owner.
+ * @returns An object containing the deleted notifications.
+ */
+export const removeAllNotifications = async (ownerId: number) => {
+  try {
+    const notifications = await prisma.notification.deleteMany({
+      where: {
+        ownerId,
+      },
+    });
+    return {
+      notifications,
+    };
+  } catch (err) {}
+};
+
+/**
+ * Retrieves all statuses from the database.
+ * @returns {Promise<{ statuses: Status[] }>} A promise that resolves to an object containing the retrieved statuses.
+ */
+export const getStatuses = async () => {
+  try {
+    const statuses = await prisma.status.findMany({});
+    return {
+      statuses,
+    };
+  } catch (err) {}
 };

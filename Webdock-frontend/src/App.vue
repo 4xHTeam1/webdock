@@ -1,7 +1,13 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { computed } from "vue";
+import { RouterLink, RouterView } from "vue-router";
+import { mapState, useStore } from "vuex";
+import navbar from "./Components/navbar.vue"
+const store = useStore();
+
 </script>
 
 <template>
-<RouterView />
+  <navbar />
+  <RouterView />
 </template>

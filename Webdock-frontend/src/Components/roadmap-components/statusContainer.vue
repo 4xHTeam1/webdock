@@ -6,23 +6,28 @@
       </p>
     </div>
     <div class="Status_SlotContainer">
+      <div v-if="featureList.length <= 0" class="NoFeaturesInList">
+        <p>No features in this status</p>
+      </div>
       <roadmap-features
-        v-for="i in 10"
-        :key="i"
-        title="Bandwith Usage"
-        description="Can we please have
-      an reporting tab which shows monthly bandwidth usage for a server
-      asdasdasdasdasdasdasdasdasda"
-        :upvotes="10"
+        v-else
+        v-for="feature in featureList"
+        v-bind:key="feature.id"
+        :feature="feature"
       />
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
+import { mapState } from "vuex";
 import roadmapFeatures from "./roadmapFeatures.vue";
 
+let filteredFeatures = [];
+
 export default {
+  name: "roadmapStatusContainer",
+
   components: {
     roadmapFeatures,
   },
@@ -35,13 +40,26 @@ export default {
       type: String,
       required: false,
     },
+    featureList: {
+      type: Array,
+      required: false,
+    },
   },
 };
 </script>
 
 <style>
+.NoFeaturesInList {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: wrap;
+  color: #a9a9a9
+}
+
 .Status_Container {
-  max-height: 500px;
+  flex: 1 0 0;
   height: 100%;
   max-width: 300px;
   min-width: 300px;
@@ -50,6 +68,7 @@ export default {
   flex-direction: column;
   gap: 10px;
   border: 1px solid #c1c1c1;
+  background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 19px rgba(0, 0, 0, 0.4);
 }
@@ -85,7 +104,7 @@ export default {
 }
 
 .Status_SlotContainer {
-  flex: 1;
+  flex: 1 0 0;
   padding: 0px 15px 10px 15px;
   display: flex;
   flex-direction: column;
@@ -105,3 +124,4 @@ export default {
   background-color: #696969;
 }
 </style>
+../../stores/features

@@ -1,0 +1,17 @@
+<!-- userUpvoteComponent.ejs -->
+<div
+    style="font-family:arial,helvetica,sans-serif; max-width: 600px; margin: auto; border: 1px solid #ccc; border-radius: 5px; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.15);">
+    <h2 style="color: #000000;">Good news!</h2>
+    <p style="display: flex; align-items: center;">
+        <img src="<%= user.avatarURL %>" alt="<%= user.name %>'s avatar"
+            style="width: 50px; height: 50px; border-radius: 50%; margin-right: 15px;">
+        <span>
+            <strong>
+                <%= user.name %>
+            </strong> (<a href="mailto:<%= user.email %>">
+                <%= user.email %>
+            </a>) has upvoted your feature:
+        </span>
+    </p>
+    
+</div>

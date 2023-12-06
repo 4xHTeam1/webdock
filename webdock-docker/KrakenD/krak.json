@@ -10,7 +10,13 @@
       "allow_origins": ["*"],
       "allow_methods": ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
       "max_age": "12h",
-      "allow_headers": ["Content-Type", "requesterId", "Content-Length"]
+      "allow_headers": [
+        "Content-Type",
+        "requesterId",
+        "Content-Length",
+        "Cache-Control"
+      ],
+      "expose_headers": []
     },
     "router": {
       "return_error_msg": true
@@ -38,12 +44,12 @@
       ]
     },
     {
-      "endpoint": "/admin/Users",
+      "endpoint": "/admin/users",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Users/",
+          "url_pattern": "/users/",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -59,12 +65,12 @@
       "input_headers": ["requesterId"]
     },
     {
-      "endpoint": "/admin/Users/{id}",
+      "endpoint": "/admin/users/{id}",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Users/{id}",
+          "url_pattern": "/users/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -80,12 +86,12 @@
       "input_headers": ["requesterId"]
     },
     {
-      "endpoint": "/admin/Users/role/{id}",
+      "endpoint": "/admin/users/role/{id}",
       "method": "PUT",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Users/role/{id}",
+          "url_pattern": "/users/role/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
@@ -104,12 +110,12 @@
       "input_headers": ["requesterId", "Content-Type"]
     },
     {
-      "endpoint": "/admin/Categories",
+      "endpoint": "/admin/categories",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories",
+          "url_pattern": "/categories",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -125,12 +131,12 @@
       "input_headers": ["*"]
     },
     {
-      "endpoint": "/admin/Categories/{id}",
+      "endpoint": "/admin/categories/{id}",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories/{id}",
+          "url_pattern": "/categories/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -146,12 +152,12 @@
       "input_headers": ["requesterId"]
     },
     {
-      "endpoint": "/admin/Categories/",
+      "endpoint": "/admin/categories/",
       "method": "POST",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories/",
+          "url_pattern": "/categories/",
           "encoding": "json",
           "sd": "static",
           "method": "POST",
@@ -170,12 +176,12 @@
       "input_headers": ["requesterId", "Content-Type"]
     },
     {
-      "endpoint": "/admin/Categories/{id}",
+      "endpoint": "/admin/categories/{id}",
       "method": "PUT",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories/{id}",
+          "url_pattern": "/categories/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
@@ -194,12 +200,12 @@
       "input_headers": ["requesterId", "Content-Type"]
     },
     {
-      "endpoint": "/admin/Categories/{id}",
+      "endpoint": "/admin/categories/{id}",
       "method": "DELETE",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Categories/{id}",
+          "url_pattern": "/categories/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
@@ -215,12 +221,12 @@
       "input_headers": ["requesterId"]
     },
     {
-      "endpoint": "/admin/Statuses",
+      "endpoint": "/admin/statuses",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/",
+          "url_pattern": "/statuses/",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -236,12 +242,12 @@
       "input_headers": ["requesterId"]
     },
     {
-      "endpoint": "/admin/Statuses/{id}",
+      "endpoint": "/admin/statuses/{id}",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/{id}",
+          "url_pattern": "/statuses/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -257,12 +263,12 @@
       "input_headers": ["requesterId"]
     },
     {
-      "endpoint": "/admin/Statuses/",
+      "endpoint": "/admin/statuses/",
       "method": "POST",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/",
+          "url_pattern": "/statuses/",
           "encoding": "json",
           "sd": "static",
           "method": "POST",
@@ -281,12 +287,12 @@
       "input_headers": ["requesterId", "Content-Type"]
     },
     {
-      "endpoint": "/admin/Statuses/{id}",
+      "endpoint": "/admin/statuses/{id}",
       "method": "PUT",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/{id}",
+          "url_pattern": "/statuses/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
@@ -305,15 +311,36 @@
       "input_headers": ["requesterId", "Content-Type"]
     },
     {
-      "endpoint": "/admin/Statuses/{id}",
+      "endpoint": "/admin/statuses/{id}",
       "method": "DELETE",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/Statuses/{id}",
+          "url_pattern": "/statuses/{id}",
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
+          "host": ["http://admin:3000"],
+          "disable_host_sanitize": false,
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          }
+        }
+      ],
+      "input_headers": ["requesterId"]
+    },
+    {
+      "endpoint": "/admin/features/status/{id}/{statusId}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/features/status/{id}/{statusId}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "PUT",
           "host": ["http://admin:3000"],
           "disable_host_sanitize": false,
           "extra_config": {
@@ -670,7 +697,7 @@
               "return_error_code": true
             },
             "modifier/body-generator": {
-              "template": "ewogICAgInVzZXJJZCI6ICJ7eyAucmVxX2JvZHkudXNlcklkfX0iCn0="
+              "template": "ewogICAgImlkIjogInt7IC5yZXFfYm9keS5pZH19IiwKICAgICJ1c2VySWQiOiAie3sgLnJlcV9ib2R5LnVzZXJJZH19Igp9"
             }
           }
         }
@@ -678,15 +705,39 @@
       "input_headers": ["Content-Type"]
     },
     {
-      "endpoint": "/features/upvote/",
+      "endpoint": "/features/upvote/{id}/{userId}",
       "method": "DELETE",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/upvote/",
+          "url_pattern": "/upvote/{id}/{userId}",
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
+          "host": ["http://features:3000"],
+          "disable_host_sanitize": false,
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            },
+            "modifier/body-generator": {
+              "template": "ewogICAgImlkIjogInt7IC5yZXFfYm9keS5pZH19IiwKICAgICJ1c2VySWQiOiAie3sgLnJlcV9ib2R5LnVzZXJJZH19Igp9"
+            }
+          }
+        }
+      ],
+      "input_query_strings": ["id", "userId"]
+    },
+    {
+      "endpoint": "/features/upvoteCount/{id}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/getFeatureUpvoteCount/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
           "host": ["http://features:3000"],
           "disable_host_sanitize": false,
           "extra_config": {
@@ -698,12 +749,12 @@
       ]
     },
     {
-      "endpoint": "/features/upvoteCount/{id}",
+      "endpoint": "/features/categories",
       "method": "GET",
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/getFeatureUpvoteCount/{id}",
+          "url_pattern": "/categories",
           "encoding": "json",
           "sd": "static",
           "method": "GET",
@@ -904,6 +955,106 @@
         }
       ],
       "input_query_strings": ["query"]
+    },
+    {
+      "endpoint": "/features/notification/{id}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/notification/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "host": ["http://features:3000"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/features/notification/",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/notification/",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {
+            "modifier/body-generator": {
+              "template": "ewogICAib3duZXJJZCI6IHt7LnJlcV9ib2R5Lm93bmVySWR9fSwKICAgInVzZXJJZCI6IHt7LnJlcV9ib2R5LnVzZXJJZH19LAogICAiZmVhdHVyZVJlcXVlc3RJZCI6IHt7LnJlcV9ib2R5LmZlYXR1cmVSZXF1ZXN0SWR9fSwKICAgInR5cGUiOiB7ey5yZXFfYm9keS50eXBlfX0KfQ=="
+            }
+          },
+          "host": ["http://features:3000"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/features/notification/{id}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/notification/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "DELETE",
+          "host": ["http://features:3000"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/features/notification/markAllAsRead/{id}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/notification/markAllAsRead/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "DELETE",
+          "host": ["http://features:3000"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/features/statuses",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/statuses",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "host": ["http://features:3000"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/email/sendUpvoteEmail",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/sendUpvoteEmail",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {
+            "modifier/body-generator": {
+              "template": "ewogIm93bmVySWQiOiB7e3JlcV9ib2R5Lm93bmVySWR9fSwKICJzdWJqZWN0Ijoge3tyZXFfYm9keS5zdWJqZWN0fX0sCiAidXNlciI6IHt7cmVxX2JvZHkudXNlcn19LAogImZlYXR1cmUiOiB7e3JlcV9ib2R5LmZlYXR1cmV9fSwKICJsaW5rIjoge3tyZXFfYm9keS5saW5rfX0KfQ=="
+            }
+          },
+          "host": ["http://email:3000"],
+          "disable_host_sanitize": false
+        }
+      ]
     }
   ]
 }

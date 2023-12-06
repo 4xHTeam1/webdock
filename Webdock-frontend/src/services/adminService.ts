@@ -1,16 +1,18 @@
 import { Category, Status } from "@prisma/client";
 import { http } from "../http-common";
 
-export const GetUsers = async (requesterId: string) => {
-  console.log(requesterId);
+export const GetUsers = async (requesterId: number) => {
   let users = await http
-    .get("/admin/Users", {
+    .get("/admin/users", {
       headers: {
         requesterId: requesterId,
       },
     })
     .catch((error) => {
       console.log(error);
+    })
+    .then((response) => {
+      return response.data.result;
     });
 
   return users;
@@ -18,7 +20,7 @@ export const GetUsers = async (requesterId: string) => {
 
 export const GetUser = async (requesterId: string, userId: string) => {
   let user = await http
-    .get("/admin/Users/" + userId, {
+    .get("/admin/users/" + userId, {
       headers: {
         requesterId: requesterId,
       },
@@ -27,12 +29,30 @@ export const GetUser = async (requesterId: string, userId: string) => {
       console.log(error);
     });
 
-  return user;
+  return user.data;
+};
+
+export const UpdateUserRole = async ({ requesterId, userId, role }: any) => {
+  let user = await http
+    .put(
+      "/admin/users/role/" + userId,
+      { role: role.toUpperCase() },
+      {
+        headers: {
+          requesterId: requesterId,
+        },
+      }
+    )
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return user.data;
 };
 
 export const GetUserRoles = async (requesterId: string, userId: string) => {
   let roles = await http
-    .get("admin/Users/role/" + userId, {
+    .get("admin/users/role/" + userId, {
       headers: {
         requesterId: requesterId,
       },
@@ -46,7 +66,7 @@ export const GetUserRoles = async (requesterId: string, userId: string) => {
 
 export const GetCategories = async (requesterId: string) => {
   let categories = await http
-    .get("/admin/Categories", {
+    .get("/admin/categories", {
       headers: {
         requesterId: requesterId,
       },
@@ -60,7 +80,7 @@ export const GetCategories = async (requesterId: string) => {
 
 export const GetCategory = async (requesterId: string, categoryId: string) => {
   let category = await http
-    .get("/admin/Categories/" + categoryId, {
+    .get("/admin/categories/" + categoryId, {
       headers: {
         requesterId: requesterId,
       },
@@ -77,7 +97,7 @@ export const CreateCategory = async (
   category: Category
 ) => {
   let newCategory = await http
-    .post("/admin/Categories", category, {
+    .post("/admin/categories", category, {
       headers: {
         requesterId: requesterId,
       },
@@ -94,7 +114,7 @@ export const UpdateCategory = async (
   category: Category
 ) => {
   let updatedCategory = await http
-    .put("/admin/Categories/" + category.id, category, {
+    .put("/admin/categories/" + category.id, category, {
       headers: {
         requesterId: requesterId,
       },
@@ -111,7 +131,7 @@ export const DeleteCategory = async (
   categoryId: string
 ) => {
   let deletedCategory = await http
-    .delete("/admin/Categories/" + categoryId, {
+    .delete("/admin/categories/" + categoryId, {
       headers: {
         requesterId: requesterId,
       },
@@ -125,7 +145,7 @@ export const DeleteCategory = async (
 
 export const GetStatuses = async (requesterId: string) => {
   let statuses = await http
-    .get("/admin/Statuses", {
+    .get("/admin/statuses", {
       headers: {
         requesterId: requesterId,
       },
@@ -139,7 +159,7 @@ export const GetStatuses = async (requesterId: string) => {
 
 export const GetStatus = async (requesterId: string, statusId: string) => {
   let status = await http
-    .get("/admin/Statuses/" + statusId, {
+    .get("/admin/statuses/" + statusId, {
       headers: {
         requesterId: requesterId,
       },
@@ -153,7 +173,7 @@ export const GetStatus = async (requesterId: string, statusId: string) => {
 
 export const CreateStatus = async (requesterId: string, status: Status) => {
   let newStatus = await http
-    .post("/admin/Statuses", status, {
+    .post("/admin/statuses", status, {
       headers: {
         requesterId: requesterId,
       },
@@ -167,7 +187,7 @@ export const CreateStatus = async (requesterId: string, status: Status) => {
 
 export const UpdateStatus = async (requesterId: string, status: Status) => {
   let updatedStatus = await http
-    .put("/admin/Statuses/" + status.id, status, {
+    .put("/admin/statuses/" + status.id, status, {
       headers: {
         requesterId: requesterId,
       },
@@ -181,7 +201,7 @@ export const UpdateStatus = async (requesterId: string, status: Status) => {
 
 export const DeleteStatus = async (requesterId: string, statusId: string) => {
   let deletedStatus = await http
-    .delete("/admin/Statuses/" + statusId, {
+    .delete("/admin/statuses/" + statusId, {
       headers: {
         requesterId: requesterId,
       },

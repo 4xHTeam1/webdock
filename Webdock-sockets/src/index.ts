@@ -1,9 +1,9 @@
 import { Elysia } from "elysia";
 import swagger from "@elysiajs/swagger";
-import { PrismaClient } from "@prisma/client";
+import { upvote } from "./functions/rateFunctions";
+import { getFeatureOwner } from "./querys/querys";
 
-const prisma = new PrismaClient();
-const activeConnections: Record<string, any> = {};
+const activeConnections: Record<number, any> = {};
 
 const app = new Elysia()
   .use(
@@ -17,28 +17,40 @@ const app = new Elysia()
       status: "ok",
     };
   })
-  .get("/metrics", async () => {
-    let prismaMetrics = await prisma.$metrics.prometheus();
-    return prismaMetrics;
-  })
   .ws("/ws", {
     close: (ws) => {
-      const { uuid } = ws.data.query || {};
+      const { userId } = ws.data.query || {};
 
-      if (uuid) {
+      if (userId) {
+        delete activeConnections[Number(userId)];
+        console.log(`User ${userId} disconnected`);
       }
     },
     open: (ws) => {
-      const { uuid } = ws.data.query || {};
+      const { userId } = ws.data.query || {};
 
-      if (uuid) {
+      if (userId) {
+        activeConnections[Number(userId)] = ws;
+        console.log(`User ${userId} connected`);
       }
     },
 
-    message(ws, message: any) {
-      const { uuid } = ws.data.query || {};
-      if (!uuid) {
+    async message(ws, message: any) {
+      console.log(message);
+      const { userId } = ws.data.query || {};
+      if (!userId) {
         return;
+      }
+      switch (message.type) {
+        case "upvote":
+          const { postId, userId, ownerId } = message.data;
+          const postOwner = await getFeatureOwner(postId);
+          const ownerSocket = activeConnections[Number(ownerId)];
+          if (ownerSocket) {
+            let data = await upvote({ postId, userId, ownerId });
+            console.log(data);
+            ownerSocket.send(JSON.stringify(data));
+          }
       }
     },
   })

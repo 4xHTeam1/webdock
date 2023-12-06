@@ -1,11 +1,7 @@
 <template>
-  <div
-    class="UpvoteButton_Container"
-    :class="{ active: activated }"
-    @click="toggleUpvote"
-  >
+  <div class="UpvoteButton_Container" :class="{ active: activated }" @click="toggleUpvote">
     <img class="UpvoteButton_Image" src="../../Assets/icons/upvote.svg" />
-    <div class="UpvoteButton_Upvote">{{ upvotesNumber }}</div>
+    <div class="UpvoteButton_Upvote">{{ feature._count.featureUpvotes }}</div>
   </div>
 </template>
 
@@ -13,20 +9,53 @@
 export default {
   data() {
     return {
-      activated: false,
-      upvotesNumber: this.upvotes,
+      activated: false
     };
   },
   props: {
-    upvotes: {
-      type: Number,
+    feature: {
+      type: Object,
       required: true,
     },
   },
+  mounted: function () {
+    this.activated = this.$store.state.auth.user !== null ? this.feature.featureUpvotes.some(
+      (upvote) => upvote.userId === this.$store.state.auth.user.id
+    ) : false;
+  },
   methods: {
-    toggleUpvote() {
-      this.activated = !this.activated;
-      this.upvotesNumber += this.activated ? 1 : -1;
+    async toggleUpvote() {
+      try {
+        if (!this.activated) {
+          await this.$store.dispatch("features/upvoteFeature", {
+            featureId: this.feature.id,
+            userId: this.$store.state.auth.user.id,
+          });
+          if (this.$store.state.auth.user.id !== this.feature.userId) {
+            await this.$store.dispatch("socket/sendUpvote", {
+              postId: this.feature.id,
+              userId: this.$store.state.auth.user.id,
+              ownerId: this.feature.userId,
+            });
+          }
+          this.$store.dispatch("features/sendUpvoteEmail", {
+            ownerId: this.feature.userId,
+            subject: "Your feature has been upvoted!",
+            user: this.$store.state.auth.user,
+            feature: this.feature,
+            link: "http://localhost:5173/feature-request/" + this.feature.id,
+          })
+        } else {
+          await this.$store.dispatch("features/downvoteFeature", {
+            featureId: this.feature.id,
+            userId: this.$store.state.auth.user.id,
+          });
+        }
+
+        this.activated = !this.activated;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
@@ -67,7 +96,6 @@ export default {
 }
 
 .active .UpvoteButton_Image {
-  filter: invert(22%) sepia(53%) saturate(5161%) hue-rotate(150deg)
-    brightness(93%) contrast(99%);
+  filter: invert(22%) sepia(53%) saturate(5161%) hue-rotate(150deg) brightness(93%) contrast(99%);
 }
 </style>

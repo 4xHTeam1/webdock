@@ -33,13 +33,10 @@ import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
 import cors from "@elysiajs/cors";
 import { GetUsers } from "../../Webdock-frontend/src/services/adminService";
+import { updateFeatureStatus } from "./querys/featureQuerys";
 
 const app = new Elysia()
   .get("/status", async ({ request: { headers } }) => {
-    await IsAdministrator({
-      requesterId: headers.get("requesterId"),
-    } as IAdmin);
-
     return await GetAllUsers();
   })
   .onError(({ error }) => {
@@ -47,40 +44,38 @@ const app = new Elysia()
       status: 401,
     });
   })
-  /**
-   * TODO: LAV USER FUNKTIONALITET FOR ADMINS DER KAN FÅ ALLE USERS, FÅ USERS PER ID OG OPDATERE USERS ROLLE
-   */
- .group("/users", (app) =>
- app 
- .get ("/", async ({request: { headers }}) => {
-  await IsAdministrator({
-    requesterId: headers.get("requesterId"),
-  } as IAdmin);
-  return await GetAllUsers()
- })
- .get ("/:id", async ({params: {id},request: { headers}}) => {
-  await IsAdministrator({
-    requesterId: headers.get("requesterId"),
-  } as IAdmin);
-  return await GetUser ({id} as IGetUser)
- } )
+  .group("/users", (app) =>
+    app
+      .get("/", async ({ request: { headers } }) => {
+        await IsAdministrator({
+          requesterId: headers.get("requesterId"),
+        } as IAdmin);
+        return await GetAllUsers();
+      })
+      .get("/:id", async ({ params: { id }, request: { headers } }) => {
+        await IsAdministrator({
+          requesterId: headers.get("requesterId"),
+        } as IAdmin);
+        ParamValidation(id);
+        const userId = Number(id);
+        return await GetUser({ id: userId } as IGetUser);
+      })
 
-.put ("/role/:id", async ({params: {id},body, request: { headers}}) => {
-  await IsAdministrator({
-    requesterId: headers.get("requesterId"),
-  } as IAdmin);
-  BodyValidation(body,"role")
-  const {role} = body as IUpdateUserRole
-  return await UpdateUserRole({id, role} as IUpdateUserRole)
-})
- )
+      .put(
+        "/role/:id",
+        async ({ params: { id }, body, request: { headers } }) => {
+          await IsAdministrator({
+            requesterId: headers.get("requesterId"),
+          } as IAdmin);
+          BodyValidation(body, "role");
+          const { role } = body as IUpdateUserRole;
+          const userId = Number(id);
+          return await UpdateUserRole({ id: userId, role } as IUpdateUserRole);
+        }
+      )
+  )
 
-
-
-
-
-
-  .group("/Categories", (app) =>
+  .group("/categories", (app) =>
     app
       .get("/", async ({ request: { headers } }) => {
         await IsAdministrator({
@@ -131,7 +126,7 @@ const app = new Elysia()
         return await DeleteCategory({ id: Number(id) } as IDeleteCategory);
       })
   )
-  .group("/Statuses", (app) =>
+  .group("/statuses", (app) =>
     app
       .get("/", async ({ request: { headers } }) => {
         await IsAdministrator({
@@ -182,6 +177,20 @@ const app = new Elysia()
 
         return await DeleteStatus({ id: Number(id) } as IDeleteStatus);
       })
+  )
+  .group("/features", (app) =>
+    app.put(
+      "/status/:id/:statusId",
+      async ({ params: { id, statusId }, headers: { requesterId } }) => {
+        IsAdministrator({
+          requesterId: requesterId,
+        } as IAdmin);
+        ParamValidation(Number(id));
+        ParamValidation(Number(statusId));
+
+        return await updateFeatureStatus(Number(id), Number(statusId));
+      }
+    )
   )
   .listen(3000);
 

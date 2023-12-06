@@ -1,16 +1,7 @@
 <template>
   <div class="Search_Container">
-    <img
-      class="Search_Icon"
-      src="../../Assets/icons/searchIcon.svg"
-      alt="search"
-    />
-    <input
-      class="Search_Input"
-      type="text"
-      placeholder="Search"
-      @keyup="searchInput($event)"
-    />
+    <img class="Search_Icon" src="../../Assets/icons/searchIcon.svg" alt="search" />
+    <input class="Search_Input" type="text" placeholder="Search" :value="search" @keyup="searchInput($event)" />
   </div>
 </template>
 
@@ -18,17 +9,19 @@
 let timeout: any = null;
 export default {
   data: () => ({
-    search: "",
+    search: new URLSearchParams(window.location.search).get("query") || "",
   }),
   methods: {
     searchInput: function (event: any) {
       if (event.key === "Enter") {
         this.search = event.target.value;
+        window.location.href = '/search?query=' + encodeURIComponent(this.search)
       } else {
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
           this.search = event.target.value;
+          window.location.href = '/search?query=' + encodeURIComponent(this.search)
         }, 1000);
       }
     },
@@ -49,10 +42,11 @@ export default {
   gap: 2px;
   justify-content: center;
   align-items: center;
+  padding: 0 10px;
 }
 
 .Search_Icon {
-  width: 16px;
+  width: 24px;
   aspect-ratio: 1/1;
 }
 
@@ -63,8 +57,7 @@ export default {
   outline: none;
   font-size: 0.8rem;
   font-weight: bold;
-  padding: 0 10px;
-  color: #000;
+  color: #fff;
   background-color: transparent;
 }
 

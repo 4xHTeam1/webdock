@@ -3,32 +3,31 @@ import { PrismaClient, User, FeatureRequest } from "@prisma/client";
 const prisma = new PrismaClient();
 
 /**
- * Querys the database for all users and feature requests that match the query
- * @param query The given query we want to search by
- * @returns A json object with users as an array of user objects and features as an array of feature requests that matches the query
+ * Searches for feature requests, comments, users, categories, titles, and descriptions that contain the specified query.
+ * @param query - The search query.
+ * @returns An object containing the search results.
  */
 export const searchAll = async (query: string) => {
-  const resultUser: User[] = await prisma.user.findMany({
-    where: {
-      OR: [
-        {
-          name: {
-            contains: query,
-          },
-        },
-        {
-          email: {
-            contains: query,
-          },
-        },
-      ],
-    },
-  });
-
   const resultFeatures: FeatureRequest[] = await prisma.featureRequest.findMany(
     {
       where: {
         OR: [
+          {
+            comments: {
+              some: {
+                comment: {
+                  contains: query,
+                },
+                commentReplys: {
+                  some: {
+                    comment: {
+                      contains: query,
+                    },
+                  },
+                },
+              },
+            },
+          },
           {
             user: {
               OR: [
@@ -64,11 +63,25 @@ export const searchAll = async (query: string) => {
           },
         ],
       },
+      include: {
+        category: true,
+        status: true,
+        user: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
+        _count: {
+          select: {
+            featureUpvotes: true,
+          },
+        },
+      },
     }
   );
 
   const result = {
-    users: resultUser,
     features: resultFeatures,
   };
 
@@ -76,9 +89,9 @@ export const searchAll = async (query: string) => {
 };
 
 /**
- * Querys the database for all users by their name.
- * @param query the name we want to search for
- * @returns an array of users that match the query
+ * Queries the database for all users by their name.
+ * @param query The name we want to search for
+ * @returns An array of users that match the query
  */
 export const searchUserByName = async (query: string) => {
   const result: User[] = await prisma.user.findMany({
@@ -88,29 +101,32 @@ export const searchUserByName = async (query: string) => {
       },
     },
   });
-  return result;
+
+  return {result};
 };
+/* Fungere så result søger i tabellen "User" fra SQL foresepørgelsen bliver lavet af prisma, der bliver 
+printet alt i tabellen "User" som der matcher det man har søgt, "hvor navn indeholder det du har søgt på"*/
 
 /**
- * Querys the database for all users by their email.
- * @param query the email we want to search for
- * @returns
+ * Queries the database for all users by their email.
+ * @param query The email we want to search for
+ * @returns An array of users that match the query
  */
 export const searchUserByEmail = async (query: string) => {
   const result: User[] = await prisma.user.findMany({
     where: {
-      name: {
+      email: {
         contains: query,
       },
     },
   });
-  return result;
+  return {result};;
 };
 
 /**
- * Querys the database for all feature requests matching the user who made the request's name
+ * Queries the database for all feature requests matching the user who made the request's name.
  * @param query The name we want to search for
- * @returns an array of all feature requests that match the users name
+ * @returns An array of feature requests that match the user's name
  */
 export const searchFeaturesByUserName = async (query: string) => {
   const result: FeatureRequest[] = await prisma.featureRequest.findMany({
@@ -126,9 +142,9 @@ export const searchFeaturesByUserName = async (query: string) => {
 };
 
 /**
- * Querys the database for all the feature request matching the user who made the request's email
+ * Queries the database for all feature requests matching the user who made the request's email.
  * @param query The email we want to search for
- * @returns an array of all features that match the users email
+ * @returns An array of feature requests that match the user's email
  */
 export const searchFeaturesByUserEmail = async (query: string) => {
   const result: FeatureRequest[] = await prisma.featureRequest.findMany({
@@ -145,9 +161,9 @@ export const searchFeaturesByUserEmail = async (query: string) => {
 };
 
 /**
- * Querys the database for all the feature requests matching the category name
- * @param query the category name we want to search for
- * @returns an array of all features that match the category name
+ * Queries the database for all feature requests matching the category name.
+ * @param query The category name we want to search for
+ * @returns An array of feature requests that match the category name
  */
 export const searchFeaturesByCategory = async (query: string) => {
   const result: FeatureRequest[] = await prisma.featureRequest.findMany({
@@ -164,9 +180,9 @@ export const searchFeaturesByCategory = async (query: string) => {
 };
 
 /**
- * Querys the database for all the feature requests matching the title
- * @param query the title we want to search for
- * @returns an array of all features that match the title
+ * Queries the database for all feature requests matching the title.
+ * @param query The title we want to search for
+ * @returns An array of feature requests that match the title
  */
 export const searchFeatureByTitle = async (query: string) => {
   const result: FeatureRequest[] = await prisma.featureRequest.findMany({
@@ -181,9 +197,9 @@ export const searchFeatureByTitle = async (query: string) => {
 };
 
 /**
- * Querys the database for all the feature requests matching the description
- * @param query the description we want to search for
- * @returns an array of all features that match the description
+ * Queries the database for all feature requests matching the description.
+ * @param query The description we want to search for
+ * @returns An array of feature requests that match the description
  */
 export const searchFeatureByDescription = async (query: string) => {
   const result: FeatureRequest[] = await prisma.featureRequest.findMany({

@@ -1,10 +1,10 @@
 <template>
   <div class="Feature_Container">
-    <upvote-button :upvotes="upvotes" />
-    <div class="Feature_InfoContainer">
-      <p class="Feature_Title">{{ title }}</p>
-      <p class="Feature_Description">{{ description }}</p>
-    </div>
+    <upvote-button :feature="feature" />
+    <router-link class="Feature_InfoContainer" :to="`/feature-request/${feature.id}`">
+      <p class="Feature_Title">{{ feature.title }}</p>
+      <p class="Feature_Description">{{ feature.description }}</p>
+    </router-link>
   </div>
 </template>
 
@@ -15,17 +15,9 @@ export default {
     UpvoteButton,
   },
   props: {
-    title: {
-      type: String,
+    feature: {
+      type: Object,
       required: true,
-    },
-    description: {
-      type: String,
-      required: false,
-    },
-    upvotes: {
-      type: Number,
-      required: false,
     },
   },
 };
@@ -55,11 +47,12 @@ export default {
 }
 
 .Feature_InfoContainer {
-  flex: 0 1 auto;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 5px;
   min-width: 0;
+  text-decoration: none;
 }
 
 .Feature_Title {

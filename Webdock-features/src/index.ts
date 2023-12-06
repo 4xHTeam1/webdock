@@ -6,9 +6,15 @@ import {
   deleteCommentReply,
   deleteFeature,
   getAllComments,
+  getCategories,
   getFeature,
   getFeatureUpvoteCount,
   getFeatures,
+  getNotifications,
+  getStatuses,
+  postNotification,
+  removeAllNotifications,
+  removeNotification,
   replyToComment,
   unvoteFeature,
   updateComment,
@@ -25,6 +31,7 @@ import {
   IDownvoteFeature,
   IFeatureById,
   IGetAllComments,
+  INotification,
   IUpdateComment,
   IUpdateFeature,
   IUpdateReply,
@@ -33,6 +40,7 @@ import {
 import swagger from "@elysiajs/swagger";
 import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
+import cors from "@elysiajs/cors";
 
 const app = new Elysia()
   .use(
@@ -40,6 +48,7 @@ const app = new Elysia()
       path: "/v1/swagger",
     })
   )
+  .use(cors())
   .get("/status", () => {
     try {
       return {
@@ -67,13 +76,7 @@ const app = new Elysia()
         return await getFeature({ id: Number(id) } as IFeatureById);
       })
       .post("/", async ({ body }) => {
-        BodyValidation(body, [
-          "title",
-          "description",
-          "userId",
-          "categoryId",
-          "statusId",
-        ]);
+        BodyValidation(body, ["title", "description", "userId", "category"]);
         return await createFeature(body as ICreateFeature);
       })
       .put("/:id", async ({ params: { id }, body }) => {
@@ -153,15 +156,44 @@ const app = new Elysia()
         BodyValidation(body, ["id", "userId"]);
         return await upvoteFeature(body as IUpvoteFeature);
       })
-      .delete("/", async ({ body }) => {
-        BodyValidation(body, ["id", "userId"]);
-        return await unvoteFeature(body as IDownvoteFeature);
+      .delete("/:id/:userId", async ({ params: { id, userId } }) => {
+        //BodyValidation(body, ["id", "userId"]);
+        const params = {
+          id: Number(id),
+          userId: Number(userId),
+        };
+        return await unvoteFeature(params as IDownvoteFeature);
       })
       .get("/upvoteCount/:id", async ({ params: { id } }) => {
         ParamValidation(id);
         return await getFeatureUpvoteCount(Number(id));
       })
   )
+  .group("/notification", (app) =>
+    app
+      .get("/:id", async ({ params: { id } }) => {
+        ParamValidation(id);
+        return await getNotifications(Number(id));
+      })
+      .post("/", async ({ body }) => {
+        BodyValidation(body, ["ownerId", "userId", "featureRequestId", "type"]);
+        return await postNotification(body as INotification);
+      })
+      .delete("/:id", async ({ params: { id } }) => {
+        ParamValidation(id);
+        return await removeNotification(Number(id));
+      })
+      .delete("/markAllAsRead/:id", async ({ params: { id } }) => {
+        ParamValidation(id);
+        return await removeAllNotifications(Number(id));
+      })
+  )
+  .get("/categories", async () => {
+    return await getCategories();
+  })
+  .get("/statuses", async () => {
+    return await getStatuses();
+  })
   .listen(3000);
 
 console.log(

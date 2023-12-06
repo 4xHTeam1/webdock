@@ -1,9 +1,11 @@
 export interface ICreateFeature {
   title: string;
   description: string;
-  userId: string;
-  categoryId: number;
-  statusId: number;
+  userId: number;
+  category: {
+    id: number;
+    name: string;
+  };
 }
 
 export interface IUpdateFeature {
@@ -24,7 +26,7 @@ export interface IDeleteFeature {
 
 export interface ICreateComment {
   id: number;
-  userId: string;
+  userId: number;
   comment: string;
 }
 
@@ -35,7 +37,7 @@ export interface IUpdateComment {
 
 export interface ICreateReply {
   id: number;
-  userId: string;
+  userId: number;
   comment: string;
 }
 
@@ -58,10 +60,17 @@ export interface IGetAllComments {
 
 export interface IUpvoteFeature {
   id: number;
-  userId: string;
+  userId: number;
 }
 
 export interface IDownvoteFeature {
   id: number;
-  userId: string;
+  userId: number;
+}
+
+export interface INotification {
+  ownerId: number;
+  userId: number;
+  featureRequestId: number;
+  type: string;
 }

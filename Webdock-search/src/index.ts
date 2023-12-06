@@ -10,10 +10,7 @@ import {
   searchUserByName,
 } from "./querys/querys";
 import swagger from "@elysiajs/swagger";
-import { PrismaClient } from "@prisma/client";
 import { SearchValidation } from "../shared/services/SearchValidation";
-
-const prisma = new PrismaClient();
 
 const app = new Elysia()
   .use(
@@ -32,13 +29,6 @@ const app = new Elysia()
       status: "ok",
     };
   })
-  .get("/all", async ({ query: { query } }) => {
-    console.log(query);
-  })
-  .get("/metrics", async () => {
-    let prismaMetrics = await prisma.$metrics.prometheus();
-    return prismaMetrics;
-  })
   .group("/search", (app) =>
     app
       .get("/all", async ({ query: { query } }) => {
@@ -46,7 +36,21 @@ const app = new Elysia()
 
         const searched = await searchAll(query);
         return searched;
-      })/** TODO: LAV SEARCH FUNCTIONALITET FOR USERS. DER SKAL KUNNE SØGE PÅ USERS NAVN OG EMAIL */
+      })
+      /* ENDPOINT */
+      .group("/user", (app) =>
+        app
+          .get("/name", async ({ query: { query } }) => {
+            SearchValidation(query);
+            const result = await searchUserByName(query);
+            return result;
+          })
+          .get("/email", async ({ query: { query } }) => {
+            SearchValidation(query);
+            const result = await searchUserByEmail(query);
+            return result;
+          })
+      )
       .group("/feature", (app) =>
         app
           .get("/user/name", async ({ query: { query } }) => {
