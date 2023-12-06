@@ -32,7 +32,6 @@ import StatusContainer from "../Components/roadmap-components/statusContainer.vu
 import searchComponent from "../Components/shared/searchComponent.vue";
 import filterComponent from "../Components/shared/filterComponent.vue";
 import { mapGetters, mapState } from "vuex";
-import { features } from "process";
 
 export default {
   computed: {
