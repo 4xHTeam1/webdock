@@ -5,7 +5,7 @@
         <upvoteButton :feature="feature" />
         <div class="postTitle">
           <h1>{{ feature.title }}</h1>
-          <div class="postStatus" v-if="auth.user.role.toLowerCase() === 'admin'">
+          <div class="postStatus" v-if="auth.user !== null && auth.user.role.toLowerCase() === 'admin'">
             <select v-model="selectedStatus" @change="updateStatus" :style="{ color: selectedStatus.color }">
               <option v-for="status in features.statuses" :key="status.id" :value="status.id"
                 :style="{ color: status.color }">
@@ -52,7 +52,7 @@
             {{ new Date(feature.dateSubmitted).toLocaleDateString("en-GB") }}
           </p>
         </div>
-        <div class="commentContainer">
+        <div class="commentContainer" v-if="auth.user !== null">
           <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
             :value="this.comment" @keyup="this.comment = $event.target.value"></textarea>
           <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
