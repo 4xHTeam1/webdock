@@ -33,7 +33,7 @@ export const getDaysFeatureRequests = async () => {
   });
 
   features.forEach((feature) => {
-    feature.link = `http://localhost:5173/feature-request/${feature.id}`; //TODO: Fix this link to be the actual link of server
+    feature.link = `http://server4xh.vps.webdock.cloud/feature-request/${feature.id}`; //TODO: Fix this link to be the actual link of server
   });
 
   return features;
@@ -65,7 +65,7 @@ export const getDaysComments = async () => {
   });
 
   comments.forEach((comment) => {
-    comment.link = `http://localhost:5173/feature-request/${comment.featureRequestId}#${comment.id}`;
+    comment.link = `http://server4xh.vps.webdock.cloud/feature-request/${comment.featureRequestId}#${comment.id}`;
   });
   return comments;
 };

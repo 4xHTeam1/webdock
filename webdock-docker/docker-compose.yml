@@ -1,8 +1,14 @@
 version: 0.0.1
 
 services:
+  frontend:
+    image: franno0/webdock-images:webdock-frontendv1
+    ports:
+      - "80:5173"
+    environment:
+      - APIGATEWAY=krakend:8080
   auth:
-    image: franno0/webdock-images:webdock-authv0.0.1
+    image: franno0/webdock-images:webdock-authv1
     ports:
       - "3000:3000"
     environment:
@@ -11,7 +17,7 @@ services:
     links:
       - "DB:DB"
   admin:
-    image: franno0/webdock-images:webdock-adminv0.0.1
+    image: franno0/webdock-images:webdock-adminv1
     ports:
       - "4000:3000"
     environment:
@@ -19,7 +25,7 @@ services:
     links:
       - "DB:DB"
   search:
-    image: franno0/webdock-images:webdock-searchv0.0.1
+    image: franno0/webdock-images:webdock-searchv1
     ports:
       - "5000:3000"
     environment:
@@ -27,14 +33,14 @@ services:
     links:
       - "DB:DB"
   email:
-    image: franno0/webdock-images:webdock-emailv0.0.1
+    image: franno0/webdock-images:webdock-emailv1
     ports:
       - "6000:3000"
     environment:
       - POSTMARK_TOKEN=c3d41965-18a4-479f-a591-4369b7f5952c
       - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
   features:
-    image: franno0/webdock-images:webdock-featuresv0.0.1
+    image: franno0/webdock-images:webdock-featuresv1
     ports:
       - "7000:3000"
     environment:
@@ -42,7 +48,7 @@ services:
     links:
       - "DB:DB"
   sockets:
-    image: franno0/webdock-images:webdock-socketsv0.0.1
+    image: franno0/webdock-images:webdock-socketsv1
     ports:
       - "8000:3000"
     environment:

@@ -17,15 +17,17 @@ jobs:
     - name: Build the Docker image
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "franno0" --password-stdin
-        docker build -f Webdock-search/dockerfile -t franno0/webdock-images:webdock-searchv0.0.1 .
-        docker push franno0/webdock-images:webdock-searchv0.0.1
-        docker build -f Webdock-features/dockerfile -t franno0/webdock-images:webdock-featuresv0.0.1 .
-        docker push franno0/webdock-images:webdock-featuresv0.0.1
-        docker build -f Webdock-email/dockerfile -t franno0/webdock-images:webdock-emailv0.0.1 .
-        docker push franno0/webdock-images:webdock-emailv0.0.1
-        docker build -f Webdock-auth/dockerfile -t franno0/webdock-images:webdock-authv0.0.1 .
-        docker push franno0/webdock-images:webdock-authv0.0.1
-        docker build -f Webdock-admin/dockerfile -t franno0/webdock-images:webdock-adminv0.0.1 .
-        docker push franno0/webdock-images:webdock-adminv0.0.1
-        docker build -f Webdock-sockets/dockerfile -t franno0/webdock-images:webdock-socketsv0.0.1 .
-        docker push franno0/webdock-images:webdock-socketsv0.0.1
+        docker build -f Webdock-search/dockerfile -t franno0/webdock-images:webdock-searchv1 .
+        docker push franno0/webdock-images:webdock-searchv1
+        docker build -f Webdock-features/dockerfile -t franno0/webdock-images:webdock-featuresv1 .
+        docker push franno0/webdock-images:webdock-featuresv1
+        docker build -f Webdock-email/dockerfile -t franno0/webdock-images:webdock-emailv1 .
+        docker push franno0/webdock-images:webdock-emailv1
+        docker build -f Webdock-auth/dockerfile -t franno0/webdock-images:webdock-authv1 .
+        docker push franno0/webdock-images:webdock-authv1
+        docker build -f Webdock-admin/dockerfile -t franno0/webdock-images:webdock-adminv1 .
+        docker push franno0/webdock-images:webdock-adminv1
+        docker build -f Webdock-sockets/dockerfile -t franno0/webdock-images:webdock-socketsv1 .
+        docker push franno0/webdock-images:webdock-socketsv1
+        docker build -f Webdock-frontend/dockerfile -t franno0/webdock-images:webdock-frontendv1 .
+        docker push franno0/webdock-images:webdock-frontendv1
