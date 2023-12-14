@@ -32,7 +32,8 @@
     "elysia": "latest",
     "vue": "^3.3.4",
     "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vite": "^4.4.5"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
