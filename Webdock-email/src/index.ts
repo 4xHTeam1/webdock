@@ -80,6 +80,14 @@ const app = new Elysia()
     const t = await sendDailySummaryEmail();
     return t;
   })
+  .get("/debug/getDaysFeatureRequests", async () => {
+    const t = await getDaysFeatureRequests();
+    return t;
+  })
+  .get("/debug/getDaysComments", async () => {
+    const t = await getDaysComments();
+    return t;
+  })
   .get("/status", () => {
     return {
       status: "ok",
@@ -105,7 +113,7 @@ const sendDailySummaryEmail = async () => {
   });
   await instance.post("email", {
     From: "uclfeedback@webdock.io",
-    To: "mikehovedskov@gmail.com", //TODO: Change to real email
+    To: "mikehovedskov@gmail.com, admin@webdock.io",
     Subject: "Daily Summary",
     HtmlBody: htmlBody,
     TrackOpens: true,
@@ -113,5 +121,5 @@ const sendDailySummaryEmail = async () => {
     MessageStream: "outbound",
   });
 
-  return { message: "Email sent" };
+  return { message: `Email sent at: ${new Date().toUTCString()}` };
 };

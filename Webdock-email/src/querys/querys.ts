@@ -20,11 +20,25 @@ export const getEmailByUserId = async (id: number) => {
 };
 
 export const getDaysFeatureRequests = async () => {
+  const today = new Date();
+  const yesterdayStart = new Date(today.setDate(today.getDate() - 1)).setHours(
+    0,
+    0,
+    0,
+    0
+  );
+  const yesterdayEnd = new Date(today.setDate(today.getDate())).setHours(
+    23,
+    59,
+    59,
+    999
+  );
+
   const features = await prisma.featureRequest.findMany({
     where: {
       dateSubmitted: {
-        gte: new Date(new Date().setHours(0, 0, 0, 0)),
-        lt: new Date(new Date().setHours(23, 59, 59, 999)),
+        gte: new Date(yesterdayStart),
+        lt: new Date(yesterdayEnd),
       },
     },
     include: {
@@ -33,18 +47,32 @@ export const getDaysFeatureRequests = async () => {
   });
 
   features.forEach((feature) => {
-    feature.link = `http://server4xh.vps.webdock.cloud/feature-request/${feature.id}`; //TODO: Fix this link to be the actual link of server
+    feature.link = `http://server4xh.vps.webdock.cloud/feature-request/${feature.id}`;
   });
 
   return features;
 };
 
 export const getDaysComments = async () => {
+  const today = new Date();
+  const yesterdayStart = new Date(today.setDate(today.getDate() - 1)).setHours(
+    0,
+    0,
+    0,
+    0
+  );
+  const yesterdayEnd = new Date(today.setDate(today.getDate())).setHours(
+    23,
+    59,
+    59,
+    999
+  );
+
   const comments = await prisma.comment.findMany({
     where: {
       dateSubmitted: {
-        gte: new Date(new Date().setHours(0, 0, 0, 0)),
-        lt: new Date(new Date().setHours(23, 59, 59, 999)),
+        gte: new Date(yesterdayStart),
+        lt: new Date(yesterdayEnd),
       },
     },
     include: {
@@ -53,8 +81,8 @@ export const getDaysComments = async () => {
       commentReplys: {
         where: {
           dateSubmitted: {
-            gte: new Date(new Date().setHours(0, 0, 0, 0)),
-            lt: new Date(new Date().setHours(23, 59, 59, 999)),
+            gte: new Date(yesterdayStart),
+            lt: new Date(yesterdayEnd),
           },
         },
         include: {

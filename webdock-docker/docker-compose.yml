@@ -1,14 +1,16 @@
-version: 0.0.1
+version: 1.0.0
 
 services:
   frontend:
     image: franno0/webdock-images:webdock-frontendv1
+    restart: unless-stopped
     ports:
       - "80:5173"
     environment:
       - APIGATEWAY=krakend:8080
   auth:
     image: franno0/webdock-images:webdock-authv1
+    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
@@ -18,6 +20,7 @@ services:
       - "DB:DB"
   admin:
     image: franno0/webdock-images:webdock-adminv1
+    restart: unless-stopped
     ports:
       - "4000:3000"
     environment:
@@ -26,6 +29,7 @@ services:
       - "DB:DB"
   search:
     image: franno0/webdock-images:webdock-searchv1
+    restart: unless-stopped
     ports:
       - "5000:3000"
     environment:
@@ -34,6 +38,7 @@ services:
       - "DB:DB"
   email:
     image: franno0/webdock-images:webdock-emailv1
+    restart: unless-stopped
     ports:
       - "6000:3000"
     environment:
@@ -41,6 +46,7 @@ services:
       - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
   features:
     image: franno0/webdock-images:webdock-featuresv1
+    restart: unless-stopped
     ports:
       - "7000:3000"
     environment:
@@ -49,6 +55,7 @@ services:
       - "DB:DB"
   sockets:
     image: franno0/webdock-images:webdock-socketsv1
+    restart: unless-stopped
     ports:
       - "8000:3000"
     environment:
@@ -61,10 +68,13 @@ services:
     environment:
       MYSQL_DATABASE: "features"
       MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_ROOT_HOST: "%"
     ports:
       - "3306:3306"
     expose:
       - "3306"
+    volumes:
+      - db_data:/var/lib/mysql
   ###########################################
   #API Gateway #############################
   ##########################################
@@ -82,3 +92,5 @@ services:
       - email
       - features
       - sockets
+volumes:
+  db_data:
