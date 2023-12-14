@@ -9,7 +9,6 @@ COPY ./Webdock-frontend/vite.config.ts ./Webdock-frontend/vite.config.ts
 COPY ./Webdock-frontend ./Webdock-frontend
 
 RUN bun install --production
-RUN bun i vite
 
 CMD ["bun", "run", "frontend:dev"]
 
