@@ -74,9 +74,11 @@ docker compose -f ./webdock-docker/docker-compose.yml -p webdock up
     <b>
         (Dog har vi en forudsætning om at en mysql database stadig kører på port 3306, og at man kører vores prisma script for at lave databasen, samt migrate alle tabeller og seede den med dummy data.)
     </b>
+    ```sh
         bun run prisma:dev
         //Hvis ikke det virker med bun (der er stadig nogle fejl i forhold til at køre 3. parts scripts gennem bun)
         npm run prisma:dev
+    ```
 </p>
 
 Admin service:
