@@ -31,23 +31,13 @@ Dette projekt er skrevet i forbindelse med UCL's P.Ba i Webudvikling 1. semester
 <a href="https://www.docker.com" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white"/>
 </a>
-<a href="https://minikube.sigs.k8s.io/" style="text-decoration: none"> 
-    <img src="https://custom-icon-badges.demolab.com/badge/-Minikube-326CE5?style=for-the-badge&logo=Kubernetes&logoColor=white"/>
-</a>
 <a href="https://www.typescriptlang.org" style="text-decoration: none"> 
     <img src="https://custom-icon-badges.demolab.com/badge/-Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/>
 </a>
 <a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads" style="text-decoration: none"> 
-    <img src="https://custom-icon-badges.demolab.com/badge/-mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
-</a>
-<a href="https://grafana.com" style="text-decoration: none"> 
-    <img src="https://custom-icon-badges.demolab.com/badge/-Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white"/>
-</a>
-<a href="https://prometheus.io" style="text-decoration: none"> 
-    <img src="https://custom-icon-badges.demolab.com/badge/-Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white"/>
+    <img src="https://custom-icon-badges.demolab.com/badge/-mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
 </a>
 </p>
-
 <h2 align="center">
     Installation og brug
 </h2>
@@ -78,11 +68,15 @@ docker compose -f ./webdock-docker/docker-compose.yml -p webdock up
 <p align="justify">
     Hvis man ikke ønsker at kører vores app som et standalone program, kan man køre de individuelle services for sig selv. Alle services er sat op per default at bruge port 3000, så det er ikke muligt at kører flere services på en gang uden at ændre dette i koden.
     <br><br>
-    <b>
-    Dog har vi en forudsætning om at man har en mssql database kørende, med en database kaldet "features", da prisma ikke kan lave databasen hvis den ikke eksisterer</b>
-    <br>
     <br>
     For at kører de individuelle services har vi scripts til hver enkel:
+    <br><br>
+    <b>
+        (Dog har vi en forudsætning om at en mysql database stadig kører på port 3306, og at man kører vores prisma script for at lave databasen, samt migrate alle tabeller og seede den med dummy data.)
+    </b>
+        bun run prisma:dev
+        //Hvis ikke det virker med bun (der er stadig nogle fejl i forhold til at køre 3. parts scripts gennem bun)
+        npm run prisma:dev
 </p>
 
 Admin service:
