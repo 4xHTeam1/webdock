@@ -1,0 +1,33 @@
+name: Docker Image CI DEV
+
+on:
+  push:
+    branches: [ "Dev" ]
+  pull_request:
+    branches: [ "Dev" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "franno0" --password-stdin
+        docker build -f Webdock-search/dockerfile -t franno0/webdock-images:webdock-searchv1DEV .
+        docker push franno0/webdock-images:webdock-searchv1DEV
+        docker build -f Webdock-features/dockerfile -t franno0/webdock-images:webdock-featuresv1DEV .
+        docker push franno0/webdock-images:webdock-featuresv1DEV
+        docker build -f Webdock-email/dockerfile -t franno0/webdock-images:webdock-emailv1DEV .
+        docker push franno0/webdock-images:webdock-emailv1DEV
+        docker build -f Webdock-auth/dockerfile -t franno0/webdock-images:webdock-authv1DEV .
+        docker push franno0/webdock-images:webdock-authv1DEV
+        docker build -f Webdock-admin/dockerfile -t franno0/webdock-images:webdock-adminv1DEV .
+        docker push franno0/webdock-images:webdock-adminv1DEV
+        docker build -f Webdock-sockets/dockerfile -t franno0/webdock-images:webdock-socketsv1DEV .
+        docker push franno0/webdock-images:webdock-socketsv1DEV
+        docker build -f Webdock-frontend/dockerfile -t franno0/webdock-images:webdock-frontendv1DEV .
+        docker push franno0/webdock-images:webdock-frontendv1DEV
