@@ -62,7 +62,7 @@ Som kode projekt:
 </p>
 
 ```sh
-docker compose -f ./webdock-docker/docker-compose.yml -p webdock up
+docker compose -f ./webdock-docker/docker-compose-dev.yml -p webdock-dev up -d
 ```
 
 <p align="justify">
