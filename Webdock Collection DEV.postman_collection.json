@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "caa8f7c2-8654-4a01-85af-daf7f506ba36",
-		"name": "Webdock Collection",
+		"_postman_id": "3421c408-7e87-430a-8bc5-330d6041f8e2",
+		"name": "Webdock Collection DEV",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "17492374"
 	},
@@ -23,7 +23,7 @@
 								}
 							}
 						},
-						"url": "http://server4xh.vps.webdock.cloud:8080/auth/verify"
+						"url": "localhost:8080/auth/verify"
 					},
 					"response": []
 				}
@@ -53,7 +53,7 @@
 									"mode": "raw",
 									"raw": ""
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/users"
+								"url": "localhost:8080/admin/users"
 							},
 							"response": []
 						},
@@ -68,7 +68,7 @@
 										"type": "text"
 									}
 								],
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/users/1"
+								"url": "localhost:8080/admin/users/1"
 							},
 							"response": []
 						},
@@ -92,7 +92,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/users/role/22544"
+								"url": "localhost:8080/admin/users/role/22544"
 							},
 							"response": []
 						}
@@ -112,7 +112,7 @@
 										"type": "text"
 									}
 								],
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Categories"
+								"url": "localhost:8080/admin/Categories"
 							},
 							"response": []
 						},
@@ -127,7 +127,7 @@
 										"type": "text"
 									}
 								],
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Categories/1"
+								"url": "localhost:8080/admin/Categories/1"
 							},
 							"response": []
 						},
@@ -151,7 +151,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Categories/"
+								"url": "localhost:8080/admin/Categories/"
 							},
 							"response": []
 						},
@@ -175,7 +175,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Categories/4"
+								"url": "localhost:8080/admin/Categories/4"
 							},
 							"response": []
 						},
@@ -190,7 +190,7 @@
 										"type": "text"
 									}
 								],
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Categories/4"
+								"url": "localhost:8080/admin/Categories/4"
 							},
 							"response": []
 						}
@@ -210,7 +210,7 @@
 										"type": "text"
 									}
 								],
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Statuses"
+								"url": "localhost:8080/admin/Statuses"
 							},
 							"response": []
 						},
@@ -225,7 +225,7 @@
 										"type": "text"
 									}
 								],
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Statuses/1"
+								"url": "localhost:8080/admin/Statuses/1"
 							},
 							"response": []
 						},
@@ -249,7 +249,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Statuses"
+								"url": "localhost:8080/admin/Statuses"
 							},
 							"response": []
 						},
@@ -273,7 +273,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Statuses/4"
+								"url": "localhost:8080/admin/Statuses/4"
 							},
 							"response": []
 						},
@@ -288,7 +288,7 @@
 										"type": "text"
 									}
 								],
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/Statuses/4"
+								"url": "localhost:8080/admin/Statuses/4"
 							},
 							"response": []
 						}
@@ -308,7 +308,7 @@
 										"type": "text"
 									}
 								],
-								"url": "http://server4xh.vps.webdock.cloud:8080/admin/features/status/1/1"
+								"url": "localhost:8080/admin/features/status/1/1"
 							},
 							"response": []
 						}
@@ -395,7 +395,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/"
+								"url": "localhost:8080/features/"
 							},
 							"response": []
 						},
@@ -404,7 +404,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/1"
+								"url": "localhost:8080/features/1"
 							},
 							"response": []
 						},
@@ -422,7 +422,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features"
+								"url": "localhost:8080/features"
 							},
 							"response": []
 						},
@@ -440,7 +440,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/1"
+								"url": "localhost:8080/features/1"
 							},
 							"response": []
 						},
@@ -449,7 +449,7 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/7"
+								"url": "localhost:8080/features/7"
 							},
 							"response": []
 						}
@@ -472,7 +472,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/comment"
+								"url": "localhost:8080/features/comment"
 							},
 							"response": []
 						},
@@ -490,7 +490,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/comment/reply"
+								"url": "localhost:8080/features/comment/reply"
 							},
 							"response": []
 						},
@@ -499,7 +499,7 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/comment/7"
+								"url": "localhost:8080/features/comment/7"
 							},
 							"response": []
 						},
@@ -508,7 +508,7 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/comment/reply/7"
+								"url": "localhost:8080/features/comment/reply/7"
 							},
 							"response": []
 						},
@@ -526,7 +526,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/comment/4"
+								"url": "localhost:8080/features/comment/4"
 							},
 							"response": []
 						},
@@ -544,7 +544,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/comment/reply/5"
+								"url": "localhost:8080/features/comment/reply/5"
 							},
 							"response": []
 						},
@@ -553,7 +553,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/comment/1"
+								"url": "localhost:8080/features/comment/1"
 							},
 							"response": []
 						}
@@ -576,7 +576,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/upvote/"
+								"url": "localhost:8080/features/upvote/"
 							},
 							"response": []
 						},
@@ -594,7 +594,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/upvote/2/22544"
+								"url": "localhost:8080/features/upvote/2/22544"
 							},
 							"response": []
 						}
@@ -608,7 +608,7 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/notification/22544"
+								"url": "localhost:8080/features/notification/22544"
 							},
 							"response": []
 						},
@@ -626,7 +626,7 @@
 										}
 									}
 								},
-								"url": "http://server4xh.vps.webdock.cloud:8080/features/notification/"
+								"url": "localhost:8080/features/notification/"
 							},
 							"response": []
 						}
@@ -643,13 +643,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://server4xh.vps.webdock.cloud:8080/search/all?query=feature",
-							"protocol": "http",
+							"raw": "localhost:8080/search/all?query=feature",
 							"host": [
-								"server4xh",
-								"vps",
-								"webdock",
-								"cloud"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -672,13 +668,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://server4xh.vps.webdock.cloud:8080/search/user/name?query=test",
-							"protocol": "http",
+							"raw": "localhost:8080/search/user/name?query=test",
 							"host": [
-								"server4xh",
-								"vps",
-								"webdock",
-								"cloud"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -702,13 +694,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://server4xh.vps.webdock.cloud:8080/search/user/email?query=test",
-							"protocol": "http",
+							"raw": "localhost:8080/search/user/email?query=test",
 							"host": [
-								"server4xh",
-								"vps",
-								"webdock",
-								"cloud"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -732,13 +720,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://server4xh.vps.webdock.cloud:8080/search/feature/user/name?query=test",
-							"protocol": "http",
+							"raw": "localhost:8080/search/feature/user/name?query=test",
 							"host": [
-								"server4xh",
-								"vps",
-								"webdock",
-								"cloud"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -763,13 +747,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://server4xh.vps.webdock.cloud:8080/search/feature/user/email?query=test",
-							"protocol": "http",
+							"raw": "localhost:8080/search/feature/user/email?query=test",
 							"host": [
-								"server4xh",
-								"vps",
-								"webdock",
-								"cloud"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -794,13 +774,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://server4xh.vps.webdock.cloud:8080/search/feature/category?query=test",
-							"protocol": "http",
+							"raw": "localhost:8080/search/feature/category?query=test",
 							"host": [
-								"server4xh",
-								"vps",
-								"webdock",
-								"cloud"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -824,13 +800,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://server4xh.vps.webdock.cloud:8080/search/feature/title?query=test",
-							"protocol": "http",
+							"raw": "localhost:8080/search/feature/title?query=test",
 							"host": [
-								"server4xh",
-								"vps",
-								"webdock",
-								"cloud"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
@@ -854,13 +826,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://server4xh.vps.webdock.cloud:8080/search/feature/description?query=test",
-							"protocol": "http",
+							"raw": "localhost:8080/search/feature/description?query=test",
 							"host": [
-								"server4xh",
-								"vps",
-								"webdock",
-								"cloud"
+								"localhost"
 							],
 							"port": "8080",
 							"path": [
