@@ -47,6 +47,20 @@ Dette projekt er skrevet i forbindelse med UCL's P.Ba i Webudvikling 1. semester
 <p>
 Følgende forudsætninger er sat for at kunne starte vores projekt:
 
+Globalt installeret følgende NPM Pakker:
+* Vite
+ ```sh
+ npm i -g vite
+```
+* Prisma
+```sh
+npm i -g prisma
+```
+* ts-node
+```sh
+npm i -g ts-node
+```
+
 Som standalone app:
 * <a href="https://docs.docker.com/engine/install/binaries/">Docker Engine </a> og <a href="https://docs.docker.com/compose/install/standalone/"> Docker Compose </a> som standalone binaries
 * Eller <a href="https://docs.docker.com/desktop/">Docker Desktop</a> som inkludere både Docker Engine og Docker Compose
