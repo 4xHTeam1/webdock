@@ -21,7 +21,11 @@ export const updateFeatureStatus = async (id: number, statusId: number) => {
           },
         },
         user: true,
-        featureUpvotes: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
         _count: {
           select: {
             featureUpvotes: true,

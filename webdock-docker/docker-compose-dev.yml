@@ -1,0 +1,96 @@
+version: 1.0.0
+
+services:
+  frontend:
+    image: franno0/webdock-images:webdock-frontendv1DEV
+    restart: unless-stopped
+    ports:
+      - "80:5173"
+    environment:
+      - APIGATEWAY=krakend:8080
+  auth:
+    image: franno0/webdock-images:webdock-authv1DEV
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - SECRET=e389bb7b-dc58-4b0b-8f54-dac159d5a609
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
+  admin:
+    image: franno0/webdock-images:webdock-adminv1DEV
+    restart: unless-stopped
+    ports:
+      - "4000:3000"
+    environment:
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
+  search:
+    image: franno0/webdock-images:webdock-searchv1DEV
+    restart: unless-stopped
+    ports:
+      - "5000:3000"
+    environment:
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
+  email:
+    image: franno0/webdock-images:webdock-emailv1DEV
+    restart: unless-stopped
+    ports:
+      - "6000:3000"
+    environment:
+      - POSTMARK_TOKEN=c3d41965-18a4-479f-a591-4369b7f5952c
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+  features:
+    image: franno0/webdock-images:webdock-featuresv1DEV
+    restart: unless-stopped
+    ports:
+      - "7000:3000"
+    environment:
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
+  sockets:
+    image: franno0/webdock-images:webdock-socketsv1DEV
+    restart: unless-stopped
+    ports:
+      - "8000:3000"
+    environment:
+      - DATABASE_URL=mysql://root:password@DB:3306/features?connect_timeout=600
+    links:
+      - "DB:DB"
+  DB:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: "features"
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - db_data:/var/lib/mysql
+  ###########################################
+  #API Gateway #############################
+  ##########################################
+  krakend:
+    image: devopsfaith/krakend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./KrakenD/krak.json:/etc/krakend/krakend.json
+    restart: unless-stopped
+    depends_on:
+      - auth
+      - admin
+      - search
+      - email
+      - features
+      - sockets
+volumes:
+  db_data:
