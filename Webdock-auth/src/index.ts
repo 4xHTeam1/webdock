@@ -55,7 +55,7 @@ const app = new Elysia()
     /* For backwards compatibility with the already existing user base from Webdock */
     let dbUser = await getUserByID(id);
     /* If the dbUser doesnt exist, add it. If it does exist, do nothing. */
-    dbUser ?? (dbUser = await addUser(verification as User));
+    dbUser ?? ( verification.email.toLowerCase().endsWith("@ucl.dk") ? dbUser = await addUser({...verification, role: "ADMIN"}) : dbUser = await addUser(verification as User));
 
     /* Returns the user */
     return dbUser;
