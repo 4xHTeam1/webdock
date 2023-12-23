@@ -19,7 +19,7 @@ services:
     links:
       - "DB:DB"
   admin:
-    image: franno0/webdock-images:webdock-adminv1DEV
+    image: franno0/webdock-images:webdock-adminv1Mike
     restart: unless-stopped
     ports:
       - "4000:3000"

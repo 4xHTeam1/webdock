@@ -212,3 +212,26 @@ export const DeleteStatus = async (requesterId: string, statusId: string) => {
 
   return deletedStatus;
 };
+
+export const MergePosts = async (
+  requesterId: string,
+  postid: number,
+  mergePostIds: number[]
+) => {
+  console.log(mergePostIds);
+  console.log(requesterId);
+  let mergedPosts = await http
+    .put(
+      `/admin/features/merge/${postid}?mergePostIds=${mergePostIds.join(",")}`,
+      {
+        headers: {
+          requesterId: requesterId,
+        },
+      }
+    )
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return mergedPosts;
+};

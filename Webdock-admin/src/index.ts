@@ -33,7 +33,7 @@ import { ParamValidation } from "../shared/services/ParamValidation";
 import { BodyValidation } from "../shared/services/BodyValidation";
 import cors from "@elysiajs/cors";
 import { GetUsers } from "../../Webdock-frontend/src/services/adminService";
-import { updateFeatureStatus } from "./querys/featureQuerys";
+import { mergeFeatures, updateFeatureStatus } from "./querys/featureQuerys";
 
 const app = new Elysia()
   .get("/status", async ({ request: { headers } }) => {
@@ -179,18 +179,35 @@ const app = new Elysia()
       })
   )
   .group("/features", (app) =>
-    app.put(
-      "/status/:id/:statusId",
-      async ({ params: { id, statusId }, headers: { requesterId } }) => {
-        IsAdministrator({
-          requesterId: requesterId,
-        } as IAdmin);
-        ParamValidation(Number(id));
-        ParamValidation(Number(statusId));
+    app
+      .put(
+        "/status/:id/:statusId",
+        async ({ params: { id, statusId }, headers: { requesterId } }) => {
+          IsAdministrator({
+            requesterId: requesterId,
+          } as IAdmin);
+          ParamValidation(Number(id));
+          ParamValidation(Number(statusId));
 
-        return await updateFeatureStatus(Number(id), Number(statusId));
-      }
-    )
+          return await updateFeatureStatus(Number(id), Number(statusId));
+        }
+      )
+      .put(
+        "/merge/:id",
+        async ({
+          params: { id },
+          query: { mergePostIds },
+          headers: { requesterid },
+        }) => {
+          IsAdministrator({
+            requesterId: requesterid,
+          } as IAdmin);
+          ParamValidation(Number(id));
+          const ids = mergePostIds!.split(",").map(Number);
+          console.log(ids);
+          return await mergeFeatures(Number(id), ids);
+        }
+      )
   )
   .listen(3000);
 

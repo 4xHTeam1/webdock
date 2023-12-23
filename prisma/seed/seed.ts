@@ -84,6 +84,14 @@ async function main() {
       color: "#6CD345",
     },
   });
+  const testStatus4 = await prisma.status.upsert({
+    where: { id: 4 },
+    update: {},
+    create: {
+      name: "Merged",
+      color: "#d3c745",
+    },
+  });
 
   const testFeatureRequest1 = await prisma.featureRequest.upsert({
     where: { id: 1 },

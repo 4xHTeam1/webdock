@@ -7,8 +7,16 @@
   "output_encoding": "json",
   "extra_config": {
     "security/cors": {
-      "allow_origins": ["*"],
-      "allow_methods": ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
+      "allow_origins": [
+        "*"
+      ],
+      "allow_methods": [
+        "POST",
+        "GET",
+        "PUT",
+        "DELETE",
+        "OPTIONS"
+      ],
       "max_age": "12h",
       "allow_headers": [
         "Content-Type",
@@ -34,7 +42,9 @@
           "sd": "static",
           "method": "GET",
           "disable_host_sanitize": false,
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "extra_config": {
             "backend/http": {
               "return_error_code": true
@@ -53,7 +63,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -62,7 +74,9 @@
           }
         }
       ],
-      "input_headers": ["requesterId"]
+      "input_headers": [
+        "requesterId"
+      ]
     },
     {
       "endpoint": "/admin/users/{id}",
@@ -74,7 +88,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -83,7 +99,9 @@
           }
         }
       ],
-      "input_headers": ["requesterId"]
+      "input_headers": [
+        "requesterId"
+      ]
     },
     {
       "endpoint": "/admin/users/role/{id}",
@@ -95,7 +113,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -107,7 +127,10 @@
           }
         }
       ],
-      "input_headers": ["requesterId", "Content-Type"]
+      "input_headers": [
+        "requesterId",
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/admin/categories",
@@ -119,7 +142,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -128,7 +153,9 @@
           }
         }
       ],
-      "input_headers": ["*"]
+      "input_headers": [
+        "*"
+      ]
     },
     {
       "endpoint": "/admin/categories/{id}",
@@ -140,7 +167,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -149,7 +178,9 @@
           }
         }
       ],
-      "input_headers": ["requesterId"]
+      "input_headers": [
+        "requesterId"
+      ]
     },
     {
       "endpoint": "/admin/categories/",
@@ -161,7 +192,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "POST",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -173,7 +206,10 @@
           }
         }
       ],
-      "input_headers": ["requesterId", "Content-Type"]
+      "input_headers": [
+        "requesterId",
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/admin/categories/{id}",
@@ -185,7 +221,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -197,7 +235,10 @@
           }
         }
       ],
-      "input_headers": ["requesterId", "Content-Type"]
+      "input_headers": [
+        "requesterId",
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/admin/categories/{id}",
@@ -209,7 +250,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -218,7 +261,9 @@
           }
         }
       ],
-      "input_headers": ["requesterId"]
+      "input_headers": [
+        "requesterId"
+      ]
     },
     {
       "endpoint": "/admin/statuses",
@@ -230,7 +275,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -239,7 +286,9 @@
           }
         }
       ],
-      "input_headers": ["requesterId"]
+      "input_headers": [
+        "requesterId"
+      ]
     },
     {
       "endpoint": "/admin/statuses/{id}",
@@ -251,7 +300,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -260,7 +311,9 @@
           }
         }
       ],
-      "input_headers": ["requesterId"]
+      "input_headers": [
+        "requesterId"
+      ]
     },
     {
       "endpoint": "/admin/statuses/",
@@ -272,7 +325,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "POST",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -284,7 +339,10 @@
           }
         }
       ],
-      "input_headers": ["requesterId", "Content-Type"]
+      "input_headers": [
+        "requesterId",
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/admin/statuses/{id}",
@@ -296,7 +354,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -308,7 +368,10 @@
           }
         }
       ],
-      "input_headers": ["requesterId", "Content-Type"]
+      "input_headers": [
+        "requesterId",
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/admin/statuses/{id}",
@@ -320,7 +383,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -329,7 +394,9 @@
           }
         }
       ],
-      "input_headers": ["requesterId"]
+      "input_headers": [
+        "requesterId"
+      ]
     },
     {
       "endpoint": "/admin/features/status/{id}/{statusId}",
@@ -341,7 +408,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
-          "host": ["http://admin:3000"],
+          "host": [
+            "http://admin:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -350,7 +419,9 @@
           }
         }
       ],
-      "input_headers": ["requesterId"]
+      "input_headers": [
+        "requesterId"
+      ]
     },
     {
       "endpoint": "/auth/status",
@@ -362,7 +433,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://auth:3000"],
+          "host": [
+            "http://auth:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -382,7 +455,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "POST",
-          "host": ["http://auth:3000"],
+          "host": [
+            "http://auth:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -394,7 +469,9 @@
           }
         }
       ],
-      "input_headers": ["Content-Type"]
+      "input_headers": [
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/features/status",
@@ -406,7 +483,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -426,7 +505,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -446,7 +527,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -466,7 +549,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "POST",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -478,7 +563,9 @@
           }
         }
       ],
-      "input_headers": ["Content-Type"]
+      "input_headers": [
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/features/{id}",
@@ -490,7 +577,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -502,7 +591,9 @@
           }
         }
       ],
-      "input_headers": ["Content-Type"]
+      "input_headers": [
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/features/{id}",
@@ -514,7 +605,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -534,7 +627,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -554,7 +649,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "POST",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -566,7 +663,9 @@
           }
         }
       ],
-      "input_headers": ["Content-Type"]
+      "input_headers": [
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/features/comment/{id}",
@@ -578,7 +677,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -598,7 +699,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "POST",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -610,7 +713,9 @@
           }
         }
       ],
-      "input_headers": ["Content-Type"]
+      "input_headers": [
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/features/comment/reply/{id}",
@@ -622,7 +727,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -642,7 +749,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -654,7 +763,9 @@
           }
         }
       ],
-      "input_headers": ["Content-Type"]
+      "input_headers": [
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/features/comment/reply/{id}",
@@ -666,7 +777,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "PUT",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -678,7 +791,9 @@
           }
         }
       ],
-      "input_headers": ["Content-Type"]
+      "input_headers": [
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/features/upvote/",
@@ -690,7 +805,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "POST",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -702,7 +819,9 @@
           }
         }
       ],
-      "input_headers": ["Content-Type"]
+      "input_headers": [
+        "Content-Type"
+      ]
     },
     {
       "endpoint": "/features/upvote/{id}/{userId}",
@@ -714,7 +833,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -726,7 +847,10 @@
           }
         }
       ],
-      "input_query_strings": ["id", "userId"]
+      "input_query_strings": [
+        "id",
+        "userId"
+      ]
     },
     {
       "endpoint": "/features/upvoteCount/{id}",
@@ -738,7 +862,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -758,7 +884,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -778,7 +906,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -798,7 +928,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -807,7 +939,9 @@
           }
         }
       ],
-      "input_query_strings": ["query"]
+      "input_query_strings": [
+        "query"
+      ]
     },
     {
       "endpoint": "/search/user/name",
@@ -819,7 +953,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -828,7 +964,9 @@
           }
         }
       ],
-      "input_query_strings": ["query"]
+      "input_query_strings": [
+        "query"
+      ]
     },
     {
       "endpoint": "/search/user/email",
@@ -840,7 +978,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -849,7 +989,9 @@
           }
         }
       ],
-      "input_query_strings": ["query"]
+      "input_query_strings": [
+        "query"
+      ]
     },
     {
       "endpoint": "/search/feature/user/name",
@@ -861,7 +1003,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -870,7 +1014,9 @@
           }
         }
       ],
-      "input_query_strings": ["query"]
+      "input_query_strings": [
+        "query"
+      ]
     },
     {
       "endpoint": "/search/feature/user/email",
@@ -883,7 +1029,9 @@
           "sd": "static",
           "method": "GET",
           "disable_host_sanitize": false,
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "extra_config": {
             "backend/http": {
               "return_error_code": true
@@ -891,7 +1039,9 @@
           }
         }
       ],
-      "input_query_strings": ["query"]
+      "input_query_strings": [
+        "query"
+      ]
     },
     {
       "endpoint": "/search/feature/category",
@@ -903,7 +1053,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -912,7 +1064,9 @@
           }
         }
       ],
-      "input_query_strings": ["query"]
+      "input_query_strings": [
+        "query"
+      ]
     },
     {
       "endpoint": "/search/feature/title",
@@ -924,7 +1078,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -933,7 +1089,9 @@
           }
         }
       ],
-      "input_query_strings": ["query"]
+      "input_query_strings": [
+        "query"
+      ]
     },
     {
       "endpoint": "/search/feature/description",
@@ -945,7 +1103,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://search:3000"],
+          "host": [
+            "http://search:3000"
+          ],
           "disable_host_sanitize": false,
           "extra_config": {
             "backend/http": {
@@ -954,7 +1114,9 @@
           }
         }
       ],
-      "input_query_strings": ["query"]
+      "input_query_strings": [
+        "query"
+      ]
     },
     {
       "endpoint": "/features/notification/{id}",
@@ -966,7 +1128,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false
         }
       ]
@@ -986,7 +1150,9 @@
               "template": "ewogICAib3duZXJJZCI6IHt7LnJlcV9ib2R5Lm93bmVySWR9fSwKICAgInVzZXJJZCI6IHt7LnJlcV9ib2R5LnVzZXJJZH19LAogICAiZmVhdHVyZVJlcXVlc3RJZCI6IHt7LnJlcV9ib2R5LmZlYXR1cmVSZXF1ZXN0SWR9fSwKICAgInR5cGUiOiB7ey5yZXFfYm9keS50eXBlfX0KfQ=="
             }
           },
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false
         }
       ]
@@ -1001,7 +1167,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false
         }
       ]
@@ -1016,7 +1184,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "DELETE",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false
         }
       ]
@@ -1031,7 +1201,9 @@
           "encoding": "json",
           "sd": "static",
           "method": "GET",
-          "host": ["http://features:3000"],
+          "host": [
+            "http://features:3000"
+          ],
           "disable_host_sanitize": false
         }
       ]
@@ -1051,9 +1223,39 @@
               "template": "ewogIm93bmVySWQiOiB7e3JlcV9ib2R5Lm93bmVySWR9fSwKICJzdWJqZWN0Ijoge3tyZXFfYm9keS5zdWJqZWN0fX0sCiAidXNlciI6IHt7cmVxX2JvZHkudXNlcn19LAogImZlYXR1cmUiOiB7e3JlcV9ib2R5LmZlYXR1cmV9fSwKICJsaW5rIjoge3tyZXFfYm9keS5saW5rfX0KfQ=="
             }
           },
-          "host": ["http://email:3000"],
+          "host": [
+            "http://email:3000"
+          ],
           "disable_host_sanitize": false
         }
+      ]
+    },
+    {
+      "endpoint": "/admin/features/merge/{id}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/features/merge/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "PUT",
+          "extra_config": {
+            "backend/http": {
+              "return_error_code": true
+            }
+          },
+          "host": [
+            "http://admin:3000"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "requesterId"
+      ],
+      "input_query_strings": [
+        "mergePostIds"
       ]
     }
   ]

@@ -25,6 +25,13 @@ const prisma = new PrismaClient();
 export const getFeatures = async () => {
   try {
     const features = await prisma.featureRequest.findMany({
+      where: {
+        NOT: {
+          status: {
+            name: "Merged",
+          },
+        },
+      },
       include: {
         category: true,
         status: {
@@ -35,7 +42,23 @@ export const getFeatures = async () => {
           },
         },
         user: true,
-        featureUpvotes: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
+        FeatureRequestMergeFrom: {
+          include: {
+            mergedFrom: true,
+            mergedInto: true,
+          },
+        },
+        FeatureRequestMergeInto: {
+          include: {
+            mergedFrom: true,
+            mergedInto: true,
+          },
+        },
         _count: {
           select: {
             featureUpvotes: true,
@@ -57,7 +80,14 @@ export const getFeatures = async () => {
 export const getFeature = async ({ id }: IFeatureById) => {
   try {
     const feature = await prisma.featureRequest.findUnique({
-      where: { id },
+      where: {
+        id,
+        NOT: {
+          status: {
+            name: "Merged",
+          },
+        },
+      },
       include: {
         category: true,
         status: {
@@ -71,6 +101,18 @@ export const getFeature = async ({ id }: IFeatureById) => {
         featureUpvotes: {
           include: {
             user: true,
+          },
+        },
+        FeatureRequestMergeFrom: {
+          include: {
+            mergedFrom: true,
+            mergedInto: true,
+          },
+        },
+        FeatureRequestMergeInto: {
+          include: {
+            mergedFrom: true,
+            mergedInto: true,
           },
         },
         _count: {

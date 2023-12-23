@@ -1,8 +1,7 @@
 <template>
   <div v-if="mergeModalOpen" class="mergeModal_Container"
     :class="{ 'openModalBackground': mergeModalOpen && !mergeModalIsClosing, 'closeModalBackground': mergeModalIsClosing }">
-    <div class="mergeModal_Wrapper"
-      :class="{ 'OpenModal': mergeModalOpen, 'CloseModal': mergeModalIsClosing }">
+    <div class="mergeModal_Wrapper" :class="{ 'OpenModal': mergeModalOpen, 'CloseModal': mergeModalIsClosing }">
       <img src="../../../Assets/icons/close.svg" alt="close" class="mergeModal_Close" @click="closeMergeModal">
       <div class="mergeModal_Info">
         <h1 class="mergeModal_Title">Merge Post</h1>
@@ -132,18 +131,24 @@ export default {
   },
   methods: {
     mergePosts() {
-      console.log("merge posts ", this.selectedFeatures)
+      this.$store.dispatch("admin/mergePosts", {
+        requesterId: this.auth.user.id,
+        id: this.feature.id,
+        mergePostsIds: this.selectedFeatures,
+      });
+      this.$store.dispatch("features/getFeatureById", this.feature.id);
+      this.closeMergeModal();
     },
     checkIfSelected(feature) {
-      return this.selectedFeatures.includes(feature);
+      return this.selectedFeatures.includes(feature.id);
     },
     selectFeature(feature) {
-      if (this.selectedFeatures.includes(feature)) {
+      if (this.selectedFeatures.includes(feature.id)) {
         this.selectedFeatures = this.selectedFeatures.filter((f) => {
-          return f !== feature;
+          return f.id !== feature.id;
         });
       } else {
-        this.selectedFeatures.push(feature);
+        this.selectedFeatures.push(feature.id);
       }
     },
     filterFeatures(search) {
