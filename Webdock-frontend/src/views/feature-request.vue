@@ -1,6 +1,13 @@
 <template>
   <div class="container d-flex justify-content-center featureRequest_Container">
+    <div class="drop">
     <CreatePost />
+    <!-- dropdown som ændre sort method fra newest til oldest og omvent somt sortere -->
+    <select class="Options" v-model="this.sortMethod" @change="(e) => {sortMethod=e.target.value;this.sortFeatures()}">
+        <option value="Newest">Newest</option>
+        <option value="Oldest">Oldest</option>
+    </select> 
+  </div>
     <div class="featureRequest_OverviewContainer">
       <div class="overview-area">
         <div v-if="this.features.allFeatures.length <= 0" class="NoFeaturesInList">
@@ -36,6 +43,36 @@ export default {
   mounted: async function () {
     await this.$store.dispatch("features/getAllFeatures");
   },
+  // data indeholder en lokalstate som er sorterings metoden, retunere en sorterings metode  
+  data: function(){
+    return{
+      sortMethod: "Newest"
+    }
+  }, 
+  // funtionerne som er metoderne til at sortere i alle vores features 
+  methods: {
+    //Den tager alle vores features fra vores feature store, og sortere listen efter nyeste, tager 2 features/a,b 
+    sortNewest(){
+      this.features.allFeatures.sort((a,b)=>{
+        //og tjekker på diferracen på dateSubmitted 
+        return new Date(b.dateSubmitted) - new Date(a.dateSubmitted)
+      })
+    },
+    // se noter oven over
+    sortOldest(){
+      this.features.allFeatures.sort((a,b)=>{
+        return new Date(a.dateSubmitted) - new Date(b.dateSubmitted)
+      })
+    },
+    //det er en function der bliver kaldt når vi fortager en ændring i dropdown på hjemmesiden
+    sortFeatures(){
+      if(this.sortMethod === "Newest"){
+        this.sortNewest()
+      } else if (this.sortMethod === "Oldest"){
+        this.sortOldest()
+      }
+    }
+  }
 };
 </script>
 
@@ -78,5 +115,12 @@ export default {
   align-items: center;
   gap: 16px;
   padding: 15px;
+}
+
+.drop{
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+ 
 }
 </style>
