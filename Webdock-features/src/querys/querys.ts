@@ -49,14 +49,30 @@ export const getFeatures = async () => {
         },
         FeatureRequestMergeFrom: {
           include: {
-            mergedFrom: true,
-            mergedInto: true,
+            mergedFrom: {
+              include: {
+                user: true,
+              },
+            },
+            mergedInto: {
+              include: {
+                user: true,
+              },
+            },
           },
         },
         FeatureRequestMergeInto: {
           include: {
-            mergedFrom: true,
-            mergedInto: true,
+            mergedFrom: {
+              include: {
+                user: true,
+              },
+            },
+            mergedInto: {
+              include: {
+                user: true,
+              },
+            },
           },
         },
         _count: {
@@ -105,14 +121,30 @@ export const getFeature = async ({ id }: IFeatureById) => {
         },
         FeatureRequestMergeFrom: {
           include: {
-            mergedFrom: true,
-            mergedInto: true,
+            mergedFrom: {
+              include: {
+                user: true,
+              },
+            },
+            mergedInto: {
+              include: {
+                user: true,
+              },
+            },
           },
         },
         FeatureRequestMergeInto: {
           include: {
-            mergedFrom: true,
-            mergedInto: true,
+            mergedFrom: {
+              include: {
+                user: true,
+              },
+            },
+            mergedInto: {
+              include: {
+                user: true,
+              },
+            },
           },
         },
         _count: {
@@ -152,8 +184,47 @@ export const createFeature = async ({
       },
       include: {
         category: true,
-        status: true,
-        featureUpvotes: true,
+        status: {
+          select: {
+            id: true,
+            name: true,
+            color: true,
+          },
+        },
+        user: true,
+        featureUpvotes: {
+          include: {
+            user: true,
+          },
+        },
+        FeatureRequestMergeFrom: {
+          include: {
+            mergedFrom: {
+              include: {
+                user: true,
+              },
+            },
+            mergedInto: {
+              include: {
+                user: true,
+              },
+            },
+          },
+        },
+        FeatureRequestMergeInto: {
+          include: {
+            mergedFrom: {
+              include: {
+                user: true,
+              },
+            },
+            mergedInto: {
+              include: {
+                user: true,
+              },
+            },
+          },
+        },
         _count: {
           select: {
             featureUpvotes: true,
@@ -570,7 +641,13 @@ export const removeAllNotifications = async (ownerId: number) => {
  */
 export const getStatuses = async () => {
   try {
-    const statuses = await prisma.status.findMany({});
+    const statuses = await prisma.status.findMany({
+      where: {
+        NOT: {
+          name: "Merged",
+        },
+      },
+    });
     return {
       statuses,
     };

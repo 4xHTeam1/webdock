@@ -36,18 +36,20 @@
         <div class="postTitle_Container">
           <div class="postTitle">
             <h1>{{ feature.title }}</h1>
-            <div class="postStatus" v-if="auth.user !== null && auth.user.role.toLowerCase() === 'admin'">
-              <select v-model="selectedStatus" @change="updateStatus" :style="{ color: selectedStatus.color }">
-                <option v-for="status in features.statuses" :key="status.id" :value="status.id"
-                  :style="{ color: status.color }">
-                  {{ status.name }}
-                </option>
-              </select>
+            <div class="post_InteractionContainer">
+              <div class="postStatus" v-if="auth.user !== null && auth.user.role.toLowerCase() === 'admin'">
+                <select v-model="selectedStatus" @change="updateStatus" :style="{ color: selectedStatus.color }">
+                  <option v-for="status in features.statuses" :key="status.id" :value="status.id"
+                    :style="{ color: status.color }">
+                    {{ status.name }}
+                  </option>
+                </select>
+              </div>
+              <button class="Merge_Button" @click="openMergeModal">
+                <img src="../../../Assets/icons/merge.svg" class="Merge_Icon" alt="merge" />
+                <span class="Merge_Text">Merge Post</span>
+              </button>
             </div>
-            <button class="Merge_Button" @click="openMergeModal">
-              <img src="../../../Assets/icons/merge.svg" class="Merge_Icon" alt="merge" />
-              <span class="Merge_Text">Merge Post</span>
-            </button>
           </div>
           <div class="postStatus" :style="{ color: feature.status.color }">
             {{ feature.status.name }}
@@ -130,13 +132,13 @@ export default {
     }
   },
   methods: {
-    mergePosts() {
-      this.$store.dispatch("admin/mergePosts", {
+    async mergePosts() {
+      await this.$store.dispatch("admin/mergePosts", {
         requesterId: this.auth.user.id,
         id: this.feature.id,
         mergePostsIds: this.selectedFeatures,
       });
-      this.$store.dispatch("features/getFeatureById", this.feature.id);
+      await this.$store.dispatch("features/getFeatureById", this.feature.id);
       this.closeMergeModal();
     },
     checkIfSelected(feature) {
@@ -295,6 +297,15 @@ export default {
 
 .closeModal {
   animation: CloseModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.post_InteractionContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: end;
+  flex: 1;
 }
 
 .mergeModal_Container {
@@ -578,6 +589,7 @@ export default {
 .postTitle_Container {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .postTitle {

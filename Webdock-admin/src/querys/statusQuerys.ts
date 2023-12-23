@@ -15,7 +15,13 @@ const prisma = new PrismaClient();
  */
 export const GetAllStatuses = async () => {
   try {
-    const result = await prisma.status.findMany();
+    const result = await prisma.status.findMany({
+      where: {
+        NOT: {
+          name: "Merged",
+        },
+      },
+    });
     return result;
   } catch (error) {
     //TODO: Add error handling

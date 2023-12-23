@@ -1,5 +1,6 @@
 <template>
-  <div class="container" v-if="selectedFeature && selectedFeatureComments">
+  <div class="container"
+    v-if="selectedFeature && selectedFeatureComments">
     <div @click="goBack" class="link-decoration">
       <div class="goback-row">
         <img class="goback-arrow" src="../Assets/icons/arrow-left.svg">
@@ -18,8 +19,9 @@
           </div>
           <div class="ActivityList_Container">
             <div class="activityList">
-              <div class="postStatusChange">
-                <postStatusChange status="planned" color="#1FA0FF" />
+              <div class="mergePost_CommentContainer">
+                <mergeComment v-for="merge in this.features.selectedFeature.FeatureRequestMergeInto" :key="merge.id"
+                  :mergedPost="merge.mergedFrom" />
               </div>
               <div class="postComments" v-for="comment in this.features.selectedFeatureComments" :key="comment.id"
                 :id="comment.id">
@@ -41,6 +43,7 @@ import sideBar from "../Components/featureRequest-components/featureComment-comp
 import postComment from "../Components/featureRequest-components/featureComment-components/postComment.vue";
 import postStatusChange from "../Components/featureRequest-components/featureComment-components/postStatusChange.vue";
 import postOverview from "../Components/featureRequest-components/featureComment-components/postOverview.vue";
+import mergeComment from "../Components/mergePost-components/mergeComment.vue";
 import { mapState } from 'vuex';
 
 export default {
@@ -49,6 +52,7 @@ export default {
     postStatusChange,
     postComment,
     sideBar,
+    mergeComment
   },
   computed: {
     ...mapState(["features"]),
@@ -70,10 +74,12 @@ export default {
       await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
     },
   },
-  async mounted() {
+  async beforeCreate() {
     await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
     await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
 
+    console.log(this.features.selectedFeature.FeatureRequestMergeInto)
+    console.log(this.selectedFeature.FeatureRequestMergeInto)
     const url = new URL(window.location.href);
     const commentId = url.hash.substring(1); // get the fragment without the '#'
     if (commentId) {
@@ -86,6 +92,7 @@ export default {
         }, 1500); // remove the class after 2 seconds
       }
     }
+    this.loaded = true;
   },
 };
 </script>
@@ -103,6 +110,13 @@ export default {
   100% {
     background-color: transparent;
   }
+}
+
+.mergePost_CommentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
 }
 
 .highlight {
@@ -171,6 +185,7 @@ export default {
   padding: 24px;
   display: flex;
   flex-direction: column;
+  width: 600px;
 }
 
 .postActivity {
