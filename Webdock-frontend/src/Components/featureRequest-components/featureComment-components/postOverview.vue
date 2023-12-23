@@ -1,6 +1,8 @@
 <template>
-  <div v-if="mergeModalOpen" class="mergeModal_Container">
-    <div class="mergeModal_Wrapper">
+  <div v-if="mergeModalOpen" class="mergeModal_Container"
+    :class="{ 'openModalBackground': mergeModalOpen && !mergeModalIsClosing, 'closeModalBackground': mergeModalIsClosing }">
+    <div class="mergeModal_Wrapper"
+      :class="{ 'OpenModal': mergeModalOpen, 'CloseModal': mergeModalIsClosing }">
       <img src="../../../Assets/icons/close.svg" alt="close" class="mergeModal_Close" @click="closeMergeModal">
       <div class="mergeModal_Info">
         <h1 class="mergeModal_Title">Merge Post</h1>
@@ -113,6 +115,7 @@ export default {
       comment: "",
       selectedStatus: this.feature.status,
       mergeModalOpen: false,
+      mergeModalIsClosing: false,
       selectedFeatures: [],
       filteredFeatures: [],
     };
@@ -159,7 +162,11 @@ export default {
       this.mergeModalOpen = true;
     },
     closeMergeModal() {
-      this.mergeModalOpen = false;
+      this.mergeModalIsClosing = true;
+      setTimeout(() => {
+        this.mergeModalOpen = false;
+        this.mergeModalIsClosing = false;
+      }, 500);
     },
     resize(e) {
       e.target.style.height = "45px";
@@ -216,12 +223,81 @@ export default {
 </script>
 
 <style>
+@keyframes OpenModal {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes CloseModal {
+
+  0% {
+    transform: scale(1);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacityReverse {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.openModalBackground {
+  animation: opacity 0.5s ease-in-out forwards;
+}
+
+.closeModalBackground {
+  animation: opacityReverse 0.5s ease-in-out forwards;
+}
+
+.openModal {
+  animation: OpenModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.closeModal {
+  animation: CloseModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
 .mergeModal_Container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   backdrop-filter: blur(5px);
   z-index: 1000;
   display: flex;
@@ -238,6 +314,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: relative;
+  animation: OpenModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 .Merge_Button {
