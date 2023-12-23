@@ -121,6 +121,11 @@ export default {
   gap: 10px;
   display: flex;
   flex-direction: column;
- 
+}
+
+.Options{
+  background-color: #fcfcfc;
+  color: black;  
+  border-radius: 5px;
 }
 </style>
