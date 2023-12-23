@@ -182,7 +182,6 @@ export default {
       {}: any,
       payload: { requesterId: string; id: number; mergePostsIds: number[] }
     ) {
-      console.log(payload.mergePostsIds);
       await MergePosts(payload.requesterId, payload.id, payload.mergePostsIds);
     },
   },

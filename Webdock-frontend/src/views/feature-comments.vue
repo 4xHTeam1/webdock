@@ -78,8 +78,6 @@ export default {
     await this.$store.dispatch("features/getFeatureById", this.$route.params.id);
     await this.$store.dispatch("features/getCommentsForFeature", this.$route.params.id);
 
-    console.log(this.features.selectedFeature.FeatureRequestMergeInto)
-    console.log(this.selectedFeature.FeatureRequestMergeInto)
     const url = new URL(window.location.href);
     const commentId = url.hash.substring(1); // get the fragment without the '#'
     if (commentId) {
