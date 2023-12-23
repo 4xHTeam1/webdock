@@ -127,5 +127,6 @@ export default {
   background-color: #fcfcfc;
   color: black;  
   border-radius: 5px;
+  border: none;
 }
 </style>
