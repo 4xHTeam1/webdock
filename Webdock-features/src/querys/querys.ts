@@ -34,6 +34,7 @@ export const getFeatures = async () => {
             color: true,
           },
         },
+        user: true,
         featureUpvotes: true,
         _count: {
           select: {
