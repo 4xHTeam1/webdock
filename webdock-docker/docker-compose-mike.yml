@@ -2,7 +2,7 @@ version: 1.0.0
 
 services:
   frontend:
-    image: franno0/webdock-images:webdock-frontendv1DEV
+    image: franno0/webdock-images:webdock-frontendv1Mike
     restart: unless-stopped
     ports:
       - "80:5173"
