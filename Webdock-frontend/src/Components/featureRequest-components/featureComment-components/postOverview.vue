@@ -39,6 +39,12 @@
         </div>
       </div>
       <div class="mergeModal_FeaturesContainer">
+        <p
+          v-if="this.filteredFeatures.length <= 0"
+          class="mergeModal_NoFeatures"
+        >
+          No posts found with that search or all posts are already merged
+        </p>
         <mergeFeature
           v-for="feature in this.filteredFeatures"
           :key="feature.id"
@@ -417,6 +423,17 @@ export default {
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
+}
+
+.mergeModal_NoFeatures {
+  margin: 0;
+  color: #888;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mergeModal_Wrapper {
