@@ -1,30 +1,68 @@
 <template>
-  <div v-if="mergeModalOpen" class="mergeModal_Container"
-    :class="{ 'openModalBackground': mergeModalOpen && !mergeModalIsClosing, 'closeModalBackground': mergeModalIsClosing }">
-    <div class="mergeModal_Wrapper" :class="{ 'OpenModal': mergeModalOpen, 'CloseModal': mergeModalIsClosing }">
-      <img src="../../../Assets/icons/close.svg" alt="close" class="mergeModal_Close" @click="closeMergeModal">
+  <div
+    v-if="mergeModalOpen"
+    class="mergeModal_Container"
+    :class="{
+      openModalBackground: mergeModalOpen && !mergeModalIsClosing,
+      closeModalBackground: mergeModalIsClosing,
+    }"
+  >
+    <div
+      class="mergeModal_Wrapper"
+      :class="{ OpenModal: mergeModalOpen, CloseModal: mergeModalIsClosing }"
+    >
+      <img
+        src="../../../Assets/icons/close.svg"
+        alt="close"
+        class="mergeModal_Close"
+        @click="closeMergeModal"
+      />
       <div class="mergeModal_Info">
         <h1 class="mergeModal_Title">Merge Post</h1>
-        <p class="mergeModal_Description">Choose 1 or more post to merge with this one</p>
+        <p class="mergeModal_Description">
+          Choose 1 or more post to merge with this one
+        </p>
       </div>
       <div class="mergeModal_SearchContainer">
         <div class="Search_Container">
-          <img class="Search_Icon" src="../../../Assets/icons/searchIcon.svg" alt="search" />
-          <input class="Search_Input" type="text" placeholder="Search"
-            @keyup="(e) => this.filterFeatures(e.target.value)" />
+          <img
+            class="Search_Icon"
+            src="../../../Assets/icons/searchIcon.svg"
+            alt="search"
+          />
+          <input
+            class="Search_Input"
+            type="text"
+            placeholder="Search"
+            @keyup="(e) => this.filterFeatures(e.target.value)"
+          />
         </div>
       </div>
       <div class="mergeModal_FeaturesContainer">
-        <mergeFeature v-for="feature in this.filteredFeatures" :key="feature.id" :feature="feature"
-          :active="checkIfSelected(feature)" @click="selectFeature(feature)" />
+        <mergeFeature
+          v-for="feature in this.filteredFeatures"
+          :key="feature.id"
+          :feature="feature"
+          :active="checkIfSelected(feature)"
+          @click="selectFeature(feature)"
+        />
       </div>
       <div class="mergeModal_interactionContainer">
         <button class="mergeModal_CloseButton" @click="closeMergeModal">
           Cancel
         </button>
-        <button class="mergeModal_ConfirmButton" :disabled="this.selectedFeatures.length <= 0" @click="mergePosts">
-          Merge <span v-if="this.selectedFeatures.length > 0">{{ this.selectedFeatures.length }} post<span
-              v-if="this.selectedFeatures.length >= 2">s</span></span>
+        <button
+          class="mergeModal_ConfirmButton"
+          :disabled="this.selectedFeatures.length <= 0"
+          @click="mergePosts"
+        >
+          Merge
+          <span v-if="this.selectedFeatures.length > 0"
+            >{{ this.selectedFeatures.length }} post<span
+              v-if="this.selectedFeatures.length >= 2"
+              >s</span
+            ></span
+          >
         </button>
       </div>
     </div>
@@ -37,16 +75,39 @@
           <div class="postTitle">
             <h1>{{ feature.title }}</h1>
             <div class="post_InteractionContainer">
-              <div class="postStatus" v-if="auth.user !== null && auth.user.role.toLowerCase() === 'admin'">
-                <select v-model="selectedStatus" @change="updateStatus" :style="{ color: selectedStatus.color }">
-                  <option v-for="status in features.statuses" :key="status.id" :value="status.id"
-                    :style="{ color: status.color }">
+              <div
+                class="postStatus"
+                v-if="
+                  auth.user !== null && auth.user.role.toLowerCase() === 'admin'
+                "
+              >
+                <select
+                  v-model="selectedStatus"
+                  @change="updateStatus"
+                  :style="{ color: selectedStatus.color }"
+                >
+                  <option
+                    v-for="status in features.statuses"
+                    :key="status.id"
+                    :value="status.id"
+                    :style="{ color: status.color }"
+                  >
                     {{ status.name }}
                   </option>
                 </select>
               </div>
-              <button class="Merge_Button" @click="openMergeModal">
-                <img src="../../../Assets/icons/merge.svg" class="Merge_Icon" alt="merge" />
+              <button
+                class="Merge_Button"
+                v-if="
+                  auth.user !== null && auth.user.role.toLowerCase() === 'admin'
+                "
+                @click="openMergeModal"
+              >
+                <img
+                  src="../../../Assets/icons/merge.svg"
+                  class="Merge_Icon"
+                  alt="merge"
+                />
                 <span class="Merge_Text">Merge Post</span>
               </button>
             </div>
@@ -59,25 +120,42 @@
       <div class="postHeadBotContainer">
         <div class="postUserInfo">
           <div class="usersAvatar postUserAvatar">
-            <div class="noneAvatar" v-if="feature.user.avatarURL === null ||
-              feature.user.avatarURL === '' ||
-              feature.user.avatarURL === undefined
-              " style="background-color: #9cb">
+            <div
+              class="noneAvatar"
+              v-if="
+                feature.user.avatarURL === null ||
+                feature.user.avatarURL === '' ||
+                feature.user.avatarURL === undefined
+              "
+              style="background-color: #9cb"
+            >
               {{ feature.user.name[0] }}
             </div>
-            <img v-else :src="feature.user.avatarURL" alt="avatar" class="user_img" />
-            <img src="../../../Assets/webdock-logo-farvet.png" alt="webdock admin"
-              v-if="feature.user.role.toLowerCase() === 'admin'" class="admin_logo" />
+            <img
+              v-else
+              :src="feature.user.avatarURL"
+              alt="avatar"
+              class="user_img"
+            />
+            <img
+              src="../../../Assets/webdock-logo-farvet.png"
+              alt="webdock admin"
+              v-if="feature.user.role.toLowerCase() === 'admin'"
+              class="admin_logo"
+            />
           </div>
-          <div class="userName" :style="{
-            color:
-              feature.user.role.toLowerCase() === 'admin' ? '#018647' : '',
-          }">
+          <div
+            class="userName"
+            :style="{
+              color:
+                feature.user.role.toLowerCase() === 'admin' ? '#018647' : '',
+            }"
+          >
             <p>
               {{
                 feature.user.role.toLowerCase() === "admin"
-                ? feature.user.name + " from Webdock"
-                : feature.user.name
+                  ? feature.user.name + " from Webdock"
+                  : feature.user.name
               }}
             </p>
           </div>
@@ -91,10 +169,24 @@
           </p>
         </div>
         <div class="commentContainer" v-if="auth.user !== null">
-          <textarea class="inputArea" placeholder="Leave a Comment" @input="resize($event)" @click="toggleControls"
-            :value="this.comment" @keyup="this.comment = $event.target.value"></textarea>
-          <div class="submitContainer" v-if="showControls" :class="{ showBorder: showControls }">
-            <div class="submitBtn" :class="{ btnActive: this.comment !== '' }" @click="handleSubmitComment()">
+          <textarea
+            class="inputArea"
+            placeholder="Leave a Comment"
+            @input="resize($event)"
+            @click="toggleControls"
+            :value="this.comment"
+            @keyup="this.comment = $event.target.value"
+          ></textarea>
+          <div
+            class="submitContainer"
+            v-if="showControls"
+            :class="{ showBorder: showControls }"
+          >
+            <div
+              class="submitBtn"
+              :class="{ btnActive: this.comment !== '' }"
+              @click="handleSubmitComment()"
+            >
               Submit
             </div>
           </div>
@@ -123,11 +215,13 @@ export default {
   },
   computed: {
     ...mapState(["auth", "admin", "features"]),
-
   },
   created: async function () {
     this.selectedStatus = this.feature.status;
-    if (this.features.statuses.length <= 0 || this.features.statuses === undefined) {
+    if (
+      this.features.statuses.length <= 0 ||
+      this.features.statuses === undefined
+    ) {
       await this.$store.dispatch("features/getAllStatuses");
     }
   },
@@ -154,18 +248,22 @@ export default {
       }
     },
     filterFeatures(search) {
-      this.filteredFeatures = this.features.allFeatures.filter((feature) => {
-        return feature.title.toLowerCase().includes(search.toLowerCase()) ||
-          feature.description.toLowerCase().includes(search.toLowerCase());
-      }).filter((feature) => {
-        return feature.id !== this.feature.id;
-      });
+      this.filteredFeatures = this.features.allFeatures
+        .filter((feature) => {
+          return (
+            feature.title.toLowerCase().includes(search.toLowerCase()) ||
+            feature.description.toLowerCase().includes(search.toLowerCase())
+          );
+        })
+        .filter((feature) => {
+          return feature.id !== this.feature.id;
+        });
     },
     async openMergeModal() {
       await this.$store.dispatch("features/getAllFeatures");
       this.filteredFeatures = this.features.allFeatures.filter((feature) => {
         return feature.id !== this.feature.id;
-      })
+      });
       this.mergeModalOpen = true;
     },
     closeMergeModal() {
@@ -214,7 +312,7 @@ export default {
   },
   components: {
     upvoteButton,
-    mergeFeature
+    mergeFeature,
   },
   props: {
     feature: {
@@ -247,7 +345,6 @@ export default {
 }
 
 @keyframes CloseModal {
-
   0% {
     transform: scale(1);
   }
@@ -299,7 +396,7 @@ export default {
   animation: CloseModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.post_InteractionContainer{
+.post_InteractionContainer {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -400,7 +497,8 @@ export default {
 .Merge_Icon {
   width: 20px;
   height: 20px;
-  filter: invert(29%) sepia(95%) saturate(3438%) hue-rotate(144deg) brightness(87%) contrast(99%);
+  filter: invert(29%) sepia(95%) saturate(3438%) hue-rotate(144deg)
+    brightness(87%) contrast(99%);
 }
 
 .mergeModal_Info {
@@ -444,7 +542,8 @@ export default {
 .Search_Icon {
   width: 24px;
   aspect-ratio: 1/1;
-  filter: invert(55%) sepia(21%) saturate(0%) hue-rotate(283deg) brightness(94%) contrast(94%);
+  filter: invert(55%) sepia(21%) saturate(0%) hue-rotate(283deg) brightness(94%)
+    contrast(94%);
 }
 
 .Search_Input {

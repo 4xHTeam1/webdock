@@ -18,7 +18,10 @@
     "frontend:preview": "vite preview Webdock-frontend --config Webdock-frontend/vite.config.ts",
     "docker:up": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock up",
     "docker:down": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock down",
-    "docker:restart": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock restart"
+    "docker:restart": "docker compose -f ./webdock-docker/docker-compose.yml -p webdock restart",
+    "docker:up:mike": "docker compose -f ./webdock-docker/docker-compose-mike.yml -p webdock up -d",
+    "docker:down:mike": "docker compose -f ./webdock-docker/docker-compose-mike.yml -p webdock down",
+    "docker:restart:mike": "docker compose -f ./webdock-docker/docker-compose-mike.yml -p webdock restart"
   },
   "dependencies": {
     "@elysiajs/cors": "^0.7.1",
