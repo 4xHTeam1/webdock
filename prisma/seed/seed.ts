@@ -1,3 +1,7 @@
+//Denne kode bruger Prisma til at oprette testdata for brugere, kategorier, statusser, 
+//feature-forespørgsler, kommentarer og svar på kommentarer."
+//Den demonstrerer brugen af 'upsert'-funktionen til enten at oprette nye posts eller opdatere eksisterende baseret på angivne betingelser.
+
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();

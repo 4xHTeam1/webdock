@@ -1,3 +1,5 @@
+
+// denne function validere om der er de angivene parametre
 export const ParamValidation = (param: any) => {
   if (
     param === undefined ||
