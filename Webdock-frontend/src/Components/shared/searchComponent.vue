@@ -1,7 +1,17 @@
 <template>
   <div class="Search_Container">
-    <img class="Search_Icon" src="../../Assets/icons/searchIcon.svg" alt="search" />
-    <input class="Search_Input" type="text" placeholder="Search" :value="search" @keyup="searchInput($event)" />
+    <img
+      class="Search_Icon"
+      src="../../Assets/icons/searchIcon.svg"
+      alt="search"
+    />
+    <input
+      class="Search_Input"
+      type="text"
+      placeholder="Search"
+      :value="search"
+      @keyup="searchInput($event)"
+    />
   </div>
 </template>
 
@@ -15,13 +25,15 @@ export default {
     searchInput: function (event: any) {
       if (event.key === "Enter") {
         this.search = event.target.value;
-        window.location.href = '/search?query=' + encodeURIComponent(this.search)
+        window.location.href =
+          "/search?query=" + encodeURIComponent(this.search);
       } else {
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
           this.search = event.target.value;
-          window.location.href = '/search?query=' + encodeURIComponent(this.search)
+          window.location.href =
+            "/search?query=" + encodeURIComponent(this.search);
         }, 1000);
       }
     },
@@ -29,7 +41,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .Search_Container {
   width: fit-content;
   height: 100%;
@@ -65,3 +77,4 @@ export default {
   color: #ebebeb;
 }
 </style>
+

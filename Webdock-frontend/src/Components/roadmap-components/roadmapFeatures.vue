@@ -1,7 +1,10 @@
 <template>
   <div class="Feature_Container">
     <upvote-button :feature="feature" />
-    <router-link class="Feature_InfoContainer" :to="`/feature-request/${feature.id}`">
+    <router-link
+      class="Feature_InfoContainer"
+      :to="`/feature-request/${feature.id}`"
+    >
       <p class="Feature_Title">{{ feature.title }}</p>
       <p class="Feature_Description">{{ feature.description }}</p>
     </router-link>
@@ -23,7 +26,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .Feature_Container {
   width: 100%;
   display: flex;

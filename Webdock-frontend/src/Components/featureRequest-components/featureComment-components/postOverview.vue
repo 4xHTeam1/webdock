@@ -333,7 +333,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @keyframes OpenModal {
   0% {
     opacity: 0;
