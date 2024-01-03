@@ -85,6 +85,7 @@ export default {
   position: relative;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  user-select: none;
 }
 
 .Feature_Active {
