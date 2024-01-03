@@ -246,8 +246,8 @@ export default {
     },
     selectFeature(feature) {
       if (this.selectedFeatures.includes(feature.id)) {
-        this.selectedFeatures = this.selectedFeatures.filter((f) => {
-          return f.id !== feature.id;
+        this.selectedFeatures = this.selectedFeatures.filter((id) => {
+          return id !== feature.id;
         });
       } else {
         this.selectedFeatures.push(feature.id);
