@@ -4,6 +4,9 @@
         <div class="Admin_UserElements">
             <router-view> </router-view>
         </div>
+        <div class="admin_postElements">
+            
+        </div>
     </div>
 </template>
 

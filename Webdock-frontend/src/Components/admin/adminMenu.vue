@@ -1,6 +1,7 @@
 <template>
   <div class="AdminMenu_Container">
     <router-link to="/admin/users" active-class="Route_Active" class="AdminMenu_Route">Users</router-link>
+    <router-link to="/admin/posts" active-class="Route_Active" class="AdminMenu_Route">Posts</router-link>
     <!-- Add more links as needed -->
   </div>
 </template>

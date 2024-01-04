@@ -13,6 +13,7 @@ import {
   DeleteStatus,
   UpdateUserRole,
 } from "../../services/adminService";
+import { deleteFeature, getAllFeatures } from "../../services/featureService";
 
 export default {
   namespaced: true,
@@ -23,6 +24,7 @@ export default {
     selectedCategory: null,
     statuses: [],
     selectedStatus: null,
+    features: [],
   },
   mutations: {
     setUsers(state: any, users: any) {
@@ -50,8 +52,25 @@ export default {
     setSelectedStatus(state: any, status: any) {
       state.selectedStatus = status;
     },
+    setFeatures (state: any, features: any) {
+      state.features = features;
+    },
+    deleteFeature (state: any, feature: any) {
+      state.features = state.features.filter((f: any) => f.id != feature.id);
+    }
   },
   actions: {
+    // denne async funktion henter alle features fra databasen
+    // de features kommer i et object der hedder features
+    async getFeatures({ commit }: any, ){
+      let features = await getAllFeatures();
+      console.log("AdminStore - getFeature", features); //til debug
+      commit("setFeatures", features.features);
+    },
+    async deleteFeature({ commit }: any, featureid: number){
+      let deletedFeature = await deleteFeature(featureid);
+      commit("deleteFeature", deletedFeature);
+    },
     async getUsers({ commit }: any, requesterId: number) {
       let users = await GetUsers(requesterId);
       commit("setUsers", users);
